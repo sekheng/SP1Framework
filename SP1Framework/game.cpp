@@ -5,7 +5,7 @@
 #include "Framework\console.h"
 #include <iostream>
 #include <iomanip>
-
+#include "levels.h"
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
@@ -61,6 +61,7 @@ void getInput()
 
 void update(double dt)
 {
+	int x;
     if ( s == MAX_STATE ) {
         if (keyPressed[K_UP] && startmenuLocation.Y > 0)
         {
@@ -74,6 +75,7 @@ void update(double dt)
         }
         if (keyPressed[K_ENTER] && startmenuLocation.Y == 0) {
             s = Start;
+
         }
         if (keyPressed[K_ENTER] && startmenuLocation.Y == 2) {
             s = Exit;
@@ -87,12 +89,11 @@ void update(double dt)
     if ( s == Exit) {
         g_quitGame = true;
     }
-
+	
     if ( s == Start) {
     // get the delta time
     elapsedTime += dt;
     deltaTime = dt;
-
     // Updating the location of the character based on the key press
     if (keyPressed[K_UP] && charLocation.Y > 0)
     {
@@ -126,7 +127,6 @@ void render()
     if ( s == MAX_STATE) {
         colour(0x0F);
         cls();
-
         //render the game
 
         //render test screen code (not efficient at all)
@@ -157,7 +157,6 @@ void render()
     // clear previous screen
     colour(0x0F);
     cls();
-
     //render the game
 
     //render test screen code (not efficient at all)
