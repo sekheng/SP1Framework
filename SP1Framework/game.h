@@ -13,7 +13,7 @@ enum Keys
     K_LEFT,
     K_RIGHT,
     K_ESCAPE,
-    K_SPACE,
+    K_ENTER,
     K_COUNT
 };
 

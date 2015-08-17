@@ -56,7 +56,7 @@ void getInput()
     keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
-    keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
+    keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
 }
 
 void update(double dt)
@@ -72,10 +72,10 @@ void update(double dt)
             Beep(1440, 30);
             startmenuLocation.Y++; 
         }
-        if (keyPressed[K_SPACE] && startmenuLocation.Y == 0) {
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 0) {
             s = Start;
         }
-        if (keyPressed[K_SPACE] && startmenuLocation.Y == 2) {
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 2) {
             s = Exit;
         }
 
@@ -151,9 +151,8 @@ void render()
         //Rendering the character
         gotoXY(startmenuLocation);
         colour(0x1A);
-        std::cout << (char)1;
+        std::cout << (char)2;
     }
-
     if ( s == Start) {
     // clear previous screen
     colour(0x0F);
