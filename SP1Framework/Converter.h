@@ -1,7 +1,8 @@
-#ifndef _LEVELS_H
-#define _LEVELS_H
+#ifndef _CONVERT_H
+#define _CONVERT_H
 
 #include <iostream>
+#include "Framework\console.h"
 #include <iomanip>
 #include <fstream>
 #include <string>
@@ -13,7 +14,6 @@ using std::endl;
 using std::string;
 using std::vector;
 
-
-void level(int &a);
+void convert(int &a);
 
 #endif

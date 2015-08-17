@@ -61,7 +61,6 @@ void getInput()
 
 void update(double dt)
 {
-	int x;
     if ( s == MAX_STATE ) {
         if (keyPressed[K_UP] && startmenuLocation.Y > 0)
         {
@@ -124,6 +123,7 @@ void update(double dt)
 
 void render()
 {
+	int levelno=1;
     if ( s == MAX_STATE) {
         colour(0x0F);
         cls();
@@ -157,29 +157,30 @@ void render()
     // clear previous screen
     colour(0x0F);
     cls();
+	cout << endl;
     //render the game
 
     //render test screen code (not efficient at all)
-    const WORD colors[] =   {
-	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-	                        };
-	
-	for (int i = 0; i < 12; ++i)
-	{
-		gotoXY(3*i,i+1);
-		colour(colors[i]);
-		std::cout << "WOW";
-	}
-
+	//const WORD colors[] =   {
+	//                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+	//                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+	//                        };
+	//
+	//for (int i = 0; i < 12; ++i)
+	//{
+	//	gotoXY(3*i,i+1);
+	//	colour(colors[i]);
+	//	std::cout << "WOW";
+	//}
+	level(levelno);
     // render time taken to calculate this frame
     gotoXY(70, 0);
     colour(0x1A);
     std::cout << 1.0 / deltaTime << "fps" << std::endl;
   
-    gotoXY(0, 0);
-    colour(0x59);
-    std::cout << elapsedTime << "secs" << std::endl;
+    //gotoXY(0, 0);
+    //colour(0x59);
+    //std::cout << elapsedTime << "secs" << std::endl;
 
     // render character
     gotoXY(charLocation);
