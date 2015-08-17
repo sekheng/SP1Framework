@@ -20,7 +20,7 @@ void init()
     SetConsoleTitle(L"SP1 Framework");
 
     // Sets the console size, this is the biggest so far.
-    setConsoleSize(79, 28);
+    setConsoleSize(70, 19);
 
     // Get console width and height
     CONSOLE_SCREEN_BUFFER_INFO csbi; /* to get buffer info */     
