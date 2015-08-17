@@ -10,7 +10,9 @@ double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
 COORD charLocation;
+COORD startmenuLocation;
 COORD consoleSize;
+startscreen s = MAX_STATE;
 
 void init()
 {
@@ -34,6 +36,10 @@ void init()
     charLocation.X = consoleSize.X / 2;
     charLocation.Y = consoleSize.Y / 2;
 
+    //Set the arrow to be near the start
+    startmenuLocation.X = 10;
+    startmenuLocation.Y = 0;
+
     elapsedTime = 0.0;
 }
 
@@ -50,10 +56,39 @@ void getInput()
     keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
+    keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
 }
 
 void update(double dt)
 {
+    if ( s == MAX_STATE ) {
+        if (keyPressed[K_UP] && startmenuLocation.Y > 0)
+        {
+            Beep(1440, 30);
+            startmenuLocation.Y--; 
+        }
+        if (keyPressed[K_DOWN] && startmenuLocation.Y < 2)
+        {
+            Beep(1440, 30);
+            startmenuLocation.Y++; 
+        }
+        if (keyPressed[K_SPACE] && startmenuLocation.Y == 0) {
+            s = Start;
+        }
+        if (keyPressed[K_SPACE] && startmenuLocation.Y == 2) {
+            s = Exit;
+        }
+
+        if (keyPressed[K_ESCAPE]) {
+            g_quitGame = true;   
+        }
+    }
+
+    if ( s == Exit) {
+        g_quitGame = true;
+    }
+
+    if ( s == Start) {
     // get the delta time
     elapsedTime += dt;
     deltaTime = dt;
@@ -82,11 +117,44 @@ void update(double dt)
 
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
-        g_quitGame = true;    
+        g_quitGame = true;   
+    }
 }
 
 void render()
 {
+    if ( s == MAX_STATE) {
+        colour(0x0F);
+        cls();
+
+        //render the game
+
+        //render test screen code (not efficient at all)
+        const WORD colors[] =   {
+	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+	                        };
+        // Rendering the Menu
+        char *strt = "(1) START";
+        gotoXY(0,0);
+        //colour(colors[0x1A]);
+        std::cout << strt << std::endl;
+        char *hlp = "(2) HELP";
+        gotoXY(0,1);
+        //colour(colors[0x2B]);
+        std::cout << hlp << std::endl;
+        char *ext = "(3) EXIT";
+        gotoXY(0,2);
+        //colour(colors[0x3C]);
+        std::cout << ext << std::endl;
+
+        //Rendering the character
+        gotoXY(startmenuLocation);
+        colour(0x1A);
+        std::cout << (char)1;
+    }
+
+    if ( s == Start) {
     // clear previous screen
     colour(0x0F);
     cls();
@@ -119,6 +187,6 @@ void render()
     gotoXY(charLocation);
     colour(0x0C);
     std::cout << (char)1;
-
-    
+    }
 }
+
