@@ -150,8 +150,8 @@ void render()
 
         //Rendering the character
         gotoXY(startmenuLocation);
-        colour(0x1A);
-        std::cout << (char)2;
+        //colour(0x1A);
+        std::cout << (char)60;
     }
     if ( s == Start) {
     // clear previous screen
