@@ -3,10 +3,10 @@
 (char)92<<(char)40<<(char)64<<(char)94<<(char)64<<(char)41<<(char)47
 */
 #include "monster.h"
-string sideMonR = "\@^@/";
+string sideMonR = "@^@/";
 int sideMon(int &x,int &y)
 {
-	string sideMonR = "\@^@/";
+	string sideMonR = "@^@/";
 	gotoXY(x ,y);
 	std::cout<<sideMonR;
 	/*for(int i = 0; i <= 4 ; ++i)
