@@ -161,13 +161,6 @@ void render()
         for ( int i = 0; i < col; ++i) {
             cout << Title[0][i];
         }
-        /*ifstream inData;
-        inData.open("displayTitle.txt");
-        string Data;
-        while ( !inData.eof() ) {
-            getline ( inData, Data);
-            cout << Data << endl;
-        }*/
 
         // Rendering the Menu
         char *strt = "(1) START";
