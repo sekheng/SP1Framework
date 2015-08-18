@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <fstream>
 #include "levels.h"
+#include "collision.h"
 
 using std::cout;
 using std::endl;
