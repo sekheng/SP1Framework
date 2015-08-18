@@ -190,7 +190,7 @@ void render()
 			0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	    };
         // To Display title
-        for ( int i = 0; i < col; ++i) 
+        for ( int i = 0; i <= col; ++i) 
 		{
             cout << Title[0][i];
         }

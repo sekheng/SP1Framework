@@ -5,7 +5,6 @@ void convert(int &a)
 {
 	if (a == 49) //white walls
 	{
-        collision(a);
 		colour(0xF6);
 		cout << ' ';
 	}
