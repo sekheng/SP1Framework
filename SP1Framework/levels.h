@@ -12,8 +12,9 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::vector;
+using std::ifstream;
 
 
 void level(int &a);
 
-#endif
+#endif  // _LEVELS_H
