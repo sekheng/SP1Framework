@@ -167,22 +167,22 @@ void moveCharacter()
 		}
 		if (keyPressed[K_UP] && charLocation.Y > 0)
 		{
-			//Beep(1440, 30);
+			Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_LEFT] && charLocation.X > 0)
 		{
-		    //Beep(1440, 30);
+		    Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
 		{
-			//Beep(1440, 30);
+			Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
 		{
-			//Beep(1440, 30);
+			Beep(1440, 30);
 			charLocation.X++;
 		}
 		if (keyPressed[K_W] && charLocation.Y > 0)
