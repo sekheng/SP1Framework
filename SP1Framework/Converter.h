@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "collision.h"
 
 using std::cin;
 using std::cout;
@@ -16,4 +17,4 @@ using std::vector;
 
 void convert(int &a);
 
-#endif
+#endif  // _CONVERT_H

@@ -1,5 +1,6 @@
 #include "collision.h"
+#include "Framework\console.h"
 
-void collision() {
+void collision(int &a) {
 
 }
