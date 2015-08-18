@@ -1,14 +1,8 @@
 //}~{ electric trap
 //[] pit trap
 #include "traps.h"
-#include "game.h"
-
 COORD cannonballLocation;
 COORD cannonLocation;
-void cannonRupdate(int x);
-void cannonLocationOnmap(int x);
-
-void cannonR();
 
 void cannonR()//for render
 {
@@ -29,10 +23,10 @@ void cannonRupdate(int x)//update
 		cannonballLocation.X-=10;
 	}
 }
-void cannonLocationOnmap(int x)//init
+void cannonLocationOnmap(int x, int y)//init
 {
 	cannonballLocation.X = x;
-	cannonballLocation.Y= 0;
+	cannonballLocation.Y= y;
 
 	cannonLocation.X = cannonballLocation.X;
 	cannonLocation.Y = cannonballLocation.Y;
