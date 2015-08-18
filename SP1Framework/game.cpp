@@ -36,6 +36,7 @@ COORD cannonballLocationU;
 COORD cannonLocationU;
 COORD cannonballLocationD;
 COORD cannonLocationD;
+COORD monsterR;
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
@@ -68,6 +69,9 @@ void init()
 	cannonLocationU.Y = 10;
 	cannonLocationD.X = 10;
 	cannonLocationD.Y = 10;
+
+	monsterR.X = 50;
+	monsterR.Y = 10;
 }
 
 // Do your clean up of memory here
@@ -351,14 +355,23 @@ void renderCharacter()
 	{
 		// Draw the location of the character
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
+
 		console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
+
 		console.writeToBuffer(cannonLocationL, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationL, (char)79, 0x0C);
+
 		console.writeToBuffer(cannonLocationU, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationU, (char)79, 0x0C);
+
 		console.writeToBuffer(cannonLocationD, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationD, (char)79, 0x0C);
+
+		string monR = ":D";
+		string monU = "\"V";
+
+		console.writeToBuffer(monsterR, monR, 0x0C);
     }
 }
 void renderFramerate()
