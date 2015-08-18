@@ -7,10 +7,8 @@
 #include <iomanip>
 #include <fstream>
 #include "levels.h"
-<<<<<<< HEAD
 #include "monster.h"
 #include "traps.h"
-=======
 #include "collision.h"
 
 using std::cout;
@@ -19,7 +17,6 @@ using std::cin;
 using std::ifstream;
 using std::ofstream;
 
->>>>>>> d29e9d0b950c7e8b1f43624877746a86a0be0d51
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
