@@ -9,7 +9,7 @@
 #include "levels.h"
 #include "monster.h"
 #include "traps.h"
-#include "collision.h"
+#include "Converter.h"
 
 using std::cout;
 using std::endl;
@@ -129,7 +129,7 @@ void update(double dt)
     elapsedTime += dt;
     deltaTime = dt;
     // Updating the location of the character based on the key press
-    if (keyPressed[K_UP] && charLocation.Y > 0)
+    if (keyPressed[K_UP] && charLocation.Y > 0 && !wall(char(charLocation.Y-1)) )
     {
         Beep(1440, 30);
         charLocation.Y--; 

@@ -6,7 +6,9 @@ void convert(int &a)
 	if (a == 49) //white walls
 	{
 		colour(0xF6);
-		cout << ' ';
+        char spce = ' ';
+        wall(spce);
+		cout << spce;
 	}
 	if (a == 48) // empty space
 	{
@@ -33,4 +35,9 @@ void convert(int &a)
 		level(level)
 	}*/
 
+}
+
+char wall( char & charact)
+{
+    return charact;
 }
