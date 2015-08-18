@@ -13,4 +13,11 @@ void convert(int &a)
 		colour(0x0F);
 		cout << ' ';
 	}
+	/*if (hit end point)
+	
+	{
+		level++
+		level(level)
+	}*/
+
 }
