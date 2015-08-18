@@ -2,6 +2,8 @@
 #define _GAME_H
 
 #include "Framework\timer.h"
+#include <string>
+#include <cstring>
 
 extern StopWatch g_timer;
 extern bool g_quitGame;
@@ -14,6 +16,7 @@ enum Keys
     K_RIGHT,
     K_ESCAPE,
     K_ENTER,
+    K_SPACE,
     K_COUNT
 };
 

@@ -10,4 +10,4 @@
 void electrical();
 void pitFall();
 
-#endif
+#endif  // _TRAPS_H

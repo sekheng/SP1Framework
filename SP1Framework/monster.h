@@ -8,4 +8,4 @@
 int upDownMon(int &x , int &y );
 int sideMon(int &x , int &y);
 
-#endif
+#endif  // _MONSTER_H

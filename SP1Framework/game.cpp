@@ -5,7 +5,16 @@
 #include "Framework\console.h"
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include "levels.h"
+#include "collision.h"
+
+using std::cout;
+using std::endl;
+using std::cin;
+using std::ifstream;
+using std::ofstream;
+
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
@@ -13,6 +22,9 @@ COORD charLocation;
 COORD startmenuLocation;
 COORD consoleSize;
 startscreen s = MAX_STATE;
+char Title[200][200];
+int row = 0;
+int col = 0;
 
 void init()
 {
@@ -38,7 +50,18 @@ void init()
 
     //Set the arrow to be near the start
     startmenuLocation.X = 10;
-    startmenuLocation.Y = 0;
+    startmenuLocation.Y = 20;
+
+    // Display The Title
+    ifstream inData;
+    inData.open("displayTitle.txt");
+    char c;
+
+    while ( !inData.eof() && inData.get(c) ) {
+        Title[row][col] = c;
+        ++col;
+    }
+    inData.close();
 
     elapsedTime = 0.0;
 }
@@ -57,26 +80,27 @@ void getInput()
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
     keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
+    keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
 }
 
 void update(double dt)
 {
     if ( s == MAX_STATE ) {
-        if (keyPressed[K_UP] && startmenuLocation.Y > 0)
+        if (keyPressed[K_UP] && startmenuLocation.Y > 20)
         {
             Beep(1440, 30);
             startmenuLocation.Y--; 
         }
-        if (keyPressed[K_DOWN] && startmenuLocation.Y < 2)
+        if (keyPressed[K_DOWN] && startmenuLocation.Y < 22)
         {
             Beep(1440, 30);
             startmenuLocation.Y++; 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 0) {
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 20) {
             s = Start;
 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 2) {
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 22) {
             s = Exit;
         }
 
@@ -128,30 +152,41 @@ void render()
         colour(0x0F);
         cls();
         //render the game
-
         //render test screen code (not efficient at all)
         const WORD colors[] =   {
 	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
 	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	                        };
+        // To Display title
+        for ( int i = 0; i < col; ++i) {
+            cout << Title[0][i];
+        }
+        /*ifstream inData;
+        inData.open("displayTitle.txt");
+        string Data;
+        while ( !inData.eof() ) {
+            getline ( inData, Data);
+            cout << Data << endl;
+        }*/
+
         // Rendering the Menu
         char *strt = "(1) START";
-        gotoXY(0,0);
+        gotoXY(0,20);
         //colour(colors[0x1A]);
-        std::cout << strt << std::endl;
+        cout << strt << endl;
         char *hlp = "(2) HELP";
-        gotoXY(0,1);
+        gotoXY(0,21);
         //colour(colors[0x2B]);
-        std::cout << hlp << std::endl;
+        cout << hlp << endl;
         char *ext = "(3) EXIT";
-        gotoXY(0,2);
+        gotoXY(0,22);
         //colour(colors[0x3C]);
-        std::cout << ext << std::endl;
+        cout << ext << endl;
 
         //Rendering the character
         gotoXY(startmenuLocation);
         //colour(0x1A);
-        std::cout << (char)60;
+        cout << (char)60;
     }
     if ( s == Start) {
     // clear previous screen
@@ -160,23 +195,11 @@ void render()
 	cout << endl;
     //render the game
 
-    //render test screen code (not efficient at all)
-	//const WORD colors[] =   {
-	//                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-	//                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-	//                        };
-	//
-	//for (int i = 0; i < 12; ++i)
-	//{
-	//	gotoXY(3*i,i+1);
-	//	colour(colors[i]);
-	//	std::cout << "WOW";
-	//}
 	level(levelno);
     // render time taken to calculate this frame
     gotoXY(70, 0);
     colour(0x1A);
-    std::cout << 1.0 / deltaTime << "fps" << std::endl;
+    cout << 1.0 / deltaTime << "fps" << endl;
   
     //gotoXY(0, 0);
     //colour(0x59);
@@ -185,7 +208,6 @@ void render()
     // render character
     gotoXY(charLocation);
     colour(0x0C);
-    std::cout << (char)1;
+    cout << (char)1;
     }
 }
-
