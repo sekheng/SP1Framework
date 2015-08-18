@@ -21,6 +21,9 @@ COORD charLocation;
 COORD startmenuLocation;
 COORD consoleSize;
 startscreen s = MAX_STATE;
+char Title[200][200];
+int row = 0;
+int col = 0;
 
 void init()
 {
@@ -47,6 +50,17 @@ void init()
     //Set the arrow to be near the start
     startmenuLocation.X = 10;
     startmenuLocation.Y = 20;
+
+    // Display The Title
+    ifstream inData;
+    inData.open("displayTitle.txt");
+    char c;
+
+    while ( !inData.eof() && inData.get(c) ) {
+        Title[row][col] = c;
+        ++col;
+    }
+    inData.close();
 
     elapsedTime = 0.0;
 }
@@ -143,15 +157,16 @@ void render()
 	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	                        };
         // To Display title
-        ifstream inData;
+        for ( int i = 0; i < col; ++i) {
+            cout << Title[0][i];
+        }
+        /*ifstream inData;
         inData.open("displayTitle.txt");
         string Data;
         while ( !inData.eof() ) {
             getline ( inData, Data);
             cout << Data << endl;
-        }
-
-        inData.close();
+        }*/
 
         // Rendering the Menu
         char *strt = "(1) START";
