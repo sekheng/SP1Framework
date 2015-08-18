@@ -13,6 +13,16 @@ void convert(int &a)
 		colour(0x0F);
 		cout << ' ';
 	}
+	if (a == 69)
+	{
+		cout << "E";
+	}
+	if (a == 35)
+	{
+		cout << "#";
+	}
+
+
 	/*if (hit end point)
 	
 	{
