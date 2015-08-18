@@ -9,5 +9,9 @@
 
 void electrical();
 void pitFall();
+void cannonLocationOnmap(int x,int y);
+void cannonRupdate(int x);
+void cannonR();
+
 
 #endif  // _TRAPS_H
