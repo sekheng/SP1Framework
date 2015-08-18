@@ -6,4 +6,4 @@
 void upDownMon();
 void sideMon();
 
-#endif
+#endif  // _MONSTER_H

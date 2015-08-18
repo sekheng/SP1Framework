@@ -5,6 +5,7 @@
 #include "Framework\console.h"
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 double elapsedTime;
 double deltaTime;
@@ -38,7 +39,7 @@ void init()
 
     //Set the arrow to be near the start
     startmenuLocation.X = 10;
-    startmenuLocation.Y = 0;
+    startmenuLocation.Y = 20;
 
     elapsedTime = 0.0;
 }
@@ -57,25 +58,26 @@ void getInput()
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
     keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
+    keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
 }
 
 void update(double dt)
 {
     if ( s == MAX_STATE ) {
-        if (keyPressed[K_UP] && startmenuLocation.Y > 0)
+        if (keyPressed[K_UP] && startmenuLocation.Y > 20)
         {
             Beep(1440, 30);
             startmenuLocation.Y--; 
         }
-        if (keyPressed[K_DOWN] && startmenuLocation.Y < 2)
+        if (keyPressed[K_DOWN] && startmenuLocation.Y < 22)
         {
             Beep(1440, 30);
             startmenuLocation.Y++; 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 0) {
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 20) {
             s = Start;
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 2) {
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 22) {
             s = Exit;
         }
 
@@ -134,17 +136,19 @@ void render()
 	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
 	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	                        };
+        // To Display title
+        displayTitle();
         // Rendering the Menu
         char *strt = "(1) START";
-        gotoXY(0,0);
+        gotoXY(0,20);
         //colour(colors[0x1A]);
         std::cout << strt << std::endl;
         char *hlp = "(2) HELP";
-        gotoXY(0,1);
+        gotoXY(0,21);
         //colour(colors[0x2B]);
         std::cout << hlp << std::endl;
         char *ext = "(3) EXIT";
-        gotoXY(0,2);
+        gotoXY(0,22);
         //colour(colors[0x3C]);
         std::cout << ext << std::endl;
 
@@ -189,3 +193,27 @@ void render()
     }
 }
 
+void displayTitle() {
+    std::ifstream inData;
+    std::string lineData;
+    inData.open("displayTitle.txt");
+    Display Dt;
+
+    while ( !inData.eof() ) {
+        std::getline (inData, lineData);
+        populateData (Dt, lineData);
+        printData(Dt);
+    }
+    inData.close();
+}
+
+void populateData(Display &Dt, std::string haveline)
+{
+    Dt.line = haveline;
+    Dt.Data = Dt.line;
+}
+
+void printData(const Display &Dt)
+{
+    std::cout << Dt.Data << std::endl;
+}
