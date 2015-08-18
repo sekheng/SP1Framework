@@ -25,7 +25,7 @@ double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
 startscreen s = MAX_STATE;
-size_t g_map[140][30];    //For Collision System
+size_t g_map[140][100];    //For Collision System
 
 // Game specific variables here
 COORD charLocation;
@@ -38,6 +38,7 @@ COORD cannonballLocationU;
 COORD cannonLocationU;
 COORD cannonballLocationD;
 COORD cannonLocationD;
+COORD monsterR;
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
@@ -72,6 +73,9 @@ void init()
 	cannonLocationU.Y = 10;
 	cannonLocationD.X = 10;
 	cannonLocationD.Y = 10;
+
+	monsterR.X = 50;
+	monsterR.Y = 10;
 }
 
 // Do your clean up of memory here
@@ -175,7 +179,7 @@ void moveCharacter()
     if ( s == Start )   // The Game Begins!
 	{
 		// Updating the location of the character based on the key press
-        if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 1][charLocation.X] != 1)
+        if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y++;
@@ -185,12 +189,12 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y-1][charLocation.X] != 1)
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y ][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y--;
 		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X-1] != 1)
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.X--;
@@ -201,7 +205,7 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.Y--;
 		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X-1] != 1)
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1 ] != 1)
 		{
 		    Beep(1440, 30);
 			charLocation.X--;
@@ -211,28 +215,28 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1 && g_map[charLocation.Y][charLocation.X + 1] != 1 )
+		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1 )
 		{
 			Beep(1440, 30);
 			charLocation.X++;
 		}
 
-		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)
+		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)  //up
 		{
 			Beep(1440, 30);
 			charLocation.Y--;
 		}
-		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X-1] != 1)
+		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
 		{
 			Beep(1440, 30);
 			charLocation.X--;
 		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1 )
+		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1 )  //down
 		{
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_D] && charLocation.X < console.getConsoleSize().X - 1 && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		if (keyPressed[K_D] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
 		{
 			Beep(1440, 30);
 			charLocation.X++;
@@ -253,7 +257,7 @@ void moveCharacter()
 		{
 			cannonballLocationL.X+=10;
 		}
-		if (cannonballLocationU.Y != 0 && g_timer.getElapsedTime() != -1)
+		if (cannonballLocationU.Y != 0 && g_timer.getElapsedTime() != - 1)
 		{
 			cannonballLocationU.Y--;
 		}
@@ -366,7 +370,7 @@ void renderMap()
 		COORD Ttle;
 		Ttle.X = 0;
 		Ttle.Y = 1;
-        int row = 0;    // For collision Detection
+        int row = 1;    // For collision Detection
         int col = 0;    // For collision Detection
 
 		while (!inData.eof())
@@ -374,7 +378,7 @@ void renderMap()
             col = 0;
 			Ttle.X = 0;
 			getline(inData, Data);
-			for (unsigned int x = 0; x < Data.length(); x++, col++)
+			for (unsigned int x = 0; x < Data.length(); x++)
 			{
 				change = Data[x];
 				
@@ -385,15 +389,17 @@ void renderMap()
                     g_map[row][col] = 0;
                 }
 
-				if (change == 49) {
+				if ( change == 49 ) {
 					convert(change);
 					console.writeToBuffer(Ttle, change, colors[5]);
 					Ttle.X += 1;
+                    ++col;
 					continue;
 				}
 				convert(change);
 				console.writeToBuffer(Ttle, change, colors[0] );
 				Ttle.X += 1;
+                ++col;
 			}
             ++row;
 			Ttle.Y += 1;
@@ -417,12 +423,20 @@ void renderCharacter()
         // The Cannon character and it's character ball
 		console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
+
 		console.writeToBuffer(cannonLocationL, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationL, (char)79, 0x0C);
+
 		console.writeToBuffer(cannonLocationU, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationU, (char)79, 0x0C);
+
 		console.writeToBuffer(cannonLocationD, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationD, (char)79, 0x0C);
+
+		string monR = ":D";
+		string monU = "\"V";
+
+		console.writeToBuffer(monsterR, monR, 0x0C);
     }
 }
 void renderFramerate()
