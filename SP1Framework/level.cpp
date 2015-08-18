@@ -1,5 +1,7 @@
 #include "levels.h"
 #include "Converter.h"
+#include "Framework\console.h"
+
 
 void level(int &a)
 {
@@ -31,7 +33,7 @@ void level(int &a)
 	while (!indata.eof())
 	{
 		getline(indata, data);
-		for (int x = 0; x < data.length(); x++)
+		for (unsigned int x = 0; x < data.length(); x++)
 		{
 			change = data[x];
 			convert(change);
@@ -39,4 +41,6 @@ void level(int &a)
 		cout << endl;
 	}
 	indata.close();
+
+
 }

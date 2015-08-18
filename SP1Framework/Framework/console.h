@@ -57,6 +57,8 @@ class Console
 		void flushBufferToConsole(); // writes the contents of the buffer to the screen
 		void clearBuffer(WORD attribute = 0x0F); // clears the screen with this colour
 
+
+
 		// writeToBuffer takes in a c-style string, c++ string, or a char
 		// You will need to provide the coordinate to place the leftmost character
 		void writeToBuffer(COORD c, LPCSTR str, WORD attribute = 0x0F);
