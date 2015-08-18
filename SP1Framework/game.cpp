@@ -7,6 +7,8 @@
 #include <iomanip>
 #include <fstream>
 #include "levels.h"
+#include "monster.h"
+#include "traps.h"
 #include "collision.h"
 
 using std::cout;
@@ -138,7 +140,6 @@ void update(double dt)
         Beep(1440, 30);
         charLocation.X++; 
     }
-
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
         g_quitGame = true;   
@@ -210,4 +211,5 @@ void render()
     colour(0x0C);
     cout << (char)1;
     }
+	
 }
