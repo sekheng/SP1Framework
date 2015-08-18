@@ -23,6 +23,7 @@ double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
 startscreen s = MAX_STATE;
+char g_map[140][30];    //For Collision System
 
 // Game specific variables here
 COORD charLocation;
