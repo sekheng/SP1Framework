@@ -17,7 +17,7 @@ using std::ofstream;
 using std::string;
 
 // Console object
-Console console(150, 30, "SP1 Framework");
+Console console(140, 30, "SP1 Framework");
 
 double elapsedTime;
 double deltaTime;
@@ -40,7 +40,7 @@ void init()
 
     // Starting menu location
     startmenuLocation.X = 10;
-    startmenuLocation.Y = 20;
+    startmenuLocation.Y = 21;
 
 }
 
@@ -116,22 +116,22 @@ void moveCharacter()
 {
     if ( s == MAX_STATE ) 
 	{
-        if (keyPressed[K_UP] && startmenuLocation.Y > 20)
+        if (keyPressed[K_UP] && startmenuLocation.Y > 21)
         {
             Beep(1440, 30);
             startmenuLocation.Y--; 
         }
-        if (keyPressed[K_DOWN] && startmenuLocation.Y < 22)
+        if (keyPressed[K_DOWN] && startmenuLocation.Y < 23)
         {
             Beep(1440, 30);
             startmenuLocation.Y++; 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 20) 
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 21) 
 		{
             s = Start;
 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 22) 
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 23) 
 		{
             s = Exit;
         }
@@ -236,7 +236,7 @@ void renderMap()
         string Data;
         COORD Ttle;
         Ttle.X = 0;
-        Ttle.Y = 0;
+        Ttle.Y = 1;
         while ( getline (inData, Data) && !inData.eof() )
         {
             console.writeToBuffer(Ttle, Data, colors[0] );
@@ -248,19 +248,19 @@ void renderMap()
         char *strt = "(1) START";
         COORD st;
         st.X = 0;
-        st.Y = 20;
+        st.Y = 21;
         console.writeToBuffer(st, strt, colors[0]);
         //colour(colors[0x1A]);
         char *hlp = "(2) HELP";
         COORD hp;
         hp.X = 0;
-        hp.Y = 21;
+        hp.Y = 22;
         console.writeToBuffer(hp, hlp, colors[0]);
         //colour(colors[0x2B]);
         char *ext = "(3) EXIT";
         COORD et;
         et.X = 0;
-        et.Y = 22;
+        et.Y = 23;
         console.writeToBuffer(et, ext, colors[0]);
     }
 
