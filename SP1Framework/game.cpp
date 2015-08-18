@@ -80,6 +80,10 @@ void getInput()
     keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
     keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
+	keyPressed[K_W] = isKeyPressed(0x57);
+	keyPressed[K_A] = isKeyPressed(0x41);
+	keyPressed[K_S] = isKeyPressed(0x53);
+	keyPressed[K_D] = isKeyPressed(0x44);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
     keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
     keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
@@ -87,7 +91,8 @@ void getInput()
 
 void update(double dt)
 {
-    if ( s == MAX_STATE ) {
+    if ( s == MAX_STATE ) 
+	{
         if (keyPressed[K_UP] && startmenuLocation.Y > 20)
         {
             Beep(1440, 30);
@@ -98,20 +103,24 @@ void update(double dt)
             Beep(1440, 30);
             startmenuLocation.Y++; 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 20) {
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 20) 
+		{
             s = Start;
 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 22) {
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 22) 
+		{
             s = Exit;
         }
 
-        if (keyPressed[K_ESCAPE]) {
+        if (keyPressed[K_ESCAPE]) 
+		{
             g_quitGame = true;   
         }
     }
 
-    if ( s == Exit) {
+    if ( s == Exit) 
+	{
         g_quitGame = true;
     }
 	
@@ -140,6 +149,27 @@ void update(double dt)
         Beep(1440, 30);
         charLocation.X++; 
     }
+
+	if (keyPressed[K_W] && charLocation.Y > 0)
+	{
+		Beep(1440, 30);
+		charLocation.Y--;
+	}
+	if (keyPressed[K_A] && charLocation.X > 0)
+	{
+		Beep(1440, 30);
+		charLocation.X--;
+	}
+	if (keyPressed[K_S] && charLocation.Y < consoleSize.Y - 1)
+	{
+		Beep(1440, 30);
+		charLocation.Y++;
+	}
+	if (keyPressed[K_D] && charLocation.X < consoleSize.X - 1)
+	{
+		Beep(1440, 30);
+		charLocation.X++;
+	}
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
         g_quitGame = true;   
@@ -154,12 +184,14 @@ void render()
         cls();
         //render the game
         //render test screen code (not efficient at all)
-        const WORD colors[] =   {
-	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-	                        };
+        const WORD colors[] =   
+		{
+			0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+			0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+	    };
         // To Display title
-        for ( int i = 0; i < col; ++i) {
+        for ( int i = 0; i < col; ++i) 
+		{
             cout << Title[0][i];
         }
         /*ifstream inData;
@@ -189,7 +221,8 @@ void render()
         //colour(0x1A);
         cout << (char)60;
     }
-    if ( s == Start) {
+    if ( s == Start) 
+	{
     // clear previous screen
     colour(0x0F);
     cls();
