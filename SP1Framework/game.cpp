@@ -25,7 +25,7 @@ double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
 startscreen s = MAX_STATE;
-char g_map[140][30];    //For Collision System
+size_t g_map[140][30];    //For Collision System
 
 // Game specific variables here
 COORD charLocation;
@@ -46,8 +46,10 @@ void init()
     // Set precision for floating point output
     elapsedTime = 0.0;
 
-    charLocation.X = console.getConsoleSize().X / 2;
-    charLocation.Y = console.getConsoleSize().Y / 2;
+    //charLocation.X = console.getConsoleSize().X / 2;
+    //charLocation.Y = console.getConsoleSize().Y / 2;
+    charLocation.X = 10;
+    charLocation.Y = 10;
 
     // Starting menu location
     startmenuLocation.X = 10;
@@ -170,70 +172,72 @@ void moveCharacter()
         g_quitGame = true;
     }
 
-    if ( s == Start) 
+    if ( s == Start )   // The Game Begins!
 	{
 		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
+        if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 1][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X)
+        if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1)
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y-1][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y--;
 		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1)
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X-1] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.X--;
 		}
-		if (keyPressed[K_UP] && charLocation.Y > 0)
+
+		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y--;
 		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0)
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X-1] != 1)
 		{
 		    Beep(1440, 30);
 			charLocation.X--;
 		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
+		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
+		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1 && g_map[charLocation.Y][charLocation.X + 1] != 1 )
 		{
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		if (keyPressed[K_W] && charLocation.Y > 0)
+
+		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y--;
 		}
-		if (keyPressed[K_A] && charLocation.X > 0)
+		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X-1] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.X--;
 		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1)
+		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1 )
 		{
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_D] && charLocation.X < console.getConsoleSize().X - 1)
+		if (keyPressed[K_D] && charLocation.X < console.getConsoleSize().X - 1 && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		if (cannonballLocationR.X != 20 && g_timer.getElapsedTime() != -1)
+		if (cannonballLocationR.X != 20 && g_timer.getElapsedTime() != - 1)
 		{
 			cannonballLocationR.X++;
 		}
@@ -310,13 +314,13 @@ void renderMap()
         st.X = 0;
         st.Y = 21;
         console.writeToBuffer(st, strt, colors[0]);
-        //colour(colors[0x1A]);
+
         char *hlp = "(2) HELP";
         COORD hp;
         hp.X = 0;
         hp.Y = 22;
         console.writeToBuffer(hp, hlp, colors[0]);
-        //colour(colors[0x2B]);
+
         char *ext = "(3) EXIT";
         COORD et;
         et.X = 0;
@@ -333,14 +337,6 @@ void renderMap()
         0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 		};
 		
- /*   COORD c;
-        for (int i = 0; i < 12; ++i)
-        {
-            c.X = 5 * i;
-            c.Y = i + 1;
-            colour(colors[i]);
-            console.writeToBuffer(c, " °±²Û", colors[i]);
-        }*/
 		int levelno = 1;
 		string level;
 		int change;
@@ -370,14 +366,25 @@ void renderMap()
 		COORD Ttle;
 		Ttle.X = 0;
 		Ttle.Y = 1;
+        int row = 0;    // For collision Detection
+        int col = 0;    // For collision Detection
+
 		while (!inData.eof())
 		{
+            col = 0;
 			Ttle.X = 0;
 			getline(inData, Data);
-			for (unsigned int x = 0; x < Data.length(); x++)
+			for (unsigned int x = 0; x < Data.length(); x++, col++)
 			{
 				change = Data[x];
 				
+                if ( change == 49 ) {   // For the collision detection
+                    g_map[row][col] = 1;
+                }
+                else {
+                    g_map[row][col] = 0;
+                }
+
 				if (change == 49) {
 					convert(change);
 					console.writeToBuffer(Ttle, change, colors[5]);
@@ -388,7 +395,7 @@ void renderMap()
 				console.writeToBuffer(Ttle, change, colors[0] );
 				Ttle.X += 1;
 			}
-
+            ++row;
 			Ttle.Y += 1;
 		}
 		inData.close();
@@ -407,6 +414,7 @@ void renderCharacter()
 
 
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
+        // The Cannon character and it's character ball
 		console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
 		console.writeToBuffer(cannonLocationL, (char)67, 0x0C);
@@ -435,6 +443,7 @@ void renderFramerate()
     c.Y = 0;
     console.writeToBuffer(c, ss.str(), 0x59);
 }
+
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
