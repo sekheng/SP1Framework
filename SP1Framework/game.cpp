@@ -67,6 +67,10 @@ void getInput()
     keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
     keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
+	keyPressed[K_W] = isKeyPressed(0x57);
+	keyPressed[K_A] = isKeyPressed(0x41);
+	keyPressed[K_S] = isKeyPressed(0x53);
+	keyPressed[K_D] = isKeyPressed(0x44);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
     keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
     keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
@@ -133,32 +137,74 @@ void moveCharacter()
         }
     }
 
-    if ( s == Exit ) {
+    if ( s == Exit ) 
+	{
         g_quitGame = true;
     }
 
-    if ( s == Start) {
-    // Updating the location of the character based on the key press
-    if (keyPressed[K_UP] && charLocation.Y > 0)
-    {
-        //Beep(1440, 30);
-        charLocation.Y--;
-    }
-    if (keyPressed[K_LEFT] && charLocation.X > 0)
-    {
-        //Beep(1440, 30);
-        charLocation.X--;
-    }
-    if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
-    {
-        //Beep(1440, 30);
-        charLocation.Y++;
-    }
-    if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
-    {
-        //Beep(1440, 30);
-        charLocation.X++;
-    }
+    if ( s == Start) 
+	{
+		// Updating the location of the character based on the key press
+		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X)
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1)
+		{
+			Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_UP] && charLocation.Y > 0)
+		{
+			//Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_LEFT] && charLocation.X > 0)
+		{
+		    //Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
+		{
+			//Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
+		{
+			//Beep(1440, 30);
+			charLocation.X++;
+		}
+		if (keyPressed[K_W] && charLocation.Y > 0)
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_A] && charLocation.X > 0)
+		{
+			Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_D] && charLocation.X < console.getConsoleSize().X - 1)
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
     }
 }
 void processUserInput()
@@ -177,8 +223,10 @@ void clearScreen()
 }
 void renderMap()
 {
-    if ( s ==  MAX_STATE) {
-        const WORD colors[] = {
+    if ( s ==  MAX_STATE) 
+	{
+        const WORD colors[] = 
+		{
             0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
             0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
         };
@@ -214,16 +262,17 @@ void renderMap()
         et.X = 0;
         et.Y = 22;
         console.writeToBuffer(et, ext, colors[0]);
-
     }
 
-    if ( s == Start) {
-    // Set up sample colours, and output shadings
-    const WORD colors[] = {
+	if (s == Start)
+	{
+		// Set up sample colours, and output shadings
+		const WORD colors[] =
+		{
         0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
         0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-    };
-
+		};
+		
     COORD c;
         for (int i = 0; i < 12; ++i)
         {
@@ -236,12 +285,14 @@ void renderMap()
 }
 void renderCharacter()
 {
-    if ( s == MAX_STATE) {
+    if ( s == MAX_STATE) 
+	{
         console.writeToBuffer(startmenuLocation, (char)1, 0x0C);
     }
-    if ( s == Start) {
-    // Draw the location of the character
-    console.writeToBuffer(charLocation, (char)1, 0x0C);
+    if ( s == Start) 
+	{
+		// Draw the location of the character
+		console.writeToBuffer(charLocation, (char)1, 0x0C);
     }
 }
 void renderFramerate()
