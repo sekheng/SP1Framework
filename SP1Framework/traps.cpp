@@ -18,7 +18,7 @@ void cannonR()//for render
     colour(0x0C);
     std::cout << (char)79;
 }
-void cannonRupdate(int x)
+void cannonRupdate(int x)//update
 {
 		if (cannonballLocation.X != x && g_timer.getElapsedTime() != -1)
 	{
@@ -29,7 +29,7 @@ void cannonRupdate(int x)
 		cannonballLocation.X-=10;
 	}
 }
-void cannonLocationOnmap(int x)
+void cannonLocationOnmap(int x)//init
 {
 	cannonballLocation.X = x;
 	cannonballLocation.Y= 0;
