@@ -129,7 +129,7 @@ void update(double dt)
     elapsedTime += dt;
     deltaTime = dt;
     // Updating the location of the character based on the key press
-    if (keyPressed[K_UP] && charLocation.Y > 0 && !wall(char(charLocation.Y-1)) )
+    if (keyPressed[K_UP] && charLocation.Y > 0)
     {
         Beep(1440, 30);
         charLocation.Y--; 
