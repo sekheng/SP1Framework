@@ -78,10 +78,6 @@ void getInput()
     keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
     keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
-	keyPressed[K_W] = isKeyPressed(0x57);
-	keyPressed[K_A] = isKeyPressed(0x41);
-	keyPressed[K_S] = isKeyPressed(0x53);
-	keyPressed[K_D] = isKeyPressed(0x44);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
     keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
     keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
@@ -89,8 +85,7 @@ void getInput()
 
 void update(double dt)
 {
-    if ( s == MAX_STATE ) 
-	{
+    if ( s == MAX_STATE ) {
         if (keyPressed[K_UP] && startmenuLocation.Y > 20)
         {
             Beep(1440, 30);
@@ -109,8 +104,7 @@ void update(double dt)
             s = Exit;
         }
 
-        if (keyPressed[K_ESCAPE]) 
-		{
+        if (keyPressed[K_ESCAPE]) {
             g_quitGame = true;   
         }
     }
@@ -119,8 +113,7 @@ void update(double dt)
         g_quitGame = true;
     }
 	
-    if ( s == Start) 
-	{
+    if ( s == Start) {
     // get the delta time
     elapsedTime += dt;
     deltaTime = dt;
@@ -146,26 +139,6 @@ void update(double dt)
         charLocation.X++; 
     }
 
-	if (keyPressed[K_W] && charLocation.Y > 0)
-	{
-		Beep(1440, 30);
-		charLocation.Y--;
-	}
-	if (keyPressed[K_A] && charLocation.X > 0)
-	{
-		Beep(1440, 30);
-		charLocation.X--;
-	}
-	if (keyPressed[K_S] && charLocation.Y < consoleSize.Y - 1)
-	{
-		Beep(1440, 30);
-		charLocation.Y++;
-	}
-	if (keyPressed[K_D] && charLocation.X < consoleSize.X - 1)
-	{
-		Beep(1440, 30);
-		charLocation.X++;
-	}
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
         g_quitGame = true;   
