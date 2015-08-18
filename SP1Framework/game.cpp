@@ -288,7 +288,7 @@ void renderCharacter()
 {
     if ( s == MAX_STATE) 
 	{
-        console.writeToBuffer(startmenuLocation, (char)1, 0x0C);
+        console.writeToBuffer(startmenuLocation, (char)60, 0x0C);
     }
     if ( s == Start) 
 	{
