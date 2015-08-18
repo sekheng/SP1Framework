@@ -5,91 +5,110 @@
 #include "Framework\console.h"
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 #include <fstream>
-#include "levels.h"
-#include "monster.h"
-#include "traps.h"
-#include "Converter.h"
+#include <string>
 
 using std::cout;
 using std::endl;
 using std::cin;
 using std::ifstream;
 using std::ofstream;
+using std::string;
+
+// Console object
+Console console(150, 30, "SP1 Framework");
 
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
+startscreen s = MAX_STATE;
+
+// Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
-COORD consoleSize;
-startscreen s = MAX_STATE;
-char Title[200][200];
-int row = 0;
-int col = 0;
 
+// Initialize variables, allocate memory, load data from file, etc. 
+// This is called once before entering into your main loop
 void init()
 {
     // Set precision for floating point output
-    std::cout << std::fixed << std::setprecision(3);
+    elapsedTime = 0.0;
 
-    SetConsoleTitle(L"SP1 Framework");
+    charLocation.X = console.getConsoleSize().X / 2;
+    charLocation.Y = console.getConsoleSize().Y / 2;
 
-    // Sets the console size, this is the biggest so far.
-    setConsoleSize(79, 28);
-
-    // Get console width and height
-    CONSOLE_SCREEN_BUFFER_INFO csbi; /* to get buffer info */     
-
-    /* get the number of character cells in the current buffer */ 
-    GetConsoleScreenBufferInfo( GetStdHandle( STD_OUTPUT_HANDLE ), &csbi );
-    consoleSize.X = csbi.srWindow.Right + 1;
-    consoleSize.Y = csbi.srWindow.Bottom + 1;
-
-    // set the character to be in the center of the screen.
-    charLocation.X = consoleSize.X / 2;
-    charLocation.Y = consoleSize.Y / 2;
-
-    //Set the arrow to be near the start
+    // Starting menu location
     startmenuLocation.X = 10;
     startmenuLocation.Y = 20;
 
-    // Display The Title
-    ifstream inData;
-    inData.open("displayTitle.txt");
-    char c;
-
-    while ( !inData.eof() && inData.get(c) ) {
-        Title[row][col] = c;
-        ++col;
-    }
-    inData.close();
-
-    elapsedTime = 0.0;
 }
 
+// Do your clean up of memory here
+// This is called once just before the game exits
 void shutdown()
 {
     // Reset to white text on black background
 	colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
-}
 
+    console.clearBuffer();
+}
+/*
+	This function checks if any key had been pressed since the last time we checked
+	If a key is pressed, the value for that particular key will be true
+	
+	Add more keys to the enum in game.h if you need to detect more keys
+	To get other VK key defines, right click on the VK define (e.g. VK_UP) and choose "Go To Definition" 
+	For Alphanumeric keys, the values are their ascii values (uppercase).
+*/
 void getInput()
 {    
     keyPressed[K_UP] = isKeyPressed(VK_UP);
     keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
     keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
-	keyPressed[K_W] = isKeyPressed(0x57);
-	keyPressed[K_A] = isKeyPressed(0x41);
-	keyPressed[K_S] = isKeyPressed(0x53);
-	keyPressed[K_D] = isKeyPressed(0x44);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
     keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
     keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
 }
 
+/*
+	This is the update function
+	double dt - This is the amount of time in seconds since the previous call was made
+
+	Game logic should be done here.
+	Such as collision checks, determining the position of your game characters, status updates, etc
+	If there are any calls to write to the console here, then you are doing it wrong.
+
+    If your game has multiple states, you should determine the current state, and call the relevant function here.
+*/
 void update(double dt)
+{
+    // get the delta time
+    elapsedTime += dt;
+    deltaTime = dt;
+
+    processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
+    moveCharacter();    // moves the character, collision detection, physics, etc
+    // sound can be played here too.
+}
+
+/*
+    This is the render loop
+    At this point, you should know exactly what to draw onto the screen.
+    Just draw it!
+    To get an idea of the values for colours, look at console.h and the URL listed there
+*/
+void render()
+{
+    clearScreen();      // clears the current screen and draw from scratch 
+    renderMap();        // renders the map to the buffer first
+    renderCharacter();  // renders the character into the buffer
+    renderFramerate();  // renders debug information, frame rate, elapsed time, etc
+    renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
+}
+
+void moveCharacter()
 {
     if ( s == MAX_STATE ) 
 	{
@@ -112,130 +131,139 @@ void update(double dt)
 		{
             s = Exit;
         }
-
-        if (keyPressed[K_ESCAPE]) 
-		{
-            g_quitGame = true;   
-        }
     }
 
-    if ( s == Exit) 
-	{
+    if ( s == Exit ) {
         g_quitGame = true;
     }
-	
+
     if ( s == Start) {
-    // get the delta time
-    elapsedTime += dt;
-    deltaTime = dt;
     // Updating the location of the character based on the key press
-    if (keyPressed[K_UP] && charLocation.Y > 0 && !wall(char(charLocation.Y-1)) )
+    if (keyPressed[K_UP] && charLocation.Y > 0)
     {
-        Beep(1440, 30);
-        charLocation.Y--; 
+        //Beep(1440, 30);
+        charLocation.Y--;
     }
     if (keyPressed[K_LEFT] && charLocation.X > 0)
     {
-        Beep(1440, 30);
-        charLocation.X--; 
+        //Beep(1440, 30);
+        charLocation.X--;
     }
-    if (keyPressed[K_DOWN] && charLocation.Y < consoleSize.Y - 1)
+    if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
     {
-        Beep(1440, 30);
-        charLocation.Y++; 
+        //Beep(1440, 30);
+        charLocation.Y++;
     }
-    if (keyPressed[K_RIGHT] && charLocation.X < consoleSize.X - 1)
+    if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
     {
-        Beep(1440, 30);
-        charLocation.X++; 
+        //Beep(1440, 30);
+        charLocation.X++;
     }
-
-	if (keyPressed[K_W] && charLocation.Y > 0)
-	{
-		Beep(1440, 30);
-		charLocation.Y--;
-	}
-	if (keyPressed[K_A] && charLocation.X > 0)
-	{
-		Beep(1440, 30);
-		charLocation.X--;
-	}
-	if (keyPressed[K_S] && charLocation.Y < consoleSize.Y - 1)
-	{
-		Beep(1440, 30);
-		charLocation.Y++;
-	}
-	if (keyPressed[K_D] && charLocation.X < consoleSize.X - 1)
-	{
-		Beep(1440, 30);
-		charLocation.X++;
-	}
+    }
+}
+void processUserInput()
+{
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
-        g_quitGame = true;   
+    {
+        g_quitGame = true;
     }
 }
 
-void render()
+void clearScreen()
 {
-	int levelno = 1;
-    if ( s == MAX_STATE) {
-        colour(0x0F);
-        cls();
-        //render the game
-        //render test screen code (not efficient at all)
-        const WORD colors[] =   
-		{
-			0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-			0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-	    };
-        // To Display title
-        for ( int i = 0; i <= col; ++i) 
-		{
-            cout << Title[0][i];
+    // Clears the buffer with this colour attribute
+    console.clearBuffer(0x1F);
+}
+void renderMap()
+{
+    if ( s ==  MAX_STATE) {
+        const WORD colors[] = {
+            0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+            0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+        };
+        // Display The Title
+        ifstream inData;
+        inData.open("displayTitle.txt");
+        string Data;
+        COORD Ttle;
+        Ttle.X = 0;
+        Ttle.Y = 0;
+        while ( getline (inData, Data) && !inData.eof() )
+        {
+            console.writeToBuffer(Ttle, Data, colors[0] );
+            Ttle.Y += 1;
         }
+        inData.close();
 
         // Rendering the Menu
         char *strt = "(1) START";
-        gotoXY(0,20);
+        COORD st;
+        st.X = 0;
+        st.Y = 20;
+        console.writeToBuffer(st, strt, colors[0]);
         //colour(colors[0x1A]);
-        cout << strt << endl;
         char *hlp = "(2) HELP";
-        gotoXY(0,21);
+        COORD hp;
+        hp.X = 0;
+        hp.Y = 21;
+        console.writeToBuffer(hp, hlp, colors[0]);
         //colour(colors[0x2B]);
-        cout << hlp << endl;
         char *ext = "(3) EXIT";
-        gotoXY(0,22);
-        //colour(colors[0x3C]);
-        cout << ext << endl;
+        COORD et;
+        et.X = 0;
+        et.Y = 22;
+        console.writeToBuffer(et, ext, colors[0]);
 
-        //Rendering the character
-        gotoXY(startmenuLocation);
-        //colour(0x1A);
-        cout << (char)60;
     }
-    if ( s == Start) 
-	{
-    // clear previous screen
-    colour(0x0F);
-    cls();
-	cout << endl;
-    //render the game
 
-	level(levelno);
-    // render time taken to calculate this frame
-    gotoXY(70, 0);
-    colour(0x1A);
-    cout << 1.0 / deltaTime << "fps" << endl;
-  
-    //gotoXY(0, 0);
-    //colour(0x59);
-    //std::cout << elapsedTime << "secs" << std::endl;
+    if ( s == Start) {
+    // Set up sample colours, and output shadings
+    const WORD colors[] = {
+        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+    };
 
-    // render character
-    gotoXY(charLocation);
-    colour(0x0C);
-    cout << (char)1;
+    COORD c;
+        for (int i = 0; i < 12; ++i)
+        {
+            c.X = 5 * i;
+            c.Y = i + 1;
+            colour(colors[i]);
+            console.writeToBuffer(c, " °±²Û", colors[i]);
+        }
     }
-	
+}
+void renderCharacter()
+{
+    if ( s == MAX_STATE) {
+        console.writeToBuffer(startmenuLocation, (char)1, 0x0C);
+    }
+    if ( s == Start) {
+    // Draw the location of the character
+    console.writeToBuffer(charLocation, (char)1, 0x0C);
+    }
+}
+void renderFramerate()
+{
+    COORD c;
+    // displays the framerate
+    std::ostringstream ss;
+    ss << std::fixed << std::setprecision(3);
+    ss << 1.0 / deltaTime << "fps";
+    c.X = console.getConsoleSize().X - 9;
+    c.Y = 0;
+    console.writeToBuffer(c, ss.str());
+
+    // displays the elapsed time
+    ss.str("");
+    ss << elapsedTime << "secs";
+    c.X = 0;
+    c.Y = 0;
+    console.writeToBuffer(c, ss.str(), 0x59);
+}
+void renderToScreen()
+{
+    // Writes the buffer to the console, hence you will see what you have written
+    console.flushBufferToConsole();
 }
