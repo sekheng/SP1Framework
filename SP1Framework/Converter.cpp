@@ -15,12 +15,15 @@ void convert(int &a)
 	}
 	if (a == 69)
 	{
+		colour(0x0F);
 		cout << "E";
 	}
 	if (a == 35)
 	{
+		colour(0x0F);
 		cout << "#";
 	}
+
 
 
 	/*if (hit end point)
