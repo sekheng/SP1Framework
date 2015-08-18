@@ -30,6 +30,14 @@ char g_map[140][30];    //For Collision System
 // Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
+COORD cannonballLocationR;
+COORD cannonLocationR;
+COORD cannonballLocationL;
+COORD cannonLocationL;
+COORD cannonballLocationU;
+COORD cannonLocationU;
+COORD cannonballLocationD;
+COORD cannonLocationD;
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
@@ -45,6 +53,23 @@ void init()
     startmenuLocation.X = 10;
     startmenuLocation.Y = 21;
 
+	cannonballLocationR.X = 10;
+	cannonballLocationR.Y = 10;
+	cannonballLocationL.X = 10;
+	cannonballLocationL.Y = 10;
+	cannonballLocationU.X = 10;
+	cannonballLocationU.Y = 10;
+	cannonballLocationD.X = 10;
+	cannonballLocationD.Y = 10;
+
+	cannonLocationR.X = 10;
+	cannonLocationR.Y = 10;
+	cannonLocationL.X = 10;
+	cannonLocationL.Y = 10;
+	cannonLocationU.X = 10;
+	cannonLocationU.Y = 10;
+	cannonLocationD.X = 10;
+	cannonLocationD.Y = 10;
 }
 
 // Do your clean up of memory here
@@ -208,6 +233,38 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
+		if (cannonballLocationR.X != 20 && g_timer.getElapsedTime() != -1)
+		{
+			cannonballLocationR.X++;
+		}
+		else
+		{
+			cannonballLocationR.X-=10;
+		}
+		if (cannonballLocationL.X != 0 && g_timer.getElapsedTime() != -1)
+		{
+			cannonballLocationL.X--;
+		}
+		else
+		{
+			cannonballLocationL.X+=10;
+		}
+		if (cannonballLocationU.Y != 0 && g_timer.getElapsedTime() != -1)
+		{
+			cannonballLocationU.Y--;
+		}
+		else
+		{
+			cannonballLocationU.Y+=10;
+		}
+		if (cannonballLocationD.Y != 20 && g_timer.getElapsedTime() != -1)
+		{
+			cannonballLocationD.Y++;
+		}
+		else
+		{
+			cannonballLocationD.Y-=10;
+		}
     }
 }
 void processUserInput()
@@ -350,6 +407,14 @@ void renderCharacter()
 
 
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
+		console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
+		console.writeToBuffer(cannonLocationL, (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationL, (char)79, 0x0C);
+		console.writeToBuffer(cannonLocationU, (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationU, (char)79, 0x0C);
+		console.writeToBuffer(cannonLocationD, (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationD, (char)79, 0x0C);
     }
 }
 void renderFramerate()
