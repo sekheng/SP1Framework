@@ -17,4 +17,4 @@ using std::ifstream;
 
 void level(int &a);
 
-#endif
+#endif  // _LEVELS_H

@@ -35,7 +35,6 @@ void level(int &a)
 		{
 			change = data[x];
 			convert(change);
-
 		}
 		cout << endl;
 	}

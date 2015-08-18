@@ -21,7 +21,6 @@ COORD charLocation;
 COORD startmenuLocation;
 COORD consoleSize;
 startscreen s = MAX_STATE;
-char title[100][100];        
 
 void init()
 {
@@ -48,24 +47,6 @@ void init()
     //Set the arrow to be near the start
     startmenuLocation.X = 10;
     startmenuLocation.Y = 20;
-
-    //Displaying the title
-    ifstream inData;
-    inData.open("displayTitle.txt");
-    char character;
-    int i = 0;
-    int j = 0;
-
-    while ( !inData.eof() && inData.get(character) ) 
-    {
-        if ( character == '\n' ) {
-            i = 0;
-            ++j;
-        }
-        title[j][i] = character;
-        ++i;
-    }
-    inData.close();
 
     elapsedTime = 0.0;
 }
@@ -156,20 +137,22 @@ void render()
         colour(0x0F);
         cls();
         //render the game
-        for ( int j = 0; j < 30; ++j) {
-            for ( int i = 0; i < 1000; ++i) {                
-                if ( title[j][i] == '\n' ) {
-                    break;
-                }
-                cout << title[j][i];
-            }
-        }
         //render test screen code (not efficient at all)
         const WORD colors[] =   {
 	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
 	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	                        };
         // To Display title
+        ifstream inData;
+        inData.open("displayTitle.txt");
+        string Data;
+        while ( !inData.eof() ) {
+            getline ( inData, Data);
+            cout << Data << endl;
+        }
+
+        inData.close();
+
         // Rendering the Menu
         char *strt = "(1) START";
         gotoXY(0,20);
