@@ -6,6 +6,13 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include "levels.h"
+
+using std::cout;
+using std::endl;
+using std::cin;
+using std::ifstream;
+using std::ofstream;
 
 double elapsedTime;
 double deltaTime;
@@ -14,6 +21,7 @@ COORD charLocation;
 COORD startmenuLocation;
 COORD consoleSize;
 startscreen s = MAX_STATE;
+char title[100][100];        
 
 void init()
 {
@@ -40,6 +48,24 @@ void init()
     //Set the arrow to be near the start
     startmenuLocation.X = 10;
     startmenuLocation.Y = 20;
+
+    //Displaying the title
+    ifstream inData;
+    inData.open("displayTitle.txt");
+    char character;
+    int i = 0;
+    int j = 0;
+
+    while ( !inData.eof() && inData.get(character) ) 
+    {
+        if ( character == '\n' ) {
+            i = 0;
+            ++j;
+        }
+        title[j][i] = character;
+        ++i;
+    }
+    inData.close();
 
     elapsedTime = 0.0;
 }
@@ -76,6 +102,7 @@ void update(double dt)
         }
         if (keyPressed[K_ENTER] && startmenuLocation.Y == 20) {
             s = Start;
+
         }
         if (keyPressed[K_ENTER] && startmenuLocation.Y == 22) {
             s = Exit;
@@ -89,12 +116,11 @@ void update(double dt)
     if ( s == Exit) {
         g_quitGame = true;
     }
-
+	
     if ( s == Start) {
     // get the delta time
     elapsedTime += dt;
     deltaTime = dt;
-
     // Updating the location of the character based on the key press
     if (keyPressed[K_UP] && charLocation.Y > 0)
     {
@@ -125,95 +151,64 @@ void update(double dt)
 
 void render()
 {
+	int levelno=1;
     if ( s == MAX_STATE) {
         colour(0x0F);
         cls();
-
         //render the game
-
+        for ( int j = 0; j < 30; ++j) {
+            for ( int i = 0; i < 1000; ++i) {                
+                if ( title[j][i] == '\n' ) {
+                    break;
+                }
+                cout << title[j][i];
+            }
+        }
         //render test screen code (not efficient at all)
         const WORD colors[] =   {
 	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
 	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	                        };
         // To Display title
-        displayTitle();
         // Rendering the Menu
         char *strt = "(1) START";
         gotoXY(0,20);
         //colour(colors[0x1A]);
-        std::cout << strt << std::endl;
+        cout << strt << endl;
         char *hlp = "(2) HELP";
         gotoXY(0,21);
         //colour(colors[0x2B]);
-        std::cout << hlp << std::endl;
+        cout << hlp << endl;
         char *ext = "(3) EXIT";
         gotoXY(0,22);
         //colour(colors[0x3C]);
-        std::cout << ext << std::endl;
+        cout << ext << endl;
 
         //Rendering the character
         gotoXY(startmenuLocation);
-        colour(0x1A);
-        std::cout << (char)2;
+        //colour(0x1A);
+        cout << (char)60;
     }
     if ( s == Start) {
     // clear previous screen
     colour(0x0F);
     cls();
-
+	cout << endl;
     //render the game
 
-    //render test screen code (not efficient at all)
-    const WORD colors[] =   {
-	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-	                        };
-	
-	for (int i = 0; i < 12; ++i)
-	{
-		gotoXY(3*i,i+1);
-		colour(colors[i]);
-		std::cout << "WOW";
-	}
-
+	level(levelno);
     // render time taken to calculate this frame
     gotoXY(70, 0);
     colour(0x1A);
-    std::cout << 1.0 / deltaTime << "fps" << std::endl;
+    cout << 1.0 / deltaTime << "fps" << endl;
   
-    gotoXY(0, 0);
-    colour(0x59);
-    std::cout << elapsedTime << "secs" << std::endl;
+    //gotoXY(0, 0);
+    //colour(0x59);
+    //std::cout << elapsedTime << "secs" << std::endl;
 
     // render character
     gotoXY(charLocation);
     colour(0x0C);
-    std::cout << (char)1;
+    cout << (char)1;
     }
-}
-
-void displayTitle() {
-    std::ifstream inData;
-    std::string lineData;
-    inData.open("displayTitle.txt");
-    Display Dt;
-
-    while ( !inData.eof() ) {
-        std::getline (inData, lineData);
-        populateData (Dt, lineData);
-        printData(Dt);
-    }
-    inData.close();
-}
-
-void populateData(Display &Dt, std::string haveline)
-{
-    Dt.line = haveline;
-    Dt.Data = Dt.line;
-}
-
-void printData(const Display &Dt)
-{
-    std::cout << Dt.Data << std::endl;
 }
