@@ -1,47 +1,43 @@
 #include "levels.h"
 #include "Converter.h"
+
 void level(int &a)
 {
+	ifstream indata;
+	string data;
+	string levelno;
+	int change;
 	if (a == 1)
 	{
-		const int collumn = 4;
-
-		string levelno[collumn]=
-		{
-			"1111111111111111111111111111111111111111",
-			"1100000000000000000000000000000000000011",
-			"1100000000000000000000000000000000000011",
-			"1111111111111111111111111111111111111111"
-		};
-		for (int x = 0; x < 4; x++)
-		{
-			for (unsigned int i = 0; i < 40; i++)
-			{
-				//cout << levelno[x][i];
-				int change = levelno[x][i];
-				convert(change);
-			}
-			cout << endl;
-		}
-		//cout << levelno[0][1];
-		//convert(levelno[collumn][row], collumn);
-		
+		levelno = "levels1.txt";
 	}
-	//else if (a == 2)
-	//{
+	else if (a == 2)
+	{
+		levelno = "levels2.txt";
+	}
+	else if (a == 3)
+	{
+		levelno = "levels3.txt";
+	}
+	else if (a == 4)
+	{
+		levelno = "levels4.txt";
+	}
+	else if (a == 5)
+	{
+		levelno = "levels5.txt";
+	}
+	indata.open(levelno);
+	while (!indata.eof())
+	{
+		getline(indata, data);
+		for (int x = 0; x < data.length(); x++)
+		{
+			change = data[x];
+			convert(change);
 
-	//}
-	//else if (a == 3)
-	//{
-
-	//}
-	//else if (a == 4)
-	//{
-
-	//}
-	//else if (a == 5)
-	//{
-
-	//}
-
+		}
+		cout << endl;
+	}
+	indata.close();
 }

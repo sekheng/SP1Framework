@@ -151,7 +151,7 @@ void update(double dt)
 
 void render()
 {
-	int levelno=1;
+	int levelno = 1;
     if ( s == MAX_STATE) {
         colour(0x0F);
         cls();
