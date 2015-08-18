@@ -3,6 +3,8 @@
 //
 #include "game.h"
 #include "Framework\console.h"
+#include "levels.h"
+#include "Converter.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -331,14 +333,65 @@ void renderMap()
         0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 		};
 		
-    COORD c;
+ /*   COORD c;
         for (int i = 0; i < 12; ++i)
         {
             c.X = 5 * i;
             c.Y = i + 1;
             colour(colors[i]);
             console.writeToBuffer(c, " °±²Û", colors[i]);
-        }
+        }*/
+		int levelno = 1;
+		string level;
+		int change;
+		if (levelno == 1)
+		{
+			level = "levels1.txt";
+		}
+		else if (levelno == 2)
+		{
+			level = "levels2.txt";
+		}
+		else if (levelno == 3)
+		{
+			level = "levels3.txt";
+		}
+		else if (levelno == 4)
+		{
+			level = "levels4.txt";
+		}
+		else if (levelno == 5)
+		{
+			level = "levels5.txt";
+		}
+		ifstream inData;
+		inData.open(level);
+		string Data;
+		COORD Ttle;
+		Ttle.X = 0;
+		Ttle.Y = 1;
+		while (!inData.eof())
+		{
+			Ttle.X = 0;
+			getline(inData, Data);
+			for (unsigned int x = 0; x < Data.length(); x++)
+			{
+				change = Data[x];
+				
+				if (change == 49) {
+					convert(change);
+					console.writeToBuffer(Ttle, change, colors[5]);
+					Ttle.X += 1;
+					continue;
+				}
+				convert(change);
+				console.writeToBuffer(Ttle, change, colors[0] );
+				Ttle.X += 1;
+			}
+
+			Ttle.Y += 1;
+		}
+		inData.close();
     }
 }
 void renderCharacter()
@@ -349,7 +402,10 @@ void renderCharacter()
     }
     if ( s == Start) 
 	{
+		
 		// Draw the location of the character
+
+
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
 		console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
 		console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
