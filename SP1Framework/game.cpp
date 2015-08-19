@@ -58,25 +58,25 @@ void init()
     startmenuLocation.Y = 21;
 
 	cannonballLocationR.X = 10;
-	cannonballLocationR.Y = 10;
-	cannonballLocationL.X = 10;
-	cannonballLocationL.Y = 10;
-	cannonballLocationU.X = 10;
-	cannonballLocationU.Y = 10;
-	cannonballLocationD.X = 10;
-	cannonballLocationD.Y = 10;
+	cannonballLocationR.Y = 13;
+	cannonballLocationL.X = 37;
+	cannonballLocationL.Y = 17;
+	cannonballLocationU.X = 33;
+	cannonballLocationU.Y = 15;
+	cannonballLocationD.X = 31;
+	cannonballLocationD.Y = 5;
 
 	cannonLocationR.X = 10;
-	cannonLocationR.Y = 10;
-	cannonLocationL.X = 10;
-	cannonLocationL.Y = 10;
-	cannonLocationU.X = 10;
-	cannonLocationU.Y = 10;
-	cannonLocationD.X = 10;
-	cannonLocationD.Y = 10;
+	cannonLocationR.Y = 13;
+	cannonLocationL.X = 37;
+	cannonLocationL.Y = 17;
+	cannonLocationU.X = 33;
+	cannonLocationU.Y = 15;
+	cannonLocationD.X = 31;
+	cannonLocationD.Y = 5;
 
-	monsterR.X = 50;
-	monsterR.Y = 10;
+	monsterR.X = 10;
+	monsterR.Y = 4;
 }
 
 // Do your clean up of memory here
@@ -250,23 +250,23 @@ void moveCharacter()
 		{
 			cannonballLocationR.X-=10;
 		}
-		if (cannonballLocationL.X != 0 && g_timer.getElapsedTime() != -1)
+		if (cannonballLocationL.X != 14 && g_timer.getElapsedTime() != -1)
 		{
 			cannonballLocationL.X--;
 		}
 		else
 		{
-			cannonballLocationL.X+=10;
+			cannonballLocationL.X+=23;
 		}
-		if (cannonballLocationU.Y != 0 && g_timer.getElapsedTime() != - 1)
+		if (cannonballLocationU.Y != 6 && g_timer.getElapsedTime() != - 1)
 		{
 			cannonballLocationU.Y--;
 		}
 		else
 		{
-			cannonballLocationU.Y+=10;
+			cannonballLocationU.Y+=9;
 		}
-		if (cannonballLocationD.Y != 20 && g_timer.getElapsedTime() != -1)
+		if (cannonballLocationD.Y != 15 && g_timer.getElapsedTime() != -1)
 		{
 			cannonballLocationD.Y++;
 		}
@@ -274,7 +274,7 @@ void moveCharacter()
 		{
 			cannonballLocationD.Y-=10;
 		}
-		if(monsterR.X != 60 && g_timer.getElapsedTime() != -1 && i<=9)
+		if(monsterR.X != 22 && g_timer.getElapsedTime() != -1 && i<=9)
 		{
 			monsterR.X++;
 			i++;
