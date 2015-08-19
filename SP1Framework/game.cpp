@@ -79,7 +79,7 @@ void init()
     startmenuLocation.Y = 21;
 	/////////////////////////////////////////
 
-	int levelno = 5;
+	int levelno = 1;
 	levelcheck(levelno,level);
 	ifstream inData;
 	inData.open(level);
