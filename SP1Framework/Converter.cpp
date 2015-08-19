@@ -2,8 +2,6 @@
 #include "levels.h"
 #include "game.h"
 #include "traps.h"
-extern int row;
-extern int col;
 void convert(int &a)
 {
 	
@@ -32,10 +30,11 @@ void convert(int &a)
 	{
 		a = 4;
 	}
-	if (a == 67)//right cannon
-	{
-		cannonR(row, col);
-	}
+	
+}
+void convert(int &y, int &x)
+{
+	locationR(x,y);
 }
 
 void convert2(int&b, string &x, int &c)

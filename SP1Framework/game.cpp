@@ -40,6 +40,8 @@ int col = 0;    // For collision Detection
 COORD LvL;
 string content;
 int color;
+int tempX;
+int tempY;
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
@@ -69,8 +71,18 @@ void init()
 		getline(inData, Data);
 		for (unsigned int x = 0; x < Data.length(); x++)
 		{
+			tempX = col;
+			tempY = row;
 			change = Data[x];
-			convert(change);
+			if (change == 67)
+			{
+				convert(tempY,tempX);
+			}
+			else
+			{
+				convert(change);
+
+			}
 			g_map[row][col] = change;
 			++col;
 		}
@@ -305,6 +317,7 @@ void renderMap()
 
 	if (s == Start)
 	{
+		
 		const WORD colors[] =
 		{
 			0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
