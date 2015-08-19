@@ -4,7 +4,7 @@
 extern COORD startmenuLocation;
 extern COORD charLocation;
 extern size_t g_map[140][100];
-extern COORD cannonballLocationR[20];	
+extern COORD cannonballLocationR[20];
 extern Console console;
 extern int cno;
 extern startscreen state;

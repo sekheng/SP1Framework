@@ -82,6 +82,7 @@
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
+    <ClCompile Include="playerchar.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="traps.cpp" />
   </ItemGroup>
@@ -92,6 +93,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="monster.h" />
+    <ClInclude Include="playerchar.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="traps.h" />
   </ItemGroup>
