@@ -3,7 +3,6 @@
 //
 #include "game.h"
 #include "Framework\console.h"
-#include "levels.h"
 #include "Converter.h"
 #include <iostream>
 #include <iomanip>
@@ -40,6 +39,12 @@ COORD cannonLocationU;
 COORD cannonballLocationD;
 COORD cannonLocationD;
 COORD monsterR;
+int levelno;
+string level;
+int change;
+int row = 1;    // For collision Detection
+int col = 0;    // For collision Detection
+COORD LvL;
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
@@ -77,6 +82,48 @@ void init()
 
 	monsterR.X = 10;
 	monsterR.Y = 4;
+	/////////////////////////////////////////
+	int levelno = 1;
+	if (levelno == 1)
+	{
+		level = "levels1.txt";
+	}
+	else if (levelno == 2)
+	{
+		level = "levels2.txt";
+	}
+	else if (levelno == 3)
+	{
+		level = "levels3.txt";
+	}
+	else if (levelno == 4)
+	{
+		level = "levels4.txt";
+	}
+	else if (levelno == 5)
+	{
+		level = "levels5.txt";
+	}
+	/////////////////////////////////////
+	ifstream inData;
+	inData.open(level);
+	string Data;
+
+	while (!inData.eof())
+	{
+		col = 0;
+		getline(inData, Data);
+		for (unsigned int x = 0; x < Data.length(); x++)
+		{
+			change = Data[x];
+			convert(change);
+			g_map[row][col] = change;
+			++col;
+		}
+		++row;
+	}
+	inData.close();
+
 }
 
 // Do your clean up of memory here
@@ -353,9 +400,38 @@ void renderMap()
 
 	if (s == Start)
 	{
+		const WORD colors[] =
+		{
+			0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+			0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+		};
+
+		LvL.Y = 1;
+		LvL.X = 0;
 		// Set up sample colours, and output shadings
-		int levelno = 1;
-		level(levelno);
+		for (int i = 1; i < row; ++i) 
+		{
+			LvL.X = 0;
+			for (int j = 0; j < col; ++j) {
+				if (g_map[i][j] == 1){
+					console.writeToBuffer(LvL, ' ', colors[5]);
+				}
+				if (g_map[i][j] == 0) {
+					console.writeToBuffer(LvL, ' ', colors[0]);
+				}
+				if (g_map[i][j] == 2) {
+					console.writeToBuffer(LvL, 'E', colors[0]);
+				}
+				if (g_map[i][j] == 3) {
+					console.writeToBuffer(LvL, '#', colors[0]);
+				}
+				if (g_map[i][j] == 4) {
+					console.writeToBuffer(LvL, 'S', colors[0]);
+				}
+				LvL.X += 1;
+			}
+			LvL.Y += 1;
+		}
 	}
 }
 void renderCharacter()
