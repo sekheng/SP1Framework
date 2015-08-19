@@ -320,9 +320,6 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		
-<<<<<<< HEAD
-		cannonballR(3);
     }
     if ( state == LevelCustomized)
     {
@@ -458,11 +455,9 @@ void moveCharacter()
 		}
 
     }
-=======
 			cannonballR(3, cno);//3 is ball movement distance
-	}
->>>>>>> 526bc568018842f8c2d608769e937b5093a08cd3
 }
+
 void processUserInput()
 {
     // quits the game if player hits the escape key
