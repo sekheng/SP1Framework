@@ -21,4 +21,16 @@ void cannonR(int &i);
 void cannonballR(int x,int z);
 void locationR(int x,int y,int z);
 
+void cannonL(int &i);
+void cannonballL(int x,int z);
+void locationL(int x,int y,int z);
+
+void cannonU(int &i);
+void cannonballU(int x,int z);
+void locationU(int x,int y,int z);
+
+void cannonD(int &i);
+void cannonballD(int x,int z);
+void locationD(int x,int y,int z);
+
 #endif  // _TRAPS_H
