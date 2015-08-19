@@ -1,11 +1,10 @@
 // This is the main file for the game logic and function
-//
-//
 #include "game.h"
 #include "traps.h"
 #include "Framework\console.h"
 #include "levels.h"
 #include "Converter.h"
+#include "title.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -28,6 +27,21 @@ double deltaTime;
 bool keyPressed[K_COUNT];
 startscreen s = MAX_STATE;
 size_t g_map[140][100];    //For Collision System
+int titlearr[40][150];
+
+// For Menu Display
+char *strt = "(1) START";
+COORD st;
+char *lvlcustomized = "(2) LEVEL CUSTOMIZATION";
+COORD lvled;
+char *playcustom = "(3) PLAY CUSTOM LEVEL";
+COORD custom;
+char *hlp = "(4) HELP";
+COORD hp;
+char *option = "(5) OPTIONS";
+COORD opt;
+char *ext = "(6) EXIT";
+COORD et;
 
 // Game specific variables here
 COORD charLocation;
@@ -38,6 +52,9 @@ int change;
 int row = 1;    // For collision Detection
 int col = 0;    // For collision Detection
 COORD LvL;
+COORD Ttle;
+int ttlerow = 0;
+int ttlecol = 0;
 string content;
 int color;
 int tempX;
@@ -56,8 +73,9 @@ void init()
     charLocation.Y = 10;
 
     // Starting menu location
-    startmenuLocation.X = 10;
+    startmenuLocation.X = 23;
     startmenuLocation.Y = 21;
+	/////////////////////////////////////////
 
 	int levelno = 1;
 	levelcheck(levelno,level);
@@ -89,6 +107,41 @@ void init()
 		++row;
 	}
 	inData.close();
+
+    // Title
+    ifstream inTitle;
+    inTitle.open("displayTitle.txt");
+    string Title;
+    while ( getline (inTitle, Title) && !inTitle.eof() )
+    {
+        ttlecol = 0;
+        for ( size_t y = 0; y < Title.size(); ++y) {
+            int change = Title[y];
+            titleconvert(change);
+            titlearr[ttlerow][ttlecol] = change;
+            ++ttlecol;
+        }
+        ++ttlerow;
+    }
+    //cout << ttlerow << " " << ttlecol;
+    inTitle.close();
+
+    Ttle.X = 0;
+    Ttle.Y = 1;
+
+    // Menu's coordinates.
+    st.X = 0;
+    st.Y = 21;
+    lvled.X = 0;
+    lvled.Y = 22;
+    custom.X = 0;
+    custom.Y = 23;
+    hp.X = 0;
+    hp.Y = 24;
+    opt.X = 0;
+    opt.Y = 25;
+    et.X = 0;
+    et.Y = 26;
 
 }
 
@@ -169,7 +222,7 @@ void moveCharacter()
             Beep(1440, 30);
             startmenuLocation.Y--; 
         }
-        if (keyPressed[K_DOWN] && startmenuLocation.Y < 23)
+        if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
         {
             Beep(1440, 30);
             startmenuLocation.Y++; 
@@ -179,7 +232,7 @@ void moveCharacter()
             s = Start;
 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 23) 
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 26) 
 		{
             s = Exit;
         }
@@ -255,7 +308,6 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		
     }
 }
 void processUserInput()
@@ -282,36 +334,31 @@ void renderMap()
             0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
         };
         // Display The Title
-        ifstream inData;
-        inData.open("displayTitle.txt");
-        string Data;
-        COORD Ttle;
-        Ttle.X = 0;
-        Ttle.Y = 1;
-        while ( getline (inData, Data) && !inData.eof() )
-        {
-            console.writeToBuffer(Ttle, Data, colors[0] );
+        /*
+        for ( int i = 0; i < ttlerow; ++i) {
+            Ttle.X = 0;
+            for ( int j = 0; j < ttlecol; ++j) {
+                string str;
+                int num;
+                int change = titlearr[i][j];
+                titleconvert2(change, str, num);
+                console.writeToBuffer( Ttle, str, colors[0] );
+                Ttle.X += 1;
+            }
             Ttle.Y += 1;
         }
-        inData.close();
-
+        */
         // Rendering the Menu
-        char *strt = "(1) START";
-        COORD st;
-        st.X = 0;
-        st.Y = 21;
         console.writeToBuffer(st, strt, colors[0]);
 
-        char *hlp = "(2) HELP";
-        COORD hp;
-        hp.X = 0;
-        hp.Y = 22;
+        console.writeToBuffer(lvled, lvlcustomized, colors[0]);
+
+        console.writeToBuffer(custom, playcustom, colors[0]);
+
         console.writeToBuffer(hp, hlp, colors[0]);
 
-        char *ext = "(3) EXIT";
-        COORD et;
-        et.X = 0;
-        et.Y = 23;
+        console.writeToBuffer(opt, option, colors[0]);
+
         console.writeToBuffer(et, ext, colors[0]);
     }
 

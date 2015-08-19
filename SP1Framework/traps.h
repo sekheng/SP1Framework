@@ -17,7 +17,7 @@
 ////COORD cannonLocationD;
 ////COORD monsterR;
 
-void cannonR(int &x,int &y,int i);
+void cannonR();
 void cannonballR(int x);
 void locationR(int x,int y);
 
