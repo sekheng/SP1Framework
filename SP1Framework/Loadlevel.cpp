@@ -42,16 +42,7 @@ void loadlevel()
 			tempX = col;
 			tempY = row;
 			change = Data[x];
-			if (change == 67)
-			{
-				convert(tempY, tempX, cno);
-				cno++;
-			}
-			else
-			{
-				convert(change);
-
-			}
+			convert(change);
 			g_map[row][col] = change;
 			++col;
 		}
