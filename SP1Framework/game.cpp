@@ -10,6 +10,7 @@
 #include <sstream>
 #include <fstream>
 #include <string>
+#include "playerchar.h"
 
 using std::cout;
 using std::endl;
@@ -236,6 +237,14 @@ void moveCharacter()
             state = Start;
 
         }
+        if ( keyPressed[K_ENTER] && startmenuLocation.Y == 22)
+        {
+            state = LevelCustomized;
+        }
+        if ( keyPressed[K_ENTER] && startmenuLocation.Y == 23) 
+        {
+            state = LevelCustom;
+        }
         if (keyPressed[K_ENTER] && startmenuLocation.Y == 26) 
 		{
             state = Exit;
@@ -312,10 +321,153 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		
-			cannonballR(3, cno);//3 is ball movement distance
-	}
+    }
+<<<<<<< HEAD
+
+		cannonballR(3, cno);//3 is ball movement distance
+		characterInteraction();
 }
+
+
+=======
+    if ( state == LevelCustomized)
+    {
+        		// Updating the location of the character based on the key press
+        if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+        if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X)
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1)
+		{
+			Beep(1440, 30);
+			charLocation.X--;
+		}
+
+		if (keyPressed[K_UP] && charLocation.Y > 0)
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_LEFT] && charLocation.X > 0)
+		{
+		    Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+
+		if (keyPressed[K_W] && charLocation.Y > 0)  //up
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_A] && charLocation.X > 0)  //left
+		{
+			Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1)  //down
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_D] && charLocation.X < console.getConsoleSize().X - 1)   //right
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+    }
+
+    if ( state == LevelCustom)
+    {
+        		// Updating the location of the character based on the key press
+        if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+        if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y ][charLocation.X] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.X--;
+		}
+
+		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1 ] != 1)
+		{
+		    Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1 )
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+
+		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)  //up
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
+		{
+			Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1 )  //down
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_D] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+
+    }
+			cannonballR(3, cno);//3 is ball movement distance
+}
+
+>>>>>>> 8502639207c53f5fb2c5c435ddf677d278660b4e
 void processUserInput()
 {
     // quits the game if player hits the escape key
@@ -420,6 +572,10 @@ void renderCharacter()
 		// Draw the location of the character
 		cannonR(cno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
+    }
+    if ( state == LevelCustomized)
+    {
+       console.writeToBuffer(charLocation, (char)1, 0x0C);
     }
 }
 void renderFramerate()
