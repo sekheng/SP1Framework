@@ -59,7 +59,7 @@ string content;
 int color;
 int tempX;
 int tempY;
-
+int cno;
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
 void init()
@@ -308,6 +308,9 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
+
+
+		cannonballR(3);
     }
 }
 void processUserInput()
@@ -397,7 +400,7 @@ void renderCharacter()
 	{
 		
 		// Draw the location of the character
-
+		cannonR();
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
     }
 }
