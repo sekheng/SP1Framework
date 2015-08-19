@@ -122,7 +122,6 @@ void characterMovement()
 		cannonballR(3, cno);//3 is ball movement distance
 		characterInteraction();
 	}
-
 	if (state == LevelCustomized)
 	{
 		// Updating the location of the character based on the key press
