@@ -25,7 +25,7 @@ int i = 0;
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
-startscreen s = MAX_STATE;
+startscreen state = menu;
 size_t g_map[140][100];    //For Collision System
 int titlearr[40][150];
 
@@ -59,7 +59,7 @@ string content;
 int color;
 int tempX;
 int tempY;
-
+int cno = 0;
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
 void init()
@@ -95,6 +95,7 @@ void init()
 			if (change == 67)
 			{
 				convert(tempY,tempX);
+				cno++;
 			}
 			else
 			{
@@ -109,6 +110,7 @@ void init()
 	inData.close();
 
     // Title
+    
     ifstream inTitle;
     inTitle.open("displayTitle.txt");
     string Title;
@@ -128,7 +130,7 @@ void init()
 
     Ttle.X = 0;
     Ttle.Y = 1;
-
+    
     // Menu's coordinates.
     st.X = 0;
     st.Y = 21;
@@ -215,7 +217,7 @@ void render()
 
 void moveCharacter()
 {
-    if ( s == MAX_STATE ) 
+    if ( state == menu ) 
 	{
         if (keyPressed[K_UP] && startmenuLocation.Y > 21)
         {
@@ -229,21 +231,21 @@ void moveCharacter()
         }
         if (keyPressed[K_ENTER] && startmenuLocation.Y == 21) 
 		{
-            s = Start;
+            state = Start;
 
         }
         if (keyPressed[K_ENTER] && startmenuLocation.Y == 26) 
 		{
-            s = Exit;
+            state = Exit;
         }
     }
 
-    if ( s == Exit ) 
+    if ( state == Exit ) 
 	{
         g_quitGame = true;
     }
 
-    if ( s == Start )   // The Game Begins!
+    if ( state == Start )   // The Game Begins!
 	{
 		// Updating the location of the character based on the key press
         if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
@@ -308,6 +310,9 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
+
+		
+		cannonballR(3);
     }
 }
 void processUserInput()
@@ -326,7 +331,7 @@ void clearScreen()
 }
 void renderMap()
 {
-    if ( s ==  MAX_STATE) 
+    if ( state ==  menu) 
 	{
         const WORD colors[] = 
 		{
@@ -335,6 +340,21 @@ void renderMap()
         };
         // Display The Title
         /*
+    ifstream inTitle;
+    inTitle.open("displayTitle.txt");
+    string Title;
+    while ( getline(inTitle, Title) && !inTitle.eof() )
+    {
+        //Ttle.X = 0;
+        for ( size_t y = 0; y < Title.size(); ++y) {
+            console.writeToBuffer(Ttle, Title,colors[0]);
+        }
+        Ttle.Y += 1;
+    }
+    //cout << ttlerow << " " << ttlecol;
+    inTitle.close();
+    */
+        Ttle.Y = 1;
         for ( int i = 0; i < ttlerow; ++i) {
             Ttle.X = 0;
             for ( int j = 0; j < ttlecol; ++j) {
@@ -347,7 +367,7 @@ void renderMap()
             }
             Ttle.Y += 1;
         }
-        */
+        
         // Rendering the Menu
         console.writeToBuffer(st, strt, colors[0]);
 
@@ -362,7 +382,7 @@ void renderMap()
         console.writeToBuffer(et, ext, colors[0]);
     }
 
-	if (s == Start)
+	if (state == Start)
 	{
 		
 		const WORD colors[] =
@@ -389,15 +409,15 @@ void renderMap()
 }
 void renderCharacter()
 {
-    if ( s == MAX_STATE) 
+    if ( state == menu) 
 	{
         console.writeToBuffer(startmenuLocation, (char)60, 0x0C);
     }
-    if ( s == Start) 
+    if ( state == Start) 
 	{
 		
 		// Draw the location of the character
-
+		cannonR(cno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
     }
 }
