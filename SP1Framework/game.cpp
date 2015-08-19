@@ -10,7 +10,6 @@
 #include <sstream>
 #include <fstream>
 #include <string>
-#include "playerchar.h"
 
 using std::cout;
 using std::endl;
@@ -79,7 +78,7 @@ void init()
     startmenuLocation.Y = 21;
 	/////////////////////////////////////////
 
-	int levelno = 5;
+	int levelno = 1;
 	levelcheck(levelno,level);
 	ifstream inData;
 	inData.open(level);
@@ -321,18 +320,16 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		cannonballR(3, cno);//3 is ball movement distance
-		characterInteraction();
     }
-	if (state == LevelCustomized)
-	{
-		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
+    if ( state == LevelCustomized)
+    {
+        		// Updating the location of the character based on the key press
+        if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
 		{
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X)
+        if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X)
 		{
 			Beep(1440, 30);
 			charLocation.X++;
@@ -355,7 +352,7 @@ void moveCharacter()
 		}
 		if (keyPressed[K_LEFT] && charLocation.X > 0)
 		{
-			Beep(1440, 30);
+		    Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
@@ -389,22 +386,22 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-	}
+    }
 
-	if (state == LevelCustom)
-	{
-		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
+    if ( state == LevelCustom)
+    {
+        		// Updating the location of the character based on the key press
+        if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
+        if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y ][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y--;
@@ -415,14 +412,14 @@ void moveCharacter()
 			charLocation.X--;
 		}
 
-		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
+		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.Y--;
 		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1 ] != 1)
 		{
-			Beep(1440, 30);
+		    Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
@@ -430,13 +427,13 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1 )
 		{
 			Beep(1440, 30);
 			charLocation.X++;
 		}
 
-		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)  //up
+		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)  //up
 		{
 			Beep(1440, 30);
 			charLocation.Y--;
@@ -446,7 +443,7 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X--;
 		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
+		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1 )  //down
 		{
 			Beep(1440, 30);
 			charLocation.Y++;
@@ -456,8 +453,9 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		cannonballR(3, cno);//3 is ball movement distance
-	}
+
+    }
+			cannonballR(3, cno);//3 is ball movement distance
 }
 
 void processUserInput()
