@@ -121,7 +121,13 @@ void characterMovement()
 		}
 		cannonballR(3, cno);//3 is ball movement distance
 		characterInteraction();
+        // To Pause in-game
+        if ( keyPressed[K_SPACE])
+        {
+            state = Pause;
+        }
 	}
+    //Level Editing
 	if (state == LevelCustomized)
 	{
 		// Updating the location of the character based on the key press
@@ -187,7 +193,7 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-	}
+    }
 
 	if (state == LevelCustom)
 	{

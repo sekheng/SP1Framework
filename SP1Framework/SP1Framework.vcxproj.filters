@@ -51,6 +51,9 @@
     <ClCompile Include="playerchar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ingame_UI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\console.h">
@@ -80,5 +83,13 @@
     <ClInclude Include="playerchar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ingame_UI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="displayPause.txt">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

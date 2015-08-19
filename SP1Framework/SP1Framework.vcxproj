@@ -79,6 +79,7 @@
     <ClCompile Include="Framework\console.cpp" />
     <ClCompile Include="Framework\timer.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="ingame_UI.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
@@ -91,11 +92,15 @@
     <ClInclude Include="Framework\console.h" />
     <ClInclude Include="Framework\timer.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="ingame_UI.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="playerchar.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="traps.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="displayPause.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,6 +6,7 @@
 #include "Converter.h"
 #include "title.h"
 #include "playerchar.h"
+#include "ingame_UI.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -29,19 +30,14 @@ bool keyPressed[K_COUNT];
 startscreen state = menu;
 int titlearr[40][150];
 size_t g_map[140][100];    //For Collision System
+char pausearr[40][150];
 
-// For Menu Display
-char *strt = "(1) START";
+// For Menu Display's coordinates
 COORD st;
-char *lvlcustomized = "(2) LEVEL CUSTOMIZATION";
 COORD lvled;
-char *playcustom = "(3) PLAY CUSTOM LEVEL";
 COORD custom;
-char *hlp = "(4) HELP";
 COORD hp;
-char *option = "(5) OPTIONS";
 COORD opt;
-char *ext = "(6) EXIT";
 COORD et;
 
 // Game specific variables here
@@ -50,8 +46,8 @@ COORD startmenuLocation;
 int levelno;
 string level;
 int change;
-int row = 1;    // For collision Detection
-int col = 0;    // For collision Detection
+int row = 1;    // For collision Detection and map coordinates
+int col = 0;    // For collision Detection and map coordinates
 COORD LvL;
 COORD Ttle;
 int ttlerow = 0;
@@ -61,6 +57,13 @@ int color;
 int tempX; //store X coord
 int tempY; //store Y coord
 int cno = 0; //cannon number
+COORD pu;
+
+const WORD colors[] = 
+{
+    0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+    0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+};
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
@@ -73,9 +76,6 @@ void init()
     //charLocation.Y = console.getConsoleSize().Y / 2;
 	characterInit();
 
-    // Starting menu location
-    startmenuLocation.X = 23;
-    startmenuLocation.Y = 21;
 	/////////////////////////////////////////
 
 	int levelno = 1;
@@ -110,43 +110,11 @@ void init()
 	}
 	inData.close();
 	
-
     // Title
-    
-    ifstream inTitle;
-    inTitle.open("displayTitle.txt");
-    string Title;
-    while ( getline (inTitle, Title) && !inTitle.eof() )
-    {
-        ttlecol = 0;
-        for ( size_t y = 0; y < Title.size(); ++y) {
-            int change = Title[y];
-            titleconvert(change);
-            titlearr[ttlerow][ttlecol] = change;
-            ++ttlecol;
-        }
-        ++ttlerow;
-    }
-    //cout << ttlerow << " " << ttlecol;
-    inTitle.close();
+    menuPosition();
 
-    Ttle.X = 0;
-    Ttle.Y = 1;
-    
-    // Menu's coordinates.
-    st.X = 0;
-    st.Y = 21;
-    lvled.X = 0;
-    lvled.Y = 22;
-    custom.X = 0;
-    custom.Y = 23;
-    hp.X = 0;
-    hp.Y = 24;
-    opt.X = 0;
-    opt.Y = 25;
-    et.X = 0;
-    et.Y = 26;
-
+    //Pause
+    pausePosition();
 }
 
 // Do your clean up of memory here
@@ -226,63 +194,12 @@ void renderMap()
 {
     if ( state ==  menu) 
 	{
-        const WORD colors[] = 
-		{
-            0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-            0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-        };
         // Display The Title
-        /*
-    ifstream inTitle;
-    inTitle.open("displayTitle.txt");
-    string Title;
-    while ( getline(inTitle, Title) && !inTitle.eof() )
-    {
-        //Ttle.X = 0;
-        for ( size_t y = 0; y < Title.size(); ++y) {
-            console.writeToBuffer(Ttle, Title,colors[0]);
-        }
-        Ttle.Y += 1;
-    }
-    //cout << ttlerow << " " << ttlecol;
-    inTitle.close();
-    */
-        Ttle.Y = 1;
-        for ( int i = 0; i < ttlerow; ++i) {
-            Ttle.X = 0;
-            for ( int j = 0; j < ttlecol; ++j) {
-                string str;
-                int num;
-                int change = titlearr[i][j];
-                titleconvert2(change, str, num);
-                console.writeToBuffer( Ttle, str, colors[0] );
-                Ttle.X += 1;
-            }
-            Ttle.Y += 1;
-        }
-        
-        // Rendering the Menu
-        console.writeToBuffer(st, strt, colors[0]);
-
-        console.writeToBuffer(lvled, lvlcustomized, colors[0]);
-
-        console.writeToBuffer(custom, playcustom, colors[0]);
-
-        console.writeToBuffer(hp, hlp, colors[0]);
-
-        console.writeToBuffer(opt, option, colors[0]);
-
-        console.writeToBuffer(et, ext, colors[0]);
+        displayMenu();
     }
 
 	if (state == Start)
 	{
-		const WORD colors[] =
-		{
-			0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-			0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-		};
-
 		LvL.Y = 1;
 		LvL.X = 0;
 		// Set up sample colours, and output shadings
