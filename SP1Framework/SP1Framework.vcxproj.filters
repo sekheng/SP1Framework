@@ -33,21 +33,6 @@
     <ClCompile Include="game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Converter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="monster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="traps.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="title.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\console.h">
@@ -57,21 +42,6 @@
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Converter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="levels.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="monster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="traps.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="title.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -57,7 +57,9 @@ int ttlerow = 0;
 int ttlecol = 0;
 string content;
 int color;
-
+int tempX;
+int tempY;
+int cno = 0;
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
 void init()
@@ -87,8 +89,19 @@ void init()
 		getline(inData, Data);
 		for (unsigned int x = 0; x < Data.length(); x++)
 		{
+			tempX = col;
+			tempY = row;
 			change = Data[x];
-			convert(change);
+			if (change == 67)
+			{
+				convert(tempY,tempX);
+				cno++;
+			}
+			else
+			{
+				convert(change);
+
+			}
 			g_map[row][col] = change;
 			++col;
 		}
@@ -297,6 +310,9 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
+
+		
+		cannonballR(3);
     }
 }
 void processUserInput()
@@ -368,6 +384,7 @@ void renderMap()
 
 	if (state == Start)
 	{
+		
 		const WORD colors[] =
 		{
 			0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
@@ -400,7 +417,7 @@ void renderCharacter()
 	{
 		
 		// Draw the location of the character
-
+		cannonR(cno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
     }
 }

@@ -3,10 +3,12 @@ COORD cannonballLocationR;
 COORD cannonLocationR;
 extern Console console;
 
-void cannonR()
+void cannonR(int &i)
 {
-	console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
-	console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
+	COORD cannonballLocationR[20];
+	COORD cannonLocationR[20];
+	console.writeToBuffer(cannonLocationR[i], (char)67, 0x0C);
+	console.writeToBuffer(cannonballLocationR[i], (char)79, 0x0C);
 }
 void cannonballR(int x)
 {
