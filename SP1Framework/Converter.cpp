@@ -34,7 +34,7 @@ void convert(int &a)
 	}
 	if (a == 67)//right cannon
 	{
-		cannonR(row, col);
+//		cannonR(row, col);
 	}
 }
 

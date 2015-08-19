@@ -82,6 +82,7 @@
     <ClCompile Include="level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
+    <ClCompile Include="title.cpp" />
     <ClCompile Include="traps.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +92,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="monster.h" />
+    <ClInclude Include="title.h" />
     <ClInclude Include="traps.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

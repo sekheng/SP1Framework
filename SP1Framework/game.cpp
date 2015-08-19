@@ -1,11 +1,10 @@
 // This is the main file for the game logic and function
-//
-//
 #include "game.h"
 #include "traps.h"
 #include "Framework\console.h"
 #include "levels.h"
 #include "Converter.h"
+#include "title.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -28,14 +27,20 @@ double deltaTime;
 bool keyPressed[K_COUNT];
 startscreen s = MAX_STATE;
 size_t g_map[140][100];    //For Collision System
-char titlearr[40][150];
+int titlearr[40][150];
 
 // For Menu Display
 char *strt = "(1) START";
 COORD st;
-char *hlp = "(2) HELP";
+char *lvlcustomized = "(2) LEVEL CUSTOMIZATION";
+COORD lvled;
+char *playcustom = "(3) PLAY CUSTOM LEVEL";
+COORD custom;
+char *hlp = "(4) HELP";
 COORD hp;
-char *ext = "(3) EXIT";
+char *option = "(5) OPTIONS";
+COORD opt;
+char *ext = "(6) EXIT";
 COORD et;
 
 // Game specific variables here
@@ -66,7 +71,7 @@ void init()
     charLocation.Y = 10;
 
     // Starting menu location
-    startmenuLocation.X = 10;
+    startmenuLocation.X = 23;
     startmenuLocation.Y = 21;
 	/////////////////////////////////////////
 
@@ -98,10 +103,10 @@ void init()
     while ( getline (inTitle, Title) && !inTitle.eof() )
     {
         ttlecol = 0;
-        char cstr[150];
-        strcpy ( cstr, Title.c_str() );
         for ( size_t y = 0; y < Title.size(); ++y) {
-            titlearr[ttlerow][ttlecol] = cstr[y];
+            int change = Title[y];
+            titleconvert(change);
+            titlearr[ttlerow][ttlecol] = change;
             ++ttlecol;
         }
         ++ttlerow;
@@ -115,10 +120,16 @@ void init()
     // Menu's coordinates.
     st.X = 0;
     st.Y = 21;
+    lvled.X = 0;
+    lvled.Y = 22;
+    custom.X = 0;
+    custom.Y = 23;
     hp.X = 0;
-    hp.Y = 22;
+    hp.Y = 24;
+    opt.X = 0;
+    opt.Y = 25;
     et.X = 0;
-    et.Y = 23;
+    et.Y = 26;
 
 }
 
@@ -199,7 +210,7 @@ void moveCharacter()
             Beep(1440, 30);
             startmenuLocation.Y--; 
         }
-        if (keyPressed[K_DOWN] && startmenuLocation.Y < 23)
+        if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
         {
             Beep(1440, 30);
             startmenuLocation.Y++; 
@@ -209,7 +220,7 @@ void moveCharacter()
             s = Start;
 
         }
-        if (keyPressed[K_ENTER] && startmenuLocation.Y == 23) 
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 26) 
 		{
             s = Exit;
         }
@@ -316,15 +327,26 @@ void renderMap()
         for ( int i = 0; i < ttlerow; ++i) {
             Ttle.X = 0;
             for ( int j = 0; j < ttlecol; ++j) {
-                console.writeToBuffer( Ttle, titlearr[i][j], colors[0] );
+                string str;
+                int num;
+                int change = titlearr[i][j];
+                titleconvert2(change, str, num);
+                console.writeToBuffer( Ttle, str, colors[0] );
                 Ttle.X += 1;
             }
             Ttle.Y += 1;
-        }*/
+        }
+        */
         // Rendering the Menu
         console.writeToBuffer(st, strt, colors[0]);
 
+        console.writeToBuffer(lvled, lvlcustomized, colors[0]);
+
+        console.writeToBuffer(custom, playcustom, colors[0]);
+
         console.writeToBuffer(hp, hlp, colors[0]);
+
+        console.writeToBuffer(opt, option, colors[0]);
 
         console.writeToBuffer(et, ext, colors[0]);
     }
