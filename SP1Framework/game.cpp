@@ -60,6 +60,7 @@ int color;
 int tempX;
 int tempY;
 int cno = 0;
+
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
 void init()
@@ -94,7 +95,7 @@ void init()
 			change = Data[x];
 			if (change == 67)
 			{
-				convert(tempY,tempX);
+				convert(tempY, tempX,cno);
 				cno++;
 			}
 			else
@@ -108,6 +109,7 @@ void init()
 		++row;
 	}
 	inData.close();
+	
 
     // Title
     ifstream inTitle;
@@ -309,10 +311,9 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-
 		
-		cannonballR(3);
-    }
+			cannonballR(3, cno);//3 is ball movement distance
+	}
 }
 void processUserInput()
 {
@@ -378,13 +379,13 @@ void renderMap()
 		LvL.Y = 1;
 		LvL.X = 0;
 		// Set up sample colours, and output shadings
-		for (int i = 1; i < row; ++i) 
+		for (int i = 1; i < row; ++i)
 		{
 			LvL.X = 0;
 			for (int j = 0; j < col; ++j) {
 				int write = g_map[i][j];
-				convert2(write,content,color);
-				console.writeToBuffer(LvL, content,colors[color]);
+				convert2(write, content, color);
+				console.writeToBuffer(LvL, content, colors[color]);
 				LvL.X += 1;
 			}
 			LvL.Y += 1;
