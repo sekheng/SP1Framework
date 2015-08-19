@@ -10,7 +10,6 @@
 #include <sstream>
 #include <fstream>
 #include <string>
-#include "playerchar.h"
 
 using std::cout;
 using std::endl;
@@ -78,7 +77,7 @@ void init()
     startmenuLocation.Y = 21;
 	/////////////////////////////////////////
 
-	int levelno = 5;
+	int levelno = 1;
 	levelcheck(levelno,level);
 	ifstream inData;
 	inData.open(level);
@@ -310,14 +309,6 @@ void moveCharacter()
 			charLocation.X++;
 		}
     }
-<<<<<<< HEAD
-
-		cannonballR(3, cno);//3 is ball movement distance
-		characterInteraction();
-}
-
-
-=======
     if ( state == LevelCustomized)
     {
         		// Updating the location of the character based on the key press
@@ -456,7 +447,6 @@ void moveCharacter()
 >>>>>>> 7a7d360a4e5712c20f61d80fab542c56287635e4
 }
 
->>>>>>> 8502639207c53f5fb2c5c435ddf677d278660b4e
 void processUserInput()
 {
     // quits the game if player hits the escape key
