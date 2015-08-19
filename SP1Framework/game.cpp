@@ -27,8 +27,8 @@ double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
 startscreen state = menu;
-size_t g_map[140][100];    //For Collision System
 int titlearr[40][150];
+size_t g_map[140][100];    //For Collision System
 
 // For Menu Display
 char *strt = "(1) START";
@@ -71,8 +71,7 @@ void init()
 
     //charLocation.X = console.getConsoleSize().X / 2;
     //charLocation.Y = console.getConsoleSize().Y / 2;
-    charLocation.X = 10;
-    charLocation.Y = 10;
+	characterInit();
 
     // Starting menu location
     startmenuLocation.X = 23;
@@ -167,20 +166,6 @@ void shutdown()
 	To get other VK key defines, right click on the VK define (e.g. VK_UP) and choose "Go To Definition" 
 	For Alphanumeric keys, the values are their ascii values (uppercase).
 */
-void getInput()
-{    
-    keyPressed[K_UP] = isKeyPressed(VK_UP);
-    keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
-    keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
-    keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
-	keyPressed[K_W] = isKeyPressed(0x57);
-	keyPressed[K_A] = isKeyPressed(0x41);
-	keyPressed[K_S] = isKeyPressed(0x53);
-	keyPressed[K_D] = isKeyPressed(0x44);
-    keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
-    keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
-    keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
-}
 
 /*
 	This is the update function
@@ -220,246 +205,7 @@ void render()
 
 void moveCharacter()
 {
-	if (state == menu)
-	{
-		if (keyPressed[K_UP] && startmenuLocation.Y > 21)
-		{
-			Beep(1440, 30);
-			startmenuLocation.Y--;
-		}
-		if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
-		{
-			Beep(1440, 30);
-			startmenuLocation.Y++;
-		}
-		if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
-		{
-			state = Start;
-
-		}
-		if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
-		{
-			state = LevelCustomized;
-		}
-		if (keyPressed[K_ENTER] && startmenuLocation.Y == 23)
-		{
-			state = LevelCustom;
-		}
-		if (keyPressed[K_ENTER] && startmenuLocation.Y == 26)
-		{
-			state = Exit;
-		}
-	}
-
-	if (state == Exit)
-	{
-		g_quitGame = true;
-	}
-
-	if (state == Start)   // The Game Begins!
-	{
-		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-
-		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-
-		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)  //up
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_D] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-		cannonballR(3, cno);//3 is ball movement distance
-		characterInteraction();
-	}
-
-	if (state == LevelCustomized)
-	{
-		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-
-		if (keyPressed[K_UP] && charLocation.Y > 0)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-
-		if (keyPressed[K_W] && charLocation.Y > 0)  //up
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_A] && charLocation.X > 0)  //left
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1)  //down
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_D] && charLocation.X < console.getConsoleSize().X - 1)   //right
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-	}
-
-	if (state == LevelCustom)
-	{
-		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-
-		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-
-		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)  //up
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_D] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-		cannonballR(3, cno);//3 is ball movement distance
-	}
-	
+	characterMovement();
 }
 
 void processUserInput()
@@ -531,7 +277,6 @@ void renderMap()
 
 	if (state == Start)
 	{
-		
 		const WORD colors[] =
 		{
 			0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,

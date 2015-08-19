@@ -6,6 +6,9 @@
 #include "monster.h"
 #include "Framework\console.h"
 
+void characterInit();
+void characterMovement();
+void getInput();
 void characterInteraction();
 
 #endif // _PLAYERCHAR_H
