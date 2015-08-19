@@ -1,51 +1,32 @@
 #include "console.h"
 #include <cstdio>
 
-/* Standard error macro for reporting API errors */ 
-#define PERR(bSuccess, api) { if(!(bSuccess)) printf("%s:Error %d from %s \
-    on line %d\n", __FILE__, GetLastError(), api, __LINE__); }
+void gotoXY(int x, int y)
+{
+	COORD c={x,y};
+    gotoXY(c);
+}
 
-//--------------------------------------------------------------
-// Purpose  : Setting position of the console cursor
-// Input    : Coord (x and y are short)
-// Output   : Nil
-//--------------------------------------------------------------
 void gotoXY(COORD c)
 {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
 }
 
-//--------------------------------------------------------------
-// Purpose  : Setting position of the console cursor using int
-// Input    : int, int
-// Output   : Nil
-//--------------------------------------------------------------
-void gotoXY(int iX,int iY)
-{
-    COORD c = { iX, iY };
-    gotoXY(c);
+void colour(WORD attrib)
+{	
+	HANDLE hstdout = GetStdHandle( STD_OUTPUT_HANDLE );
+	SetConsoleTextAttribute( hstdout, attrib );
+		
 }
 
-//--------------------------------------------------------------
-// Purpose  : Setting colour of the console text
-// Input    : WORD (2 bytes data type)
-// Output   : Nil
-//--------------------------------------------------------------
-void colour(WORD wAttrib)
-{    
-    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute( hStdout, wAttrib );        
-}
+/* Standard error macro for reporting API errors */ 
+#define PERR(bSuccess, api){if(!(bSuccess)) printf("%s:Error %d from %s \
+    on line %d\n", __FILE__, GetLastError(), api, __LINE__);}
 
-//--------------------------------------------------------------
-// Purpose  : Clear Sreen
-// Input    : Console handler
-// Output   : Nil
-//--------------------------------------------------------------
 void cls( HANDLE hConsole )
 {
     if (!hConsole)
-        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
 
     COORD coordScreen = { 0, 0 };    /* here's where we'll home the
                                         cursor */ 
@@ -84,15 +65,10 @@ void cls( HANDLE hConsole )
     PERR( bSuccess, "SetConsoleCursorPosition" );
     return;
 }
-    
-//--------------------------------------------------------------
-// Purpose  : Check for key press status of specific key
-// Input    : Key to check (Short)
-// Output   : Nil
-//--------------------------------------------------------------
-bool isKeyPressed(unsigned short ushKey)
+	
+bool isKeyPressed(unsigned short key)
 {
-    return ((GetAsyncKeyState(ushKey) & 0x8001) != 0);
+    return ((GetAsyncKeyState(key) & 0x8001) != 0);
 }
 
 //=============================================================================
@@ -101,19 +77,19 @@ bool isKeyPressed(unsigned short ushKey)
 Console::Console(COORD consoleSize, LPCSTR lpConsoleTitle) : 
     screenDataBufferSize(consoleSize.X * consoleSize.Y)
 {
-    initConsole(consoleSize, lpConsoleTitle);
+	initConsole(consoleSize, lpConsoleTitle);
 }
 
 Console::Console(unsigned short consoleWidth, unsigned short consoleHeight, LPCSTR lpConsoleTitle) :
     screenDataBufferSize(consoleWidth * consoleHeight)
 {
-    COORD consoleSize = { consoleWidth, consoleHeight };
-    initConsole(consoleSize, lpConsoleTitle);
+	COORD consoleSize = { consoleWidth, consoleHeight };
+	initConsole(consoleSize, lpConsoleTitle);
 }
 
 Console::~Console()
 {
-    shutDownConsole();
+	shutDownConsole();
 }
 
 void Console::initConsole(COORD consoleSize, LPCSTR lpConsoleTitle)
@@ -142,22 +118,8 @@ void Console::initConsole(COORD consoleSize, LPCSTR lpConsoleTitle)
 
 void Console::setConsoleTitle(LPCSTR lpConsoleTitle)
 {
-    SetConsoleTitleA(lpConsoleTitle);
+	SetConsoleTitleA(lpConsoleTitle);
 }
-
-void Console::setConsoleFont(SHORT width, SHORT height, LPCWSTR lpcwFontName)
-{
-    CONSOLE_FONT_INFOEX cfi;
-    cfi.cbSize = sizeof cfi;
-    cfi.nFont = 0;
-    cfi.dwFontSize.X = width;
-    cfi.dwFontSize.Y = height;
-    cfi.FontFamily = FF_DONTCARE;
-    cfi.FontWeight = FW_NORMAL;
-    wcscpy_s(cfi.FaceName, lpcwFontName);
-    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-}
-
 void Console::shutDownConsole()
 {
     delete [] screenDataBuffer;
@@ -180,7 +142,7 @@ void Console::setConsoleSize(unsigned short consoleWidth, unsigned short console
     BOOL bSuccess = SetConsoleWindowInfo(hConsole, TRUE, &windowSize);
     PERR( bSuccess, "SetConsoleWindowInfo" );
     bSuccess = SetConsoleScreenBufferSize(hConsole, buffSize);
-    PERR( bSuccess, "SetConsoleWindowInfo" );
+	PERR( bSuccess, "SetConsoleWindowInfo" );
 }
 void Console::clearBuffer(WORD attribute)
 {
@@ -190,13 +152,15 @@ void Console::clearBuffer(WORD attribute)
         screenDataBuffer[i].Attributes = attribute;
     }
 }
-
-void Console::writeToBuffer(SHORT x, SHORT y, LPCSTR str, WORD attribute)
-{
-    size_t index = max(x + consoleSize.X * y, 0);
+void Console::writeToBuffer(COORD c, LPCSTR str, WORD attribute)
+{    
+    size_t index = c.X + consoleSize.X * c.Y;
     size_t length = strlen(str);
     // if the length of the string exceeds the buffer size, we chop it off at the end
-    length = min(screenDataBufferSize - index - 1, length);
+    if (index + length >= screenDataBufferSize)
+    {
+        length = screenDataBufferSize - index - 1;
+    }
     for (size_t i = 0; i < length; ++i)
     {
         screenDataBuffer[index+i].Char.AsciiChar = str[i];
@@ -204,32 +168,17 @@ void Console::writeToBuffer(SHORT x, SHORT y, LPCSTR str, WORD attribute)
     }
 }
 
-void Console::writeToBuffer(COORD c, LPCSTR str, WORD attribute)
-{    
-    writeToBuffer(c.X, c.Y, str, attribute);
-}
-
-void Console::writeToBuffer(SHORT x, SHORT y, std::string& s, WORD attribute)
-{
-    writeToBuffer(x, y, s.c_str(), attribute);
-}
-
 void Console::writeToBuffer(COORD c, std::string& s, WORD attribute)
 {
-    writeToBuffer(c.X, c.Y, s.c_str(), attribute);
-}
-
-void Console::writeToBuffer(SHORT x, SHORT y, char ch, WORD attribute)
-{
-    if (x < 0 || x > consoleSize.X || y < 0 || y > consoleSize.Y)
-        return;
-    screenDataBuffer[x + consoleSize.X * y].Char.AsciiChar = ch;
-    screenDataBuffer[x + consoleSize.X * y].Attributes = attribute;
+    writeToBuffer(c, s.c_str(), attribute);
 }
 
 void Console::writeToBuffer(COORD c, char ch, WORD attribute)
 {
-    writeToBuffer(c.X, c.Y, ch, attribute);
+    if (c.X < 0 || c.X > consoleSize.X || c.Y < 0 || c.Y > consoleSize.Y)
+        return;
+    screenDataBuffer[c.X + consoleSize.X * c.Y].Char.AsciiChar = ch;
+    screenDataBuffer[c.X + consoleSize.X * c.Y].Attributes = attribute;
 }
 
 void Console::writeToConsole(const CHAR_INFO* lpBuffer)

@@ -2,10 +2,11 @@
 #include "Converter.h"
 #include "Framework\console.h"
 
+extern Console console;
 
 void level(int &a)
 {
-	ifstream indata;
+	/*ifstream indata;
 	string data;
 	string levelno;
 	int change;
@@ -41,6 +42,6 @@ void level(int &a)
 		cout << endl;
 	}
 	indata.close();
-
+*/
 
 }

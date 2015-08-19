@@ -3,270 +3,515 @@
 //
 #include "game.h"
 #include "Framework\console.h"
+#include "Converter.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <fstream>
+#include <string>
 
-double  g_dElapsedTime;
-double  g_dDeltaTime;
-bool    g_abKeyPressed[K_COUNT];
-
-// Game specific variables here
-SGameChar   g_sChar;
-EGAMESTATES g_eGameState = S_SPLASHSCREEN;
-double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
+using std::cout;
+using std::endl;
+using std::cin;
+using std::ifstream;
+using std::ofstream;
+using std::string;
 
 // Console object
-Console g_Console(140, 30, "SP1 Framework");
+Console console(140, 30, "SP1 Framework");
 
-//--------------------------------------------------------------
-// Purpose  : Initialisation function
-//            Initialize variables, allocate memory, load data from file, etc. 
-//            This is called once before entering into your main loop
-// Input    : void
-// Output   : void
-//--------------------------------------------------------------
-void init( void )
+int i = 0;
+double elapsedTime;
+double deltaTime;
+bool keyPressed[K_COUNT];
+startscreen s = MAX_STATE;
+size_t g_map[140][100];    //For Collision System
+char titlearr[40][150];
+
+// For Menu Display
+char *strt = "(1) START";
+COORD st;
+char *hlp = "(2) HELP";
+COORD hp;
+char *ext = "(3) EXIT";
+COORD et;
+
+// Game specific variables here
+COORD charLocation;
+COORD startmenuLocation;
+COORD cannonballLocationR;
+COORD cannonLocationR;
+COORD cannonballLocationL;
+COORD cannonLocationL;
+COORD cannonballLocationU;
+COORD cannonLocationU;
+COORD cannonballLocationD;
+COORD cannonLocationD;
+COORD monsterR;
+int levelno;
+string level;
+int change;
+int row = 1;    // For collision Detection
+int col = 0;    // For collision Detection
+COORD LvL;
+COORD Ttle;
+int ttlerow = 0;
+int ttlecol = 0;
+
+// Initialize variables, allocate memory, load data from file, etc. 
+// This is called once before entering into your main loop
+void init()
 {
     // Set precision for floating point output
-    g_dElapsedTime = 0.0;
-    g_dBounceTime = 0.0;
+    elapsedTime = 0.0;
 
-    // sets the initial state for the game
-    g_eGameState = S_SPLASHSCREEN;
+    //charLocation.X = console.getConsoleSize().X / 2;
+    //charLocation.Y = console.getConsoleSize().Y / 2;
+    charLocation.X = 10;
+    charLocation.Y = 10;
 
-    g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2;
-    g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2;
-    g_sChar.m_bActive = true;
-    // sets the width, height and the font name to use in the console
-    g_Console.setConsoleFont(0, 16, L"Consolas");
+    // Starting menu location
+    startmenuLocation.X = 10;
+    startmenuLocation.Y = 21;
+
+	cannonballLocationR.X = 10;
+	cannonballLocationR.Y = 13;
+	cannonballLocationL.X = 37;
+	cannonballLocationL.Y = 17;
+	cannonballLocationU.X = 33;
+	cannonballLocationU.Y = 15;
+	cannonballLocationD.X = 31;
+	cannonballLocationD.Y = 5;
+
+	cannonLocationR.X = 10;
+	cannonLocationR.Y = 13;
+	cannonLocationL.X = 37;
+	cannonLocationL.Y = 17;
+	cannonLocationU.X = 33;
+	cannonLocationU.Y = 15;
+	cannonLocationD.X = 31;
+	cannonLocationD.Y = 5;
+
+	monsterR.X = 10;
+	monsterR.Y = 4;
+	/////////////////////////////////////////
+	int levelno = 1;
+	if (levelno == 1)
+	{
+		level = "levels1.txt";
+	}
+	else if (levelno == 2)
+	{
+		level = "levels2.txt";
+	}
+	else if (levelno == 3)
+	{
+		level = "levels3.txt";
+	}
+	else if (levelno == 4)
+	{
+		level = "levels4.txt";
+	}
+	else if (levelno == 5)
+	{
+		level = "levels5.txt";
+	}
+	/////////////////////////////////////
+	ifstream inData;
+	inData.open(level);
+	string Data;
+
+	while (!inData.eof())
+	{
+		col = 0;
+		getline(inData, Data);
+		for (unsigned int x = 0; x < Data.length(); x++)
+		{
+			change = Data[x];
+			convert(change);
+			g_map[row][col] = change;
+			++col;
+		}
+		++row;
+	}
+	inData.close();
+
+    // Title
+    ifstream inTitle;
+    inTitle.open("displayTitle.txt");
+    string Title;
+    while ( getline (inTitle, Title) && !inTitle.eof() )
+    {
+        ttlecol = 0;
+        char cstr[150];
+        strcpy ( cstr, Title.c_str() );
+        for ( size_t y = 0; y < Title.size(); ++y) {
+            titlearr[ttlerow][ttlecol] = cstr[y];
+            ++ttlecol;
+        }
+        ++ttlerow;
+    }
+    //cout << ttlerow << " " << ttlecol;
+    inTitle.close();
+
+    Ttle.X = 0;
+    Ttle.Y = 1;
+
+    // Menu's coordinates.
+    st.X = 0;
+    st.Y = 21;
+    hp.X = 0;
+    hp.Y = 22;
+    et.X = 0;
+    et.Y = 23;
+
 }
 
-//--------------------------------------------------------------
-// Purpose  : Reset before exiting the program
-//            Do your clean up of memory here
-//            This is called once just before the game exits
-// Input    : Void
-// Output   : void
-//--------------------------------------------------------------
-void shutdown( void )
+// Do your clean up of memory here
+// This is called once just before the game exits
+void shutdown()
 {
     // Reset to white text on black background
-    colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+	colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 
-    g_Console.clearBuffer();
+    console.clearBuffer();
 }
-
-//--------------------------------------------------------------
-// Purpose  : Getting all the key press states
-//            This function checks if any key had been pressed since the last time we checked
-//            If a key is pressed, the value for that particular key will be true
-//
-//            Add more keys to the enum in game.h if you need to detect more keys
-//            To get other VK key defines, right click on the VK define (e.g. VK_UP) and choose "Go To Definition" 
-//            For Alphanumeric keys, the values are their ascii values (uppercase).
-// Input    : Void
-// Output   : void
-//--------------------------------------------------------------
-void getInput( void )
+/*
+	This function checks if any key had been pressed since the last time we checked
+	If a key is pressed, the value for that particular key will be true
+	
+	Add more keys to the enum in game.h if you need to detect more keys
+	To get other VK key defines, right click on the VK define (e.g. VK_UP) and choose "Go To Definition" 
+	For Alphanumeric keys, the values are their ascii values (uppercase).
+*/
+void getInput()
 {    
-    g_abKeyPressed[K_UP]     = isKeyPressed(VK_UP);
-    g_abKeyPressed[K_DOWN]   = isKeyPressed(VK_DOWN);
-    g_abKeyPressed[K_LEFT]   = isKeyPressed(VK_LEFT);
-    g_abKeyPressed[K_RIGHT]  = isKeyPressed(VK_RIGHT);
-    g_abKeyPressed[K_SPACE]  = isKeyPressed(VK_SPACE);
-    g_abKeyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
+    keyPressed[K_UP] = isKeyPressed(VK_UP);
+    keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
+    keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
+    keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
+	keyPressed[K_W] = isKeyPressed(0x57);
+	keyPressed[K_A] = isKeyPressed(0x41);
+	keyPressed[K_S] = isKeyPressed(0x53);
+	keyPressed[K_D] = isKeyPressed(0x44);
+    keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
+    keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
+    keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
 }
 
-//--------------------------------------------------------------
-// Purpose  : Update function
-//            This is the update function
-//            double dt - This is the amount of time in seconds since the previous call was made
-//
-//            Game logic should be done here.
-//            Such as collision checks, determining the position of your game characters, status updates, etc
-//            If there are any calls to write to the console here, then you are doing it wrong.
-//
-//            If your game has multiple states, you should determine the current state, and call the relevant function here.
-//
-// Input    : dt = deltatime
-// Output   : void
-//--------------------------------------------------------------
+/*
+	This is the update function
+	double dt - This is the amount of time in seconds since the previous call was made
+
+	Game logic should be done here.
+	Such as collision checks, determining the position of your game characters, status updates, etc
+	If there are any calls to write to the console here, then you are doing it wrong.
+
+    If your game has multiple states, you should determine the current state, and call the relevant function here.
+*/
 void update(double dt)
 {
     // get the delta time
-    g_dElapsedTime += dt;
-    g_dDeltaTime = dt;
+    elapsedTime += dt;
+    deltaTime = dt;
 
-    switch (g_eGameState)
-    {
-        case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
-            break;
-        case S_GAME: gameplay(); // gameplay logic when we are in the game
-            break;
-    }
+    processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
+    moveCharacter();    // moves the character, collision detection, physics, etc
+    // sound can be played here too.
 }
-//--------------------------------------------------------------
-// Purpose  : Render function is to update the console screen
-//            At this point, you should know exactly what to draw onto the screen.
-//            Just draw it!
-//            To get an idea of the values for colours, look at console.h and the URL listed there
-// Input    : void
-// Output   : void
-//--------------------------------------------------------------
+
+/*
+    This is the render loop
+    At this point, you should know exactly what to draw onto the screen.
+    Just draw it!
+    To get an idea of the values for colours, look at console.h and the URL listed there
+*/
 void render()
 {
     clearScreen();      // clears the current screen and draw from scratch 
-    switch (g_eGameState)
-    {
-        case S_SPLASHSCREEN: renderSplashScreen();
-            break;
-        case S_GAME: renderGame();
-            break;
-    }
+    renderMap();        // renders the map to the buffer first
+    renderCharacter();  // renders the character into the buffer
     renderFramerate();  // renders debug information, frame rate, elapsed time, etc
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
 
-void splashScreenWait()    // waits for time to pass in splash screen
-{
-    if (g_dElapsedTime > 3.0) // wait for 3 seconds to switch to game mode, else do nothing
-        g_eGameState = S_GAME;
-}
-
-void gameplay()            // gameplay logic
-{
-    processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-    moveCharacter();    // moves the character, collision detection, physics, etc
-                        // sound can be played here too.
-}
-
 void moveCharacter()
 {
-    bool bSomethingHappened = false;
-    if (g_dBounceTime > g_dElapsedTime)
-        return;
+    if ( s == MAX_STATE ) 
+	{
+        if (keyPressed[K_UP] && startmenuLocation.Y > 21)
+        {
+            Beep(1440, 30);
+            startmenuLocation.Y--; 
+        }
+        if (keyPressed[K_DOWN] && startmenuLocation.Y < 23)
+        {
+            Beep(1440, 30);
+            startmenuLocation.Y++; 
+        }
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 21) 
+		{
+            s = Start;
 
-    // Updating the location of the character based on the key press
-    // providing a beep sound whenver we shift the character
-    if (g_abKeyPressed[K_UP] && g_sChar.m_cLocation.Y > 0)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.Y--;
-        bSomethingHappened = true;
-    }
-    if (g_abKeyPressed[K_LEFT] && g_sChar.m_cLocation.X > 0)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.X--;
-        bSomethingHappened = true;
-    }
-    if (g_abKeyPressed[K_DOWN] && g_sChar.m_cLocation.Y < g_Console.getConsoleSize().Y - 1)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.Y++;
-        bSomethingHappened = true;
-    }
-    if (g_abKeyPressed[K_RIGHT] && g_sChar.m_cLocation.X < g_Console.getConsoleSize().X - 1)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.X++;
-        bSomethingHappened = true;
-    }
-    if (g_abKeyPressed[K_SPACE])
-    {
-        g_sChar.m_bActive = !g_sChar.m_bActive;
-        bSomethingHappened = true;
+        }
+        if (keyPressed[K_ENTER] && startmenuLocation.Y == 23) 
+		{
+            s = Exit;
+        }
     }
 
-    if (bSomethingHappened)
-    {
-        // set the bounce time to some time in the future to prevent accidental triggers
-        g_dBounceTime = g_dElapsedTime + 0.125; // 125ms should be enough
+    if ( s == Exit ) 
+	{
+        g_quitGame = true;
+    }
+
+    if ( s == Start )   // The Game Begins!
+	{
+		// Updating the location of the character based on the key press
+        if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+        if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y ][charLocation.X] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.X--;
+		}
+
+		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1 ] != 1)
+		{
+		    Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1 )
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+
+		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y-1][charLocation.X] != 1)  //up
+		{
+			Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
+		{
+			Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1 )  //down
+		{
+			Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_D] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
+		{
+			Beep(1440, 30);
+			charLocation.X++;
+		}
+		if (cannonballLocationR.X != 20 && g_timer.getElapsedTime() != - 1)
+		{
+			cannonballLocationR.X++;
+		}
+		else
+		{
+			cannonballLocationR.X-=10;
+		}
+		if (cannonballLocationL.X != 14 && g_timer.getElapsedTime() != -1)
+		{
+			cannonballLocationL.X--;
+		}
+		else
+		{
+			cannonballLocationL.X+=23;
+		}
+		if (cannonballLocationU.Y != 6 && g_timer.getElapsedTime() != - 1)
+		{
+			cannonballLocationU.Y--;
+		}
+		else
+		{
+			cannonballLocationU.Y+=9;
+		}
+		if (cannonballLocationD.Y != 15 && g_timer.getElapsedTime() != -1)
+		{
+			cannonballLocationD.Y++;
+		}
+		else
+		{
+			cannonballLocationD.Y-=10;
+		}
+		if(monsterR.X != 22 && g_timer.getElapsedTime() != -1 && i<=9)
+		{
+			monsterR.X++;
+			i++;
+			if(i == 9)
+			{
+				i = 19;
+			}
+		}
+		else if(monsterR.X != 50 && g_timer.getElapsedTime() != -1 && i<20)
+		{
+			monsterR.X--;
+			i--;
+			if(i == 10)
+			{
+				i = 0;
+			}
+		}
     }
 }
 void processUserInput()
 {
     // quits the game if player hits the escape key
-    if (g_abKeyPressed[K_ESCAPE])
-        g_bQuitGame = true;    
+    if (keyPressed[K_ESCAPE])
+    {
+        g_quitGame = true;
+    }
 }
 
 void clearScreen()
 {
     // Clears the buffer with this colour attribute
-    g_Console.clearBuffer(0x1F);
+    console.clearBuffer(0x1F);
 }
-
-void renderSplashScreen()  // renders the splash screen
-{
-    COORD c = g_Console.getConsoleSize();
-    c.Y /= 3;
-    c.X = c.X / 2 - 9;
-    g_Console.writeToBuffer(c, "A game in 3 seconds", 0x03);
-    c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 20;
-    g_Console.writeToBuffer(c, "Press <Space> to change character colour", 0x09);
-    c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 9;
-    g_Console.writeToBuffer(c, "Press 'Esc' to quit", 0x09);
-}
-
-void renderGame()
-{
-    renderMap();        // renders the map to the buffer first
-    renderCharacter();  // renders the character into the buffer
-}
-
 void renderMap()
 {
-    // Set up sample colours, and output shadings
-    const WORD colors[] = {
-        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-    };
+    if ( s ==  MAX_STATE) 
+	{
+        const WORD colors[] = 
+		{
+            0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+            0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+        };
+        // Display The Title
+        /*
+        for ( int i = 0; i < ttlerow; ++i) {
+            Ttle.X = 0;
+            for ( int j = 0; j < ttlecol; ++j) {
+                console.writeToBuffer( Ttle, titlearr[i][j], colors[0] );
+                Ttle.X += 1;
+            }
+            Ttle.Y += 1;
+        }*/
+        // Rendering the Menu
+        console.writeToBuffer(st, strt, colors[0]);
 
-    COORD c;
-    for (int i = 0; i < 12; ++i)
-    {
-        c.X = 5 * i;
-        c.Y = i + 1;
-        colour(colors[i]);
-        g_Console.writeToBuffer(c, " °±²Û", colors[i]);
+        console.writeToBuffer(hp, hlp, colors[0]);
+
+        console.writeToBuffer(et, ext, colors[0]);
     }
-}
 
+	if (s == Start)
+	{
+		const WORD colors[] =
+		{
+			0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+			0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+		};
+
+		LvL.Y = 1;
+		LvL.X = 0;
+		// Set up sample colours, and output shadings
+		for (int i = 1; i < row; ++i) 
+		{
+			LvL.X = 0;
+			for (int j = 0; j < col; ++j) {
+				if (g_map[i][j] == 1){
+					console.writeToBuffer(LvL, ' ', colors[5]);
+				}
+				if (g_map[i][j] == 0) {
+					console.writeToBuffer(LvL, ' ', colors[0]);
+				}
+				if (g_map[i][j] == 2) {
+					console.writeToBuffer(LvL, 'E', colors[0]);
+				}
+				if (g_map[i][j] == 3) {
+					console.writeToBuffer(LvL, '#', colors[0]);
+				}
+				if (g_map[i][j] == 4) {
+					console.writeToBuffer(LvL, 'S', colors[0]);
+				}
+				LvL.X += 1;
+			}
+			LvL.Y += 1;
+		}
+	}
+}
 void renderCharacter()
 {
-    // Draw the location of the character
-    WORD charColor = 0x0C;
-    if (g_sChar.m_bActive)
-    {
-        charColor = 0x0A;
+    if ( s == MAX_STATE) 
+	{
+        console.writeToBuffer(startmenuLocation, (char)60, 0x0C);
     }
-    g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
-}
+    if ( s == Start) 
+	{
+		
+		// Draw the location of the character
 
+
+		console.writeToBuffer(charLocation, (char)1, 0x0C);
+        // The Cannon character and it's character ball
+		console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
+
+		console.writeToBuffer(cannonLocationL, (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationL, (char)79, 0x0C);
+
+		console.writeToBuffer(cannonLocationU, (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationU, (char)79, 0x0C);
+
+		console.writeToBuffer(cannonLocationD, (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationD, (char)79, 0x0C);
+
+		string monR = ":D";
+		string monU = "\"V";
+
+		console.writeToBuffer(monsterR, monR, 0x0C);
+    }
+}
 void renderFramerate()
 {
     COORD c;
     // displays the framerate
     std::ostringstream ss;
     ss << std::fixed << std::setprecision(3);
-    ss << 1.0 / g_dDeltaTime << "fps";
-    c.X = g_Console.getConsoleSize().X - 9;
+    ss << 1.0 / deltaTime << "fps";
+    c.X = console.getConsoleSize().X - 9;
     c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str());
+    console.writeToBuffer(c, ss.str());
 
     // displays the elapsed time
     ss.str("");
-    ss << g_dElapsedTime << "secs";
+    ss << elapsedTime << "secs";
     c.X = 0;
     c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str(), 0x59);
+    console.writeToBuffer(c, ss.str(), 0x59);
 }
+
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
-    g_Console.flushBufferToConsole();
+    console.flushBufferToConsole();
 }

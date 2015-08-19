@@ -11,18 +11,22 @@ void convert(int &a)
 	};
 	if (a == 49) //white walls
 	{
-		a = ' ';
+		a = 1;
 	}
 	if (a == 48) // empty space
 	{
-		a = ' ';
+		a = 0;
 	}
 	if (a == 69) //end point
 	{
-		a = 'E';
+		a = 2;
 	}
 	if (a == 35) // crate
 	{
-		a = '#';
+		a = 3;
+	}
+	if (a == 83)//start point 
+	{
+		a = 4;
 	}
 }
