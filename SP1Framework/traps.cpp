@@ -3,20 +3,8 @@ COORD cannonballLocationR;
 COORD cannonLocationR;
 extern Console console;
 
-void cannonR(int &y, int &x, int i)
+void cannonR()
 {
-	cannonballLocationR.X = x;
-	cannonballLocationR.Y = y;
-	cannonLocationR.X = x;
-	cannonLocationR.Y = y;
-	if(cannonballLocationR.X != (cannonLocationR.X + i) && g_timer.getElapsedTime() != - 1)
-	{
-		cannonballLocationR.X++;
-	}
-	else
-	{
-		cannonballLocationR.X-=i;
-	}
 	console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
 	console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
 }

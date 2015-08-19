@@ -243,7 +243,6 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		
     }
 }
 void processUserInput()
