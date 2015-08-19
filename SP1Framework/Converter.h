@@ -15,6 +15,6 @@ using std::string;
 using std::vector;
 
 void convert(int &a);
-char wall( char & charact);
+void convert2(int &b, string &x,int &c);
 
 #endif  // _CONVERT_H

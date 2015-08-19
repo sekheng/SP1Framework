@@ -15,6 +15,6 @@ using std::vector;
 using std::ifstream;
 
 
-void level(int &a);
+void levelcheck(int &a,string &level);
 
 #endif  // _LEVELS_H

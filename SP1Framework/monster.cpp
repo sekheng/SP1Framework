@@ -25,3 +25,21 @@ int sideMon(int &x,int &y)
 	}*/
 	return 0;
 }
+//if(monsterR.X != 22 && g_timer.getElapsedTime() != -1 && i<=9)
+		//{
+		//	monsterR.X++;
+		//	i++;
+		//	if(i == 9)
+		//	{
+		//		i = 19;
+		//	}
+		//}
+		//else if(monsterR.X != 50 && g_timer.getElapsedTime() != -1 && i<20)
+		//{
+		//	monsterR.X--;
+		//	i--;
+		//	if(i == 10)
+		//	{
+		//		i = 0;
+		//	}
+		//}

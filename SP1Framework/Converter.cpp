@@ -2,8 +2,10 @@
 #include "levels.h"
 #include "game.h"
 
+
 void convert(int &a)
 {
+	
 	const WORD colors[] =
 	{
 		0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
@@ -11,6 +13,7 @@ void convert(int &a)
 	};
 	if (a == 49) //white walls
 	{
+		
 		a = 1;
 	}
 	if (a == 48) // empty space
@@ -28,5 +31,29 @@ void convert(int &a)
 	if (a == 83)//start point 
 	{
 		a = 4;
+	}
+}
+
+void convert2(int&b, string &x, int &c)
+{
+	if (b == 0) {
+		x = " ";
+		c = 0;
+	}
+	if (b == 1){
+		x = " ";
+		c = 5;
+	}
+	if (b == 2) {
+		x = "E";
+		c = 0;
+	}
+	if (b == 3) {
+		x = "#";
+		c = 0;
+	}
+	if (b == 4) {
+		x = "S";
+		c = 0;
 	}
 }
