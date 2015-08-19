@@ -55,32 +55,7 @@ void init()
     // Starting menu location
     startmenuLocation.X = 10;
     startmenuLocation.Y = 21;
-<<<<<<< HEAD
-	/////////////////////////////////////////
-=======
 
-	cannonballLocationR.X = 10;
-	cannonballLocationR.Y = 13;
-	cannonballLocationL.X = 37;
-	cannonballLocationL.Y = 17;
-	cannonballLocationU.X = 33;
-	cannonballLocationU.Y = 15;
-	cannonballLocationD.X = 31;
-	cannonballLocationD.Y = 5;
-
-	cannonLocationR.X = 10;
-	cannonLocationR.Y = 13;
-	cannonLocationL.X = 37;
-	cannonLocationL.Y = 17;
-	cannonLocationU.X = 33;
-	cannonLocationU.Y = 15;
-	cannonLocationD.X = 31;
-	cannonLocationD.Y = 5;
-
-	monsterR.X = 10;
-	monsterR.Y = 4;
-
->>>>>>> cf313274b49a698703a799fed59943e274c568ae
 	int levelno = 1;
 	levelcheck(levelno,level);
 	ifstream inData;
