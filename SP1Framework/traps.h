@@ -6,6 +6,7 @@
 #include "Framework\console.h"
 #include <iostream>
 #include <iomanip>
+#include "playerchar.h"
 
 //COORD cannonballLocationR;
 //COORD cannonLocationR;

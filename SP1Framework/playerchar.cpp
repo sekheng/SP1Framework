@@ -1,9 +1,14 @@
 #include "playerchar.h"
+//#include "traps.cpp"
 
-void characterInteraction(void)
+extern COORD charLocation;
+extern COORD cannoballLocationR;
+extern Console console;
+
+void characterInteraction()
 {
-	if (charLocation.X && charLocation.Y == cannonballLocationR.X && cannonballLocationR.Y)
+	/*if (charLocation.X == cannonballLocationR.X && charLocation.Y == cannoballLocationR.Y)
 	{
-		g_quitGame = true;
-	}
+		processUserInput();
+	}*/
 }
