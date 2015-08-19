@@ -18,7 +18,7 @@
 ////COORD monsterR;
 
 void cannonR(int &i);
-void cannonballR(int x);
-void locationR(int x,int y);
+void cannonballR(int x,int z);
+void locationR(int x,int y,int z);
 
 #endif  // _TRAPS_H
