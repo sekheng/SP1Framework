@@ -2,6 +2,7 @@
 //
 //
 #include "game.h"
+#include "traps.h"
 #include "Framework\console.h"
 #include "levels.h"
 #include "Converter.h"
@@ -242,6 +243,7 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
+		
     }
 }
 void processUserInput()
@@ -336,7 +338,6 @@ void renderCharacter()
 		
 		// Draw the location of the character
 
-		
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
     }
 }
