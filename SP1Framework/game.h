@@ -25,7 +25,10 @@ enum Keys
 enum startscreen 
 {
     Start,
+    LevelCustomized,
+    LevelCustom,
     Help,
+    Option,
     Exit,
     MAX_STATE
 };

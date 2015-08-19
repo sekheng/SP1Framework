@@ -1,8 +1,9 @@
 #include "Converter.h"
 #include "levels.h"
 #include "game.h"
-
-
+#include "traps.h"
+extern int row;
+extern int col;
 void convert(int &a)
 {
 	
@@ -13,7 +14,6 @@ void convert(int &a)
 	};
 	if (a == 49) //white walls
 	{
-		
 		a = 1;
 	}
 	if (a == 48) // empty space
@@ -31,6 +31,10 @@ void convert(int &a)
 	if (a == 83)//start point 
 	{
 		a = 4;
+	}
+	if (a == 67)//right cannon
+	{
+//		cannonR(row, col);
 	}
 }
 
@@ -56,4 +60,5 @@ void convert2(int&b, string &x, int &c)
 		x = "S";
 		c = 0;
 	}
+	
 }
