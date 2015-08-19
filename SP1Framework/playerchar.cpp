@@ -2,13 +2,17 @@
 //#include "traps.cpp"
 
 extern COORD charLocation;
-extern COORD cannoballLocationR;
+extern COORD cannonballLocationR[20];
 extern Console console;
+extern int cno;
 
 void characterInteraction()
 {
-	/*if (charLocation.X == cannonballLocationR.X && charLocation.Y == cannoballLocationR.Y)
+	for (int i = 0; i < cno; ++i)
 	{
-		processUserInput();
-	}*/
+		if (charLocation.X == cannonballLocationR[i].X && charLocation.Y == cannonballLocationR[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
 }

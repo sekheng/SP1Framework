@@ -29,7 +29,6 @@ bool keyPressed[K_COUNT];
 startscreen state = menu;
 size_t g_map[140][100];    //For Collision System
 int titlearr[40][150];
-extern COORD cannonballLocationR;
 
 // For Menu Display
 char *strt = "(1) START";
@@ -314,19 +313,13 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		
-<<<<<<< HEAD
-		cannonballR(3);
-		if (charLocation.X == cannonballLocationR.X && charLocation.Y == cannonballLocationR.Y)
-		{
-			processUserInput();
-		}
     }
-=======
-			cannonballR(3, cno);//3 is ball movement distance
-	}
->>>>>>> 554494e66716b686ac7c0c59a0ee0fdee6d90b62
+
+		cannonballR(3, cno);//3 is ball movement distance
+		characterInteraction();
 }
+
+
 void processUserInput()
 {
     // quits the game if player hits the escape key

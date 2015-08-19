@@ -8,6 +8,8 @@
 #include <iomanip>
 #include "playerchar.h"
 
+
+
 //COORD cannonballLocationR;
 //COORD cannonLocationR;
 ////COORD cannonballLocationL;
