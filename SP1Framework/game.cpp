@@ -3,6 +3,7 @@
 //
 #include "game.h"
 #include "Framework\console.h"
+#include "levels.h"
 #include "Converter.h"
 #include <iostream>
 #include <iomanip>
@@ -36,6 +37,8 @@ int change;
 int row = 1;    // For collision Detection
 int col = 0;    // For collision Detection
 COORD LvL;
+string content;
+int color;
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
@@ -52,29 +55,34 @@ void init()
     // Starting menu location
     startmenuLocation.X = 10;
     startmenuLocation.Y = 21;
+<<<<<<< HEAD
 	/////////////////////////////////////////
+=======
+
+	cannonballLocationR.X = 10;
+	cannonballLocationR.Y = 13;
+	cannonballLocationL.X = 37;
+	cannonballLocationL.Y = 17;
+	cannonballLocationU.X = 33;
+	cannonballLocationU.Y = 15;
+	cannonballLocationD.X = 31;
+	cannonballLocationD.Y = 5;
+
+	cannonLocationR.X = 10;
+	cannonLocationR.Y = 13;
+	cannonLocationL.X = 37;
+	cannonLocationL.Y = 17;
+	cannonLocationU.X = 33;
+	cannonLocationU.Y = 15;
+	cannonLocationD.X = 31;
+	cannonLocationD.Y = 5;
+
+	monsterR.X = 10;
+	monsterR.Y = 4;
+
+>>>>>>> cf313274b49a698703a799fed59943e274c568ae
 	int levelno = 1;
-	if (levelno == 1)
-	{
-		level = "levels1.txt";
-	}
-	else if (levelno == 2)
-	{
-		level = "levels2.txt";
-	}
-	else if (levelno == 3)
-	{
-		level = "levels3.txt";
-	}
-	else if (levelno == 4)
-	{
-		level = "levels4.txt";
-	}
-	else if (levelno == 5)
-	{
-		level = "levels5.txt";
-	}
-	/////////////////////////////////////
+	levelcheck(levelno,level);
 	ifstream inData;
 	inData.open(level);
 	string Data;
@@ -333,21 +341,9 @@ void renderMap()
 		{
 			LvL.X = 0;
 			for (int j = 0; j < col; ++j) {
-				if (g_map[i][j] == 1){
-					console.writeToBuffer(LvL, ' ', colors[5]);
-				}
-				if (g_map[i][j] == 0) {
-					console.writeToBuffer(LvL, ' ', colors[0]);
-				}
-				if (g_map[i][j] == 2) {
-					console.writeToBuffer(LvL, 'E', colors[0]);
-				}
-				if (g_map[i][j] == 3) {
-					console.writeToBuffer(LvL, '#', colors[0]);
-				}
-				if (g_map[i][j] == 4) {
-					console.writeToBuffer(LvL, 'S', colors[0]);
-				}
+				int write = g_map[i][j];
+				convert2(write,content,color);
+				console.writeToBuffer(LvL, content,colors[color]);
 				LvL.X += 1;
 			}
 			LvL.Y += 1;
