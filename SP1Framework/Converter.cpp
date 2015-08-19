@@ -2,6 +2,7 @@
 #include "levels.h"
 #include "game.h"
 #include "traps.h"
+
 void convert(int &a)
 {
 	
