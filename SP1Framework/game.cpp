@@ -57,9 +57,9 @@ int ttlerow = 0;
 int ttlecol = 0;
 string content;
 int color;
-int tempX;
-int tempY;
-int cno = 0;
+int tempX; //store X coord
+int tempY; //store Y coord
+int cno = 0; //cannon number
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop

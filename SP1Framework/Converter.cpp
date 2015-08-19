@@ -32,30 +32,30 @@ void convert(int &a)
 	}
 	
 }
-void convert(int &y, int &x,int num)
+void convert(int &y, int &x,int num) //for cannon
 {
 	locationR(x,y,num);
 }
 
 void convert2(int&b, string &x, int &c)
 {
-	if (b == 0) {
+	if (b == 0) { //wall
 		x = " ";
 		c = 0;
 	}
-	if (b == 1){
+	if (b == 1){//empty space
 		x = " ";
 		c = 5;
 	}
-	if (b == 2) {
+	if (b == 2) {//end point
 		x = "E";
 		c = 0;
 	}
-	if (b == 3) {
+	if (b == 3) {//crates/box
 		x = "#";
 		c = 0;
 	}
-	if (b == 4) {
+	if (b == 4) {//starting point
 		x = "S";
 		c = 0;
 	}
