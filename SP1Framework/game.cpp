@@ -30,15 +30,6 @@ size_t g_map[140][100];    //For Collision System
 // Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
-COORD cannonballLocationR;
-COORD cannonLocationR;
-COORD cannonballLocationL;
-COORD cannonLocationL;
-COORD cannonballLocationU;
-COORD cannonLocationU;
-COORD cannonballLocationD;
-COORD cannonLocationD;
-COORD monsterR;
 int levelno;
 string level;
 int change;
@@ -61,27 +52,6 @@ void init()
     // Starting menu location
     startmenuLocation.X = 10;
     startmenuLocation.Y = 21;
-
-	cannonballLocationR.X = 10;
-	cannonballLocationR.Y = 13;
-	cannonballLocationL.X = 37;
-	cannonballLocationL.Y = 17;
-	cannonballLocationU.X = 33;
-	cannonballLocationU.Y = 15;
-	cannonballLocationD.X = 31;
-	cannonballLocationD.Y = 5;
-
-	cannonLocationR.X = 10;
-	cannonLocationR.Y = 13;
-	cannonLocationL.X = 37;
-	cannonLocationL.Y = 17;
-	cannonLocationU.X = 33;
-	cannonLocationU.Y = 15;
-	cannonLocationD.X = 31;
-	cannonLocationD.Y = 5;
-
-	monsterR.X = 10;
-	monsterR.Y = 4;
 	/////////////////////////////////////////
 	int levelno = 1;
 	if (levelno == 1)
@@ -289,56 +259,6 @@ void moveCharacter()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		if (cannonballLocationR.X != 20 && g_timer.getElapsedTime() != - 1)
-		{
-			cannonballLocationR.X++;
-		}
-		else
-		{
-			cannonballLocationR.X-=10;
-		}
-		if (cannonballLocationL.X != 14 && g_timer.getElapsedTime() != -1)
-		{
-			cannonballLocationL.X--;
-		}
-		else
-		{
-			cannonballLocationL.X+=23;
-		}
-		if (cannonballLocationU.Y != 6 && g_timer.getElapsedTime() != - 1)
-		{
-			cannonballLocationU.Y--;
-		}
-		else
-		{
-			cannonballLocationU.Y+=9;
-		}
-		if (cannonballLocationD.Y != 15 && g_timer.getElapsedTime() != -1)
-		{
-			cannonballLocationD.Y++;
-		}
-		else
-		{
-			cannonballLocationD.Y-=10;
-		}
-		if(monsterR.X != 22 && g_timer.getElapsedTime() != -1 && i<=9)
-		{
-			monsterR.X++;
-			i++;
-			if(i == 9)
-			{
-				i = 19;
-			}
-		}
-		else if(monsterR.X != 50 && g_timer.getElapsedTime() != -1 && i<20)
-		{
-			monsterR.X--;
-			i--;
-			if(i == 10)
-			{
-				i = 0;
-			}
-		}
     }
 }
 void processUserInput()
@@ -445,25 +365,8 @@ void renderCharacter()
 		
 		// Draw the location of the character
 
-
+		
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
-        // The Cannon character and it's character ball
-		console.writeToBuffer(cannonLocationR, (char)67, 0x0C);
-		console.writeToBuffer(cannonballLocationR, (char)79, 0x0C);
-
-		console.writeToBuffer(cannonLocationL, (char)67, 0x0C);
-		console.writeToBuffer(cannonballLocationL, (char)79, 0x0C);
-
-		console.writeToBuffer(cannonLocationU, (char)67, 0x0C);
-		console.writeToBuffer(cannonballLocationU, (char)79, 0x0C);
-
-		console.writeToBuffer(cannonLocationD, (char)67, 0x0C);
-		console.writeToBuffer(cannonballLocationD, (char)79, 0x0C);
-
-		string monR = ":D";
-		string monU = "\"V";
-
-		console.writeToBuffer(monsterR, monR, 0x0C);
     }
 }
 void renderFramerate()
