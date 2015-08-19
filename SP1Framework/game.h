@@ -24,6 +24,7 @@ enum Keys
 
 enum startscreen 
 {
+    menu,
     Start,
     LevelCustomized,
     LevelCustom,
