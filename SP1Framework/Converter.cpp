@@ -32,9 +32,9 @@ void convert(int &a)
 	}
 	
 }
-void convert(int &y, int &x)
+void convert(int &y, int &x,int num)
 {
-	locationR(x,y);
+	locationR(x,y,num);
 }
 
 void convert2(int&b, string &x, int &c)
