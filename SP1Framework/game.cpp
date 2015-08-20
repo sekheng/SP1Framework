@@ -46,7 +46,7 @@ COORD et;
 // Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
-int levelno = 1;
+int levelno = 4;
 string level;
 int change;
 int row = 1;    // For collision Detection and map coordinates
@@ -220,7 +220,7 @@ void renderCharacter()
 		cannonL(cno);
 		cannonR(cno);
 		cannonU(cno);
-		//cannonD(cno);
+		cannonD(cno);
 		aiMon(mno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
         pauseLocation.Y = 15;
