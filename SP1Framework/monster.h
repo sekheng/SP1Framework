@@ -3,12 +3,13 @@
 
 #include <iostream>
 #include <string>
+#include "game.h"
 #include "Framework\timer.h"
 #include "Framework\console.h"
 
-using std::string;
+void aiMonSpawn(int x,int y,int z);
+void aiMonUpdate(int z);
+void aiMon(int &i);
 
-int upDownMon(int &x , int &y );
-int sideMon(int x , int y);
 
 #endif  // _MONSTER_H
