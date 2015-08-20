@@ -5,6 +5,7 @@
 #include "levels.h"
 #include "Converter.h"
 #include "title.h"
+#include "Loadlevel.h"
 #include "playerchar.h"
 #include "ingame_UI.h"
 #include <iostream>
@@ -59,57 +60,25 @@ int tempY; //store Y coord
 int cno = 0; //cannon number
 COORD pu;
 
-const WORD colors[] = 
+const WORD colors[] =
 {
-    0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-    0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+	0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+	0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 };
 
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
+
 void init()
 {
     // Set precision for floating point output
     elapsedTime = 0.0;
 
-    //charLocation.X = console.getConsoleSize().X / 2;
-    //charLocation.Y = console.getConsoleSize().Y / 2;
 	characterInit();
 
 	/////////////////////////////////////////
+	loadlevel(); // loads the level
 
-	int levelno = 1;
-	levelcheck(levelno,level);
-	ifstream inData;
-	inData.open(level);
-	string Data;
-
-	while (!inData.eof())
-	{
-		col = 0;
-		getline(inData, Data);
-		for (unsigned int x = 0; x < Data.length(); x++)
-		{
-			tempX = col;
-			tempY = row;
-			change = Data[x];
-			if (change == 67)
-			{
-				convert(tempY, tempX,cno);
-				cno++;
-			}
-			else
-			{
-				convert(change);
-
-			}
-			g_map[row][col] = change;
-			++col;
-		}
-		++row;
-	}
-	inData.close();
-	
     // Title
     menuPosition();
 
@@ -119,6 +88,7 @@ void init()
 
 // Do your clean up of memory here
 // This is called once just before the game exits
+
 void shutdown()
 {
     // Reset to white text on black background
@@ -126,6 +96,7 @@ void shutdown()
 
     console.clearBuffer();
 }
+
 /*
 	This function checks if any key had been pressed since the last time we checked
 	If a key is pressed, the value for that particular key will be true
@@ -145,6 +116,7 @@ void shutdown()
 
     If your game has multiple states, you should determine the current state, and call the relevant function here.
 */
+
 void update(double dt)
 {
     // get the delta time
@@ -162,6 +134,7 @@ void update(double dt)
     Just draw it!
     To get an idea of the values for colours, look at console.h and the URL listed there
 */
+
 void render()
 {
     clearScreen();      // clears the current screen and draw from scratch 
@@ -190,32 +163,22 @@ void clearScreen()
     // Clears the buffer with this colour attribute
     console.clearBuffer(0x1F);
 }
+
 void renderMap()
 {
+
     if ( state ==  menu) 
 	{
         // Display The Title
-        displayMenu();
+        displayMenu();   
     }
 
 	if (state == Start)
 	{
-		LvL.Y = 1;
-		LvL.X = 0;
-		// Set up sample colours, and output shadings
-		for (int i = 1; i < row; ++i)
-		{
-			LvL.X = 0;
-			for (int j = 0; j < col; ++j) {
-				int write = g_map[i][j];
-				convert2(write, content, color);
-				console.writeToBuffer(LvL, content, colors[color]);
-				LvL.X += 1;
-			}
-			LvL.Y += 1;
-		}
+		reloadlevel(); // reloads level
 	}
 }
+
 void renderCharacter()
 {
     if ( state == menu) 
@@ -234,6 +197,7 @@ void renderCharacter()
        console.writeToBuffer(charLocation, (char)1, 0x0C);
     }
 }
+
 void renderFramerate()
 {
     COORD c;
