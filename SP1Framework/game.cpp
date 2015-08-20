@@ -7,6 +7,7 @@
 #include "title.h"
 #include "Loadlevel.h"
 #include "playerchar.h"
+#include "ingame_UI.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -30,19 +31,14 @@ bool keyPressed[K_COUNT];
 startscreen state = menu;
 int titlearr[40][150];
 size_t g_map[140][100];    //For Collision System
+char pausearr[40][150];
 
-// For Menu Display
-char *strt = "(1) START";
+// For Menu Display's coordinates
 COORD st;
-char *lvlcustomized = "(2) LEVEL CUSTOMIZATION";
 COORD lvled;
-char *playcustom = "(3) PLAY CUSTOM LEVEL";
 COORD custom;
-char *hlp = "(4) HELP";
 COORD hp;
-char *option = "(5) OPTIONS";
 COORD opt;
-char *ext = "(6) EXIT";
 COORD et;
 
 // Game specific variables here
@@ -51,8 +47,8 @@ COORD startmenuLocation;
 int levelno;
 string level;
 int change;
-int row = 1;    // For collision Detection
-int col = 0;    // For collision Detection
+int row = 1;    // For collision Detection and map coordinates
+int col = 0;    // For collision Detection and map coordinates
 COORD LvL;
 COORD Ttle;
 int ttlerow = 0;
@@ -62,6 +58,11 @@ int color;
 int tempX; //store X coord
 int tempY; //store Y coord
 int cno = 0; //cannon number
+COORD pu;
+int pauserows = 0;
+int pausecols = 0;
+extern COORD pauseLocation;
+
 const WORD colors[] =
 {
 	0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
@@ -76,52 +77,16 @@ void init()
     // Set precision for floating point output
     elapsedTime = 0.0;
 
-    //charLocation.X = console.getConsoleSize().X / 2;
-    //charLocation.Y = console.getConsoleSize().Y / 2;
 	characterInit();
 
-    // Starting menu location
-    startmenuLocation.X = 23;
-    startmenuLocation.Y = 21;
-
+	/////////////////////////////////////////
 	loadlevel(); // loads the level
 
     // Title
-    
-    ifstream inTitle;
-    inTitle.open("displayTitle.txt");
-    string Title;
-    while ( getline (inTitle, Title) && !inTitle.eof() )
-    {
-        ttlecol = 0;
-        for ( size_t y = 0; y < Title.size(); ++y) {
-            int change = Title[y];
-            titleconvert(change);
-            titlearr[ttlerow][ttlecol] = change;
-            ++ttlecol;
-        }
-        ++ttlerow;
-    }
-    //cout << ttlerow << " " << ttlecol;
-    inTitle.close();
+    menuPosition();
 
-    Ttle.X = 0;
-    Ttle.Y = 1;
-    
-    // Menu's coordinates.
-    st.X = 0;
-    st.Y = 21;
-    lvled.X = 0;
-    lvled.Y = 22;
-    custom.X = 0;
-    custom.Y = 23;
-    hp.X = 0;
-    hp.Y = 24;
-    opt.X = 0;
-    opt.Y = 25;
-    et.X = 0;
-    et.Y = 26;
-
+    //Pause
+    pausePosition();
 }
 
 // Do your clean up of memory here
@@ -207,34 +172,13 @@ void renderMap()
 
     if ( state ==  menu) 
 	{
-       
         // Display The Title
-        Ttle.Y = 1;
-        for ( int i = 0; i < ttlerow; ++i) {
-            Ttle.X = 0;
-            for ( int j = 0; j < ttlecol; ++j) {
-                string str;
-                int num;
-                int change = titlearr[i][j];
-                titleconvert2(change, str, num);
-                console.writeToBuffer( Ttle, str, colors[0] );
-                Ttle.X += 1;
-            }
-            Ttle.Y += 1;
-        }
-        
-        // Rendering the Menu
-        console.writeToBuffer(st, strt, colors[0]);
-
-        console.writeToBuffer(lvled, lvlcustomized, colors[0]);
-
-        console.writeToBuffer(custom, playcustom, colors[0]);
-
-        console.writeToBuffer(hp, hlp, colors[0]);
-
-        console.writeToBuffer(opt, option, colors[0]);
-
-        console.writeToBuffer(et, ext, colors[0]);
+        displayMenu();   
+    }
+    if ( state == Pause )
+    {
+        // Display in-game Pause
+        displayPause();
     }
 
 	if (state == Start)
@@ -248,13 +192,21 @@ void renderCharacter()
     if ( state == menu) 
 	{
         console.writeToBuffer(startmenuLocation, (char)60, 0x0C);
+        pauseLocation.Y = 15;
     }
     if ( state == Start) 
 	{
-		
 		// Draw the location of the character
+		cannonL(cno);
 		cannonR(cno);
+		cannonU(cno);
+		//cannonD(cno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
+        pauseLocation.Y = 15;
+    }
+    if ( state == Pause)
+    {
+        console.writeToBuffer(pauseLocation, (char)60, 0x0C);
     }
     if ( state == LevelCustomized)
     {

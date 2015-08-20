@@ -9,6 +9,7 @@ extern Console console;
 extern int cno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
+COORD pauseLocation;
 
 void characterInit()
 {
@@ -93,7 +94,7 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.X++;
@@ -114,14 +115,23 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_D] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
+		if (keyPressed[K_D] && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
 		{
 			Beep(1440, 30);
 			charLocation.X++;
 		}
 		cannonballR(3, cno);//3 is ball movement distance
+		cannonballL(3, cno);//3 is ball movement distance
+		cannonballU(3, cno);//3 is ball movement distance
+		cannonballD(3, cno);//3 is ball movement distance
 		characterInteraction();
+        // To Pause in-game
+        if ( keyPressed[K_SPACE])
+        {
+            state = Pause;
+        }
 	}
+    //Level Editing
 	if (state == LevelCustomized)
 	{
 		// Updating the location of the character based on the key press
@@ -187,7 +197,7 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-	}
+    }
 
 	if (state == LevelCustom)
 	{
@@ -257,6 +267,35 @@ void characterMovement()
 		cannonballR(3, cno);//3 is ball movement distance
 	}
 
+    if ( state == Pause )
+    {
+		if (keyPressed[K_UP] && pauseLocation.Y > 15)
+		{
+			Beep(1440, 30);
+			pauseLocation.Y--;
+		}
+		if (keyPressed[K_DOWN] && pauseLocation.Y < 17)
+		{
+			Beep(1440, 30);
+			pauseLocation.Y++;
+		}
+        if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
+        {
+            state = Start;
+        }
+        if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
+        {
+            state = Start;
+        }
+        if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
+        {
+            state = menu;
+        }
+        //if ( keyPressed[K_SPACE] )
+        //{
+        //    state = Start;
+        //}
+    }
 }
 
 void getInput()

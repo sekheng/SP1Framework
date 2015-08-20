@@ -31,6 +31,7 @@ enum startscreen
     Help,
     Option,
     Exit,
+    Pause,
     MAX_STATE
 };
 

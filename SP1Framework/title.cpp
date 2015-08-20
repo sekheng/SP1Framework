@@ -1,5 +1,24 @@
 #include "title.h"
 
+extern int titlearr[40][150];
+extern COORD Ttle;
+extern int ttlerow;
+extern int ttlecol;
+char *strt = "(1) START";
+char *lvlcustomized = "(2) LEVEL CUSTOMIZATION";
+char *playcustom = "(3) PLAY CUSTOM LEVEL";
+char *hlp = "(4) HELP";
+char *option = "(5) OPTIONS";
+char *ext = "(6) EXIT";
+extern COORD st;
+extern COORD lvled;
+extern COORD custom;
+extern COORD hp;
+extern COORD opt;
+extern COORD et;
+extern Console console;
+extern COORD startmenuLocation;
+
 void titleconvert(int &g) 
 {
     if ( g == ' ' ) 
@@ -55,4 +74,67 @@ void titleconvert2(int &a, string &x, int &c)
         x = "'";
         c = 0;
     }
+}
+
+void menuPosition()
+{
+    ifstream inTitle;
+    inTitle.open("displayTitle.txt");
+    string Title;
+    while ( getline (inTitle, Title) && !inTitle.eof() )
+    {
+        ttlecol = 0;
+        for ( size_t y = 0; y < Title.size(); ++y) {
+            int change = Title[y];
+            titleconvert(change);
+            titlearr[ttlerow][ttlecol] = change;
+            ++ttlecol;
+        }
+        ++ttlerow;
+    }
+    //cout << ttlerow << " " << ttlecol;
+    inTitle.close();
+
+    Ttle.X = 0;
+    Ttle.Y = 1;
+    
+    // Menu's coordinates.
+    st.X = 0;
+    st.Y = 21;
+    lvled.X = 0;
+    lvled.Y = 22;
+    custom.X = 0;
+    custom.Y = 23;
+    hp.X = 0;
+    hp.Y = 24;
+    opt.X = 0;
+    opt.Y = 25;
+    et.X = 0;
+    et.Y = 26;
+    startmenuLocation.X = 23;
+    startmenuLocation.Y = 21;
+}
+
+void displayMenu() {
+    Ttle.Y = 1;
+    for ( int i = 0; i < ttlerow; ++i) {
+        Ttle.X = 0;
+        for ( int j = 0; j < ttlecol; ++j) {
+            string str;
+            int num;
+            int change = titlearr[i][j];
+            titleconvert2(change, str, num);
+            console.writeToBuffer( Ttle, str, 0x1A );
+            Ttle.X += 1;
+        }
+        Ttle.Y += 1;
+    }
+        
+        // Rendering the Menu
+    console.writeToBuffer(st, strt, 0x1A);
+    console.writeToBuffer(lvled, lvlcustomized, 0x1A);
+    console.writeToBuffer(custom, playcustom, 0x1A);
+    console.writeToBuffer(hp, hlp, 0x1A);
+    console.writeToBuffer(opt, option, 0x1A);
+    console.writeToBuffer(et, ext, 0x1A);
 }
