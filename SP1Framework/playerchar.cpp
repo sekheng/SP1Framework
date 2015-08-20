@@ -6,13 +6,16 @@ extern COORD charLocation;
 extern size_t g_map[140][100];
 extern COORD cannonballLocationR[20];
 extern COORD cannonballLocationL[20];
-extern
+extern COORD cannonballLocationU[20];
+extern COORD cannonballLocationD[20];
 extern Console console;
 extern int cno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
 extern string &level;
 extern int levelno;
+
+COORD pauseLocation;
 
 void characterInit()
 {
@@ -97,7 +100,7 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
 			Beep(1440, 30);
 			charLocation.X++;
@@ -118,12 +121,15 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_D] /*&& charLocation.X < console.getConsoleSize().X - 1*/ && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
+		if (keyPressed[K_D] && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
 		{
 			Beep(1440, 30);
 			charLocation.X++;
 		}
 		cannonballR(3, cno);//3 is ball movement distance
+		cannonballL(3, cno);//3 is ball movement distance
+		cannonballU(3, cno);//3 is ball movement distance
+		cannonballD(3, cno);//3 is ball movement distance
 		characterInteraction();
         // To Pause in-game
         if ( keyPressed[K_SPACE])
@@ -267,6 +273,35 @@ void characterMovement()
 		cannonballR(3, cno);//3 is ball movement distance
 	}
 
+    if ( state == Pause )
+    {
+		if (keyPressed[K_UP] && pauseLocation.Y > 15)
+		{
+			Beep(1440, 30);
+			pauseLocation.Y--;
+		}
+		if (keyPressed[K_DOWN] && pauseLocation.Y < 17)
+		{
+			Beep(1440, 30);
+			pauseLocation.Y++;
+		}
+        if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
+        {
+            state = Start;
+        }
+        if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
+        {
+            state = Start;
+        }
+        if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
+        {
+            state = menu;
+        }
+        if ( keyPressed[K_SPACE] )
+        {
+            state = Start;
+        }
+    }
 }
 
 void getInput()
@@ -289,6 +324,27 @@ void characterInteraction()
 	for (int i = 0; i < cno; ++i)
 	{
 		if (charLocation.X == cannonballLocationR[i].X && charLocation.Y == cannonballLocationR[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationL[i].X && charLocation.Y == cannonballLocationL[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationU[i].X && charLocation.Y == cannonballLocationU[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationD[i].X && charLocation.Y == cannonballLocationD[i].Y)
 		{
 			g_quitGame = true;
 		}

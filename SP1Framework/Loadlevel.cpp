@@ -28,7 +28,6 @@ extern int levelno;
 
 void loadlevel()
 {
-	
 	levelcheck(levelno, level);
 	ifstream inData;
 	inData.open(level);
