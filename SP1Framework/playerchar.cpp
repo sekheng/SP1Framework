@@ -342,6 +342,7 @@ void characterMovement()
         }
         if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
         {
+            characterSpawn(RestartX, RestartY);
             state = menu;
         }
     }
