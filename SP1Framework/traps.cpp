@@ -90,7 +90,7 @@ void cannonballU(int x,int z)
 		}
 		else
 		{
-			cannonballLocationU[no].X += x;
+			cannonballLocationU[no].Y += x;
 		}
 	}
 
