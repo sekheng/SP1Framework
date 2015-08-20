@@ -4,6 +4,10 @@
 #include "traps.h"
 #include "playerchar.h"
 #include "monster.h"
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3bce05556368ed8e41ef6ca258126af47b8f135c
 extern int tempX;
 extern int tempY;
 extern int tempEndX;
