@@ -284,7 +284,7 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		cannonballR(3, cno);//3 is ball movement distance
+		//cannonballR(3, cno);//3 is ball movement distance
 	}
 
     if ( state == Pause )
