@@ -2,9 +2,15 @@
 #include "levels.h"
 #include "game.h"
 #include "traps.h"
+#include "playerchar.h"
+#include "monster.h"
+
 extern int tempX;
 extern int tempY;
+extern int tempEndX;
+extern int tempEndY;
 extern int cno;
+extern int mno;
 char pass;
 void convert(int &a)
 {
@@ -20,7 +26,7 @@ void convert(int &a)
 	if (a == 69) //end point
 	{
 		a = 2;
-		convert(tempY, tempX);
+		characterEnd(tempEndX, tempEndY);
 	}
 	if (a == 35) // crate
 	{
@@ -28,7 +34,8 @@ void convert(int &a)
 	}
 	if (a == 83)//start point 
 	{
-		a = 4;
+		a = 0;
+		convertStart(tempY, tempX);
 	}
 	if (a == 82 || a == 85 || a == 68 || a == 76) //cannon
 	{
@@ -36,11 +43,20 @@ void convert(int &a)
 		convert(tempY, tempX, cno,pass);
 		cno++;
 	}
+	if (a == 77) // monster
+	{
+		convert(tempY, tempX, mno);
+		mno++;
+	}
 	
 }
-void convert(int &y, int &x)
+void convertStart(int &y, int &x)
 {
-	(x,y);
+	characterSpawn(x,y);
+}
+void convert(int &tempY, int &tempX, int mno)
+{
+	aiMonSpawn(tempX,tempY,mno);
 }
 void convert(int &y, int &x,int num,char pass) //for cannon
 {

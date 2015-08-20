@@ -1,14 +1,27 @@
 #include "playerchar.h"
+
 //#include "traps.cpp"
 
 extern COORD startmenuLocation;
 extern COORD charLocation;
 extern size_t g_map[140][100];
 extern COORD cannonballLocationR[20];
+extern COORD cannonballLocationL[20];
+extern COORD cannonballLocationU[20];
+extern COORD cannonballLocationD[20];
+extern COORD aiCoordinate[20];
 extern Console console;
 extern int cno;
+extern int mno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
+extern string &level;
+extern int levelno;
+extern int tempX;
+extern int tempY;
+extern int tempEndX;
+extern int tempEndY;
+
 COORD pauseLocation;
 COORD helpreturn;
 
@@ -128,12 +141,14 @@ void characterMovement()
 		cannonballL(3, cno);//3 is ball movement distance
 		cannonballU(3, cno);//3 is ball movement distance
 		cannonballD(3, cno);//3 is ball movement distance
+		aiMonUpdate(mno);
 		characterInteraction();
         // To Pause in-game
         if ( keyPressed[K_SPACE])
         {
             state = Pause;
-        }
+		}
+		characterEnd(tempEndY, tempEndX);
 	}
     //Level Editing
 	if (state == LevelCustomized)
@@ -329,5 +344,48 @@ void characterInteraction()
 		{
 			g_quitGame = true;
 		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationL[i].X && charLocation.Y == cannonballLocationL[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationU[i].X && charLocation.Y == cannonballLocationU[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationD[i].X && charLocation.Y == cannonballLocationD[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+}
+
+void characterSpawn(int x, int y)
+{
+	charLocation.X = x;
+	charLocation.Y = y;
+}
+
+void characterEnd(int y, int x)//temp y , temp x
+{
+	if (charLocation.X == x&& charLocation.Y == y)
+	{
+		levelno++;
+		loadlevel();
 	}
 }
