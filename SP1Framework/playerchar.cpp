@@ -26,6 +26,7 @@ int RestartY;
 
 COORD pauseLocation;
 COORD helpreturn;
+COORD gameoverptr;
 
 void characterInit()
 {
@@ -321,6 +322,30 @@ void characterMovement()
             state = menu;
         }
     }
+
+    if ( state == GameOver)
+    {
+		if (keyPressed[K_UP] && gameoverptr.Y > 8)
+		{
+			Beep(1440, 30);
+			gameoverptr.Y--;
+		}
+		if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
+		{
+			Beep(1440, 30);
+			gameoverptr.Y++;
+		}
+        if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
+        {
+			characterSpawn(RestartX, RestartY);
+            state = Start;
+        }
+        if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
+        {
+            characterSpawn(RestartX, RestartY);
+            state = menu;
+        }
+    }
 }
 
 void getInput()
@@ -361,35 +386,35 @@ void characterInteraction()
 	{
 		if (charLocation.X == cannonballLocationR[i].X && charLocation.Y == cannonballLocationR[i].Y)
 		{
-			g_quitGame = true;
+			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
 		if (charLocation.X == cannonballLocationL[i].X && charLocation.Y == cannonballLocationL[i].Y)
 		{
-			g_quitGame = true;
+			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
 		if (charLocation.X == cannonballLocationU[i].X && charLocation.Y == cannonballLocationU[i].Y)
 		{
-			g_quitGame = true;
+			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
 		if (charLocation.X == cannonballLocationD[i].X && charLocation.Y == cannonballLocationD[i].Y)
 		{
-			g_quitGame = true;
+			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
 		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
 		{
-			g_quitGame = true;
+			state = GameOver;
 		}
 	}
 }
