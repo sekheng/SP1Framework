@@ -372,10 +372,10 @@ void characterSpawn(int x, int y)
 
 void characterEnd(int y, int x)//temp y , temp x
 {
-	if (charLocation.X == x && charLocation.Y == y)
+	if (charLocation.X == y && charLocation.Y == x)
 	{
 		levelno++;
 		loadlevel();
-		cout << levelno << endl;
+		reloadlevel();
 	}
 }
