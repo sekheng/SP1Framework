@@ -8,6 +8,7 @@ extern COORD cannonballLocationR[20];
 extern COORD cannonballLocationL[20];
 extern COORD cannonballLocationU[20];
 extern COORD cannonballLocationD[20];
+extern COORD aiCoordinate[20];
 extern Console console;
 extern int cno;
 extern int mno;
@@ -350,6 +351,13 @@ void characterInteraction()
 			g_quitGame = true;
 		}
 	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
 }
 
 void characterSpawn(int x, int y)
@@ -364,5 +372,6 @@ void characterEnd(int &y, int &x)
 	{
 		levelno++;
 		loadlevel();
+		cout << levelno << endl;
 	}
 }
