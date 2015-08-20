@@ -27,7 +27,7 @@ extern int change;
 
 void loadlevel()
 {
-	int levelno = 3;
+	int levelno = 5;
 	levelcheck(levelno, level);
 	ifstream inData;
 	inData.open(level);

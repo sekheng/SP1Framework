@@ -20,6 +20,7 @@ void convert(int &a)
 	if (a == 69) //end point
 	{
 		a = 2;
+		convert(tempY, tempX);
 	}
 	if (a == 35) // crate
 	{
@@ -37,7 +38,10 @@ void convert(int &a)
 	}
 	
 }
-
+void convert(int &y, int &x)
+{
+	(x,y);
+}
 void convert(int &y, int &x,int num,char pass) //for cannon
 {
 	switch (pass)

@@ -1,45 +1,42 @@
-//\@^@/ monster that go left and right
-/*
-(char)92<<(char)40<<(char)64<<(char)94<<(char)64<<(char)41<<(char)47
-*/
 #include "monster.h"
-string sideMonR = "@^@/";
-int sideMon(int &x,int &y)
+extern Console console;
+extern COORD charLocation;
+extern size_t g_map[140][100];
+
+COORD aiCoordinate[20];
+
+void aiMon(int &i)
 {
-	string sideMonR = "@^@/";
-	gotoXY(x ,y);
-	std::cout<<sideMonR;
-	/*for(int i = 0; i <= 4 ; ++i)
+	for(int b = 0; b < i; ++b)
 	{
-		gotoXY(x-=1  ,y);
-		
-		if( i == 4)
-		{
-			for(int i = 0; i <= 4 ; ++i)
-			{
-				gotoXY(x +=1  ,y);
-				
-			}
-			i = 0;
-		}
-	}*/
-	return 0;
+		console.writeToBuffer(aiCoordinate[b], (char)153, 0x0C);
+	}
 }
-//if(monsterR.X != 22 && g_timer.getElapsedTime() != -1 && i<=9)
-		//{
-		//	monsterR.X++;
-		//	i++;
-		//	if(i == 9)
-		//	{
-		//		i = 19;
-		//	}
-		//}
-		//else if(monsterR.X != 50 && g_timer.getElapsedTime() != -1 && i<20)
-		//{
-		//	monsterR.X--;
-		//	i--;
-		//	if(i == 10)
-		//	{
-		//		i = 0;
-		//	}
-		//}
+void aiMonUpdate(int z)
+{
+	for (int no = 0; no < z;no++)
+	{
+		int r = rand() % 3;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down. 
+		if( r == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//right
+		{
+			aiCoordinate[no].X++;
+		}
+		if( r == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//left
+		{
+			aiCoordinate[no].X--;
+		}
+		if( r == 2 && g_map[aiCoordinate[no].Y + 2][aiCoordinate[no].X] != 1)//up
+		{
+			aiCoordinate[no].Y--;
+		}
+		if( r == 3 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X] != 1)//down
+		{
+			aiCoordinate[no].Y++;
+		}
+	}
+}
+void aiMonSpawn(int x,int y,int z)
+{
+	aiCoordinate[z].X = x;
+	aiCoordinate[z].Y = y;
+}
