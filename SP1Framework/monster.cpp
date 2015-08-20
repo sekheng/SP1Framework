@@ -2,6 +2,7 @@
 extern Console console;
 extern COORD charLocation;
 extern size_t g_map[140][100];
+int r[20];
 
 COORD aiCoordinate[20];
 
@@ -14,22 +15,25 @@ void aiMon(int &i)
 }
 void aiMonUpdate(int z)
 {
-	int r = rand() % 4;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
 	for (int no = 0; no < z;no++)
 	{ 
-		if( r == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
+		r[no] = rand() % 4;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
+	}
+	for (int no = 0; no < z;no++)
+	{ 
+		if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 		{
 			aiCoordinate[no].X++;
 		}
-		if( r == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//left
+		if( r[no] == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//left
 		{
 			aiCoordinate[no].X--;
 		}
-		if( r == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)//up
+		if( r[no] == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)//up
 		{
 			aiCoordinate[no].Y--;
 		}
-		if( r == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)//down
+		if( r[no] == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)//down
 		{
 			aiCoordinate[no].Y++;
 		}

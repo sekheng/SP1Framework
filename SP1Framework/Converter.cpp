@@ -2,11 +2,9 @@
 #include "levels.h"
 #include "game.h"
 #include "traps.h"
-<<<<<<< HEAD
 #include "playerchar.h"
-=======
 #include "monster.h"
->>>>>>> 2a8cf5c4b385cebaf524adf31aacc47931e2d185
+
 extern int tempX;
 extern int tempY;
 extern int cno;
