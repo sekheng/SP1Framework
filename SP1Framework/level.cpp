@@ -29,5 +29,4 @@ void levelcheck(int &a,string &level)
 	{
 		level = "levels5.txt";
 	}
-	
 }
