@@ -26,6 +26,7 @@ int RestartY;
 
 COORD pauseLocation;
 COORD helpreturn;
+COORD gameoverptr;
 
 void characterInit()
 {
@@ -317,6 +318,28 @@ void characterMovement()
     if ( state == Help )
     {
         if ( keyPressed[K_SPACE] )
+        {
+            state = menu;
+        }
+    }
+
+    if ( state == GameOver)
+    {
+		if (keyPressed[K_UP] && gameoverptr.Y > 8)
+		{
+			Beep(1440, 30);
+			gameoverptr.Y--;
+		}
+		if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
+		{
+			Beep(1440, 30);
+			gameoverptr.Y++;
+		}
+        if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
+        {
+            //state = Start;
+        }
+        if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
         {
             state = menu;
         }
