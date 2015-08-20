@@ -6,10 +6,12 @@
 #include "game.h"
 #include "Framework\console.h"
 #include "Framework\timer.h"
+#include "playerchar.h"
 
 using std::string;
 using std::ifstream;
 
 void pausePosition();
+void displayPause();
 
 #endif  // _INGAME_UI_H
