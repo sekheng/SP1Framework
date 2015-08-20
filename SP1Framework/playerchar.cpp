@@ -120,6 +120,9 @@ void characterMovement()
 			charLocation.X++;
 		}
 		cannonballR(3, cno);//3 is ball movement distance
+		cannonballL(3, cno);//3 is ball movement distance
+		cannonballU(3, cno);//3 is ball movement distance
+		cannonballD(3, cno);//3 is ball movement distance
 		characterInteraction();
         // To Pause in-game
         if ( keyPressed[K_SPACE])

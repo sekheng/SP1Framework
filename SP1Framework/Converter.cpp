@@ -5,6 +5,7 @@
 extern int tempX;
 extern int tempY;
 extern int cno;
+char pass;
 void convert(int &a)
 {
 	
@@ -28,17 +29,24 @@ void convert(int &a)
 	{
 		a = 4;
 	}
-	if (a == 67) //cannon
+	if (a == 82 || a == 85 || a == 68 || a == 76) //cannon
 	{
-		convert(tempY, tempX, cno);
+		pass = a;
+		convert(tempY, tempX, cno,pass);
 		cno++;
 	}
 	
 }
 
-void convert(int &y, int &x,int num) //for cannon
+void convert(int &y, int &x,int num,char pass) //for cannon
 {
-	locationR(x,y,num);
+	switch (pass)
+	{
+		case 'R':locationR(x, y, num); break;
+		case 'U':locationU(x, y, num); break;
+		case 'L':locationL(x, y, num); break;
+		case 'D':locationD(x, y, num); break;
+	}
 }
 
 void convert2(int&b, string &x, int &c)
@@ -63,5 +71,4 @@ void convert2(int&b, string &x, int &c)
 		x = "S";
 		c = 0;
 	}
-	
 }

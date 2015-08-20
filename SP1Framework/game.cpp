@@ -187,9 +187,11 @@ void renderCharacter()
     }
     if ( state == Start) 
 	{
-		
 		// Draw the location of the character
+		cannonL(cno);
 		cannonR(cno);
+		cannonU(cno);
+		//cannonD(cno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
     }
     if ( state == LevelCustomized)

@@ -51,7 +51,7 @@ void cannonL(int &i)
 }
 void cannonballL(int x,int z)
 {
-	for (int no = 0; no < z;no++)
+	for (int no = 0; no < z; no++)
 	{
 		if (cannonballLocationL[no].X != (cannonLocationL[no].X - x) && g_timer.getElapsedTime() != -1)
 		{
@@ -90,7 +90,7 @@ void cannonballU(int x,int z)
 		}
 		else
 		{
-			cannonballLocationU[no].X += x;
+			cannonballLocationU[no].Y += x;
 		}
 	}
 
