@@ -2,9 +2,11 @@
 #include "levels.h"
 #include "game.h"
 #include "traps.h"
+#include "monster.h"
 extern int tempX;
 extern int tempY;
 extern int cno;
+extern int mno;
 char pass;
 void convert(int &a)
 {
@@ -36,11 +38,21 @@ void convert(int &a)
 		convert(tempY, tempX, cno,pass);
 		cno++;
 	}
+	if (a == 77) // monster
+	{
+		convert(tempY, tempX, mno);
+		mno++;
+	}
 	
 }
 void convert(int &y, int &x)
 {
 	(x,y);
+}
+
+void convert(int &tempY, int &tempX, int mno)
+{
+	aiMonSpawn(tempX,tempY,mno);
 }
 void convert(int &y, int &x,int num,char pass) //for cannon
 {

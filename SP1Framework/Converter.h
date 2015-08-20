@@ -16,6 +16,8 @@ using std::vector;
 
 void convert(int &a);
 void convert(int &y,int &x,int num,char pass);
+
+void convert(int &tempY,int &tempX, int mno);
 void convert(int &y, int &x);
 void convert2(int &b, string &x,int &c);
 
