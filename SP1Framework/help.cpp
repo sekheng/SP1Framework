@@ -12,7 +12,7 @@ void helpPosition()
     while ( getline(inHelp, Helping) && !inHelp.eof() )
     {
         for ( size_t y = 0; y < Helping.size(); ++y) {
-            
+            Helping[y];
         }
     }
     inHelp.close();
