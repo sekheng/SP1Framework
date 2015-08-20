@@ -4,10 +4,7 @@
 #include "traps.h"
 #include "playerchar.h"
 #include "monster.h"
-<<<<<<< HEAD
 
-=======
->>>>>>> 3bce05556368ed8e41ef6ca258126af47b8f135c
 extern int tempX;
 extern int tempY;
 extern int tempEndX;
@@ -30,7 +27,6 @@ void convert(int &a)
 	{
 		a = 2;
 		characterEnd(tempEndX, tempEndY);
-		cout << tempEndX << " " << tempEndY << endl;
 	}
 	if (a == 35) // crate
 	{
@@ -58,10 +54,6 @@ void convertStart(int &y, int &x)
 {
 	characterSpawn(x,y);
 }
-//void convertEnd(int &y, int &x)
-//{
-//	characterEnd(y, x);
-//}
 void convert(int &tempY, int &tempX, int mno)
 {
 	aiMonSpawn(tempX,tempY,mno);
