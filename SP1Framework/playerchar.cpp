@@ -14,6 +14,8 @@ extern startscreen state;
 extern bool keyPressed[K_COUNT];
 extern string &level;
 extern int levelno;
+extern int tempX;
+extern int tempY;
 
 COORD pauseLocation;
 
@@ -346,8 +348,19 @@ void characterInteraction()
 			g_quitGame = true;
 		}
 	}
-	if (charLocation.X == )
+}
+
+void characterSpawn(int x, int y)
+{
+	charLocation.X = x;
+	charLocation.Y = y;
+}
+
+void characterEnd(int &y, int &x)
+{
+	if (charLocation.X == x && charLocation.Y == y)
 	{
-		
+		levelno++;
+		loadlevel();
 	}
 }
