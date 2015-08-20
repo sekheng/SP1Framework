@@ -59,6 +59,9 @@ int tempX; //store X coord
 int tempY; //store Y coord
 int cno = 0; //cannon number
 COORD pu;
+int pauserows = 0;
+int pausecols = 0;
+extern COORD pauseLocation;
 
 const WORD colors[] =
 {
@@ -172,6 +175,11 @@ void renderMap()
         // Display The Title
         displayMenu();   
     }
+    if ( state == Pause )
+    {
+        // Display in-game Pause
+        displayPause();
+    }
 
 	if (state == Start)
 	{
@@ -184,6 +192,7 @@ void renderCharacter()
     if ( state == menu) 
 	{
         console.writeToBuffer(startmenuLocation, (char)60, 0x0C);
+        pauseLocation.Y = 15;
     }
     if ( state == Start) 
 	{
@@ -193,6 +202,11 @@ void renderCharacter()
 		cannonU(cno);
 		//cannonD(cno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
+        pauseLocation.Y = 15;
+    }
+    if ( state == Pause)
+    {
+        console.writeToBuffer(pauseLocation, (char)60, 0x0C);
     }
     if ( state == LevelCustomized)
     {
