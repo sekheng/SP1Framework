@@ -4,7 +4,10 @@
 #include "traps.h"
 #include "playerchar.h"
 #include "monster.h"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3bce05556368ed8e41ef6ca258126af47b8f135c
 extern int tempX;
 extern int tempY;
 extern int cno;
@@ -23,6 +26,7 @@ void convert(int &a)
 	}
 	if (a == 69) //end point
 	{
+		a = 2;
 		convertEnd(tempY, tempX);
 	}
 	if (a == 35) // crate
