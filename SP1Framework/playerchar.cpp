@@ -297,10 +297,7 @@ void characterMovement()
         {
             state = menu;
         }
-        if ( keyPressed[K_SPACE] )
-        {
-            state = Start;
-        }
+        
     }
 }
 
@@ -349,10 +346,8 @@ void characterInteraction()
 			g_quitGame = true;
 		}
 	}
-	/*if ()
+	if (charLocation.X == )
 	{
-		levelno++;
-		loadlevel();
 		
-	}*/
+	}
 }
