@@ -21,6 +21,8 @@ extern int tempX;
 extern int tempY;
 extern int tempEndX;
 extern int tempEndY;
+int RestartX;
+int RestartY;
 
 COORD pauseLocation;
 COORD helpreturn;
@@ -304,6 +306,7 @@ void characterMovement()
         }
         if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
         {
+            characterSpawn(RestartX,RestartY);
             state = Start;
         }
         if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
@@ -379,6 +382,8 @@ void characterSpawn(int x, int y)
 {
 	charLocation.X = x;
 	charLocation.Y = y;
+    RestartX = x;
+    RestartY = y;
 }
 
 void characterEnd(int y, int x)//temp y , temp x
