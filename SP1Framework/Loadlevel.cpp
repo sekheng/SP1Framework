@@ -20,6 +20,7 @@ extern int col;
 extern size_t g_map[140][100];
 extern string content;
 extern int cno;
+extern int mno;
 extern int tempX;
 extern int tempY;
 extern string level;

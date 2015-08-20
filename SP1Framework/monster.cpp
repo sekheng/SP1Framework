@@ -14,7 +14,7 @@ void aiMon(int &i)
 }
 void aiMonUpdate(int z)
 {
-	int r = rand() % 3;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
+	int r = rand() % 4;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
 	for (int no = 0; no < z;no++)
 	{ 
 		if( r == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
