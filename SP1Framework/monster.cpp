@@ -14,25 +14,26 @@ void aiMon(int &i)
 }
 void aiMonUpdate(int z)
 {
+	int r = rand() % 3;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
 	for (int no = 0; no < z;no++)
-	{
-		int r = rand() % 3;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down. 
-		if( r == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//right
+	{ 
+		if( r == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 		{
 			aiCoordinate[no].X++;
 		}
-		if( r == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//left
+		if( r == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//left
 		{
 			aiCoordinate[no].X--;
 		}
-		if( r == 2 && g_map[aiCoordinate[no].Y + 2][aiCoordinate[no].X] != 1)//up
+		if( r == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)//up
 		{
 			aiCoordinate[no].Y--;
 		}
-		if( r == 3 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X] != 1)//down
+		if( r == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)//down
 		{
 			aiCoordinate[no].Y++;
 		}
+		
 	}
 }
 void aiMonSpawn(int x,int y,int z)
