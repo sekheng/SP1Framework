@@ -58,6 +58,7 @@ int color;
 int tempX; //store X coord
 int tempY; //store Y coord
 int cno = 0; //cannon number
+int mno = 0;//monster number
 COORD pu;
 int pauserows = 0;
 int pausecols = 0;
@@ -201,6 +202,7 @@ void renderCharacter()
 		cannonR(cno);
 		cannonU(cno);
 		//cannonD(cno);
+		aiMon(mno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
         pauseLocation.Y = 15;
     }

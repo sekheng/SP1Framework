@@ -10,6 +10,7 @@ extern COORD cannonballLocationU[20];
 extern COORD cannonballLocationD[20];
 extern Console console;
 extern int cno;
+extern int mno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
 extern string &level;
@@ -132,6 +133,7 @@ void characterMovement()
 		cannonballL(3, cno);//3 is ball movement distance
 		cannonballU(3, cno);//3 is ball movement distance
 		cannonballD(3, cno);//3 is ball movement distance
+		aiMonUpdate(mno);
 		characterInteraction();
         // To Pause in-game
         if ( keyPressed[K_SPACE])
