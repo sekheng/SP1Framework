@@ -54,7 +54,6 @@ void loadlevel()
 			{
 				tempEndX = col;
 				tempEndY = row;
-
 			}
 			tempX = col;
 			tempY = row;
