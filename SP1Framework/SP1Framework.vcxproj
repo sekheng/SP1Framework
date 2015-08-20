@@ -79,6 +79,7 @@
     <ClCompile Include="Framework\console.cpp" />
     <ClCompile Include="Framework\timer.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="help.cpp" />
     <ClCompile Include="ingame_UI.cpp" />
     <ClCompile Include="level.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="Framework\console.h" />
     <ClInclude Include="Framework\timer.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="Gameover.h" />
     <ClInclude Include="help.h" />
     <ClInclude Include="ingame_UI.h" />
     <ClInclude Include="levels.h" />
@@ -103,6 +105,7 @@
     <ClInclude Include="traps.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="displayGameover.txt" />
     <None Include="displayHelp.txt" />
     <None Include="displayHelp2.txt" />
     <None Include="displayPause.txt" />

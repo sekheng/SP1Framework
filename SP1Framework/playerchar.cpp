@@ -26,6 +26,7 @@ int RestartY;
 
 COORD pauseLocation;
 COORD helpreturn;
+COORD gameoverptr;
 
 void characterInit()
 {
@@ -243,7 +244,6 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.X--;
 		}
-
 		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
@@ -322,6 +322,28 @@ void characterMovement()
             state = menu;
         }
     }
+
+    if ( state == GameOver)
+    {
+		if (keyPressed[K_UP] && gameoverptr.Y > 8)
+		{
+			Beep(1440, 30);
+			gameoverptr.Y--;
+		}
+		if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
+		{
+			Beep(1440, 30);
+			gameoverptr.Y++;
+		}
+        if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
+        {
+            //state = Start;
+        }
+        if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
+        {
+            state = menu;
+        }
+    }
 }
 
 void getInput()
@@ -337,6 +359,23 @@ void getInput()
 	keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
 	keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
 	keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
+}
+
+void characterSpawn(int x, int y)
+{
+	charLocation.X = x;
+	charLocation.Y = y;
+    RestartX = x;
+    RestartY = y;
+}
+
+void characterEnd(int y, int x)//temp y , temp x
+{
+	if (charLocation.X == x&& charLocation.Y == y)
+	{
+		levelno++;
+		loadlevel();
+	}
 }
 
 void characterInteraction()
@@ -375,22 +414,5 @@ void characterInteraction()
 		{
 			g_quitGame = true;
 		}
-	}
-}
-
-void characterSpawn(int x, int y)
-{
-	charLocation.X = x;
-	charLocation.Y = y;
-    RestartX = x;
-    RestartY = y;
-}
-
-void characterEnd(int y, int x)//temp y , temp x
-{
-	if (charLocation.X == x&& charLocation.Y == y)
-	{
-		levelno++;
-		loadlevel();
 	}
 }

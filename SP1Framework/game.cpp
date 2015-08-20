@@ -9,6 +9,7 @@
 #include "playerchar.h"
 #include "ingame_UI.h"
 #include "help.h"
+#include "Gameover.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -67,6 +68,7 @@ int pauserows = 0;
 int pausecols = 0;
 extern COORD pauseLocation;
 extern COORD helpreturn;
+extern COORD gameoverptr;
 
 const WORD colors[] =
 {
@@ -95,6 +97,9 @@ void init()
 
     // Help
     helpPosition();
+
+    // Game Over
+    gameoverPosition();
 }
 
 // Do your clean up of memory here
@@ -177,7 +182,6 @@ void clearScreen()
 
 void renderMap()
 {
-
     if ( state ==  menu) 
 	{
         // Display The Title
@@ -192,6 +196,10 @@ void renderMap()
     {
         displayHelp();
     }
+    if ( state == GameOver)
+    {
+        displayGameOver();
+    }
 	if (state == Start)
 	{
 		reloadlevel(); // reloads level
@@ -203,7 +211,8 @@ void renderCharacter()
     if ( state == menu) 
 	{
         console.writeToBuffer(startmenuLocation, (char)60, 0x0C);
-        pauseLocation.Y = 15;
+        pauseLocation.Y = 15;   //These are to reset the location of where the arrow is pointing
+        gameoverptr.Y = 8;  //These are to reset the location of where the arrow is pointing
     }
     if ( state == Start) 
 	{
@@ -227,6 +236,10 @@ void renderCharacter()
     if ( state == LevelCustomized)
     {
        console.writeToBuffer(charLocation, (char)1, 0x0C);
+    }
+    if ( state == GameOver)
+    {
+       console.writeToBuffer(gameoverptr, (char)60, 0x0C);
     }
 }
 
