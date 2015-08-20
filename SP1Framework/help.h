@@ -13,6 +13,5 @@ using std::ifstream;
 
 void helpPosition();
 void displayHelp();
-void helpConverter( char &c);
 
 #endif  // _HELP_H

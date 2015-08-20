@@ -63,6 +63,7 @@ COORD pu;
 int pauserows = 0;
 int pausecols = 0;
 extern COORD pauseLocation;
+extern COORD helpreturn;
 
 const WORD colors[] =
 {
@@ -186,7 +187,7 @@ void renderMap()
     }
     if ( state == Help)
     {
-
+        displayHelp();
     }
 	if (state == Start)
 	{
@@ -217,7 +218,7 @@ void renderCharacter()
     }
     if ( state == Help )
     {
-
+        console.writeToBuffer(helpreturn, (char)60, 0x0C);
     }
     if ( state == LevelCustomized)
     {

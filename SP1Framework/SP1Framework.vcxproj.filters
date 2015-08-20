@@ -100,6 +100,9 @@
     <None Include="displayPause.txt">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="displayHelp2.txt">
+      <Filter>Source Files</Filter>
+    </None>
     <None Include="displayHelp.txt">
       <Filter>Source Files</Filter>
     </None>

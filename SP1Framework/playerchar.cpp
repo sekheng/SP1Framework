@@ -10,6 +10,7 @@ extern int cno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
 COORD pauseLocation;
+COORD helpreturn;
 
 void characterInit()
 {
@@ -298,7 +299,10 @@ void characterMovement()
 
     if ( state == Help )
     {
-
+        if ( keyPressed[K_SPACE] )
+        {
+            state = menu;
+        }
     }
 }
 

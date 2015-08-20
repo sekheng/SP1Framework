@@ -1,0 +1,21 @@
+USE THESE KEYS TO MOVE YOURSELF            
+                                           
+    W   |  ARROW KEYS                      
+   ASD  |                                  
+*******************************************
+WHEN IN-GAME                               
+SPACEBAR will lead you to the pause menu   
+*******************************************
+S -> is the start point                    
+E -> is the end point                      
+  -> is the wall so that you shall not pass
+*******************************************
+AVOID THESE TRAPS TO PREVENT YOUR DEATH    
+#                                          
+*******************************************
+CANNON WILL KEEP ON FIRING                 
+SO AVOID IT                                
+C -> represents the cannon                 
+O -> represents the cannonball              
+                                           
+PRESS SPACE TO RETURN                      
