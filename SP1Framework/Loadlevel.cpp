@@ -25,10 +25,10 @@ extern int tempX;
 extern int tempY;
 extern string level;
 extern int change;
+extern int levelno;
 
 void loadlevel()
 {
-	int levelno = 5;
 	levelcheck(levelno, level);
 	ifstream inData;
 	inData.open(level);

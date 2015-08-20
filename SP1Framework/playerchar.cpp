@@ -5,11 +5,19 @@ extern COORD startmenuLocation;
 extern COORD charLocation;
 extern size_t g_map[140][100];
 extern COORD cannonballLocationR[20];
+extern COORD cannonballLocationL[20];
+extern COORD cannonballLocationU[20];
+extern COORD cannonballLocationD[20];
 extern Console console;
 extern int cno;
 extern int mno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
+extern string &level;
+extern int levelno;
+extern int tempX;
+extern int tempY;
+
 COORD pauseLocation;
 
 void characterInit()
@@ -293,10 +301,7 @@ void characterMovement()
         {
             state = menu;
         }
-        //if ( keyPressed[K_SPACE] )
-        //{
-        //    state = Start;
-        //}
+        
     }
 }
 
@@ -323,5 +328,41 @@ void characterInteraction()
 		{
 			g_quitGame = true;
 		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationL[i].X && charLocation.Y == cannonballLocationL[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationU[i].X && charLocation.Y == cannonballLocationU[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == cannonballLocationD[i].X && charLocation.Y == cannonballLocationD[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
+}
+
+void characterSpawn(int x, int y)
+{
+	charLocation.X = x;
+	charLocation.Y = y;
+}
+
+void characterEnd(int &y, int &x)
+{
+	if (charLocation.X == x && charLocation.Y == y)
+	{
+		levelno++;
+		loadlevel();
 	}
 }

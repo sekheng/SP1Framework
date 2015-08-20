@@ -2,7 +2,11 @@
 #include "levels.h"
 #include "game.h"
 #include "traps.h"
+<<<<<<< HEAD
+#include "playerchar.h"
+=======
 #include "monster.h"
+>>>>>>> 2a8cf5c4b385cebaf524adf31aacc47931e2d185
 extern int tempX;
 extern int tempY;
 extern int cno;
@@ -47,7 +51,7 @@ void convert(int &a)
 }
 void convert(int &y, int &x)
 {
-	(x,y);
+	characterEnd(x,y);
 }
 
 void convert(int &tempY, int &tempX, int mno)

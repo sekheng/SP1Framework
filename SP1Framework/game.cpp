@@ -44,7 +44,7 @@ COORD et;
 // Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
-int levelno;
+int levelno = 1;
 string level;
 int change;
 int row = 1;    // For collision Detection and map coordinates
