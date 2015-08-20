@@ -243,7 +243,6 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.X--;
 		}
-
 		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
 		{
 			Beep(1440, 30);
@@ -339,6 +338,23 @@ void getInput()
 	keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
 }
 
+void characterSpawn(int x, int y)
+{
+	charLocation.X = x;
+	charLocation.Y = y;
+    RestartX = x;
+    RestartY = y;
+}
+
+void characterEnd(int y, int x)//temp y , temp x
+{
+	if (charLocation.X == x&& charLocation.Y == y)
+	{
+		levelno++;
+		loadlevel();
+	}
+}
+
 void characterInteraction()
 {
 	for (int i = 0; i < cno; ++i)
@@ -375,22 +391,5 @@ void characterInteraction()
 		{
 			g_quitGame = true;
 		}
-	}
-}
-
-void characterSpawn(int x, int y)
-{
-	charLocation.X = x;
-	charLocation.Y = y;
-    RestartX = x;
-    RestartY = y;
-}
-
-void characterEnd(int y, int x)//temp y , temp x
-{
-	if (charLocation.X == x&& charLocation.Y == y)
-	{
-		levelno++;
-		loadlevel();
 	}
 }
