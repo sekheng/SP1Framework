@@ -34,7 +34,6 @@ void characterMovement()
 		if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
 		{
 			state = Start;
-
 		}
 		if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
 		{
@@ -44,6 +43,10 @@ void characterMovement()
 		{
 			state = LevelCustom;
 		}
+        if ( keyPressed[K_ENTER] && startmenuLocation.Y == 24 )
+        {
+            state = Help;
+        }
 		if (keyPressed[K_ENTER] && startmenuLocation.Y == 26)
 		{
 			state = Exit;
@@ -291,10 +294,11 @@ void characterMovement()
         {
             state = menu;
         }
-        //if ( keyPressed[K_SPACE] )
-        //{
-        //    state = Start;
-        //}
+    }
+
+    if ( state == Help )
+    {
+
     }
 }
 

@@ -8,6 +8,7 @@
 #include "Loadlevel.h"
 #include "playerchar.h"
 #include "ingame_UI.h"
+#include "help.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -87,6 +88,9 @@ void init()
 
     //Pause
     pausePosition();
+
+    // Help
+    helpPosition();
 }
 
 // Do your clean up of memory here
@@ -180,7 +184,10 @@ void renderMap()
         // Display in-game Pause
         displayPause();
     }
+    if ( state == Help)
+    {
 
+    }
 	if (state == Start)
 	{
 		reloadlevel(); // reloads level
@@ -207,6 +214,10 @@ void renderCharacter()
     if ( state == Pause)
     {
         console.writeToBuffer(pauseLocation, (char)60, 0x0C);
+    }
+    if ( state == Help )
+    {
+
     }
     if ( state == LevelCustomized)
     {
