@@ -17,6 +17,6 @@ void characterMovement();
 void getInput();
 void characterInteraction();
 void characterSpawn(int x, int y);
-void characterEnd(int &y, int &x);
+void characterEnd(int y, int x);
 
 #endif // _PLAYERCHAR_H

@@ -57,6 +57,8 @@ string content;
 int color;
 int tempX; //store X coord
 int tempY; //store Y coord
+int tempEndX; // x end point coord
+int tempEndY;// y end point coord
 int cno = 0; //cannon number
 int mno = 0;//monster number
 COORD pu;

@@ -1,4 +1,5 @@
 #include "playerchar.h"
+
 //#include "traps.cpp"
 
 extern COORD startmenuLocation;
@@ -8,6 +9,7 @@ extern COORD cannonballLocationR[20];
 extern COORD cannonballLocationL[20];
 extern COORD cannonballLocationU[20];
 extern COORD cannonballLocationD[20];
+extern COORD aiCoordinate[20];
 extern Console console;
 extern int cno;
 extern int mno;
@@ -17,6 +19,8 @@ extern string &level;
 extern int levelno;
 extern int tempX;
 extern int tempY;
+extern int tempEndX;
+extern int tempEndY;
 
 COORD pauseLocation;
 
@@ -139,7 +143,8 @@ void characterMovement()
         if ( keyPressed[K_SPACE])
         {
             state = Pause;
-        }
+		}
+		characterEnd(tempEndY, tempEndX);
 	}
     //Level Editing
 	if (state == LevelCustomized)
@@ -350,6 +355,13 @@ void characterInteraction()
 			g_quitGame = true;
 		}
 	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
+		{
+			g_quitGame = true;
+		}
+	}
 }
 
 void characterSpawn(int x, int y)
@@ -358,9 +370,9 @@ void characterSpawn(int x, int y)
 	charLocation.Y = y;
 }
 
-void characterEnd(int &y, int &x)
+void characterEnd(int y, int x)//temp y , temp x
 {
-	if (charLocation.X == x && charLocation.Y == y)
+	if (charLocation.X == x&& charLocation.Y == y)
 	{
 		levelno++;
 		loadlevel();

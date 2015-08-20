@@ -7,6 +7,8 @@
 
 extern int tempX;
 extern int tempY;
+extern int tempEndX;
+extern int tempEndY;
 extern int cno;
 extern int mno;
 char pass;
@@ -23,7 +25,8 @@ void convert(int &a)
 	}
 	if (a == 69) //end point
 	{
-		convertEnd(tempY, tempX);
+		a = 2;
+		characterEnd(tempEndX, tempEndY);
 	}
 	if (a == 35) // crate
 	{
@@ -50,11 +53,6 @@ void convert(int &a)
 void convertStart(int &y, int &x)
 {
 	characterSpawn(x,y);
-}
-void convertEnd(int &y, int &x)
-{
-
-	characterEnd(x, y);
 }
 void convert(int &tempY, int &tempX, int mno)
 {
