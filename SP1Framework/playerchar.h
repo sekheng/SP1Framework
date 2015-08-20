@@ -4,6 +4,12 @@
 #include "game.h"
 #include "traps.h"
 #include "monster.h"
+#include "levels.h"
+#include "Loadlevel.h"
+#include <iomanip>
+#include <fstream>
+#include <string>
+#include <vector>
 #include "Framework\console.h"
 
 void characterInit();

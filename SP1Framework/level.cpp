@@ -2,6 +2,8 @@
 #include "Converter.h"
 #include "Framework\console.h"
 #include "game.h"
+#include "playerchar.h"
+extern COORD charLocation;
 extern Console console;
 
 void levelcheck(int &a,string &level)
@@ -27,5 +29,5 @@ void levelcheck(int &a,string &level)
 	{
 		level = "levels5.txt";
 	}
-
+	
 }

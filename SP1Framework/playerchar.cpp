@@ -5,10 +5,14 @@ extern COORD startmenuLocation;
 extern COORD charLocation;
 extern size_t g_map[140][100];
 extern COORD cannonballLocationR[20];
+extern COORD cannonballLocationL[20];
+extern
 extern Console console;
 extern int cno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
+extern string &level;
+extern int levelno;
 
 void characterInit()
 {
@@ -289,4 +293,10 @@ void characterInteraction()
 			g_quitGame = true;
 		}
 	}
+	/*if ()
+	{
+		levelno++;
+		loadlevel();
+		
+	}*/
 }
