@@ -1,4 +1,5 @@
 #include "playerchar.h"
+
 //#include "traps.cpp"
 
 extern COORD startmenuLocation;
@@ -17,6 +18,8 @@ extern string &level;
 extern int levelno;
 extern int tempX;
 extern int tempY;
+extern int tempEndX;
+extern int tempEndY;
 
 COORD pauseLocation;
 
@@ -139,7 +142,8 @@ void characterMovement()
         if ( keyPressed[K_SPACE])
         {
             state = Pause;
-        }
+		}
+		characterEnd(tempEndY, tempEndX);
 	}
     //Level Editing
 	if (state == LevelCustomized)
@@ -358,7 +362,7 @@ void characterSpawn(int x, int y)
 	charLocation.Y = y;
 }
 
-void characterEnd(int &y, int &x)
+void characterEnd(int y, int x)//temp y , temp x
 {
 	if (charLocation.X == x && charLocation.Y == y)
 	{

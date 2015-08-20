@@ -26,9 +26,19 @@ extern int tempY;
 extern string level;
 extern int change;
 extern int levelno;
+extern int tempEndX;
+extern int tempEndY;
 
 void loadlevel()
 {
+	tempX = 0;
+	tempY = 0;
+	tempEndX = 0;
+	tempEndY = 0;
+	cno = 0;
+	mno = 0;
+	col = 0;
+	row = 1;
 	levelcheck(levelno, level);
 	ifstream inData;
 	inData.open(level);
@@ -40,6 +50,12 @@ void loadlevel()
 		getline(inData, Data);
 		for (unsigned int x = 0; x < Data.length(); x++)
 		{
+			if (Data[x] == 'E')
+			{
+				tempEndX = col;
+				tempEndY = row;
+
+			}
 			tempX = col;
 			tempY = row;
 			change = Data[x];

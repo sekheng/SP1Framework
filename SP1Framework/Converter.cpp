@@ -6,6 +6,8 @@
 #include "monster.h"
 extern int tempX;
 extern int tempY;
+extern int tempEndX;
+extern int tempEndY;
 extern int cno;
 extern int mno;
 char pass;
@@ -23,7 +25,8 @@ void convert(int &a)
 	if (a == 69) //end point
 	{
 		a = 2;
-		convertEnd(tempY, tempX);
+		characterEnd(tempEndX, tempEndY);
+		cout << tempEndX << " " << tempEndY << endl;
 	}
 	if (a == 35) // crate
 	{
@@ -51,11 +54,10 @@ void convertStart(int &y, int &x)
 {
 	characterSpawn(x,y);
 }
-void convertEnd(int &y, int &x)
-{
-
-	characterEnd(x, y);
-}
+//void convertEnd(int &y, int &x)
+//{
+//	characterEnd(y, x);
+//}
 void convert(int &tempY, int &tempX, int mno)
 {
 	aiMonSpawn(tempX,tempY,mno);
