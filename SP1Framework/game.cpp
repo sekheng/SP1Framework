@@ -75,8 +75,10 @@ int pausecols = 0;
 extern COORD pauseLocation;
 extern COORD helpreturn;
 extern COORD gameoverptr;
-extern COORD cannonLocationD[20];
-extern COORD cannonballLocationD[20];
+extern struct Cannon Right;
+extern struct Cannon Left;
+extern struct Cannon Up;
+extern struct Cannon Down;
 
 const WORD colors[] =
 {
@@ -154,10 +156,10 @@ void update(double dt)
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     moveCharacter(); 
-	cannonballR(3, cno);//3 is ball movement distance
-	cannonballL(3, cno);//3 is ball movement distance
-	cannonballU(3, cno);//3 is ball movement distance
-	cannonballD(3, cno);//3 is ball movement distance
+	cannonballR(3, cno);
+	cannonballL(3, cno);
+	cannonballU(3, cno);
+	cannonballD(3, cno);
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
     // sound can be played here too.
 }
@@ -249,8 +251,8 @@ void renderCharacter()
 		//cannonD(cno);
 		for (int b = 0; b < cno; b++)
 	{
-		console.writeToBuffer(cannonLocationD[b], (char)67, 0x0C);
-		console.writeToBuffer(cannonballLocationD[b], (char)79, 0x0C);
+		console.writeToBuffer(Down.position[b], (char)67, 0x0C);
+		console.writeToBuffer(Down.position[b], (char)79, 0x0C);
 	}
 		aiMon(mno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
