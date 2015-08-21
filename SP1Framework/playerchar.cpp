@@ -148,11 +148,6 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		cannonballR(3, cno);//3 is ball movement distance
-		cannonballL(3, cno);//3 is ball movement distance
-		cannonballU(3, cno);//3 is ball movement distance
-		cannonballD(3, cno);//3 is ball movement distance
-		aiMonUpdate(mno);
 		characterInteraction();
         // To Pause in-game
         if ( keyPressed[K_SPACE])

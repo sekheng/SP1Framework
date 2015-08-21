@@ -153,7 +153,12 @@ void update(double dt)
     deltaTime = dt;
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-    moveCharacter();    // moves the character, collision detection, physics, etc
+    moveCharacter(); 
+	cannonballR(3, cno);//3 is ball movement distance
+	cannonballL(3, cno);//3 is ball movement distance
+	cannonballU(3, cno);//3 is ball movement distance
+	cannonballD(3, cno);//3 is ball movement distance
+	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
     // sound can be played here too.
 }
 
