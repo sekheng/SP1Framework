@@ -14,6 +14,7 @@ extern const WORD colors[] =
 	0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 };
 extern COORD LvL;
+extern COORD CusLvL;
 extern int color;
 extern int row;
 extern int col;
@@ -28,6 +29,10 @@ extern int change;
 extern int levelno;
 extern int tempEndX;
 extern int tempEndY;
+extern int cuscol;
+extern int cusrow;
+extern size_t g_custommap[140][100];
+extern int cuschange;
 
 void loadlevel()
 {
@@ -82,5 +87,52 @@ void reloadlevel()
 			LvL.X += 1;
 		}
 		LvL.Y += 1;
+	}
+}
+//cuscol
+//cusrow
+//incusdata
+//cusdata
+//cuschange
+//g_cusmap
+//Coord CusLvl
+
+void loadcustomlevel()
+{
+	cuscol = 0;
+	cusrow = 1;
+	ifstream incusData;
+	incusData.open("CustomLevelLegend.txt");
+	string cusData;
+
+	while (!incusData.eof())
+	{
+		cuscol = 0;
+		getline(incusData, cusData);
+		for (unsigned int x = 0; x < cusData.length(); x++)
+		{
+			cuschange = cusData[x];
+			g_custommap[cusrow][cuscol] = cuschange;
+			++cuscol;
+		}
+		++cusrow;
+	}
+	incusData.close();
+}
+
+void reloadcustomlevel()
+{
+	CusLvL.Y = 1;
+	CusLvL.X = 0;
+	// Set up sample colours, and output shadings
+	for (int i = 1; i < cusrow; ++i)
+	{
+		CusLvL.X = 0;
+		for (int j = 0; j < cuscol; ++j) {
+			char cuswrite = g_custommap[i][j];
+			console.writeToBuffer(CusLvL, cuswrite, colors[0x0F]);
+			CusLvL.X += 1;
+		}
+		CusLvL.Y += 1;
 	}
 }

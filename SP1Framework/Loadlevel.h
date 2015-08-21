@@ -16,5 +16,7 @@ using std::ifstream;
 
 void loadlevel();
 void reloadlevel();
+void loadcustomlevel();
+void reloadcustomlevel();
 
 #endif  
