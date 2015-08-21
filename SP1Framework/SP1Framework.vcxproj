@@ -87,6 +87,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="playerchar.cpp" />
+    <ClCompile Include="The_End.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="traps.cpp" />
   </ItemGroup>
@@ -101,6 +102,7 @@
     <ClInclude Include="levels.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="playerchar.h" />
+    <ClInclude Include="The_End.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="traps.h" />
   </ItemGroup>
@@ -109,6 +111,7 @@
     <None Include="displayHelp.txt" />
     <None Include="displayHelp2.txt" />
     <None Include="displayPause.txt" />
+    <None Include="displayTheEnd.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,6 +10,7 @@
 #include "ingame_UI.h"
 #include "help.h"
 #include "Gameover.h"
+#include "The_End.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -30,7 +31,7 @@ int i = 0;
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
-startscreen state = menu;
+startscreen state = End;
 int titlearr[40][150];
 size_t g_map[140][100];    //For Collision System
 char pausearr[40][150];
@@ -100,6 +101,9 @@ void init()
 
     // Game Over
     gameoverPosition();
+
+    // The End
+    theendPosition();
 }
 
 // Do your clean up of memory here
@@ -177,7 +181,7 @@ void processUserInput()
 void clearScreen()
 {
     // Clears the buffer with this colour attribute
-    console.clearBuffer(0x1F);
+    console.clearBuffer(0x0F);
 }
 
 void renderMap()
@@ -204,6 +208,10 @@ void renderMap()
 	{
 		reloadlevel(); // reloads level
 	}
+    if ( state == End)
+    {
+        displayTheEnd();
+    }
 }
 
 void renderCharacter()

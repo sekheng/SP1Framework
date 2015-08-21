@@ -36,11 +36,11 @@ void displayHelp()
         for ( int j = 0; j < helpcols; ++j) {
             if ( i == 10 && j == 0)
             {
-                console.writeToBuffer( helpLocation, ' ' , 0x6F );
+                console.writeToBuffer( helpLocation, ' ' , 0x0F );
                 helpLocation.X += 1;
                 continue;
             }
-            console.writeToBuffer( helpLocation, helparr[i][j], 0x1A );
+            console.writeToBuffer( helpLocation, helparr[i][j], 0x0F );
             helpLocation.X += 1;
         }
         helpLocation.Y += 1;

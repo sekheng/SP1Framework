@@ -49,17 +49,17 @@ void displayPause()
         for ( int j = 0; j < pausecols; ++j) {
             if ( pausearr[i][j] != '.')
             {
-                console.writeToBuffer( pu, (char)219 , 0x1A );
+                console.writeToBuffer( pu, (char)219 , 0x0F );
             }
             if ( pausearr[i][j] == '.')
             {
-                 console.writeToBuffer( pu, ' ', 0x1A );
+                 console.writeToBuffer( pu, ' ', 0x0F );
             }
             pu.X += 1;
         }
         pu.Y += 1;
     }
-    console.writeToBuffer( cont, conti, 0x1A );
-    console.writeToBuffer( rstrt, restart, 0x1A );
-    console.writeToBuffer( qit, quit, 0x1A );
+    console.writeToBuffer( cont, conti, 0x0F );
+    console.writeToBuffer( rstrt, restart, 0x0F );
+    console.writeToBuffer( qit, quit, 0x0F );
 }
