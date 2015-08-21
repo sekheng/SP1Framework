@@ -33,6 +33,7 @@ bool keyPressed[K_COUNT];
 startscreen state = menu;
 int titlearr[40][150];
 size_t g_map[140][100];    //For Collision System
+size_t g_custommap[140][100]; //for custom lvl
 char pausearr[40][150];
 
 // For Menu Display's coordinates
@@ -46,12 +47,16 @@ COORD et;
 // Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
-int levelno = 4;
+int levelno = 1;
 string level;
 int change;
+int cuschange;
 int row = 1;    // For collision Detection and map coordinates
 int col = 0;    // For collision Detection and map coordinates
+int cusrow = 1;
+int cuscol = 0;
 COORD LvL;
+COORD CusLvL;
 COORD Ttle;
 int ttlerow = 0;
 int ttlecol = 0;
@@ -88,6 +93,8 @@ void init()
 
 	/////////////////////////////////////////
 	loadlevel(); // loads the level
+
+	loadcustomlevel();
 
     // Title
     menuPosition();
@@ -203,6 +210,10 @@ void renderMap()
 	if (state == Start)
 	{
 		reloadlevel(); // reloads level
+	}
+	if (state == LevelCustomized)
+	{
+		reloadcustomlevel();
 	}
 }
 

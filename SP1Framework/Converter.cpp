@@ -40,7 +40,7 @@ void convert(int &a)
 	if (a == 82 || a == 85 || a == 68 || a == 76) //cannon
 	{
 		pass = a;
-		convert(tempY, tempX, cno,pass);
+		convert(tempY, tempX,cno,pass);
 		cno++;
 	}
 	if (a == 77) // monster
