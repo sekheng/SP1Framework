@@ -23,5 +23,6 @@ void reloadcustomlevel();
 void writelevel(char &a);
 
 void renderwrittenlevel();
+void savecustomlevel();
 
 #endif  

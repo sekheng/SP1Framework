@@ -150,11 +150,31 @@ void renderwrittenlevel()
 		for (int j = 0; j < 100;j++)
 		{
 			char cuswrite = g_customizemap[j][i];
+			if (cuswrite == '\0')
+			{
+				cuswrite == '0';
+			}
 			console.writeToBuffer(levellocation, cuswrite, 0x0F);
 			levellocation.X += 1;
 		}
 		levellocation.Y += 1;
 	}
+}
+void savecustomlevel()
+{
+	ofstream outData;
+	string Data;
+	outData.open("CustomLevel.txt");
+	for (int i = 0; i < 17; i++)
+	{
+		for (int j = 0; j < 140; j++)
+		{
+			char cuswrite = g_customizemap[j][i];
+			outData << cuswrite;
+		}
+		outData << endl;
+	}
+	outData.close();
 }
 //void loadcustomlevel()
 //{
