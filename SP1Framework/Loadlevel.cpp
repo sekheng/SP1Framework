@@ -134,9 +134,10 @@ void reloadcustomlevel()
 		}
 		CusLvL.Y += 1;
 	}
-	
+	//convert display
 }
 
+<<<<<<< HEAD
 /*void loadcustomlevel()
 {
 	if (i == cusrow)
@@ -150,3 +151,18 @@ void reloadcustomlevel()
 		outcusData.close();
 	}
 }*/
+=======
+//void loadcustomlevel()
+//{
+//	if (i == cusrow)
+//	{
+//		cout << i << endl;
+//		CusLvL.X = 0;
+//		cout << "hi";
+//		outcusData.open("CustomLevel.txt");
+//		cin >> cusoutData;
+//		outcusData << cusoutData << endl;
+//		outcusData.close();
+//	}
+//}
+>>>>>>> 48bea06dd23e3add0fb8493fcb2614920674853d
