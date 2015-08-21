@@ -10,6 +10,7 @@
 #include "ingame_UI.h"
 #include "help.h"
 #include "Gameover.h"
+#include "The_End.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -33,6 +34,7 @@ bool keyPressed[K_COUNT];
 startscreen state = menu;
 int titlearr[40][150];
 size_t g_map[140][100];    //For Collision System
+size_t g_custommap[140][100]; //for custom lvl
 char pausearr[40][150];
 
 // For Menu Display's coordinates
@@ -46,12 +48,20 @@ COORD et;
 // Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
+<<<<<<< HEAD
 int levelno = 5;
+=======
+int levelno = 1;
+>>>>>>> 1e45e9a0b25fe1206675ca45e93266d6fac297d4
 string level;
 int change;
+int cuschange;
 int row = 1;    // For collision Detection and map coordinates
 int col = 0;    // For collision Detection and map coordinates
+int cusrow = 1;
+int cuscol = 0;
 COORD LvL;
+COORD CusLvL;
 COORD Ttle;
 int ttlerow = 0;
 int ttlecol = 0;
@@ -69,6 +79,8 @@ int pausecols = 0;
 extern COORD pauseLocation;
 extern COORD helpreturn;
 extern COORD gameoverptr;
+extern COORD cannonLocationD[20];
+extern COORD cannonballLocationD[20];
 
 const WORD colors[] =
 {
@@ -89,6 +101,8 @@ void init()
 	/////////////////////////////////////////
 	loadlevel(); // loads the level
 
+	loadcustomlevel();
+
     // Title
     menuPosition();
 
@@ -100,6 +114,9 @@ void init()
 
     // Game Over
     gameoverPosition();
+
+    // The End
+    theendPosition();
 }
 
 // Do your clean up of memory here
@@ -177,7 +194,7 @@ void processUserInput()
 void clearScreen()
 {
     // Clears the buffer with this colour attribute
-    console.clearBuffer(0x1F);
+    console.clearBuffer(0x0F);
 }
 
 void renderMap()
@@ -204,6 +221,14 @@ void renderMap()
 	{
 		reloadlevel(); // reloads level
 	}
+	if (state == LevelCustomized)
+	{
+		reloadcustomlevel();
+	}
+    if ( state == End)
+    {
+        displayTheEnd();
+    }
 }
 
 void renderCharacter()
@@ -220,7 +245,12 @@ void renderCharacter()
 		cannonL(cno);
 		cannonR(cno);
 		cannonU(cno);
-		cannonD(cno);
+		//cannonD(cno);
+		for (int b = 0; b < cno; b++)
+	{
+		console.writeToBuffer(cannonLocationD[b], (char)67, 0x0C);
+		console.writeToBuffer(cannonballLocationD[b], (char)79, 0x0C);
+	}
 		aiMon(mno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
         pauseLocation.Y = 15;
@@ -235,7 +265,7 @@ void renderCharacter()
     }
     if ( state == LevelCustomized)
     {
-       console.writeToBuffer(charLocation, (char)1, 0x0C);
+       console.writeToBuffer(charLocation, (char)1, 0x0F);
     }
     if ( state == GameOver)
     {

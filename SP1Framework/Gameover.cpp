@@ -42,11 +42,11 @@ void displayGameOver()
     for ( int i = 0; i < over_rows; ++i) {
         gameoverLocation.X = 30;
         for ( int j = 0; j < over_cols; ++j) {
-            console.writeToBuffer( gameoverLocation, gameoverarr[i][j], 0x1A );
+            console.writeToBuffer( gameoverLocation, gameoverarr[i][j], 0x0F );
             gameoverLocation.X += 1;
         }
         gameoverLocation.Y += 1;
     }
-    console.writeToBuffer( rtrt, restart2, 0x1A );
-    console.writeToBuffer ( qt, quit2, 0x1A);
+    console.writeToBuffer( rtrt, restart2, 0x0F );
+    console.writeToBuffer ( qt, quit2, 0x0F);
 }

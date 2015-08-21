@@ -33,6 +33,7 @@ enum startscreen
     Exit,
     Pause,
     GameOver,
+    End,
     MAX_STATE
 };
 
