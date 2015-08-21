@@ -48,7 +48,7 @@ COORD et;
 // Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
-int levelno = 1;
+int levelno = 5;
 string level;
 int change;
 int cuschange;

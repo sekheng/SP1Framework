@@ -11,7 +11,7 @@ E -> is the end point
   -> is the wall so that you shall not pass
 *******************************************
 AVOID THESE TRAPS TO PREVENT YOUR DEATH    
-#                                          
+# -> is a trap, not a hashtag              
 *******************************************
 CANNON WILL KEEP ON FIRING                 
 SO AVOID IT                                

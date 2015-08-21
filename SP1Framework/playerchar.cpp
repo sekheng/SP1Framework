@@ -163,6 +163,10 @@ void characterMovement()
 		{
 			state = menu;
 		}
+		if (keyPressed[K_W])
+		{
+
+		}
     }
 
 	else if (state == LevelCustom)
@@ -295,8 +299,9 @@ void characterMovement()
         if ( keyPressed[K_SPACE] )
         {
             state = menu;
-            TheEndDoesNotContinue = true;
+           TheEndDoesNotContinue = true;
         }
+		
     }
 }
 

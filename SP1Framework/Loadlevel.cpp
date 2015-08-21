@@ -136,7 +136,6 @@ void reloadcustomlevel()
 	}
 	//convert display
 }
-
 /*void loadcustomlevel()
 {
 	if (i == cusrow)
