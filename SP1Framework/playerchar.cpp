@@ -229,7 +229,6 @@ void characterMovement()
 			Beep(1440, 30);
 			charLocation.X++;
 		}
-		//cannonballR(3, cno);//3 is ball movement distance
 	}
 
     else if ( state == Pause )
@@ -311,6 +310,12 @@ void getInput()
 	keyPressed[K_A] = isKeyPressed(0x41);
 	keyPressed[K_S] = isKeyPressed(0x53);
 	keyPressed[K_D] = isKeyPressed(0x44);
+	keyPressed[K_R] = isKeyPressed(0x52);
+	keyPressed[K_L] = isKeyPressed(0x4C);
+	keyPressed[K_U] = isKeyPressed(0x55);
+	keyPressed[K_E] = isKeyPressed(0x45);
+	keyPressed[K_M] = isKeyPressed(0x4D);
+	keyPressed[K_BOX] = isKeyPressed(0x42);
 	keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
 	keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
 	keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
