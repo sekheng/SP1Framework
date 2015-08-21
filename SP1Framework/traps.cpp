@@ -54,7 +54,7 @@ void cannonballR(int x,int z)
 {
 	for (int no = 0; no < z;no++)
 	{
-		if (Right.directions[no].X != (Right.directions[no].X + x) && g_timer.getElapsedTime() != -1)
+		if (Right.directions[no].X != (Right.position[no].X + x) && g_timer.getElapsedTime() != -1)
 		{
 			Right.directions[no].X++;
 		}
@@ -69,7 +69,7 @@ void cannonballL(int x,int z)
 {
 	for (int no = 0; no < z; no++)
 	{
-		if (Left.directions[no].X != (Left.directions[no].X - x) && g_timer.getElapsedTime() != -1)
+		if (Left.directions[no].X != (Left.position[no].X - x) && g_timer.getElapsedTime() != -1)
 		{
 			Left.directions[no].X--;
 		}
@@ -84,7 +84,7 @@ void cannonballU(int x,int z)
 {
 	for (int no = 0; no < z;no++)
 	{
-		if (Up.directions[no].Y != (Up.directions[no].Y - x) && g_timer.getElapsedTime() != -1)
+		if (Up.directions[no].Y != (Up.position[no].Y - x) && g_timer.getElapsedTime() != -1)
 		{
 			Up.directions[no].Y--;
 		}
@@ -99,7 +99,7 @@ void cannonballD(int x,int z)
 {
 	for (int no = 0; no < z;no++)
 	{
-		if (Down.directions[no].Y != (Down.directions[no].Y + x) && g_timer.getElapsedTime() != -1)
+		if (Down.directions[no].Y != (Down.position[no].Y + x) && g_timer.getElapsedTime() != -1)
 		{
 			Down.directions[no].Y++;
 		}
