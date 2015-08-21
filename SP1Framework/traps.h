@@ -9,13 +9,13 @@
 
 //COORD cannonballLocationR;
 //COORD cannonLocationR;
-////COORD cannonballLocationL;
-////COORD cannonLocationL;
-////COORD cannonballLocationU;
-////COORD cannonLocationU;
-////COORD cannonballLocationD;
-////COORD cannonLocationD;
-////COORD monsterR;
+//COORD cannonballLocationL;
+//COORD cannonLocationL;
+//COORD cannonballLocationU;
+//COORD cannonLocationU;
+//COORD cannonballLocationD;
+//COORD cannonLocationD;
+//COORD monsterR;
 
 void cannonR(int &i);
 void cannonballR(int x,int z);
