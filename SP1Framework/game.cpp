@@ -207,28 +207,28 @@ void renderMap()
         // Display The Title
         displayMenu();   
     }
-    if ( state == Pause )
+    else if ( state == Pause )
     {
         // Display in-game Pause
         displayPause();
     }
-    if ( state == Help)
+    else if ( state == Help)
     {
         displayHelp();
     }
-    if ( state == GameOver)
+    else if ( state == GameOver)
     {
         displayGameOver();
     }
-	if (state == Start)
+	else if (state == Start)
 	{
 		reloadlevel(); // reloads level
 	}
-	if (state == LevelCustomized)
+	else if (state == LevelCustomized)
 	{
 		reloadcustomlevel();
 	}
-    if ( state == End)
+    else if ( state == End)
     {
         displayTheEnd();
     }
@@ -242,7 +242,7 @@ void renderCharacter()
         pauseLocation.Y = 15;   //These are to reset the location of where the arrow is pointing
         gameoverptr.Y = 8;  //These are to reset the location of where the arrow is pointing
     }
-    if ( state == Start) 
+    else if ( state == Start) 
 	{
 		// Draw the location of the character
 		cannonL(cno);
@@ -250,27 +250,28 @@ void renderCharacter()
 		cannonU(cno);
 		//cannonD(cno);
 		for (int b = 0; b < cno; b++)
-	{
+	    {
 		console.writeToBuffer(Down.position[b], (char)67, 0x0C);
 		console.writeToBuffer(Down.position[b], (char)79, 0x0C);
-	}
+	    }
+		cannonD(cno);
 		aiMon(mno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
         pauseLocation.Y = 15;
     }
-    if ( state == Pause)
+    else if ( state == Pause)
     {
         console.writeToBuffer(pauseLocation, (char)60, 0x0C);
     }
-    if ( state == Help )
+    else if ( state == Help )
     {
         console.writeToBuffer(helpreturn, (char)60, 0x0C);
     }
-    if ( state == LevelCustomized)
+    else if ( state == LevelCustomized)
     {
 
     }
-    if ( state == GameOver)
+    else if ( state == GameOver)
     {
        console.writeToBuffer(gameoverptr, (char)60, 0x0C);
     }
