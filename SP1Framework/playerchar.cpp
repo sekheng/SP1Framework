@@ -159,68 +159,9 @@ void characterMovement()
     //Level Editing
 	if (state == LevelCustomized)
 	{
-		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
+		if (keyPressed[K_SPACE])
 		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-
-		if (keyPressed[K_UP] && charLocation.Y > 0)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-
-		if (keyPressed[K_W] && charLocation.Y > 0)  //up
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_A] && charLocation.X > 0)  //left
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1)  //down
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_D] && charLocation.X < console.getConsoleSize().X - 1)   //right
-		{
-			Beep(1440, 30);
-			charLocation.X++;
+			state = menu;
 		}
     }
 

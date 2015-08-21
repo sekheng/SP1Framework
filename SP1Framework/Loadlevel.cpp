@@ -89,13 +89,6 @@ void reloadlevel()
 		LvL.Y += 1;
 	}
 }
-//cuscol
-//cusrow
-//incusdata
-//cusdata
-//cuschange
-//g_cusmap
-//Coord CusLvl
 
 void loadcustomlevel()
 {
@@ -118,21 +111,42 @@ void loadcustomlevel()
 		++cusrow;
 	}
 	incusData.close();
+
+
+	
 }
 
 void reloadcustomlevel()
 {
+	ofstream outcusData;
+	string cusoutData;
 	CusLvL.Y = 1;
 	CusLvL.X = 0;
+	int i = 1;
 	// Set up sample colours, and output shadings
-	for (int i = 1; i < cusrow; ++i)
+	for (; i < cusrow; ++i)
 	{
 		CusLvL.X = 0;
 		for (int j = 0; j < cuscol; ++j) {
 			char cuswrite = g_custommap[i][j];
-			console.writeToBuffer(CusLvL, cuswrite, colors[0x0F]);
+			console.writeToBuffer(CusLvL, cuswrite, 0x0F);
 			CusLvL.X += 1;
 		}
 		CusLvL.Y += 1;
+	}
+	
+}
+
+void loadcustomlevel()
+{
+	if (i == cusrow)
+	{
+		cout << i << endl;
+		CusLvL.X = 0;
+		cout << "hi";
+		outcusData.open("CustomLevel.txt");
+		cin >> cusoutData;
+		outcusData << cusoutData << endl;
+		outcusData.close();
 	}
 }
