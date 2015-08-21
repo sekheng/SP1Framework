@@ -63,6 +63,9 @@
     <ClCompile Include="Gameover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="The_End.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\console.h">
@@ -101,6 +104,9 @@
     <ClInclude Include="Gameover.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="The_End.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="displayPause.txt">
@@ -113,6 +119,9 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="displayGameover.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="displayTheEnd.txt">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

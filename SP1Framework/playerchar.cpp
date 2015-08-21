@@ -23,6 +23,7 @@ extern int tempEndX;
 extern int tempEndY;
 int RestartX;
 int RestartY;
+bool TheEndDoesNotContinue = false;
 
 COORD pauseLocation;
 COORD helpreturn;
@@ -50,7 +51,14 @@ void characterMovement()
 		}
 		if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
 		{
-			state = Start;
+            if ( TheEndDoesNotContinue == true )
+            {
+                state = End;
+            }
+            else
+            {
+			    state = Start;
+            }
 		}
 		if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
 		{
@@ -344,6 +352,15 @@ void characterMovement()
         {
             characterSpawn(RestartX, RestartY);
             state = menu;
+        }
+    }
+
+    if (state == End)
+    {
+        if ( keyPressed[K_SPACE] )
+        {
+            state = menu;
+            TheEndDoesNotContinue = true;
         }
     }
 }

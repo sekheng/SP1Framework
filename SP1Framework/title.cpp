@@ -124,17 +124,17 @@ void displayMenu() {
             int num;
             int change = titlearr[i][j];
             titleconvert2(change, str, num);
-            console.writeToBuffer( Ttle, str, 0x1A );
+            console.writeToBuffer( Ttle, str, 0x0F );
             Ttle.X += 1;
         }
         Ttle.Y += 1;
     }
         
         // Rendering the Menu
-    console.writeToBuffer(st, strt, 0x1A);
-    console.writeToBuffer(lvled, lvlcustomized, 0x1A);
-    console.writeToBuffer(custom, playcustom, 0x1A);
-    console.writeToBuffer(hp, hlp, 0x1A);
-    console.writeToBuffer(opt, option, 0x1A);
-    console.writeToBuffer(et, ext, 0x1A);
+    console.writeToBuffer(st, strt, 0x0F);
+    console.writeToBuffer(lvled, lvlcustomized, 0x0F);
+    console.writeToBuffer(custom, playcustom, 0x0F);
+    console.writeToBuffer(hp, hlp, 0x0F);
+    console.writeToBuffer(opt, option, 0x0F);
+    console.writeToBuffer(et, ext, 0x0F);
 }

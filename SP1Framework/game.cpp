@@ -10,6 +10,7 @@
 #include "ingame_UI.h"
 #include "help.h"
 #include "Gameover.h"
+#include "The_End.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -102,6 +103,9 @@ void init()
 
     // Game Over
     gameoverPosition();
+
+    // The End
+    theendPosition();
 }
 
 // Do your clean up of memory here
@@ -179,7 +183,7 @@ void processUserInput()
 void clearScreen()
 {
     // Clears the buffer with this colour attribute
-    console.clearBuffer(0x1F);
+    console.clearBuffer(0x0F);
 }
 
 void renderMap()
@@ -206,6 +210,10 @@ void renderMap()
 	{
 		reloadlevel(); // reloads level
 	}
+    if ( state == End)
+    {
+        displayTheEnd();
+    }
 }
 
 void renderCharacter()
