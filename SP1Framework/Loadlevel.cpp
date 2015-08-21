@@ -137,7 +137,7 @@ void reloadcustomlevel()
 	
 }
 
-void loadcustomlevel()
+/*void loadcustomlevel()
 {
 	if (i == cusrow)
 	{
@@ -149,4 +149,4 @@ void loadcustomlevel()
 		outcusData << cusoutData << endl;
 		outcusData.close();
 	}
-}
+}*/
