@@ -34,14 +34,12 @@ void levelcheck(int &a,string &level)
 	//{
 	//	//run endgamescreen
 	//}
-<<<<<<< HEAD
-	
-=======
+
 	else if (a == 100)
 	{
 		level = "CustomLevelLegend.txt";
 	}
->>>>>>> 9520c800fc1711a8e6a4628cb147664609489c5e
+
 	else if (a == 6)
 	{
 		state = End;
