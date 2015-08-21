@@ -31,7 +31,7 @@ int i = 0;
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
-startscreen state = End;
+startscreen state = menu;
 int titlearr[40][150];
 size_t g_map[140][100];    //For Collision System
 char pausearr[40][150];
@@ -47,7 +47,7 @@ COORD et;
 // Game specific variables here
 COORD charLocation;
 COORD startmenuLocation;
-int levelno = 4;
+int levelno = 1;
 string level;
 int change;
 int row = 1;    // For collision Detection and map coordinates

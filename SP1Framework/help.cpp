@@ -36,7 +36,7 @@ void displayHelp()
         for ( int j = 0; j < helpcols; ++j) {
             if ( i == 10 && j == 0)
             {
-                console.writeToBuffer( helpLocation, ' ' , 0x0F );
+                console.writeToBuffer( helpLocation, ' ' , 0x6A );
                 helpLocation.X += 1;
                 continue;
             }

@@ -23,4 +23,4 @@ ___  ____         _               _           _          ______ _       _   _
                   | |                                                              |___|   |___|
                   |_|                                                                           
                                                                                                 
-PRESS ENTER TO CONTINUE                                                                         
+PRESS SPACE TO CONTINUE                                                                         
