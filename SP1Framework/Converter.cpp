@@ -11,6 +11,7 @@ extern int tempEndX;
 extern int tempEndY;
 extern int cno;
 extern int mno;
+extern int bno;
 char pass;
 void convert(int &a)
 {
@@ -50,10 +51,15 @@ void convert(int &a)
 	}
 	if (a == 66) //box
 	{
-
+		convertbox(tempY, tempX, bno);
+		bno++;
 	}
 	
 }
+//void convertbox(int &tempY, int &tempX, int bno)
+//{
+//	characterBox(tempX, tempY, bno);
+//}
 void convertStart(int &y, int &x)
 {
 	characterSpawn(x,y);

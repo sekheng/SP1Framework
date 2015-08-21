@@ -71,7 +71,7 @@ int tempEndX; // x end point coord
 int tempEndY;// y end point coord
 int cno = 0; //cannon number
 int mno = 0;//monster number
-int bno = 0;//box number
+int bno = 0; //box number
 COORD pu;
 int pauserows = 0;
 int pausecols = 0;
