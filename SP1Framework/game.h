@@ -24,6 +24,7 @@ enum Keys
 	K_E,
 	K_M,
 	K_BOX,
+	K_BACK,
     K_ESCAPE,
     K_ENTER,
     K_SPACE,
