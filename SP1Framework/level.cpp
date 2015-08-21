@@ -29,4 +29,8 @@ void levelcheck(int &a,string &level)
 	{
 		level = "levels5.txt";
 	}
+	//else if (a == 6)
+	//{
+	//	//run endgamescreen
+	//}
 }
