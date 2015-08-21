@@ -48,6 +48,10 @@ void convert(int &a)
 		convert(tempY, tempX, mno);
 		mno++;
 	}
+	if (a == 66) //box
+	{
+
+	}
 	
 }
 void convertStart(int &y, int &x)
