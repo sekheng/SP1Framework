@@ -261,7 +261,7 @@ void renderCharacter()
     }
     if ( state == LevelCustomized)
     {
-       console.writeToBuffer(charLocation, (char)1, 0x0F);
+
     }
     if ( state == GameOver)
     {
