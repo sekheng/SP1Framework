@@ -30,7 +30,6 @@ void levelcheck(int &a,string &level)
 	{
 		level = "levels5.txt";
 	}
-<<<<<<< HEAD
 	//else if (a == 6)
 	//{
 	//	//run endgamescreen
@@ -40,9 +39,6 @@ void levelcheck(int &a,string &level)
 	{
 		level = "CustomLevelLegend.txt";
 	}
-
-=======
->>>>>>> e2e0995e17a9923754759ea67fef634a42ad08f7
 	else if (a == 6)
 	{
 		state = End;

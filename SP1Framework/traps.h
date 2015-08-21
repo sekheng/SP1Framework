@@ -7,6 +7,11 @@
 #include <iostream>
 #include <iomanip>
 
+struct Cannon
+{
+	COORD directions[20];
+	COORD position[20];
+};
 //COORD cannonballLocationR;
 //COORD cannonLocationR;
 //COORD cannonballLocationL;
