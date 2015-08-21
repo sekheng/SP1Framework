@@ -410,7 +410,7 @@ void characterInteraction()
 			state = GameOver;
 		}
 	}
-	for (int i = 0; i < cno; ++i)
+	for (int i = 0; i < mno; ++i)
 	{
 		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
 		{
