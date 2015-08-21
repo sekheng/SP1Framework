@@ -5,10 +5,10 @@
 extern COORD startmenuLocation;
 extern COORD charLocation;
 extern size_t g_map[140][100];
-extern COORD cannonballLocationR[20];
-extern COORD cannonballLocationL[20];
-extern COORD cannonballLocationU[20];
-extern COORD cannonballLocationD[20];
+extern struct Cannon Right;
+extern struct Cannon Left;
+extern struct Cannon Up;
+extern struct Cannon Down;
 extern COORD aiCoordinate[20];
 extern Console console;
 extern int cno;
@@ -159,68 +159,9 @@ void characterMovement()
     //Level Editing
 	if (state == LevelCustomized)
 	{
-		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
+		if (keyPressed[K_SPACE])
 		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-
-		if (keyPressed[K_UP] && charLocation.Y > 0)
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0)
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1)
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_RIGHT] && charLocation.X < console.getConsoleSize().X - 1)
-		{
-			Beep(1440, 30);
-			charLocation.X++;
-		}
-
-		if (keyPressed[K_W] && charLocation.Y > 0)  //up
-		{
-			Beep(1440, 30);
-			charLocation.Y--;
-		}
-		if (keyPressed[K_A] && charLocation.X > 0)  //left
-		{
-			Beep(1440, 30);
-			charLocation.X--;
-		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1)  //down
-		{
-			Beep(1440, 30);
-			charLocation.Y++;
-		}
-		if (keyPressed[K_D] && charLocation.X < console.getConsoleSize().X - 1)   //right
-		{
-			Beep(1440, 30);
-			charLocation.X++;
+			state = menu;
 		}
     }
 
@@ -396,28 +337,28 @@ void characterInteraction()
 {
 	for (int i = 0; i < cno; ++i)
 	{
-		if (charLocation.X == cannonballLocationR[i].X && charLocation.Y == cannonballLocationR[i].Y)
+		if (charLocation.X == Right.directions[i].X && charLocation.Y == Right.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
-		if (charLocation.X == cannonballLocationL[i].X && charLocation.Y == cannonballLocationL[i].Y)
+		if (charLocation.X == Left.directions[i].X && charLocation.Y == Left.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
-		if (charLocation.X == cannonballLocationU[i].X && charLocation.Y == cannonballLocationU[i].Y)
+		if (charLocation.X == Up.directions[i].X && charLocation.Y == Up.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
-		if (charLocation.X == cannonballLocationD[i].X && charLocation.Y == cannonballLocationD[i].Y)
+		if (charLocation.X == Down.directions[i].X && charLocation.Y == Down.directions[i].Y)
 		{
 			state = GameOver;
 		}
