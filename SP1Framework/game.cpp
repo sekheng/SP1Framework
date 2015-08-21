@@ -248,13 +248,13 @@ void renderCharacter()
 		cannonU(cno);
 		//cannonD(cno);
 		for (int b = 0; b < cno; b++)
-	{
-		console.writeToBuffer(cannonLocationD[b], (char)67, 0x0C);
-		console.writeToBuffer(cannonballLocationD[b], (char)79, 0x0C);
-	}
-		aiMon(mno);
-		console.writeToBuffer(charLocation, (char)1, 0x0C);
-        pauseLocation.Y = 15;
+	    {
+		    console.writeToBuffer(cannonLocationD[b], (char)67, 0x0C);
+		    console.writeToBuffer(cannonballLocationD[b], (char)79, 0x0C);
+	    }
+		    aiMon(mno);
+		    console.writeToBuffer(charLocation, (char)1, 0x0C);
+            pauseLocation.Y = 15;
     }
     if ( state == Pause)
     {

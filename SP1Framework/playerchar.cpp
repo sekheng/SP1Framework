@@ -44,12 +44,12 @@ void characterMovement()
 			Beep(1440, 30);
 			startmenuLocation.Y--;
 		}
-		if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
+		else if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
 		{
 			Beep(1440, 30);
 			startmenuLocation.Y++;
 		}
-		if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
+		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
 		{
             if ( TheEndDoesNotContinue == true )
             {
@@ -60,30 +60,30 @@ void characterMovement()
 			    state = Start;
             }
 		}
-		if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
+		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
 		{
 			state = LevelCustomized;
 		}
-		if (keyPressed[K_ENTER] && startmenuLocation.Y == 23)
+		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 23)
 		{
 			state = LevelCustom;
 		}
-        if ( keyPressed[K_ENTER] && startmenuLocation.Y == 24 )
+        else if ( keyPressed[K_ENTER] && startmenuLocation.Y == 24 )
         {
             state = Help;
         }
-		if (keyPressed[K_ENTER] && startmenuLocation.Y == 26)
+		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 26)
 		{
 			state = Exit;
 		}
 	}
 
-	if (state == Exit)
+	else if (state == Exit)
 	{
 		g_quitGame = true;
 	}
 
-	if (state == Start)   // The Game Begins!
+	else if (state == Start)   // The Game Begins!
 	{
 		// Updating the location of the character based on the key press
 		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
@@ -157,7 +157,7 @@ void characterMovement()
 		characterEnd(tempEndY, tempEndX);
 	}
     //Level Editing
-	if (state == LevelCustomized)
+	else if (state == LevelCustomized)
 	{
 		// Updating the location of the character based on the key press
 		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0)
@@ -224,7 +224,7 @@ void characterMovement()
 		}
     }
 
-	if (state == LevelCustom)
+	else if (state == LevelCustom)
 	{
 		// Updating the location of the character based on the key press
 		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
@@ -291,34 +291,34 @@ void characterMovement()
 		//cannonballR(3, cno);//3 is ball movement distance
 	}
 
-    if ( state == Pause )
+    else if ( state == Pause )
     {
 		if (keyPressed[K_UP] && pauseLocation.Y > 15)
 		{
 			Beep(1440, 30);
 			pauseLocation.Y--;
 		}
-		if (keyPressed[K_DOWN] && pauseLocation.Y < 17)
+		else if (keyPressed[K_DOWN] && pauseLocation.Y < 17)
 		{
 			Beep(1440, 30);
 			pauseLocation.Y++;
 		}
-        if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
+        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
         {
             state = Start;
         }
-        if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
+        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
         {
             characterSpawn(RestartX,RestartY);
             state = Start;
         }
-        if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
+        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
         {
             state = menu;
         }
     }
 
-    if ( state == Help )
+    else if ( state == Help )
     {
         if ( keyPressed[K_SPACE] )
         {
@@ -326,31 +326,31 @@ void characterMovement()
         }
     }
 
-    if ( state == GameOver)
+    else if ( state == GameOver)
     {
 		if (keyPressed[K_UP] && gameoverptr.Y > 8)
 		{
 			Beep(1440, 30);
 			gameoverptr.Y--;
 		}
-		if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
+		else if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
 		{
 			Beep(1440, 30);
 			gameoverptr.Y++;
 		}
-        if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
+        else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
         {
 			characterSpawn(RestartX, RestartY);
             state = Start;
         }
-        if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
+        else if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
         {
             characterSpawn(RestartX, RestartY);
             state = menu;
         }
     }
 
-    if (state == End)
+    else if (state == End)
     {
         if ( keyPressed[K_SPACE] )
         {
