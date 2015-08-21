@@ -248,12 +248,7 @@ void renderCharacter()
 		cannonL(cno);
 		cannonR(cno);
 		cannonU(cno);
-		//cannonD(cno);
-		for (int b = 0; b < cno; b++)
-	{
-		console.writeToBuffer(Down.position[b], (char)67, 0x0C);
-		console.writeToBuffer(Down.position[b], (char)79, 0x0C);
-	}
+		cannonD(cno);
 		aiMon(mno);
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
         pauseLocation.Y = 15;
