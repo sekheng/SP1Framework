@@ -5,10 +5,10 @@
 extern COORD startmenuLocation;
 extern COORD charLocation;
 extern size_t g_map[140][100];
-extern COORD cannonballLocationR[20];
-extern COORD cannonballLocationL[20];
-extern COORD cannonballLocationU[20];
-extern COORD cannonballLocationD[20];
+extern struct Cannon Right;
+extern struct Cannon Left;
+extern struct Cannon Up;
+extern struct Cannon Down;
 extern COORD aiCoordinate[20];
 extern Console console;
 extern int cno;
@@ -396,28 +396,28 @@ void characterInteraction()
 {
 	for (int i = 0; i < cno; ++i)
 	{
-		if (charLocation.X == cannonballLocationR[i].X && charLocation.Y == cannonballLocationR[i].Y)
+		if (charLocation.X == Right.directions[i].X && charLocation.Y == Right.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
-		if (charLocation.X == cannonballLocationL[i].X && charLocation.Y == cannonballLocationL[i].Y)
+		if (charLocation.X == Left.directions[i].X && charLocation.Y == Left.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
-		if (charLocation.X == cannonballLocationU[i].X && charLocation.Y == cannonballLocationU[i].Y)
+		if (charLocation.X == Up.directions[i].X && charLocation.Y == Up.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
 	for (int i = 0; i < cno; ++i)
 	{
-		if (charLocation.X == cannonballLocationD[i].X && charLocation.Y == cannonballLocationD[i].Y)
+		if (charLocation.X == Down.directions[i].X && charLocation.Y == Down.directions[i].Y)
 		{
 			state = GameOver;
 		}
