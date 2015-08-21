@@ -20,4 +20,8 @@ void reloadlevel();
 void loadcustomlevel();
 void reloadcustomlevel();
 
+void writelevel(char &a);
+
+void renderwrittenlevel();
+
 #endif  

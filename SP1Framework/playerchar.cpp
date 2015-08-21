@@ -4,6 +4,7 @@
 
 extern COORD startmenuLocation;
 extern COORD charLocation;
+extern COORD charCustomLocation;
 extern size_t g_map[140][100];
 extern struct Cannon Right;
 extern struct Cannon Left;
@@ -24,7 +25,7 @@ extern int tempEndY;
 int RestartX;
 int RestartY;
 bool TheEndDoesNotContinue = false;
-
+extern COORD CusLvL;
 COORD pauseLocation;
 COORD helpreturn;
 COORD gameoverptr;
@@ -159,18 +160,98 @@ void characterMovement()
     //Level Editing
 	else if (state == LevelCustomized)
 	{
+		char edit;
 		if (keyPressed[K_SPACE])
 		{
 			state = menu;
 		}
-		if (keyPressed[K_W])
+		if (keyPressed[K_0])
 		{
-
+			edit = '0';
+			writelevel(edit);
 		}
+		if (keyPressed[K_R])
+		{
+			edit = 'R';
+			writelevel(edit);
+		}
+		if (keyPressed[K_U])
+		{
+			edit = 'U';
+			writelevel(edit);
+		}
+		if (keyPressed[K_D])
+		{
+			edit = 'D';
+			writelevel(edit);
+		}
+		if (keyPressed[K_1])
+		{
+			edit = '1';
+			writelevel(edit);
+		}
+		if (keyPressed[K_S])
+		{
+			edit = 'S';
+			writelevel(edit);
+		}
+		if (keyPressed[K_E])
+		{
+			edit = 'E';
+			writelevel(edit);
+		}
+		if (keyPressed[K_M])
+		{
+			edit = 'M';
+			writelevel(edit);
+		}
+		if (keyPressed[K_BOX])
+		{
+			edit = 'B';
+			writelevel(edit);
+		}
+		if (keyPressed[K_1])
+		{
+			edit = '1';
+			writelevel(edit);
+		}
+		if (keyPressed[K_0])
+		{
+			edit = '0';
+			writelevel(edit);
+		}
+		if (keyPressed[K_BACK])
+		{
+			edit = '\0';
+			writelevel(edit);
+		}
+		
+		if (keyPressed[K_UP] && charCustomLocation.Y > 0 )
+		{
+			Beep(1440, 30);
+			charCustomLocation.Y--;
+		}
+		if (keyPressed[K_LEFT] && charCustomLocation.X > 0 )
+		{
+			Beep(1440, 30);
+			charCustomLocation.X--;
+		}
+		if (keyPressed[K_DOWN] && charCustomLocation.Y < 17 )
+		{
+			Beep(1440, 30);
+			charCustomLocation.Y++;
+		}
+		if (keyPressed[K_RIGHT] )
+		{
+			Beep(1440, 30);
+			charCustomLocation.X++;
+		}
+
     }
 
 	else if (state == LevelCustom)
 	{
+
 		// Updating the location of the character based on the key press
 		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
 		{

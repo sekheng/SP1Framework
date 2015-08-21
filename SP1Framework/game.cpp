@@ -35,6 +35,7 @@ startscreen state = menu;
 int titlearr[40][150];
 size_t g_map[140][100];    //For Collision System
 size_t g_custommap[140][100]; //for custom lvl
+size_t g_customizemap[140][100]; //for customising lvl
 char pausearr[40][150];
 
 // For Menu Display's coordinates
@@ -47,6 +48,7 @@ COORD et;
 
 // Game specific variables here
 COORD charLocation;
+COORD charCustomLocation;
 COORD startmenuLocation;
 int levelno = 5;
 string level;
@@ -72,6 +74,9 @@ int mno = 0;//monster number
 COORD pu;
 int pauserows = 0;
 int pausecols = 0;
+
+
+
 extern COORD pauseLocation;
 extern COORD helpreturn;
 extern COORD gameoverptr;
@@ -92,7 +97,9 @@ const WORD colors[] =
 void init()
 {
     // Set precision for floating point output
-    elapsedTime = 0.0;
+	elapsedTime = 0.0; 
+	charCustomLocation.X = 0;
+	charCustomLocation.Y = 1;
 
 	characterInit();
 
@@ -227,6 +234,7 @@ void renderMap()
 	else if (state == LevelCustomized)
 	{
 		reloadcustomlevel();
+		renderwrittenlevel();
 	}
     else if ( state == End)
     {
@@ -269,7 +277,7 @@ void renderCharacter()
     }
     else if ( state == LevelCustomized)
     {
-
+		console.writeToBuffer(charCustomLocation, (char)1, 0x0C);
     }
     else if ( state == GameOver)
     {
