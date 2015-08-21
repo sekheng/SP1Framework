@@ -225,7 +225,6 @@ void characterMovement()
 			edit = '\0';
 			writelevel(edit);
 		}
-		
 		if (keyPressed[K_UP] && charCustomLocation.Y > 0 )
 		{
 			Beep(1440, 30);
