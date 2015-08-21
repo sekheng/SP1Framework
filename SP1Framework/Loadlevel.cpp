@@ -136,8 +136,6 @@ void reloadcustomlevel()
 	}
 	//convert display
 }
-
-<<<<<<< HEAD
 /*void loadcustomlevel()
 {
 	if (i == cusrow)
@@ -151,7 +149,6 @@ void reloadcustomlevel()
 		outcusData.close();
 	}
 }*/
-=======
 //void loadcustomlevel()
 //{
 //	if (i == cusrow)
@@ -165,4 +162,3 @@ void reloadcustomlevel()
 //		outcusData.close();
 //	}
 //}
->>>>>>> 48bea06dd23e3add0fb8493fcb2614920674853d
