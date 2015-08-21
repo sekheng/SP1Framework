@@ -215,17 +215,14 @@ void renderMap()
 	{
 		reloadlevel(); // reloads level
 	}
-<<<<<<< HEAD
 	if (state == LevelCustomized)
 	{
 		reloadcustomlevel();
 	}
-=======
     if ( state == End)
     {
         displayTheEnd();
     }
->>>>>>> 90bf449ae8e7bef8a9cca739e818ba68ec49d4e6
 }
 
 void renderCharacter()
@@ -257,7 +254,7 @@ void renderCharacter()
     }
     if ( state == LevelCustomized)
     {
-       console.writeToBuffer(charLocation, (char)1, 0x0C);
+       console.writeToBuffer(charLocation, (char)1, 0x0F);
     }
     if ( state == GameOver)
     {
