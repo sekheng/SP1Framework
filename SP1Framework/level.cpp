@@ -5,6 +5,7 @@
 #include "playerchar.h"
 extern COORD charLocation;
 extern Console console;
+extern startscreen state;
 
 void levelcheck(int &a,string &level)
 {
@@ -29,6 +30,7 @@ void levelcheck(int &a,string &level)
 	{
 		level = "levels5.txt";
 	}
+<<<<<<< HEAD
 	//else if (a == 6)
 	//{
 	//	//run endgamescreen
@@ -36,5 +38,10 @@ void levelcheck(int &a,string &level)
 	else if (a == 100)
 	{
 		level = "CustomLevelLegend.txt";
+=======
+	else if (a == 6)
+	{
+		state = End;
+>>>>>>> 90bf449ae8e7bef8a9cca739e818ba68ec49d4e6
 	}
 }
