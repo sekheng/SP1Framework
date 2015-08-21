@@ -321,6 +321,8 @@ void getInput()
 	keyPressed[K_E] = isKeyPressed(0x45);
 	keyPressed[K_M] = isKeyPressed(0x4D);
 	keyPressed[K_BOX] = isKeyPressed(0x42);
+	keyPressed[K_0] = isKeyPressed(0x30);
+	keyPressed[K_1] = isKeyPressed(0x31);
 	keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
 	keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
 	keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
