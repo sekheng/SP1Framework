@@ -136,10 +136,6 @@ void reloadcustomlevel()
 	}
 	//convert display
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 5fd080b69de20df5283bf2965a52d3db49fca82b
 /*void loadcustomlevel()
 {
 	if (i == cusrow)
@@ -153,10 +149,6 @@ void reloadcustomlevel()
 		outcusData.close();
 	}
 }*/
-<<<<<<< HEAD
-
-=======
->>>>>>> 5fd080b69de20df5283bf2965a52d3db49fca82b
 //void loadcustomlevel()
 //{
 //	if (i == cusrow)
@@ -170,7 +162,3 @@ void reloadcustomlevel()
 //		outcusData.close();
 //	}
 //}
-<<<<<<< HEAD
-
-=======
->>>>>>> 5fd080b69de20df5283bf2965a52d3db49fca82b
