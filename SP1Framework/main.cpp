@@ -16,6 +16,7 @@ void mainLoop();
 
 int main()
 {
+    //PlaySound(TEXT("mlg.wav"), NULL, SND_FILENAME);
 	init();      // initialize your variables level
     mainLoop();  // main loop
     shutdown();  // do clean up, if any. free memory.
@@ -31,7 +32,6 @@ void mainLoop()
 
             while (!g_quitGame)      // run this loop until user wants to quit 
 	        {        
-                //PlaySound(TEXT("mlg.wav"), NULL, SND_FILENAME);
                 getInput();                         // get keyboard input
                 update(g_timer.getElapsedTime());   // update the game 
                 render();                           // render the graphics output to screen
