@@ -152,7 +152,7 @@ void renderwrittenlevel()
 			char cuswrite = g_customizemap[j][i];
 			if (cuswrite == '\0')
 			{
-				cuswrite == '0';
+				cuswrite = '0';
 			}
 			console.writeToBuffer(levellocation, cuswrite, 0x0F);
 			levellocation.X += 1;
