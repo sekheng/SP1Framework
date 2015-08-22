@@ -160,10 +160,15 @@ void characterMovement()
     //Level Editing
 	else if (state == LevelCustomized)
 	{
-		char edit;
+		char edit = '0';
 		if (keyPressed[K_SPACE])
 		{
 			state = menu;
+		}
+		if (keyPressed[K_L])
+		{
+			edit = 'L';
+			writelevel(edit);
 		}
 		if (keyPressed[K_0])
 		{
@@ -222,8 +227,13 @@ void characterMovement()
 		}
 		if (keyPressed[K_BACK])
 		{
-			edit = '\0';
+			edit = '0';
 			writelevel(edit);
+		}
+		if (keyPressed[K_ENTER])
+		{
+			savecustomlevel();
+			state = menu;
 		}
 		if (keyPressed[K_UP] && charCustomLocation.Y > 0 )
 		{
