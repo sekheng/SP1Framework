@@ -11,6 +11,8 @@
 #include "help.h"
 #include "Gameover.h"
 #include "The_End.h"
+#include "windows.h"    // For Music Feature
+#include "mmsystem.h"   // For Music Feature
 #include <iostream>
 #include <iomanip>
 #include <sstream>
