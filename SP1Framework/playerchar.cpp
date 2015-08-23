@@ -77,6 +77,30 @@ void characterMovement()
 		{
 			state = Exit;
 		}
+
+        if ( startmenuLocation.Y == 21)
+        {
+            startmenuLocation.X = 9;
+        }
+        else if (startmenuLocation.Y == 22) {
+            startmenuLocation.X = 23;
+        }
+        else if ( startmenuLocation.Y == 23) {
+            startmenuLocation.X = 21;
+        }
+        else if ( startmenuLocation.Y == 24)
+        {
+            startmenuLocation.X = 8;
+        }
+        else if ( startmenuLocation.Y == 25)
+        {
+            startmenuLocation.X = 11;
+        }
+        else
+        {
+            startmenuLocation.X = 8;
+        }
+
 	}
 
 	else if (state == Exit)
