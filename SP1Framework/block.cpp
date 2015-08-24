@@ -23,28 +23,28 @@ void updateBlock(int x, int z)
 	{
 		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++)
 		{
-			block.directions[i].Y = charLocation.Y--;
+			block.directions[i].Y--;
 		}
 	}
 	for (int i = 0; i < bno; ++i)
 	{
 		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y--)
 		{
-			block.directions[i].Y = charLocation.Y++;
+			block.directions[i].Y++;
 		}
 	}
 	for (int i = 0; i < bno; ++i)
 	{
 		if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y)
 		{
-			block.directions[i].X = charLocation.X--;
+			block.directions[i].X--;
 		}
 	}
 	for (int i = 0; i < bno; ++i)
 	{
 		if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y)
 		{
-			block.directions[i].X = charLocation.X--;
+			block.directions[i].X++;
 		}
 	}
 

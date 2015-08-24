@@ -53,7 +53,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 4;
+int levelno = 1;
 string level;
 int counter = 0;//counter for custom map
 int change;
@@ -289,6 +289,8 @@ void renderCharacter()
 		cannonD(cno);
 		aiMon(mno);
 		printBlock(bno);
+        display_keys();
+        display_gate();
 
 		console.writeToBuffer(charLocation, (char)2, 0x0C);
         pauseLocation.Y = 15;
