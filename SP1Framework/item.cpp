@@ -11,6 +11,7 @@ int no_of_keys = 0;
 Items Keys;
 Items Gates[10];
 int no_of_gates = 0;
+bool collected_keys = false;
 
 void initinventorysystem()
 {
@@ -55,7 +56,11 @@ void displayinventory( int no_of_items)
 
 void display_keys()
 {   
-   console.writeToBuffer( multiple_keys_location, "K", 0xF0);
+    if ( collected_keys == false )
+    {
+        console.writeToBuffer( multiple_keys_location, "K", 0xF0);
+    }
+    //else if ( 
 }
 
 void gate_location( int &GateY, int &GateX)

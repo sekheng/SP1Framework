@@ -504,42 +504,7 @@ void characterInteraction()
 		}
 	}
 
-	//For custom levels
-	for (int i = 0; i < cno; ++i)
-	{
-		if (charCustomLocation.X == Right.directions[i].X && charCustomLocation.Y == Right.directions[i].Y)
-		{
-			state = GameOver;
-		}
-	}
-	for (int i = 0; i < cno; ++i)
-	{
-		if (charCustomLocation.X == Left.directions[i].X && charCustomLocation.Y == Left.directions[i].Y)
-		{
-			state = GameOver;
-		}
-	}
-	for (int i = 0; i < cno; ++i)
-	{
-		if (charCustomLocation.X == Up.directions[i].X && charCustomLocation.Y == Up.directions[i].Y)
-		{
-			state = GameOver;
-		}
-	}
-	for (int i = 0; i < cno; ++i)
-	{
-		if (charCustomLocation.X == Down.directions[i].X && charCustomLocation.Y == Down.directions[i].Y)
-		{
-			state = GameOver;
-		}
-	}
-	for (int i = 0; i < mno; ++i)
-	{
-		if (charCustomLocation.X == aiCoordinate[i].X && charCustomLocation.Y == aiCoordinate[i].Y)
-		{
-			state = GameOver;
-		}
-	}
+	
 }
 
 void speedDown(double x)
