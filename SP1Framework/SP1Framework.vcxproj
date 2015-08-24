@@ -116,6 +116,12 @@
     <None Include="displayHelp2.txt" />
     <None Include="displayPause.txt" />
     <None Include="displayTheEnd.txt" />
+    <None Include="level1_text.txt" />
+    <None Include="level2_text.txt" />
+    <None Include="level3_text.txt" />
+    <None Include="level4_text.txt" />
+    <None Include="level5_text.txt" />
+    <None Include="Level_Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
