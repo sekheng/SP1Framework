@@ -290,7 +290,7 @@ void renderCharacter()
 		aiMon(mno);
 		printBlock(bno);
 
-		console.writeToBuffer(charLocation, (char)1, 0x0C);
+		console.writeToBuffer(charLocation, (char)2, 0x0C);
         pauseLocation.Y = 15;
     }
     else if ( state == Pause)
