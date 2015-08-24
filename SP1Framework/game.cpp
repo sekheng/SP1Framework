@@ -79,8 +79,6 @@ COORD pu;
 int pauserows = 0;
 int pausecols = 0;
 
-
-
 extern COORD pauseLocation;
 extern COORD helpreturn;
 extern COORD gameoverptr;
@@ -126,6 +124,9 @@ void init()
 
     // The End
     theendPosition();
+
+    // Displey Level UI
+    initLevelText();
 }
 
 // Do your clean up of memory here
@@ -166,11 +167,18 @@ void update(double dt)
     deltaTime = dt;
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-    moveCharacter(); 
-	cannonballR(3, cno);
-	cannonballL(3, cno);
-	cannonballU(3, cno);
-	cannonballD(3, cno);
+    speedDown(elapsedTime);
+	speed(3, cno, elapsedTime);
+	/*if( velocity > elapsedTime)
+		return;
+	else
+	{
+		cannonballR(3, cno, elapsedTime);
+		cannonballL(6, cno, elapsedTime);
+		cannonballU(3, cno, elapsedTime);
+		cannonballD(3, cno, elapsedTime);
+	}
+	velocity = elapsedTime + 0.000;*/
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
     // sound can be played here too.
 }
@@ -234,6 +242,7 @@ void renderMap()
 	else if (state == Start)
 	{
 		reloadlevel(); // reloads level
+        displayleveltext();
 	}
 	else if (state == LevelCustomized)
 	{

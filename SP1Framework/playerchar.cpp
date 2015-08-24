@@ -2,6 +2,7 @@
 
 //#include "traps.cpp"
 
+double velocityChar;
 extern COORD startmenuLocation;
 extern COORD charLocation;
 extern COORD charCustomLocation;
@@ -43,12 +44,12 @@ void characterMovement()
 	{
 		if (keyPressed[K_UP] && startmenuLocation.Y > 21)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			startmenuLocation.Y--;
 		}
 		else if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			startmenuLocation.Y++;
 		}
 		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
@@ -114,64 +115,64 @@ void characterMovement()
 		// Updating the location of the character based on the key press
 		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X++;
 		}
 		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X--;
 		}
 
 		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X++;
 		}
 
 		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)  //up
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_D] && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X++;
 		}
 		characterInteraction();
@@ -257,22 +258,22 @@ void characterMovement()
 		}
 		if (keyPressed[K_UP] && charCustomLocation.Y > 1 )
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charCustomLocation.Y--;
 		}
 		if (keyPressed[K_LEFT] && charCustomLocation.X >0 )
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charCustomLocation.X--;
 		}
 		if (keyPressed[K_DOWN] && charCustomLocation.Y < 16 )
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charCustomLocation.Y++;
 		}
 		if (keyPressed[K_RIGHT] && charCustomLocation.X < 55)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charCustomLocation.X++;
 		}
     }
@@ -281,6 +282,7 @@ void characterMovement()
 	{
 
 		// Updating the location of the character based on the key press
+<<<<<<< HEAD
 		//if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_customizemap[charLocation.Y + 2][charLocation.X] != 1)
 		//{
 		//	Beep(1440, 30);
@@ -303,44 +305,67 @@ void characterMovement()
 		//}
 
 		if (keyPressed[K_UP] && charLocation.Y > 0 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)
+=======
+		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
+			charLocation.Y++;
+		}
+		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		{
+			//Beep(1440, 30);
+			charLocation.X++;
+		}
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
+		{
+			//Beep(1440, 30);
+			charLocation.Y--;
+		}
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
+		{
+			//Beep(1440, 30);
+			charLocation.X--;
+		}
+		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
+>>>>>>> a890f0fa57316d6b9870509bda209a75be71d3c6
+		{
+			//Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_RIGHT] && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X++;
 		}
 
 		if (keyPressed[K_W] && charLocation.Y > 0 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)  //up
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)  //left
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)  //down
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_D]  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)   //right
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			charLocation.X++;
 		}
 	}
@@ -349,12 +374,12 @@ void characterMovement()
     {
 		if (keyPressed[K_UP] && pauseLocation.Y > 15)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			pauseLocation.Y--;
 		}
 		else if (keyPressed[K_DOWN] && pauseLocation.Y < 17)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			pauseLocation.Y++;
 		}
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
@@ -384,12 +409,12 @@ void characterMovement()
     {
 		if (keyPressed[K_UP] && gameoverptr.Y > 8)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			gameoverptr.Y--;
 		}
 		else if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
 		{
-			Beep(1440, 30);
+			//Beep(1440, 30);
 			gameoverptr.Y++;
 		}
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
@@ -493,4 +518,12 @@ void characterInteraction()
 			state = GameOver;
 		}
 	}
+}
+
+void speedDown(double x)
+{
+	if(velocityChar > x)
+		return;
+	velocityChar = x + 0.102;
+	moveCharacter();
 }

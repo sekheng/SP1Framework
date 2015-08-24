@@ -36,6 +36,12 @@ extern size_t g_custommap[140][100];
 extern size_t g_customizemap[140][100];
 extern int cuschange;
 
+COORD display_level_text;
+char leveltext_arr[200][100];
+COORD purelystatic_level_text;
+int leveltext_row = 0;
+int leveltext_col = 0;
+
 void loadlevel()
 {
 	tempX = 0;
@@ -175,6 +181,7 @@ void savecustomlevel()
 	}
 	outData.close();
 }
+<<<<<<< HEAD
 
 void loadcustomizedlevel()
 {
@@ -232,3 +239,78 @@ void reloadcustomizedlevel()
 		LvL.Y += 1;
 	}
 }
+=======
+//void loadcustomlevel()
+//{
+//	if (i == cusrow)
+//	{
+//		cout << i << endl;
+//		CusLvL.X = 0;
+//		cout << "hi";
+//		outcusData.open("CustomLevel.txt");
+//		cin >> cusoutData;
+//		outcusData << cusoutData << endl;
+//		outcusData.close();
+//	}
+//}+
+
+void initLevelText()
+{
+    ifstream instatic_level_text;
+    instatic_level_text.open("Level_Text.txt");
+    string purelystatic_Text;
+    while ( getline (instatic_level_text, purelystatic_Text) && !instatic_level_text.eof() )
+    {
+        leveltext_col = 0;
+        for ( size_t y = 0; y < purelystatic_Text.size(); ++y) {
+            leveltext_arr[leveltext_row][leveltext_col] = purelystatic_Text[y];
+            ++leveltext_col;
+        }
+        ++leveltext_row;
+    }
+    instatic_level_text.close();
+    purelystatic_level_text.X = 60;
+    purelystatic_level_text.Y = 1;
+}
+
+void displayleveltext() 
+{
+    display_level_text.X = 108;
+    display_level_text.Y = 1;
+    purelystatic_level_text.Y = 1;
+    string level_text;
+    for ( int i = 0 ; i  < leveltext_row; ++i)
+    {
+        purelystatic_level_text.X = 60;
+        for ( int j = 0; j < leveltext_col; ++j)
+        {
+            console.writeToBuffer( purelystatic_level_text, leveltext_arr[i][j], 0x0F);
+            purelystatic_level_text.X += 1;
+        }
+        purelystatic_level_text.Y += 1;
+    }
+
+    switch (levelno)
+    {
+    case 1: level_text = "level1_text.txt"; 
+        break;
+    case 2: level_text = "level2_text.txt";
+        break;
+    case 3: level_text = "level3_text.txt";
+        break;
+    case 4: level_text = "level4_text.txt";
+        break;
+    case 5: level_text = "level5_text.txt";
+        break;
+    }
+    ifstream inlevelText;
+    inlevelText.open(level_text);
+    string display_LevelText;
+    while ( !inlevelText.eof() && getline(inlevelText, display_LevelText) )
+    {
+        console.writeToBuffer(display_level_text, display_LevelText, 0x0F);
+        display_level_text.Y += 1;
+    }
+    inlevelText.close();
+}
+>>>>>>> a890f0fa57316d6b9870509bda209a75be71d3c6

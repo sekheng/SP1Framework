@@ -14,19 +14,20 @@ struct Cannon
 };
 
 void cannonR(int &i);
-void cannonballR(int x,int z);
-void locationR(int x,int y,int z);
-
 void cannonL(int &i);
-void cannonballL(int x,int z);
-void locationL(int x,int y,int z);
-
 void cannonU(int &i);
-void cannonballU(int x,int z);
-void locationU(int x,int y,int z);
-
 void cannonD(int &i);
-void cannonballD(int x,int z);
+
+void cannonballR(int x,int z, double j);
+void cannonballL(int x,int z, double j);
+void cannonballU(int x,int z, double j);
+void cannonballD(int x,int z, double j);
+
+void locationR(int x,int y,int z);
+void locationL(int x,int y,int z);
+void locationU(int x,int y,int z);
 void locationD(int x,int y,int z);
+
+void speed(int x, int y, double w);
 
 #endif  // _TRAPS_H
