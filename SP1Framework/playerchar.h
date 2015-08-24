@@ -14,7 +14,7 @@
 #include "Framework\console.h"
 
 void characterInit();
-void characterMovement();
+void characterMovement(double x);
 void getInput();
 void characterInteraction();
 void characterSpawn(int x, int y);
