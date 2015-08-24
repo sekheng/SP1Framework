@@ -501,30 +501,30 @@ void characterInteraction()
 	}
 	for (int i = 0; i < bno; ++i)
 	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++)
+		{
+			block.directions[i].Y = charLocation.Y--;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y--)
 		{
 			block.directions[i].Y = charLocation.Y++;
 		}
 	}
 	for (int i = 0; i < bno; ++i)
 	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
+		if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y)
 		{
-			state = GameOver;
+			block.directions[i].X = charLocation.X--;
 		}
 	}
 	for (int i = 0; i < bno; ++i)
 	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
+		if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y)
 		{
-			state = GameOver;
-		}
-	}
-	for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
-		{
-			state = GameOver;
+			block.directions[i].X = charLocation.X--;
 		}
 	}
 }
