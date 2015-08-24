@@ -24,5 +24,4 @@ void updateBlock(int x, int z);
 //to be placed in render
 void printBlock(int &i);
 
-
-#endif
+#endif // _BLOCK_H
