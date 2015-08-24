@@ -1,3 +1,5 @@
+-----------------press space to go back-----------------
+-----------------Press Enter to save map----------------
 Type in different characters and create your own map!
 R - Right Cannon
 L - Left Cannon
@@ -9,4 +11,3 @@ S - Character Spawn
 E - End point
 M - Monster Spawn
 # - Box                                                    
------------------press space to go back-----------------
