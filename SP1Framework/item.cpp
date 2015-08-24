@@ -4,13 +4,13 @@ extern Console console;
 extern COORD charLocation;
 COORD display_inventorysystem;
 COORD multiple_keys_location;
-COORD multiple_gates_location;
 int display_inventory_row = 0;
 int display_inventory_col = 0;
 char display_inventoryarr[200][200];
 int no_of_keys = 0;
 Items Keys;
-Items Gates;
+Items Gates[10];
+int no_of_gates = 0;
 
 void initinventorysystem()
 {
@@ -60,11 +60,15 @@ void display_keys()
 
 void gate_location( int &GateY, int &GateX)
 {
-    multiple_gates_location.Y = GateY;
-    multiple_gates_location.X = GateX;
+    Gates[no_of_gates].KeysLocation.Y = GateY;
+    Gates[no_of_gates].KeysLocation.X = GateX;
+    ++no_of_gates;
 }
 
 void display_gate()
 {
-    console.writeToBuffer( multiple_gates_location, "G", 0x0C);
+    for ( int i = 0; i < no_of_gates; ++i)
+    {
+        console.writeToBuffer(Gates[i].KeysLocation , "G", 0x0C);
+    }
 }

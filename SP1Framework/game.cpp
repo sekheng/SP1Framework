@@ -53,7 +53,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 4;
+int levelno = 1;
 string level;
 int counter = 0;//counter for custom map
 int change;

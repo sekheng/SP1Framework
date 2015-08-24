@@ -15,6 +15,7 @@ struct Items
 {
     COORD KeysLocation;
     int item[10];
+    bool collected[10];
 };
 
 void initinventorysystem();
