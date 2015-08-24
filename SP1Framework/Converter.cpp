@@ -52,14 +52,16 @@ void convert(int &a)
 	if (a == 66) //box
 	{
 		//convertbox(tempY, tempX, bno);
+		setBlock(tempY, tempX, bno);
+
 		bno++;
 	}
 	
 }
-//void convertbox(int &tempY, int &tempX, int bno)
-//{
-//	characterBox(tempX, tempY, bno);
-//}
+/*void convertbox(int &tempY, int &tempX, int bno)
+{
+	characterBox(tempX, tempY, bno);
+}*/
 void convertStart(int &y, int &x)
 {
 	characterSpawn(x,y);
