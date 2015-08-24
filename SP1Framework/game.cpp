@@ -173,16 +173,6 @@ void update(double dt)
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     speedDown(elapsedTime);
 	speed(3, cno, elapsedTime);
-	/*if( velocity > elapsedTime)
-		return;
-	else
-	{
-		cannonballR(3, cno, elapsedTime);
-		cannonballL(6, cno, elapsedTime);
-		cannonballU(3, cno, elapsedTime);
-		cannonballD(3, cno, elapsedTime);
-	}
-	velocity = elapsedTime + 0.000;*/
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
 	updateBlock(3, bno);
 
