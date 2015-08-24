@@ -86,10 +86,12 @@ void characterMovement(double x)
         {
             startmenuLocation.X = 9;
         }
-        else if (startmenuLocation.Y == 22) {
+        else if (startmenuLocation.Y == 22) 
+		{
             startmenuLocation.X = 23;
         }
-        else if ( startmenuLocation.Y == 23) {
+        else if ( startmenuLocation.Y == 23) 
+		{
             startmenuLocation.X = 21;
         }
         else if ( startmenuLocation.Y == 24)
@@ -465,6 +467,7 @@ void characterEnd(int y, int x)//temp y , temp x
 
 void characterInteraction()
 {
+	//For normal levels
 	for (int i = 0; i < cno; ++i)
 	{
 		if (charLocation.X == Right.directions[i].X && charLocation.Y == Right.directions[i].Y)
@@ -496,6 +499,43 @@ void characterInteraction()
 	for (int i = 0; i < mno; ++i)
 	{
 		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+
+	//For custom levels
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charCustomLocation.X == Right.directions[i].X && charCustomLocation.Y == Right.directions[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charCustomLocation.X == Left.directions[i].X && charCustomLocation.Y == Left.directions[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charCustomLocation.X == Up.directions[i].X && charCustomLocation.Y == Up.directions[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < cno; ++i)
+	{
+		if (charCustomLocation.X == Down.directions[i].X && charCustomLocation.Y == Down.directions[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < mno; ++i)
+	{
+		if (charCustomLocation.X == aiCoordinate[i].X && charCustomLocation.Y == aiCoordinate[i].Y)
 		{
 			state = GameOver;
 		}
