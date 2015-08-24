@@ -18,10 +18,10 @@ void cannonL(int &i);
 void cannonU(int &i);
 void cannonD(int &i);
 
-void cannonballR(int x,int z, double j);
-void cannonballL(int x,int z, double j);
-void cannonballU(int x,int z, double j);
-void cannonballD(int x,int z, double j);
+void cannonballR(int x,int z);
+void cannonballL(int x,int z);
+void cannonballU(int x,int z);
+void cannonballD(int x,int z);
 
 void locationR(int x,int y,int z);
 void locationL(int x,int y,int z);
