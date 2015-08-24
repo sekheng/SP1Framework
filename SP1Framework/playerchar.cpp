@@ -10,10 +10,12 @@ extern struct Cannon Right;
 extern struct Cannon Left;
 extern struct Cannon Up;
 extern struct Cannon Down;
+extern struct Block block;
 extern COORD aiCoordinate[20];
 extern Console console;
 extern int cno;
 extern int mno;
+extern int bno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
 extern string &level;
@@ -459,6 +461,34 @@ void characterInteraction()
 	for (int i = 0; i < mno; ++i)
 	{
 		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
+		{
+			block.directions[i].Y = charLocation.Y++;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
 		{
 			state = GameOver;
 		}

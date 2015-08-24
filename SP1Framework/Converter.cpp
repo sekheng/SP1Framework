@@ -56,10 +56,10 @@ void convert(int &a)
 	}
 	
 }
-//void convertbox(int &tempY, int &tempX, int bno)
-//{
-//	characterBox(tempX, tempY, bno);
-//}
+/*void convertbox(int &tempY, int &tempX, int bno)
+{
+	characterBox(tempX, tempY, bno);
+}*/
 void convertStart(int &y, int &x)
 {
 	characterSpawn(x,y);
