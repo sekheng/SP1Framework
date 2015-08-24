@@ -53,7 +53,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 1;
+int levelno = 4;
 string level;
 int counter = 0;//counter for custom map
 int change;
@@ -171,7 +171,7 @@ void update(double dt)
     deltaTime = dt;
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-    moveCharacter(elapsedTime);
+    speedDown(elapsedTime);
 	speed(3, cno, elapsedTime);
 	/*if( velocity > elapsedTime)
 		return;
