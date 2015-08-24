@@ -136,5 +136,23 @@
     <None Include="displayTheEnd.txt">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="level1_text.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="level2_text.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="level3_text.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="level4_text.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="level5_text.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Level_Text.txt">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
