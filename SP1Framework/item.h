@@ -19,8 +19,10 @@ struct Items
 
 void initinventorysystem();
 
-void howmany_keys( int & no_of_keys);
-
+void keys_locations( int &keyY, int & keyX);
 void displayinventory( int no_of_items = 0);
+void display_keys();
+void gate_location( int &GateY, int &GateX);
+void display_gate();
 
 #endif // _ITEM_H

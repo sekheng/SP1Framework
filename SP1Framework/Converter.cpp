@@ -4,6 +4,7 @@
 #include "traps.h"
 #include "playerchar.h"
 #include "monster.h"
+#include "item.h"
 
 extern int tempX;
 extern int tempY;
@@ -56,7 +57,14 @@ void convert(int &a)
 
 		bno++;
 	}
-	
+    if ( a == 'K')
+    {
+        keys_locations( tempY, tempX);
+    }
+	if ( a == 'G')
+    {
+        gate_location( tempY, tempX);
+    }
 }
 /*void convertbox(int &tempY, int &tempX, int bno)
 {

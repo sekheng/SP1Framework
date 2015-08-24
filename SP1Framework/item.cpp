@@ -1,12 +1,16 @@
 #include "item.h"
 
 extern Console console;
+extern COORD charLocation;
 COORD display_inventorysystem;
+COORD multiple_keys_location;
+COORD multiple_gates_location;
 int display_inventory_row = 0;
 int display_inventory_col = 0;
 char display_inventoryarr[200][200];
 int no_of_keys = 0;
 Items Keys;
+Items Gates;
 
 void initinventorysystem()
 {
@@ -28,9 +32,10 @@ void initinventorysystem()
     in_Text.close();
 }
 
-void howmany_keys(int & no_of_keys)
+void keys_locations( int &keyY, int & keyX)
 {
-
+    multiple_keys_location.Y = keyY;
+    multiple_keys_location.X = keyX;
 }
 
 void displayinventory( int no_of_items)
@@ -46,6 +51,20 @@ void displayinventory( int no_of_items)
         }
         display_inventorysystem.Y += 1;
     }
+}
 
+void display_keys()
+{   
+   console.writeToBuffer( multiple_keys_location, "K", 0xF0);
+}
 
+void gate_location( int &GateY, int &GateX)
+{
+    multiple_gates_location.Y = GateY;
+    multiple_gates_location.X = GateX;
+}
+
+void display_gate()
+{
+    console.writeToBuffer( multiple_gates_location, "G", 0x0C);
 }
