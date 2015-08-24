@@ -32,7 +32,7 @@ void levelcheck(int &a,string &level)
 	}
 	else if (a == 100)
 	{
-		level = "CustomLevelLegend.txt";
+		level = "CustomLevel.txt";
     }
 	else if (a == 6)
 	{

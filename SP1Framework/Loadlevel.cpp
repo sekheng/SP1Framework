@@ -73,12 +73,10 @@ void loadlevel()
 	}
 	inData.close();
 }
-
 void reloadlevel()
 {
 	LvL.Y = 1;
 	LvL.X = 0;
-	// Set up sample colours, and output shadings
 	for (int i = 1; i < row; ++i)
 	{
 		LvL.X = 0;
@@ -118,7 +116,7 @@ void loadcustomlevel()
 void reloadcustomlevel()
 {
 	string cusoutData;
-	CusLvL.Y = 18;
+	CusLvL.Y = 17;
 	CusLvL.X = 0;
 	int i = 1;
 	// Set up sample colours, and output shadings
@@ -134,11 +132,12 @@ void reloadcustomlevel()
 	}
 	
 }
-
+//custom level
 void writelevel(char &a)
 {
 	g_customizemap[charCustomLocation.X][charCustomLocation.Y] = a;
 }
+
 void renderwrittenlevel()
 {
 	COORD levellocation;
@@ -150,42 +149,86 @@ void renderwrittenlevel()
 		for (int j = 0; j < 100;j++)
 		{
 			char cuswrite = g_customizemap[j][i];
-			if (cuswrite == '\0')
-			{
-				cuswrite = '0';
-			}
 			console.writeToBuffer(levellocation, cuswrite, 0x0F);
 			levellocation.X += 1;
 		}
 		levellocation.Y += 1;
 	}
 }
+
 void savecustomlevel()
 {
 	ofstream outData;
 	string Data;
 	outData.open("CustomLevel.txt");
-	for (int i = 0; i < 17; i++)
+	for (int i = 1; i < 17; i++)
 	{
-		for (int j = 0; j < 140; j++)
+		for (int j = 0; j < 56; ++j)
 		{
 			char cuswrite = g_customizemap[j][i];
 			outData << cuswrite;
 		}
-		outData << endl;
+		if (i != 16)
+		{
+			outData << endl;
+		}
 	}
 	outData.close();
 }
-//void loadcustomlevel()
-//{
-//	if (i == cusrow)
-//	{
-//		cout << i << endl;
-//		CusLvL.X = 0;
-//		cout << "hi";
-//		outcusData.open("CustomLevel.txt");
-//		cin >> cusoutData;
-//		outcusData << cusoutData << endl;
-//		outcusData.close();
-//	}
-//}
+
+void loadcustomizedlevel()
+{
+	tempX = 0;
+	tempY = 0;
+	tempEndX = 0;
+	tempEndY = 0;
+	cno = 0;
+	mno = 0;
+	col = 0;
+	row = 1;
+	ifstream inData;
+	inData.open("customlevel.txt");
+	string Data;
+
+	while (!inData.eof())
+	{
+		col = 0;
+		getline(inData, Data);
+		for (unsigned int x = 0; x < Data.length(); x++)
+		{
+			if (Data[x] == 'E')
+			{
+				tempEndX = col;
+				tempEndY = row;
+			}
+			tempX = col;
+			tempY = row;
+			change = Data[x];
+			/*if (change = '\0')
+			{
+				change = '0';
+			}*/
+			convert(change);
+			g_customizemap[row][col] = change;
+			++col;
+		}
+		++row;
+	}
+	inData.close();
+}
+void reloadcustomizedlevel()
+{
+	LvL.Y = 1;
+	LvL.X = 0;
+	for (int i = 1; i < row; i++)
+	{
+		LvL.X = 0;
+		for (int j = 0; j < col; j++) {
+			int write = g_customizemap[i][j];
+			convert2(write, content, color);
+			console.writeToBuffer(LvL, content, colors[color]);
+			LvL.X += 1;
+		}
+		LvL.Y += 1;
+	}
+}
