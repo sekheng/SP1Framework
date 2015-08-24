@@ -5,6 +5,7 @@ COORD display_inventorysystem;
 int display_inventory_row = 0;
 int display_inventory_col = 0;
 char display_inventoryarr[200][200];
+int no_of_keys = 0;
 
 void initinventorysystem()
 {
