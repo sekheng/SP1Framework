@@ -11,6 +11,7 @@
 #include "help.h"
 #include "Gameover.h"
 #include "The_End.h"
+#include "item.h"
 #include "windows.h"    // For Music Feature
 #include "mmsystem.h"   // For Music Feature
 #include <iostream>
@@ -127,6 +128,9 @@ void init()
 
     // Displey Level UI
     initLevelText();
+
+    // Display Inventory UI
+    initinventorysystem();
 }
 
 // Do your clean up of memory here
@@ -167,7 +171,7 @@ void update(double dt)
     deltaTime = dt;
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-    speedDown(elapsedTime);
+    moveCharacter(elapsedTime);
 	speed(3, cno, elapsedTime);
 	/*if( velocity > elapsedTime)
 		return;
@@ -180,6 +184,8 @@ void update(double dt)
 	}
 	velocity = elapsedTime + 0.000;*/
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
+	updateBlock(3, bno);
+
     // sound can be played here too.
 }
 
@@ -199,9 +205,9 @@ void render()
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
 
-void moveCharacter()
+void moveCharacter(double x)
 {
-	characterMovement();
+	characterMovement(x);
 }
 
 void processUserInput()
@@ -243,6 +249,7 @@ void renderMap()
 	{
 		reloadlevel(); // reloads level
         displayleveltext();
+        displayinventory();
 	}
 	else if (state == LevelCustomized)
 	{
@@ -281,8 +288,9 @@ void renderCharacter()
 		cannonU(cno);
 		cannonD(cno);
 		aiMon(mno);
+		printBlock(bno);
 
-		console.writeToBuffer(charLocation, (char)1, 0x0C);
+		console.writeToBuffer(charLocation, (char)2, 0x0C);
         pauseLocation.Y = 15;
     }
     else if ( state == Pause)

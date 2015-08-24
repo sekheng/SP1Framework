@@ -6,6 +6,7 @@
 #include "monster.h"
 #include "levels.h"
 #include "Loadlevel.h"
+#include "block.h"
 #include <iomanip>
 #include <fstream>
 #include <string>
@@ -13,7 +14,7 @@
 #include "Framework\console.h"
 
 void characterInit();
-void characterMovement();
+void characterMovement(double x);
 void getInput();
 void characterInteraction();
 void characterSpawn(int x, int y);

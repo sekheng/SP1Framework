@@ -12,10 +12,12 @@ extern struct Cannon Right;
 extern struct Cannon Left;
 extern struct Cannon Up;
 extern struct Cannon Down;
+extern struct Block block;
 extern COORD aiCoordinate[20];
 extern Console console;
 extern int cno;
 extern int mno;
+extern int bno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
 extern string &level;
@@ -38,7 +40,7 @@ void characterInit()
 	charLocation.Y = 10;
 }
 
-void characterMovement()
+void characterMovement(double x)
 {
 	if (state == menu)
 	{
@@ -112,6 +114,9 @@ void characterMovement()
 
 	else if (state == Start)   // The Game Begins!
 	{
+		if(velocityChar > x)
+		return;
+		velocityChar = x + 0.102;
 		// Updating the location of the character based on the key press
 		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
 		{
@@ -497,10 +502,10 @@ void characterInteraction()
 	}
 }
 
-void speedDown(double x)
-{
-	if(velocityChar > x)
-		return;
-	velocityChar = x + 0.102;
-	moveCharacter();
-}
+//void speedDown(double x)
+//{
+//	if(velocityChar > x)
+//		return;
+//	velocityChar = x + 0.102;
+//	moveCharacter(x);
+//}

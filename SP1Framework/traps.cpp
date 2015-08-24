@@ -58,68 +58,6 @@ void cannonD(int &i)
 	}
 }
 
-//placed in update
-void cannonballR(int x,int z)
-{
-	for (int no = 0; no < z;no++)
-	{
-		//double velocity = j +0.001;
-		if (Right.directions[no].X != (Right.position[no].X + x))
-		{
-			Right.directions[no].X+= 1;
-		}
-		else
-		{
-			Right.directions[no].X = Right.position[no].X;
-		}
-	}
-}
-void cannonballL(int x,int z)
-{
-	for (int no = 0; no < z; no++)
-	{
-		if (Left.directions[no].X != (Left.position[no].X - x) && g_timer.getElapsedTime() != -1)
-		{
-			Left.directions[no].X--;
-		}
-		else
-		{
-			Left.directions[no].X += x;
-		}
-	}
-
-}
-void cannonballU(int x,int z)
-{
-	for (int no = 1; no < z;no++)
-	{
-		if (Up.directions[no].Y != (Up.position[no].Y - x) && g_timer.getElapsedTime() != -1)
-		{
-			Up.directions[no].Y--;
-		}
-		else
-		{
-			Up.directions[no].Y += x;
-		}
-	}
-
-}
-void cannonballD(int x,int z)
-{
-	for (int no = 0; no < z;no++)
-	{
-		if (Down.directions[no].Y != (Down.position[no].Y + x) && g_timer.getElapsedTime() != -1)
-		{
-			Down.directions[no].Y++;
-		}
-		else
-		{
-			Down.directions[no].Y -= x;
-		}
-	}
-
-}
-
 //placed in init under converter
 void locationR(int x, int y,int z)
 {
@@ -150,13 +88,75 @@ void locationD(int x, int y,int z)
 	Down.position[z].Y = y;
 }
 
+//placed in update
 void speed(int x, int y, double w)
 {
 	if(velocity > w)
 		return;
-	velocity = w + 0.001;
+	velocity = w + 0.055;
 	cannonballR(x, y);
 	cannonballL(x, y);
 	cannonballU(x, y);
 	cannonballD(x, y);
+}
+
+void cannonballR(int x,int z)
+{
+	for (int no = 0; no < z;no++)
+	{
+		//double velocity = j +0.001;
+		if (Right.directions[no].X != (Right.position[no].X + x))
+		{
+			Right.directions[no].X+= 1;
+		}
+		else
+		{
+			Right.directions[no].X =Right.position[no].X;
+		}
+	}
+}
+void cannonballL(int x,int z)
+{
+	for (int no = 0; no < z; no++)
+	{
+		if (Left.directions[no].X != (Left.position[no].X - x))
+		{
+			Left.directions[no].X--;
+		}
+		else
+		{
+			Left.directions[no].X = Left.position[no].X;
+		}
+	}
+
+}
+void cannonballU(int x,int z)
+{
+	for (int no = 1; no < z;no++)
+	{
+		if (Up.directions[no].Y != (Up.position[no].Y - x))
+		{
+			Up.directions[no].Y--;
+		}
+		else
+		{
+			Up.directions[no].Y = Up.position[no].Y;
+		}
+	}
+
+}
+void cannonballD(int x,int z)
+{
+	for (int no = 0; no < z;no++)
+	{
+		if (Down.directions[no].Y != (Down.position[no].Y + x))
+		{
+			Down.directions[no].Y++;
+		}
+		else
+		{
+			Down.directions[no].Y = Down.position[no].Y;
+		}
+	}
+
 }
