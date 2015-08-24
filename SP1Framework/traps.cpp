@@ -93,7 +93,7 @@ void speed(int x, int y, double w)
 {
 	if(velocity > w)
 		return;
-	velocity = w + 0.001;
+	velocity = w + 0.055;
 	cannonballR(x, y);
 	cannonballL(x, y);
 	cannonballU(x, y);
@@ -111,7 +111,7 @@ void cannonballR(int x,int z)
 		}
 		else
 		{
-			Right.directions[no].X = Right.position[no].X;
+			Right.directions[no].X =Right.position[no].X;
 		}
 	}
 }
