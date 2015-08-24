@@ -507,9 +507,14 @@ void speedDown(double x)
 	if( state == Start)
 	{
 		if(velocityChar > x)
+		{
 			return;
-		velocityChar = x + 0.110;
-		moveCharacter(x);
+		}
+		else
+		{
+			velocityChar = x + 0.091;
+			moveCharacter(x);
+		}
 	}
 	else
 	{
