@@ -11,6 +11,7 @@
 #include "help.h"
 #include "Gameover.h"
 #include "The_End.h"
+#include "item.h"
 #include "windows.h"    // For Music Feature
 #include "mmsystem.h"   // For Music Feature
 #include <iostream>
@@ -127,6 +128,9 @@ void init()
 
     // Displey Level UI
     initLevelText();
+
+    // Display Inventory UI
+    initinventorysystem();
 }
 
 // Do your clean up of memory here
@@ -245,6 +249,7 @@ void renderMap()
 	{
 		reloadlevel(); // reloads level
         displayleveltext();
+        displayinventory();
 	}
 	else if (state == LevelCustomized)
 	{
@@ -285,7 +290,7 @@ void renderCharacter()
 		aiMon(mno);
 		printBlock(bno);
 
-		console.writeToBuffer(charLocation, (char)1, 0x0C);
+		console.writeToBuffer(charLocation, (char)2, 0x0C);
         pauseLocation.Y = 15;
     }
     else if ( state == Pause)

@@ -114,6 +114,7 @@
     <None Include="displayGameover.txt" />
     <None Include="displayHelp.txt" />
     <None Include="displayHelp2.txt" />
+    <None Include="displayInventory_text.txt" />
     <None Include="displayPause.txt" />
     <None Include="displayTheEnd.txt" />
     <None Include="level1_text.txt" />
