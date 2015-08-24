@@ -154,5 +154,8 @@
     <None Include="Level_Text.txt">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="displayInventory_text.txt">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
