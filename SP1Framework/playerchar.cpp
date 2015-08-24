@@ -500,36 +500,6 @@ void characterInteraction()
 			state = GameOver;
 		}
 	}
-<<<<<<< HEAD
-	for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++)
-		{
-			block.directions[i].Y = charLocation.Y--;
-		}
-	}
-	for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y--)
-		{
-			block.directions[i].Y = charLocation.Y++;
-		}
-	}
-	for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y)
-		{
-			block.directions[i].X = charLocation.X--;
-		}
-	}
-	for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y)
-		{
-			block.directions[i].X = charLocation.X--;
-		}
-	}
-=======
 }
 
 void speedDown(double x)
@@ -538,5 +508,4 @@ void speedDown(double x)
 		return;
 	velocityChar = x + 0.102;
 	moveCharacter();
->>>>>>> a890f0fa57316d6b9870509bda209a75be71d3c6
 }

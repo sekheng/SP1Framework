@@ -179,6 +179,8 @@ void update(double dt)
 	}
 	velocity = elapsedTime + 0.000;*/
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
+	updateBlock(3, bno);
+
     // sound can be played here too.
 }
 
@@ -270,6 +272,7 @@ void renderCharacter()
 		cannonU(cno);
 		cannonD(cno);
 		aiMon(mno);
+		printBlock(bno);
 
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
         pauseLocation.Y = 15;
