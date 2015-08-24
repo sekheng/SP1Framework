@@ -25,4 +25,7 @@ void writelevel(char &a);
 void renderwrittenlevel();
 void savecustomlevel();
 
-#endif  
+void initLevelText();
+void displayleveltext();
+
+#endif  // _LOADLEVEL_H

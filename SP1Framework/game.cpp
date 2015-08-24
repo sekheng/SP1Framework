@@ -78,8 +78,6 @@ COORD pu;
 int pauserows = 0;
 int pausecols = 0;
 
-
-
 extern COORD pauseLocation;
 extern COORD helpreturn;
 extern COORD gameoverptr;
@@ -125,6 +123,9 @@ void init()
 
     // The End
     theendPosition();
+
+    // Displey Level UI
+    initLevelText();
 }
 
 // Do your clean up of memory here
@@ -240,6 +241,7 @@ void renderMap()
 	else if (state == Start)
 	{
 		reloadlevel(); // reloads level
+        displayleveltext();
 	}
 	else if (state == LevelCustomized)
 	{
