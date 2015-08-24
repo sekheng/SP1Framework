@@ -181,8 +181,6 @@ void savecustomlevel()
 	}
 	outData.close();
 }
-<<<<<<< HEAD
-
 void loadcustomizedlevel()
 {
 	tempX = 0;
@@ -239,20 +237,6 @@ void reloadcustomizedlevel()
 		LvL.Y += 1;
 	}
 }
-=======
-//void loadcustomlevel()
-//{
-//	if (i == cusrow)
-//	{
-//		cout << i << endl;
-//		CusLvL.X = 0;
-//		cout << "hi";
-//		outcusData.open("CustomLevel.txt");
-//		cin >> cusoutData;
-//		outcusData << cusoutData << endl;
-//		outcusData.close();
-//	}
-//}+
 
 void initLevelText()
 {
@@ -313,4 +297,3 @@ void displayleveltext()
     }
     inlevelText.close();
 }
->>>>>>> a890f0fa57316d6b9870509bda209a75be71d3c6

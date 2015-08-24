@@ -282,7 +282,7 @@ void characterMovement()
 	{
 
 		// Updating the location of the character based on the key press
-<<<<<<< HEAD
+
 		//if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_customizemap[charLocation.Y + 2][charLocation.X] != 1)
 		//{
 		//	Beep(1440, 30);
@@ -305,7 +305,7 @@ void characterMovement()
 		//}
 
 		if (keyPressed[K_UP] && charLocation.Y > 0 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)
-=======
+
 		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
 		{
 			//Beep(1440, 30);
@@ -327,7 +327,6 @@ void characterMovement()
 			charLocation.X--;
 		}
 		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
->>>>>>> a890f0fa57316d6b9870509bda209a75be71d3c6
 		{
 			//Beep(1440, 30);
 			charLocation.Y--;
