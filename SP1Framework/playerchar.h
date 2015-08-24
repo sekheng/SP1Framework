@@ -19,5 +19,6 @@ void getInput();
 void characterInteraction();
 void characterSpawn(int x, int y);
 void characterEnd(int y, int x);
+void speedDown(double x);
 
 #endif // _PLAYERCHAR_H

@@ -1,11 +1,16 @@
 #include "traps.h"
 
 extern Console console;
+extern double elapsedTime;
+extern double deltaTime;
+double velocity;
 
 Cannon Right;
 Cannon Left;
 Cannon Up;
 Cannon Down;
+
+//g_timer.getElapsedTime()
 
 //placed in render
 void cannonR(int &i)
@@ -58,16 +63,16 @@ void cannonballR(int x,int z)
 {
 	for (int no = 0; no < z;no++)
 	{
-		if (Right.directions[no].X != (Right.position[no].X + x) && g_timer.getElapsedTime() != -1)
+		//double velocity = j +0.001;
+		if (Right.directions[no].X != (Right.position[no].X + x))
 		{
-			Right.directions[no].X++;
+			Right.directions[no].X+= 1;
 		}
 		else
 		{
-			Right.directions[no].X -= x;
+			Right.directions[no].X = Right.position[no].X;
 		}
 	}
-
 }
 void cannonballL(int x,int z)
 {
@@ -143,4 +148,15 @@ void locationD(int x, int y,int z)
 	Down.directions[z].Y = y;
 	Down.position[z].X = x;
 	Down.position[z].Y = y;
+}
+
+void speed(int x, int y, double w)
+{
+	if(velocity > w)
+		return;
+	velocity = w + 0.001;
+	cannonballR(x, y);
+	cannonballL(x, y);
+	cannonballU(x, y);
+	cannonballD(x, y);
 }
