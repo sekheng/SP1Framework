@@ -125,7 +125,7 @@ void cannonballL(int x,int z)
 		}
 		else
 		{
-			Left.directions[no].X += Left.position[no].X;
+			Left.directions[no].X = Left.position[no].X;
 		}
 	}
 
@@ -140,7 +140,7 @@ void cannonballU(int x,int z)
 		}
 		else
 		{
-			Up.directions[no].Y += Up.position[no].Y;
+			Up.directions[no].Y = Up.position[no].Y;
 		}
 	}
 
@@ -155,7 +155,7 @@ void cannonballD(int x,int z)
 		}
 		else
 		{
-			Down.directions[no].Y -= Down.position[no].Y;
+			Down.directions[no].Y = Down.position[no].Y;
 		}
 	}
 
