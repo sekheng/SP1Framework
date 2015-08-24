@@ -167,7 +167,7 @@ void update(double dt)
     deltaTime = dt;
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-    speedDown(elapsedTime);
+    moveCharacter(elapsedTime);
 	speed(3, cno, elapsedTime);
 	/*if( velocity > elapsedTime)
 		return;
@@ -199,9 +199,9 @@ void render()
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
 
-void moveCharacter()
+void moveCharacter(double x)
 {
-	characterMovement();
+	characterMovement(x);
 }
 
 void processUserInput()
