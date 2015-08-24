@@ -31,7 +31,6 @@ void convert(int &a)
 	}
 	if (a == 35) // crate
 	{
-		setBlock(tempX, tempY, bno);
 		a = 3;
 	}
 	if (a == 83)//start point 
@@ -53,6 +52,8 @@ void convert(int &a)
 	if (a == 66) //box
 	{
 		//convertbox(tempY, tempX, bno);
+		setBlock(tempY, tempX, bno);
+
 		bno++;
 	}
 	
