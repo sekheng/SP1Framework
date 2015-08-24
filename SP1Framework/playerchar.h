@@ -6,6 +6,7 @@
 #include "monster.h"
 #include "levels.h"
 #include "Loadlevel.h"
+#include "block.h"
 #include <iomanip>
 #include <fstream>
 #include <string>
