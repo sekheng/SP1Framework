@@ -53,7 +53,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 4;
+int levelno = 1;
 string level;
 int counter = 0;//counter for custom map
 int change;
@@ -69,12 +69,10 @@ int ttlerow = 0;
 int ttlecol = 0;
 string content;
 int color;
-int tempX; //store X coord
-int tempY; //store Y coord
 int tempEndX; // x end point coord
 int tempEndY;// y end point coord
 int cno = 0; //cannon number
-int mno = 0;//monster number
+int mno = 0; //monster number
 int bno = 0; //box number
 COORD pu;
 int pauserows = 0;
@@ -107,9 +105,9 @@ void init()
 	characterInit();
 
 	/////////////////////////////////////////
-	loadlevel(); // loads the level
+	loadlevel(); // loads the main level
 
-	loadcustomlevel();
+	loadcustomlevel(); // reload the main level
 
     // Title
     menuPosition();
@@ -281,7 +279,6 @@ void renderCharacter()
 		printBlock(bno);
         display_keys();
         display_gate();
-
 		console.writeToBuffer(charLocation, (char)2, 0x0C);
         pauseLocation.Y = 15;
     }
