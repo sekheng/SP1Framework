@@ -37,7 +37,7 @@ bool keyPressed[K_COUNT];
 startscreen state = menu;
 int titlearr[40][150];
 size_t g_map[140][100];    //For Collision System
-size_t g_custommap[140][100]; //for custom lvl
+size_t g_custommap[140][100]; //for custom lvl legend
 size_t g_customizemap[140][100]; //for customising lvl
 char pausearr[40][150];
 
@@ -55,6 +55,7 @@ COORD charCustomLocation;
 COORD startmenuLocation;
 int levelno = 1;
 string level;
+int counter = 0;//counter for custom map
 int change;
 int cuschange;
 int row = 1;    // For collision Detection and map coordinates
@@ -250,8 +251,18 @@ void renderMap()
 	}
 	else if (state == LevelCustomized)
 	{
+		counter = 0;
 		reloadcustomlevel();
 		renderwrittenlevel();
+	}
+	else if (state == LevelCustom)
+	{
+		for (; counter < 1; counter++)
+		{
+			loadcustomizedlevel();
+			counter++;
+		}
+		reloadcustomizedlevel();
 	}
     else if ( state == End)
     {
@@ -291,6 +302,15 @@ void renderCharacter()
     {
 		console.writeToBuffer(charCustomLocation, (char)1, 0x0C);
     }
+	else if (state == LevelCustom)
+	{
+		console.writeToBuffer(charLocation, (char)1, 0x0C);
+		cannonL(cno);
+		cannonR(cno);
+		cannonU(cno);
+		cannonD(cno);
+		aiMon(mno);
+	}
     else if ( state == GameOver)
     {
        console.writeToBuffer(gameoverptr, (char)60, 0x0C);

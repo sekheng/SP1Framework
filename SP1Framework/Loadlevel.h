@@ -18,6 +18,8 @@ using std::ofstream;
 void loadlevel();
 void reloadlevel();
 void loadcustomlevel();
+void loadcustomizedlevel();
+void reloadcustomizedlevel();
 void reloadcustomlevel();
 
 void writelevel(char &a);
