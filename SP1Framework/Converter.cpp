@@ -51,9 +51,7 @@ void convert(int &a)
 	}
 	if (a == 66) //box
 	{
-		//convertbox(tempY, tempX, bno);
 		setBlock(tempY, tempX, bno);
-
 		bno++;
 	}
 	
