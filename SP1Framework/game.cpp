@@ -281,13 +281,6 @@ void renderCharacter()
 		cannonD(cno);
 		aiMon(mno);
 		printBlock(bno);
-        if ( check_no_of_keys == 1) {
-            display_keys();
-        }
-        if ( check_no_of_gates > 0 ) {
-            display_gate();
-        }
-
         display_keys();
         display_gate();
 		console.writeToBuffer(charLocation, (char)2, 0x0C);

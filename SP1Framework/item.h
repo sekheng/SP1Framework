@@ -21,10 +21,10 @@ struct Items
 
 void initinventorysystem();
 
-void keys_locations( int &keyY, int & keyX);
+void keys_locations( int keyY, int keyX);
 void displayinventory( int no_of_items = 0);
 void display_keys();
-void gate_location( int &GateY, int &GateX);
+void gate_location( int GateY, int GateX);
 void display_gate();
 
 #endif // _ITEM_H

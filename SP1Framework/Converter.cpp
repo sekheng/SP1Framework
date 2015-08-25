@@ -60,8 +60,8 @@ void convert(int &a, int b, int c)
 	}
     if ( a == 'K')
     {
+        keys_locations( c,b); 
         ++check_no_of_keys;
-        keys_locations( c,b);
     }
 	if ( a == 'G')
     {
