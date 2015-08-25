@@ -34,11 +34,7 @@ void initinventorysystem()
     in_Text.close();
 }
 
-<<<<<<< HEAD
-void keys_locations( int &keyY, int &keyX)
-=======
 void keys_locations( int keyY, int keyX, int KeyType)
->>>>>>> 8e50f5c39ec1e2c7b4793b9cb2c3c300e7a7cd53
 {
     if ( KeyType == 0)
     {
