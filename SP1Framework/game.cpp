@@ -109,7 +109,8 @@ void init()
 	characterInit();
 
 	/////////////////////////////////////////
-	loadlevel(); // loads the main level
+	levelcheck(levelno, level);
+	loadlevel(level); // loads the main level
 
 	loadcustomlevel(); // reload the main level
 
@@ -258,7 +259,7 @@ void renderMap()
 		}
 		reloadcustomizedlevel();
 	}
-    else if ( state == End)
+    else if (state == End)
     {
         displayTheEnd();
     }
@@ -272,7 +273,7 @@ void renderCharacter()
         pauseLocation.Y = 15;   //These are to reset the location of where the arrow is pointing
         gameoverptr.Y = 8;  //These are to reset the location of where the arrow is pointing
     }
-    else if ( state == Start) 
+    else if (state == Start|| state == LevelCustom) 
 	{
 		// Draw the location of the character
 		cannonL(cno);
@@ -305,7 +306,7 @@ void renderCharacter()
     {
 		console.writeToBuffer(charCustomLocation, (char)1, 0x0C);
     }
-	else if (state == LevelCustom)
+	/*else if (state == LevelCustom)
 	{
 		console.writeToBuffer(charLocation, (char)1, 0x0C);
 		cannonL(cno);
@@ -313,7 +314,7 @@ void renderCharacter()
 		cannonU(cno);
 		cannonD(cno);
 		aiMon(mno);
-	}
+	}*/
     else if ( state == GameOver)
     {
        console.writeToBuffer(gameoverptr, (char)60, 0x0C);
