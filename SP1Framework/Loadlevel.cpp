@@ -49,9 +49,9 @@ void loadlevel(string &level)
 	cno = 0;
 	mno = 0;
 	bno = 0;
-	col = 0;
 	check_no_of_keys = 0;
 	check_no_of_gates = 0;
+	col = 0;
 	row = 1;
 	ifstream inData;
 	inData.open(level);
@@ -119,7 +119,9 @@ void loadcustomlevel()
 	incusData.close();
 
 }
+
 //print out the whole thing
+
 void reloadcustomlevel()
 {
 	string cusoutData;
@@ -146,7 +148,9 @@ void writelevel(char &a)
 {
 	g_customizemap[charCustomLocation.X][charCustomLocation.Y] = a;
 }
+
 //display what you typed onto the customize level
+
 void renderwrittenlevel()
 {
 	COORD levellocation;
@@ -164,7 +168,9 @@ void renderwrittenlevel()
 		levellocation.Y += 1;
 	}
 }
+
 //save custom level
+
 void savecustomlevel()
 {
 	ofstream outData;
@@ -190,12 +196,11 @@ void savecustomlevel()
 void loadcustomizedlevel()
 {
 	string level = "customlevel.txt";
-	levelno = 100;
-	levelcheck(levelno, level);
 	loadlevel(level);
-	
 }
+
 //refreshes custom level
+
 void reloadcustomizedlevel()
 {
 	reloadlevel();
