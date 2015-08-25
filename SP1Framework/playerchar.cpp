@@ -109,11 +109,12 @@ void characterMovement(double x)
 		{
 			state = Pause;
 		}
+
 		if (state == Start)
 		{
 			characterEnd(tempEndY, tempEndX);
 		}
-		else
+		else if (state == LevelCustom)
 		{
 			characterCustomEnd(tempEndY, tempEndX);
 		}
@@ -213,65 +214,63 @@ void characterMovement(double x)
 		{
 			charCustomLocation.X++;
 		}
-    }
-	else if (state == LevelCustom)
-	{
-		// Updating the location of the character based on the key press
-
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y + 2][charLocation.X] != 1)
-		{
-			charLocation.Y++;
-		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
-		{
-			charLocation.X++;
-		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y][charLocation.X] != 1)
-		{
-			charLocation.Y--;
-		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X < 55 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
-		{
-			charLocation.X--;
-		}
-		if (keyPressed[K_UP] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)
-		{
-			charLocation.Y--;
-		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
-		{
-			charLocation.X--;
-		}
-		if (keyPressed[K_DOWN] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)
-		{
-			charLocation.Y++;
-		}
-		if (keyPressed[K_RIGHT] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
-		{
-			charLocation.X++;
-		}
-
-		if (keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)  //up
-		{
-			charLocation.Y--;
-		}
-		if (keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)  //left
-		{
-			charLocation.X--;
-		}
-		if (keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)  //down
-		{
-			charLocation.Y++;
-		}
-		if (keyPressed[K_D] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)   //right
-		{
-			charLocation.X++;
-		}
-        if ( keyPressed[K_SPACE] )
-        {
-            state = Pause2;
-        }
 	}
+	//else if (state == LevelCustom)
+	//{
+	//	// Updating the location of the character based on the key press
+	//	if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y + 2][charLocation.X] != 1)
+	//	{
+	//		charLocation.Y++;
+	//	}
+	//	if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
+	//	{
+	//		charLocation.X++;
+	//	}
+	//	if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y][charLocation.X] != 1)
+	//	{
+	//		charLocation.Y--;
+	//	}
+	//	if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X < 55 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
+	//	{
+	//		charLocation.X--;
+	//	}
+	//	if (keyPressed[K_UP] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)
+	//	{
+	//		charLocation.Y--;
+	//	}
+	//	if (keyPressed[K_LEFT] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
+	//	{
+	//		charLocation.X--;
+	//	}
+	//	if (keyPressed[K_DOWN] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)
+	//	{
+	//		charLocation.Y++;
+	//	}
+	//	if (keyPressed[K_RIGHT] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
+	//	{
+	//		charLocation.X++;
+	//	}
+	//	if (keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)  //up
+	//	{
+	//		charLocation.Y--;
+	//	}
+	//	if (keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)  //left
+	//	{
+	//		charLocation.X--;
+	//	}
+	//	if (keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)  //down
+	//	{
+	//		charLocation.Y++;
+	//	}
+	//	if (keyPressed[K_D] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)   //right
+	//	{
+	//		charLocation.X++;
+	//	}
+ //       if ( keyPressed[K_SPACE] )
+ //       {
+ //           state = Pause2;
+ //       }
+	//}
 
     else if ( state == Pause )
     {

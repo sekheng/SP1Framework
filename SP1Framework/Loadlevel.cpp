@@ -22,6 +22,7 @@ extern int col;
 extern string content;
 extern int cno;
 extern int mno;
+extern int bno;
 extern int change;
 extern int levelno;
 extern int tempEndX;
@@ -38,7 +39,6 @@ char leveltext_arr[200][100];
 COORD purelystatic_level_text;
 int leveltext_row = 0;
 int leveltext_col = 0;
-int lvlno = 100;
 //loads the level 
 void loadlevel(string &level)
 {
@@ -46,6 +46,7 @@ void loadlevel(string &level)
 	tempEndY = 0;
 	cno = 0;
 	mno = 0;
+	bno = 0;
 	col = 0;
 	row = 1;
 	ifstream inData;
@@ -184,7 +185,8 @@ void savecustomlevel()
 void loadcustomizedlevel()
 {
 	string level = "customlevel.txt";
-	levelcheck(lvlno, level);
+	levelno = 100;
+	levelcheck(levelno, level);
 	loadlevel(level);
 	
 }
