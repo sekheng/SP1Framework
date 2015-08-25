@@ -14,6 +14,7 @@
 #include "item.h"
 #include "windows.h"    // For Music Feature
 #include "mmsystem.h"   // For Music Feature
+#include "speedControl.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -170,8 +171,8 @@ void update(double dt)
     deltaTime = dt;
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-    speedDown(elapsedTime);
-	speed(3, cno, elapsedTime);
+    update_charSpeed(elapsedTime);
+	update_ballSpeed(3, cno, elapsedTime);
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
 

@@ -15,11 +15,12 @@
 #include "Framework\console.h"
 
 void characterInit();
+void menustate();
 void characterMovement(double x);
+void characterCustomEnd(int tempEndY, int tempEndX);
 void getInput();
 void characterInteraction();
 void characterSpawn(int x, int y);
 void characterEnd(int y, int x);
-void speedDown(double x);
 
 #endif // _PLAYERCHAR_H

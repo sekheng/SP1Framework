@@ -2,7 +2,6 @@
 #include "Loadlevel.h"
 //#include "traps.cpp"
 
-double velocityChar;
 extern COORD startmenuLocation;
 extern COORD charLocation;
 extern COORD charCustomLocation;
@@ -44,69 +43,8 @@ void characterMovement(double x)
 {
 	if (state == menu)
 	{
-		if (keyPressed[K_UP] && startmenuLocation.Y > 21)
-		{
-			startmenuLocation.Y--;
-		}
-		else if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
-		{
-			startmenuLocation.Y++;
-		}
-		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
-		{
-            if ( TheEndDoesNotContinue == true )
-            {
-                state = End;
-            }
-            else
-            {
-			    state = Start;
-            }
-		}
-		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
-		{
-			state = LevelCustomized;
-		}
-		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 23)
-		{
-			state = LevelCustom;
-		}
-        else if ( keyPressed[K_ENTER] && startmenuLocation.Y == 24 )
-        {
-            state = Help;
-        }
-		else if (keyPressed[K_ENTER] && startmenuLocation.Y == 26)
-		{
-			state = Exit;
-		}
-
-        if ( startmenuLocation.Y == 21)
-        {
-            startmenuLocation.X = 9;
-        }
-        else if (startmenuLocation.Y == 22) 
-		{
-            startmenuLocation.X = 23;
-        }
-        else if ( startmenuLocation.Y == 23) 
-		{
-            startmenuLocation.X = 21;
-        }
-        else if ( startmenuLocation.Y == 24)
-        {
-            startmenuLocation.X = 8;
-        }
-        else if ( startmenuLocation.Y == 25)
-        {
-            startmenuLocation.X = 11;
-        }
-        else
-        {
-            startmenuLocation.X = 8;
-        }
-
+		menustate();
 	}
-
 	else if (state == Exit)
 	{
 		g_quitGame = true;
@@ -171,7 +109,15 @@ void characterMovement(double x)
 		{
 			state = Pause;
 		}
-		characterEnd(tempEndY, tempEndX);
+		if (state == Start)
+		{
+			characterEnd(tempEndY, tempEndX);
+		}
+		else
+		{
+			characterCustomEnd(tempEndY, tempEndX);
+		}
+		
 	}
     //Level Editing
 	else if (state == LevelCustomized)
@@ -268,59 +214,6 @@ void characterMovement(double x)
 			charCustomLocation.X++;
 		}
     }
-
-	//else if (state == LevelCustom)
-	//{
-	//	// Updating the location of the character based on the key press
-	//	if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y + 2][charLocation.X] != 1)
-	//	{
-	//		charLocation.Y++;
-	//	}
-	//	if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
-	//	{
-	//		charLocation.X++;
-	//	}
-	//	if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y][charLocation.X] != 1)
-	//	{
-	//		charLocation.Y--;
-	//	}
-	//	if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X < 55 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
-	//	{
-	//		charLocation.X--;
-	//	}
-	//	if (keyPressed[K_UP] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)
-	//	{
-	//		charLocation.Y--;
-	//	}
-	//	if (keyPressed[K_LEFT] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
-	//	{
-	//		charLocation.X--;
-	//	}
-	//	if (keyPressed[K_DOWN] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)
-	//	{
-	//		charLocation.Y++;
-	//	}
-	//	if (keyPressed[K_RIGHT] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
-	//	{
-	//		charLocation.X++;
-	//	}
-	//	if (keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)  //up
-	//	{
-	//		charLocation.Y--;
-	//	}
-	//	if (keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)  //left
-	//	{
-	//		charLocation.X--;
-	//	}
-	//	if (keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)  //down
-	//	{
-	//		charLocation.Y++;
-	//	}
-	//	if (keyPressed[K_D] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)   //right
-	//	{
-	//		charLocation.X++;
-	//	}
-	//}
 	else if (state == LevelCustom)
 	{
 		// Updating the location of the character based on the key press
@@ -378,7 +271,6 @@ void characterMovement(double x)
         {
             state = Pause2;
         }
-
 	}
 
     else if ( state == Pause )
@@ -563,22 +455,81 @@ void characterInteraction()
 	}*/
 }
 
-void speedDown(double x)
+void menustate()
 {
-	if( state == Start)
+
+	if (keyPressed[K_UP] && startmenuLocation.Y > 21)
 	{
-		if(velocityChar > x)
+		startmenuLocation.Y--;
+	}
+	else if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
+	{
+		startmenuLocation.Y++;
+	}
+	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
+	{
+		if (TheEndDoesNotContinue == true)
 		{
-			return;
+			state = End;
 		}
 		else
 		{
-			velocityChar = x + 0.091;
-			moveCharacter(x);
+			state = Start;
 		}
+	}
+	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
+	{
+		state = LevelCustomized;
+	}
+	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 23)
+	{
+		state = LevelCustom;
+	}
+	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 24)
+	{
+		state = Help;
+	}
+	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 26)
+	{
+		state = Exit;
+	}
+
+	if (startmenuLocation.Y == 21)
+	{
+		startmenuLocation.X = 9;
+	}
+	else if (startmenuLocation.Y == 22)
+	{
+		startmenuLocation.X = 23;
+	}
+	else if (startmenuLocation.Y == 23)
+	{
+		startmenuLocation.X = 21;
+	}
+	else if (startmenuLocation.Y == 24)
+	{
+		startmenuLocation.X = 8;
+	}
+	else if (startmenuLocation.Y == 25)
+	{
+		startmenuLocation.X = 11;
 	}
 	else
 	{
-		moveCharacter(x);
+		startmenuLocation.X = 8;
 	}
 }
+
+void characterCustomEnd(int tempEndY, int tempEndX)
+{
+	string level;
+	if (charLocation.X == tempEndY && charLocation.Y == tempEndX )
+	{
+		check_no_of_keys = 0;
+		check_no_of_gates = 0;
+		levelno++;
+		levelcheck(levelno, level);
+		loadlevel(level);
+	}
+}
+

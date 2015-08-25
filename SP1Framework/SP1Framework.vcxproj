@@ -89,6 +89,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="playerchar.cpp" />
+    <ClCompile Include="speedControl.cpp" />
     <ClCompile Include="The_End.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="traps.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="levels.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="playerchar.h" />
+    <ClInclude Include="speedControl.h" />
     <ClInclude Include="The_End.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="traps.h" />
