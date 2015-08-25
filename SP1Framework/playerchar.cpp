@@ -171,34 +171,6 @@ void characterInteraction()
 			state = GameOver;
 		}
 	}
-	/*for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_UP] || keyPressed[K_W])
-		{
-			block.directions[i].Y++;
-		}
-	}
-	for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++ && keyPressed[K_DOWN] || keyPressed[K_S])
-		{
-			block.directions[i].Y--;
-		}
-	}
-	for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT] || keyPressed[K_A])
-		{
-			block.directions[i].X--;
-		}
-	}
-	for (int i = 0; i < bno; ++i)
-	{
-		if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT] || keyPressed[K_D])
-		{
-			block.directions[i].X++;
-		}
-	}*/
 }
 
 void menustate()
