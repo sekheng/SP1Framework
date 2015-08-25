@@ -31,7 +31,6 @@ COORD pauseLocation;
 COORD helpreturn;
 COORD gameoverptr;
 
-extern bool collected_keys;
 extern int check_no_of_keys;
 extern int check_no_of_gates;
 
@@ -72,19 +71,19 @@ void characterMovement(double x)
 			charLocation.X--;
 		}
 
-		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
+		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1) //up
 		{
 			charLocation.Y--;
 		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1) //left
 		{
 			charLocation.X--;
 		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
+		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1) //down
 		{
 			charLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1) //right
 		{
 			charLocation.X++;
 		}
@@ -189,6 +188,11 @@ void characterMovement(double x)
 			edit = '0';
 			writelevel(edit);
 		}
+		if (keyPressed[K_BACK])
+		{
+			edit = '\0';
+			writelevel(edit);
+		}
 		if (keyPressed[K_ENTER])
 		{
 			savecustomlevel();
@@ -289,7 +293,6 @@ void characterMovement(double x)
         {
             characterSpawn(RestartX,RestartY);
             state = Start;
-            collected_keys = false;
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
         {
@@ -379,8 +382,6 @@ void characterEnd(int y, int x)//temp y , temp x
 	string level;
 	if (charLocation.X == x && charLocation.Y == y)
 	{
-        check_no_of_keys = 0;
-        check_no_of_gates = 0;
 		levelno++;
 		levelcheck(levelno,level);
 		loadlevel(level);
@@ -425,8 +426,34 @@ void characterInteraction()
 			state = GameOver;
 		}
 	}
-
-	
+	/*for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_UP] || keyPressed[K_W])
+		{
+			block.directions[i].Y++;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++ && keyPressed[K_DOWN] || keyPressed[K_S])
+		{
+			block.directions[i].Y--;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT] || keyPressed[K_A])
+		{
+			block.directions[i].X--;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT] || keyPressed[K_D])
+		{
+			block.directions[i].X++;
+		}
+	}*/
 }
 
 void speedDown(double x)

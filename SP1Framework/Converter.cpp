@@ -33,10 +33,6 @@ void convert(int &a, int b, int c)
 		characterEnd(tempEndX, tempEndY);
 		//characterEnd(b,c);
 	}
-	if (a == 35) // crate
-	{
-		a = 3;
-	}
 	if (a == 83)//start point 
 	{
 		a = 4;
@@ -58,20 +54,27 @@ void convert(int &a, int b, int c)
 		aiMonSpawn(b,c,mno);
 		mno++;
 	}
-	if (a == 66) //box
+	if (a == 35) //box
 	{
-		setBlock(c,b,bno);
+		//a = 3;
+		setBlock(b,c, bno);
 		//setBlock(tempY, tempX, bno);
 		bno++;
 	}
     if ( a == 'K')
     {
+        switch (a)
+        {
+            case 'K': keys_locations( c, b, 0); break;
+        }
         ++check_no_of_keys;
-        keys_locations( c,b);
     }
 	if ( a == 'G')
     {
-        gate_location( c,b);
+        switch (a)
+        {
+            case 'G': gate_location( c,b, 0); break;
+        }        
         ++check_no_of_gates;
     }
 }
