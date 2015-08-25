@@ -1,9 +1,11 @@
 #include "speedControl.h"
 #include "traps.h"
+#include "monster.h"
 
 extern startscreen state;
 double timeTriggered;
 double timeTriggeredChar;
+double timeTriggeredCrazy;
 
 void update_charSpeed(double x)
 {
@@ -34,4 +36,12 @@ void update_ballSpeed(int x, int y, double w)
 	cannonballL(x, y);
 	cannonballU(x, y);
 	cannonballD(x, y);
+}
+
+void update_crazyMonSpeed(int z, double w)
+{
+	if(timeTriggeredCrazy > w)
+		return;
+	timeTriggeredCrazy = w + 0.500;
+	crazyMonUpdate(z);
 }

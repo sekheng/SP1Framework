@@ -51,7 +51,7 @@ void convert(int &a, int b, int c)
 	}
 	if (a == 77) // monster
 	{
-		aiMonSpawn(b,c,mno);
+		crazyMonSpawn(b,c,mno);
 		mno++;
 	}
 	if (a == 35) //box
