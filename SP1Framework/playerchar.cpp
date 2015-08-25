@@ -125,9 +125,15 @@ void characterEnd(int y, int x)//temp y , temp x
 	string level;
 	if (charLocation.X == x && charLocation.Y == y)
 	{
-		levelno++;
-		levelcheck(levelno,level);
-		loadlevel(level);
+        if ( levelno == 5)
+        {
+            state = End;
+        }
+        else {
+		    levelno++;
+		    levelcheck(levelno,level);
+		    loadlevel(level);
+        }
 	}
 }
 
@@ -367,6 +373,7 @@ void PauseState()
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
         {
+            characterSpawn(RestartX,RestartY);
             state = menu;
         }
 }
