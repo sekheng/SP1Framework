@@ -112,6 +112,11 @@ void gate_location( int GateY, int GateX, int GateType)
         Gates[GateType].KeysLocation[check_no_of_gates].Y = GateY;
         Gates[GateType].KeysLocation[check_no_of_gates].X = GateX;
     }
+    else if ( GateType == 1)
+    {
+        Gates[GateType].KeysLocation[check_no_of_gates].Y = GateY;
+        Gates[GateType].KeysLocation[check_no_of_gates].X = GateX;
+    }
 }
 
 void display_gate()

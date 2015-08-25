@@ -19,21 +19,21 @@ void convert(int &a);
 void convert(int &a, int b, int c)
 {
 	
-	if (a == 49) //white walls
+	if (a == 49) //white walls '1'
 	{
 		a = 1;
 	}
-	if (a == 48) // empty space
+	if (a == 48) // empty space '0'
 	{
 		a = 0;
 	}
-	if (a == 69) //end point
+	if (a == 69) //end point 'E'
 	{
 		a = 2;
 		characterEnd(tempEndX, tempEndY);
 		//characterEnd(b,c);
 	}
-	if (a == 83)//start point 
+	if (a == 83)//start point 'S'
 	{
 		a = 4;
 		characterSpawn(b,c);
@@ -49,31 +49,33 @@ void convert(int &a, int b, int c)
 		}
 		cno++;
 	}
-	if (a == 77) // monster
+	if (a == 77) // monster 'M'
 	{
 		crazyMonSpawn(b,c,mno);
 		mno++;
 	}
-	if (a == 35) //box
+	if (a == 35) //box '#'
 	{
 		//a = 3;
 		setBlock(b,c, bno);
 		//setBlock(tempY, tempX, bno);
 		bno++;
 	}
-    if ( a == 'K')
+    if ( a == 'K'|| a == 'Q')
     {
         switch (a)
         {
             case 'K': keys_locations( c, b, 0 ); break;
+            case 'Q': keys_locations( c,b,1); break;
         }
         ++check_no_of_keys;
     }
-	if ( a == 'G')
+	if ( a == 'G'|| a == 'B')
     {
         switch (a)
         {
             case 'G': gate_location( c,b, 0); break;
+            case 'B': gate_location( c,b,1); break;
         }        
         ++check_no_of_gates;
     }
