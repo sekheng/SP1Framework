@@ -17,6 +17,7 @@ extern Console console;
 extern int cno;
 extern int mno;
 extern int bno;
+extern int counter;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
 extern int levelno;
@@ -77,6 +78,7 @@ void characterMovement(double x)
     {
         GameOverState();
     }
+
     else if (state == End)
     {
         if ( keyPressed[K_SPACE] )
@@ -266,14 +268,9 @@ void menustate()
 
 void characterCustomEnd(int tempEndY, int tempEndX)
 {
-	string level;
-	if (charLocation.X == tempEndY && charLocation.Y == tempEndX )
+	if (charLocation.X == tempEndX && charLocation.Y == tempEndY )
 	{
-		/*check_no_of_keys = 0;
-		check_no_of_gates = 0;*/
-		levelno++;
-		levelcheck(levelno, level);
-		loadlevel(level);
+		state = End;
 	}
 }
 
@@ -339,7 +336,7 @@ void PlayState()
 		{
 			characterEnd(tempEndY, tempEndX);
 		}
-		else
+		else if (state == LevelCustom)
 		{
 			characterCustomEnd(tempEndY, tempEndX);
 		}
@@ -363,7 +360,14 @@ void PauseState()
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
         {
             characterSpawn(RestartX,RestartY);
-            state = Start;
+			if (counter == 1)
+			{
+				state = LevelCustom;
+			}
+			else
+			{
+				state = Start;
+			}
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
         {
@@ -384,7 +388,14 @@ void GameOverState()
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
         {
 			characterSpawn(RestartX, RestartY);
-            state = Start;
+			if (counter == 1)
+			{
+				state = LevelCustom;
+			}
+			else
+			{
+				state = Start;
+			}
         }
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
         {

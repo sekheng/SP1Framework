@@ -18,7 +18,5 @@ void levelcheck(int a,string &level)
 		case 4:level = "levels4.txt"; break;
 		case 5:level = "levels5.txt"; break;
 		case 6:state = End; break;
-		case 100: level = "customlevel.txt"; break;
-		case 101:state = menu; break;
 	}
 }
