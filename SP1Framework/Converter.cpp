@@ -39,12 +39,18 @@ void convert(int &a, int b, int c)
 	}
 	if (a == 83)//start point 
 	{
-		a = 0;
+		a = 4;
 		characterSpawn(b,c);
 	}
 	if (a == 82 || a == 85 || a == 68 || a == 76) //cannon
 	{
-		convert(c,b,cno,a);
+		switch (a)
+		{
+			case 'R':locationR(b,c,cno); break;
+			case 'U':locationU(b,c, cno); break;
+			case 'L':locationL(b,c, cno); break;
+			case 'D':locationD(b,c, cno); break;
+		}
 		cno++;
 	}
 	if (a == 77) // monster
@@ -70,17 +76,6 @@ void convert(int &a, int b, int c)
     }
 }
 
-void convert(int &y, int &x,int num,char pass) //for cannon
-{
-	switch (pass)
-	{
-		case 'R':locationR(x, y, num); break;
-		case 'U':locationU(x, y, num); break;
-		case 'L':locationL(x, y, num); break;
-		case 'D':locationD(x, y, num); break;
-	}
-}
-
 void convert2(int&b, string &x, int &c)
 {
 	if (b == 0) { //wall
@@ -95,11 +90,11 @@ void convert2(int&b, string &x, int &c)
 		x = "E";
 		c = 0;
 	}
-	if (b == 3) { //crates/box
+	if (b == 3) { //crates/box //placeholder
 		x = "#";
 		c = 0;
 	}
-	if (b == 4) {//starting point
+	if (b == 4) { //starting point
 		x = "S";
 		c = 0;
 	}

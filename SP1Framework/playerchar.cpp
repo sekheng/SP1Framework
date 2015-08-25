@@ -1,5 +1,5 @@
 #include "playerchar.h"
-
+#include "Loadlevel.h"
 //#include "traps.cpp"
 
 double velocityChar;
@@ -20,7 +20,6 @@ extern int mno;
 extern int bno;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
-extern string &level;
 extern int levelno;
 extern int tempEndX;
 extern int tempEndY;
@@ -114,79 +113,64 @@ void characterMovement(double x)
 		g_quitGame = true;
 	}
 
-	else if (state == Start)   // The Game Begins!
+	else if (state == Start || state == LevelCustom)   // The Game Begins!
 	{
-		/*if(velocityChar > x)
-		return;
-		velocityChar = x + 0.102;*/
 		// Updating the location of the character based on the key press
 		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
 		{
-			//Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
-			//Beep(1440, 30);
 			charLocation.X++;
 		}
 		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
 		{
-			//Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
 		{
-			//Beep(1440, 30);
 			charLocation.X--;
 		}
 
 		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
 		{
-			//Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)
 		{
-			//Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
 		{
-			//Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
-			//Beep(1440, 30);
 			charLocation.X++;
 		}
 
 		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)  //up
 		{
-			//Beep(1440, 30);
 			charLocation.Y--;
 		}
 		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
 		{
-			//Beep(1440, 30);
 			charLocation.X--;
 		}
 		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
 		{
-			//Beep(1440, 30);
 			charLocation.Y++;
 		}
 		if (keyPressed[K_D] && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
 		{
-			//Beep(1440, 30);
 			charLocation.X++;
 		}
 		characterInteraction();
-        // To Pause in-game
-        if ( keyPressed[K_SPACE])
-        {
-            state = Pause;
+		// To Pause in-game
+		if (keyPressed[K_SPACE])
+		{
+			state = Pause;
 		}
 		characterEnd(tempEndY, tempEndX);
 	}
@@ -281,6 +265,58 @@ void characterMovement(double x)
 		}
     }
 
+	//else if (state == LevelCustom)
+	//{
+	//	// Updating the location of the character based on the key press
+	//	if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y + 2][charLocation.X] != 1)
+	//	{
+	//		charLocation.Y++;
+	//	}
+	//	if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
+	//	{
+	//		charLocation.X++;
+	//	}
+	//	if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y][charLocation.X] != 1)
+	//	{
+	//		charLocation.Y--;
+	//	}
+	//	if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X < 55 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
+	//	{
+	//		charLocation.X--;
+	//	}
+	//	if (keyPressed[K_UP] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)
+	//	{
+	//		charLocation.Y--;
+	//	}
+	//	if (keyPressed[K_LEFT] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
+	//	{
+	//		charLocation.X--;
+	//	}
+	//	if (keyPressed[K_DOWN] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)
+	//	{
+	//		charLocation.Y++;
+	//	}
+	//	if (keyPressed[K_RIGHT] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
+	//	{
+	//		charLocation.X++;
+	//	}
+	//	if (keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)  //up
+	//	{
+	//		charLocation.Y--;
+	//	}
+	//	if (keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)  //left
+	//	{
+	//		charLocation.X--;
+	//	}
+	//	if (keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)  //down
+	//	{
+	//		charLocation.Y++;
+	//	}
+	//	if (keyPressed[K_D] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)   //right
+	//	{
+	//		charLocation.X++;
+	//	}
+	//}
 	else if (state == LevelCustom)
 	{
 		// Updating the location of the character based on the key press
@@ -350,7 +386,6 @@ void characterMovement(double x)
 		}
 		else if (keyPressed[K_DOWN] && pauseLocation.Y < 17)
 		{
-			//Beep(1440, 30);
 			pauseLocation.Y++;
 		}
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
@@ -376,17 +411,14 @@ void characterMovement(double x)
             state = menu;
         }
     }
-
     else if ( state == GameOver)
     {
 		if (keyPressed[K_UP] && gameoverptr.Y > 8)
 		{
-			//Beep(1440, 30);
 			gameoverptr.Y--;
 		}
 		else if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
 		{
-			//Beep(1440, 30);
 			gameoverptr.Y++;
 		}
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
@@ -405,7 +437,7 @@ void characterMovement(double x)
     {
         if ( keyPressed[K_SPACE] )
         {
-            state = menu;
+           state = menu;
            TheEndDoesNotContinue = true;
         }
 		
@@ -451,10 +483,12 @@ void characterSpawn(int x, int y)
 
 void characterEnd(int y, int x)//temp y , temp x
 {
+	string level;
 	if (charLocation.X == x && charLocation.Y == y)
 	{
 		levelno++;
-		loadlevel();
+		levelcheck(levelno,level);
+		loadlevel(level);
 	}
 }
 

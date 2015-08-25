@@ -22,7 +22,6 @@ extern int col;
 extern string content;
 extern int cno;
 extern int mno;
-extern string level;
 extern int change;
 extern int levelno;
 extern int tempEndX;
@@ -39,8 +38,9 @@ char leveltext_arr[200][100];
 COORD purelystatic_level_text;
 int leveltext_row = 0;
 int leveltext_col = 0;
+int lvlno = 100;
 //loads the level 
-void loadlevel()
+void loadlevel(string &level)
 {
 	tempEndX = 0;
 	tempEndY = 0;
@@ -48,7 +48,6 @@ void loadlevel()
 	mno = 0;
 	col = 0;
 	row = 1;
-	levelcheck(levelno, level);
 	ifstream inData;
 	inData.open(level);
 	string Data;
@@ -137,6 +136,7 @@ void reloadcustomlevel()
 
 //custom level
 //records custom level
+
 void writelevel(char &a)
 {
 	g_customizemap[charCustomLocation.X][charCustomLocation.Y] = a;
@@ -179,55 +179,19 @@ void savecustomlevel()
 	}
 	outData.close();
 }
+
 //loads custom level
 void loadcustomizedlevel()
 {
-	tempEndX = 0;
-	tempEndY = 0;
-	cno = 0;
-	mno = 0;
-	col = 0;
-	row = 1;
-	ifstream inData;
-	inData.open("customlevel.txt");
-	string Data;
-
-	while (!inData.eof())
-	{
-		col = 0;
-		getline(inData, Data);
-		for (unsigned int x = 0; x < Data.length(); x++)
-		{
-			if (Data[x] == 'E')
-			{
-				tempEndX = col;
-				tempEndY = row;
-			}
-			change = Data[x];
-			convert(change,col,row);
-			g_customizemap[row][col] = change;
-			++col;
-		}
-		++row;
-	}
-	inData.close();
+	string level = "customlevel.txt";
+	levelcheck(lvlno, level);
+	loadlevel(level);
+	
 }
 //refreshes custom level
 void reloadcustomizedlevel()
 {
-	LvL.Y = 1;
-	LvL.X = 0;
-	for (int i = 1; i < row; i++)
-	{
-		LvL.X = 0;
-		for (int j = 0; j < col; j++) {
-			int write = g_customizemap[i][j];
-			convert2(write, content, color);
-			console.writeToBuffer(LvL, content, colors[color]);
-			LvL.X += 1;
-		}
-		LvL.Y += 1;
-	}
+	reloadlevel();
 }
 
 void initLevelText()
