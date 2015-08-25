@@ -54,7 +54,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 2;
+int levelno = 1;
 string level;
 int counter = 0;//counter for custom map
 int change;
@@ -105,7 +105,7 @@ void init()
 	levelcheck(levelno, level);
 	loadlevel(level); // loads the main level
 
-	loadcustomlevel(); // reload the main level
+	loadcustomlevel(); // load custom lvl txt
 
     // Title
     menuPosition();
@@ -287,7 +287,7 @@ void renderCharacter()
     }
     else if ( state == LevelCustomized)
     {
-		console.writeToBuffer(charCustomLocation, (char)1, 0x0C);
+		console.writeToBuffer(charCustomLocation, (char)2, 0x1E);
     }
 	/*else if (state == LevelCustom)
 	{

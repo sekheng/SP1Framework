@@ -52,7 +52,6 @@ void loadlevel(string &level)
 	col = 0;
 	check_no_of_keys = 0;
 	check_no_of_gates = 0;
-
 	row = 1;
 	ifstream inData;
 	inData.open(level);
@@ -187,6 +186,7 @@ void savecustomlevel()
 }
 
 //loads custom level
+
 void loadcustomizedlevel()
 {
 	string level = "customlevel.txt";
