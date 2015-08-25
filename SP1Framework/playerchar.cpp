@@ -141,22 +141,22 @@ void characterMovement(double x)
 			charLocation.X--;
 		}
 
-		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)
+		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1) //up
 		{
 			//Beep(1440, 30);
 			charLocation.Y--;
 		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1) //left
 		{
 			//Beep(1440, 30);
 			charLocation.X--;
 		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)
+		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1) //down
 		{
 			//Beep(1440, 30);
 			charLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1) //right
 		{
 			//Beep(1440, 30);
 			charLocation.X++;
@@ -498,8 +498,34 @@ void characterInteraction()
 			state = GameOver;
 		}
 	}
-
-	
+	/*for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_UP] || keyPressed[K_W])
+		{
+			block.directions[i].Y++;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++ && keyPressed[K_DOWN] || keyPressed[K_S])
+		{
+			block.directions[i].Y--;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT] || keyPressed[K_A])
+		{
+			block.directions[i].X--;
+		}
+	}
+	for (int i = 0; i < bno; ++i)
+	{
+		if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT] || keyPressed[K_D])
+		{
+			block.directions[i].X++;
+		}
+	}*/
 }
 
 void speedDown(double x)

@@ -33,10 +33,10 @@ void convert(int &a, int b, int c)
 		characterEnd(tempEndX, tempEndY);
 		//characterEnd(b,c);
 	}
-	if (a == 35) // crate
-	{
-		a = 3;
-	}
+	//if (a == 35) // crate
+	//{
+	//	a = 3;
+	//}
 	if (a == 83)//start point 
 	{
 		a = 0;
@@ -52,8 +52,9 @@ void convert(int &a, int b, int c)
 		aiMonSpawn(b,c,mno);
 		mno++;
 	}
-	if (a == 66) //box
+	if (a == 35) //box
 	{
+		a = 3;
 		setBlock(c,b,bno);
 		//setBlock(tempY, tempX, bno);
 		bno++;

@@ -33,7 +33,7 @@ void initinventorysystem()
     in_Text.close();
 }
 
-void keys_locations( int &keyY, int & keyX)
+void keys_locations( int &keyY, int &keyX)
 {
     multiple_keys_location.Y = keyY;
     multiple_keys_location.X = keyX;

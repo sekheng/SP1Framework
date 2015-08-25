@@ -7,10 +7,12 @@
 #include <iostream>
 #include <iomanip>
 
+#define MAX_CANNON 20
+
 struct Cannon
 {
-	COORD directions[20];
-	COORD position[20];
+	COORD directions[MAX_CANNON];
+	COORD position[MAX_CANNON];
 };
 
 void cannonR(int &i);

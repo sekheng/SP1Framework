@@ -176,7 +176,7 @@ void update(double dt)
     speedDown(elapsedTime);
 	speed(3, cno, elapsedTime);
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
-	updateBlock(3, bno);
+	updateBlock(1, bno);
 
     // sound can be played here too.
 }
