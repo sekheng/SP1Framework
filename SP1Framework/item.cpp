@@ -35,7 +35,6 @@ void initinventorysystem()
 }
 
 void keys_locations( int keyY, int keyX, int KeyType)
-
 {
     if ( KeyType == 0)
     {

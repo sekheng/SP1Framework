@@ -73,7 +73,7 @@ void convert(int &a, int b, int c)
     {
         switch (a)
         {
-            case 'G': gate_location( c,b, 0);
+            case 'G': gate_location( c,b, 0); break;
         }        
         ++check_no_of_gates;
     }
