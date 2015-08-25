@@ -12,7 +12,6 @@ Items Keys[MAX_ITEMS];
 Items Gates[MAX_ITEMS];
 extern int check_no_of_keys;
 extern int check_no_of_gates;
-//bool collected_keys;
 int how_Many_keys_types = 0;
 
 void initinventorysystem()
@@ -87,7 +86,6 @@ void display_keys()
                 continue;
             }
             else {
-                //collected_keys = false;
                 Keys[keytypes].check_collected_keys[k] = false;
                 break;
             }
@@ -120,7 +118,7 @@ void display_gate()
 {
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
-        if ( /*collected_keys == true*/ Keys[gatetype].check_collected_keys[gatetype] == true)
+        if ( Keys[gatetype].check_collected_keys[gatetype] == true)
         {
             for ( int j = 0; j < check_no_of_gates; ++j)
             {
