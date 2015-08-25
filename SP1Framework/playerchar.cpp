@@ -52,250 +52,17 @@ void characterMovement(double x)
 
 	else if (state == Start || state == LevelCustom)   // The Game Begins!
 	{
-		// Updating the location of the character based on the key press
-		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
-		{
-			charLocation.Y++;
-		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
-		{
-			charLocation.X++;
-		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
-		{
-			charLocation.Y--;
-		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
-		{
-			charLocation.X--;
-		}
-
-		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1) //up
-		{
-			charLocation.Y--;
-		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1) //left
-		{
-			charLocation.X--;
-		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1) //down
-		{
-			charLocation.Y++;
-		}
-		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1) //right
-		{
-			charLocation.X++;
-		}
-
-		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)  //up
-		{
-			charLocation.Y--;
-		}
-		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
-		{
-			charLocation.X--;
-		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
-		{
-			charLocation.Y++;
-		}
-		if (keyPressed[K_D] && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
-		{
-			charLocation.X++;
-		}
-		characterInteraction();
-		// To Pause in-game
-		if (keyPressed[K_SPACE])
-		{
-			state = Pause;
-		}
-
-		if (state == Start)
-		{
-			characterEnd(tempEndY, tempEndX);
-		}
-		else if (state == LevelCustom)
-		{
-			characterCustomEnd(tempEndY, tempEndX);
-		}
-		
+        PlayState();		
 	}
     //Level Editing
 	else if (state == LevelCustomized)
 	{
-		char edit;
-		if (keyPressed[K_SPACE])
-		{
-			state = menu;
-		}
-		if (keyPressed[K_L])
-		{
-			edit = 'L';
-			writelevel(edit);
-		}
-		if (keyPressed[K_0])
-		{
-			edit = '0';
-			writelevel(edit);
-		}
-		if (keyPressed[K_R])
-		{
-			edit = 'R';
-			writelevel(edit);
-		}
-		if (keyPressed[K_U])
-		{
-			edit = 'U';
-			writelevel(edit);
-		}
-		if (keyPressed[K_D])
-		{
-			edit = 'D';
-			writelevel(edit);
-		}
-		if (keyPressed[K_1])
-		{
-			edit = '1';
-			writelevel(edit);
-		}
-		if (keyPressed[K_S])
-		{
-			edit = 'S';
-			writelevel(edit);
-		}
-		if (keyPressed[K_E])
-		{
-			edit = 'E';
-			writelevel(edit);
-		}
-		if (keyPressed[K_M])
-		{
-			edit = 'M';
-			writelevel(edit);
-		}
-		if (keyPressed[K_BOX])
-		{
-			edit = 'B';
-			writelevel(edit);
-		}
-		if (keyPressed[K_1])
-		{
-			edit = '1';
-			writelevel(edit);
-		}
-		if (keyPressed[K_0])
-		{
-			edit = '0';
-			writelevel(edit);
-		}
-		if (keyPressed[K_BACK])
-		{
-			edit = '\0';
-			writelevel(edit);
-		}
-		if (keyPressed[K_ENTER])
-		{
-			savecustomlevel();
-			state = menu;
-		}
-		if (keyPressed[K_UP] && charCustomLocation.Y > 1 )
-		{
-			charCustomLocation.Y--;
-		}
-		if (keyPressed[K_LEFT] && charCustomLocation.X >0 )
-		{
-			charCustomLocation.X--;
-		}
-		if (keyPressed[K_DOWN] && charCustomLocation.Y < 16 )
-		{
-			charCustomLocation.Y++;
-		}
-		if (keyPressed[K_RIGHT] && charCustomLocation.X < 55)
-		{
-			charCustomLocation.X++;
-		}
-	}
-	//else if (state == LevelCustom)
-	//{
-	//	// Updating the location of the character based on the key press
-	//	if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y + 2][charLocation.X] != 1)
-	//	{
-	//		charLocation.Y++;
-	//	}
-	//	if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
-	//	{
-	//		charLocation.X++;
-	//	}
-	//	if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y][charLocation.X] != 1)
-	//	{
-	//		charLocation.Y--;
-	//	}
-	//	if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X < 55 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
-	//	{
-	//		charLocation.X--;
-	//	}
-	//	if (keyPressed[K_UP] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)
-	//	{
-	//		charLocation.Y--;
-	//	}
-	//	if (keyPressed[K_LEFT] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
-	//	{
-	//		charLocation.X--;
-	//	}
-	//	if (keyPressed[K_DOWN] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)
-	//	{
-	//		charLocation.Y++;
-	//	}
-	//	if (keyPressed[K_RIGHT] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
-	//	{
-	//		charLocation.X++;
-	//	}
-	//	if (keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)  //up
-	//	{
-	//		charLocation.Y--;
-	//	}
-	//	if (keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)  //left
-	//	{
-	//		charLocation.X--;
-	//	}
-	//	if (keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)  //down
-	//	{
-	//		charLocation.Y++;
-	//	}
-	//	if (keyPressed[K_D] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)   //right
-	//	{
-	//		charLocation.X++;
-	//	}
- //       if ( keyPressed[K_SPACE] )
- //       {
- //           state = Pause2;
- //       }
-	//}
+        LevelEditingState();
+    }
 
     else if ( state == Pause )
     {
-		if (keyPressed[K_UP] && pauseLocation.Y > 15)
-		{
-			//Beep(1440, 30);
-			pauseLocation.Y--;
-		}
-		else if (keyPressed[K_DOWN] && pauseLocation.Y < 17)
-		{
-			pauseLocation.Y++;
-		}
-        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
-        {
-            state = Start;
-        }
-        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
-        {
-            characterSpawn(RestartX,RestartY);
-            state = Start;
-        }
-        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
-        {
-            state = menu;
-        }
+        PauseState();
     }
 
     else if ( state == Help )
@@ -305,28 +72,11 @@ void characterMovement(double x)
             state = menu;
         }
     }
+
     else if ( state == GameOver)
     {
-		if (keyPressed[K_UP] && gameoverptr.Y > 8)
-		{
-			gameoverptr.Y--;
-		}
-		else if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
-		{
-			gameoverptr.Y++;
-		}
-        else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
-        {
-			characterSpawn(RestartX, RestartY);
-            state = Start;
-        }
-        else if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
-        {
-            characterSpawn(RestartX, RestartY);
-            state = menu;
-        }
+        GameOverState();
     }
-
     else if (state == End)
     {
         if ( keyPressed[K_SPACE] )
@@ -335,11 +85,6 @@ void characterMovement(double x)
            TheEndDoesNotContinue = true;
         }
 		
-    }
-
-    else if ( state == Pause2)
-    {
-
     }
 }
 
@@ -532,3 +277,213 @@ void characterCustomEnd(int tempEndY, int tempEndX)
 	}
 }
 
+void PlayState()
+{
+		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y + 2][charLocation.X] != 1)
+		{
+			charLocation.Y++;
+		}
+		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		{
+			charLocation.X++;
+		}
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
+		{
+			charLocation.Y--;
+		}
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
+		{
+			charLocation.X--;
+		}
+
+		if (keyPressed[K_UP] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1) //up
+		{
+			charLocation.Y--;
+		}
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1) //left
+		{
+			charLocation.X--;
+		}
+		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1) //down
+		{
+			charLocation.Y++;
+		}
+		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1) //right
+		{
+			charLocation.X++;
+		}
+
+		if (keyPressed[K_W] && charLocation.Y > 0 && g_map[charLocation.Y - 1][charLocation.X] != 1)  //up
+		{
+			charLocation.Y--;
+		}
+		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
+		{
+			charLocation.X--;
+		}
+		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
+		{
+			charLocation.Y++;
+		}
+		if (keyPressed[K_D] && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
+		{
+			charLocation.X++;
+		}
+		characterInteraction();
+		// To Pause in-game
+		if (keyPressed[K_SPACE])
+		{
+			state = Pause;
+		}
+		if (state == Start)
+		{
+			characterEnd(tempEndY, tempEndX);
+		}
+		else
+		{
+			characterCustomEnd(tempEndY, tempEndX);
+		}
+}
+
+void PauseState()
+{
+		if (keyPressed[K_UP] && pauseLocation.Y > 15)
+		{
+			//Beep(1440, 30);
+			pauseLocation.Y--;
+		}
+		else if (keyPressed[K_DOWN] && pauseLocation.Y < 17)
+		{
+			pauseLocation.Y++;
+		}
+        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
+        {
+            state = Start;
+        }
+        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
+        {
+            characterSpawn(RestartX,RestartY);
+            state = Start;
+        }
+        else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
+        {
+            state = menu;
+        }
+}
+
+void GameOverState()
+{
+		if (keyPressed[K_UP] && gameoverptr.Y > 8)
+		{
+			gameoverptr.Y--;
+		}
+		else if (keyPressed[K_DOWN] && gameoverptr.Y < 9)
+		{
+			gameoverptr.Y++;
+		}
+        else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
+        {
+			characterSpawn(RestartX, RestartY);
+            state = Start;
+        }
+        else if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
+        {
+            characterSpawn(RestartX, RestartY);
+            state = menu;
+        }
+}
+
+void LevelEditingState()
+{
+		char edit;
+		if (keyPressed[K_SPACE])
+		{
+			state = menu;
+		}
+		if (keyPressed[K_L])
+		{
+			edit = 'L';
+			writelevel(edit);
+		}
+		if (keyPressed[K_0])
+		{
+			edit = '0';
+			writelevel(edit);
+		}
+		if (keyPressed[K_R])
+		{
+			edit = 'R';
+			writelevel(edit);
+		}
+		if (keyPressed[K_U])
+		{
+			edit = 'U';
+			writelevel(edit);
+		}
+		if (keyPressed[K_D])
+		{
+			edit = 'D';
+			writelevel(edit);
+		}
+		if (keyPressed[K_1])
+		{
+			edit = '1';
+			writelevel(edit);
+		}
+		if (keyPressed[K_S])
+		{
+			edit = 'S';
+			writelevel(edit);
+		}
+		if (keyPressed[K_E])
+		{
+			edit = 'E';
+			writelevel(edit);
+		}
+		if (keyPressed[K_M])
+		{
+			edit = 'M';
+			writelevel(edit);
+		}
+		if (keyPressed[K_BOX])
+		{
+			edit = 'B';
+			writelevel(edit);
+		}
+		if (keyPressed[K_1])
+		{
+			edit = '1';
+			writelevel(edit);
+		}
+		if (keyPressed[K_0])
+		{
+			edit = '0';
+			writelevel(edit);
+		}
+		if (keyPressed[K_BACK])
+		{
+			edit = '\0';
+			writelevel(edit);
+		}
+		if (keyPressed[K_ENTER])
+		{
+			savecustomlevel();
+			state = menu;
+		}
+		if (keyPressed[K_UP] && charCustomLocation.Y > 1 )
+		{
+			charCustomLocation.Y--;
+		}
+		if (keyPressed[K_LEFT] && charCustomLocation.X >0 )
+		{
+			charCustomLocation.X--;
+		}
+		if (keyPressed[K_DOWN] && charCustomLocation.Y < 16 )
+		{
+			charCustomLocation.Y++;
+		}
+		if (keyPressed[K_RIGHT] && charCustomLocation.X < 55)
+		{
+			charCustomLocation.X++;
+		}
+}

@@ -16,6 +16,10 @@
 
 void characterInit();
 void menustate();
+void PlayState();
+void PauseState();
+void GameOverState();
+void LevelEditingState();
 void characterMovement(double x);
 void characterCustomEnd(int tempEndY, int tempEndX);
 void getInput();
