@@ -23,6 +23,8 @@ extern string content;
 extern int cno;
 extern int mno;
 extern int bno;
+extern int check_no_of_keys;
+extern int check_no_of_gates;
 extern int change;
 extern int levelno;
 extern int tempEndX;
@@ -48,6 +50,9 @@ void loadlevel(string &level)
 	mno = 0;
 	bno = 0;
 	col = 0;
+	check_no_of_keys = 0;
+	check_no_of_gates = 0;
+
 	row = 1;
 	ifstream inData;
 	inData.open(level);

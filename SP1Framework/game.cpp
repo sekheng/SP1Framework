@@ -54,7 +54,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 5;
+int levelno = 1;
 string level;
 int counter = 0;//counter for custom map
 int change;
@@ -105,7 +105,6 @@ void init()
 
 	characterInit();
 
-	/////////////////////////////////////////
 	levelcheck(levelno, level);
 	loadlevel(level); // loads the main level
 
