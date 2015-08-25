@@ -93,7 +93,7 @@ void speed(int x, int y, double w)
 {
 	if(velocity > w)
 		return;
-	velocity = w + 0.102;
+	velocity = w + 0.250;
 	cannonballR(x, y);
 	cannonballL(x, y);
 	cannonballU(x, y);

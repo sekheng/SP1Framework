@@ -19,12 +19,9 @@ extern COORD charCustomLocation;
 extern int color;
 extern int row;
 extern int col;
-extern size_t g_map[140][100];
 extern string content;
 extern int cno;
 extern int mno;
-extern int tempX;
-extern int tempY;
 extern string level;
 extern int change;
 extern int levelno;
@@ -32,6 +29,7 @@ extern int tempEndX;
 extern int tempEndY;
 extern int cuscol;
 extern int cusrow;
+extern size_t g_map[140][100];
 extern size_t g_custommap[140][100];
 extern size_t g_customizemap[140][100];
 extern int cuschange;
@@ -41,11 +39,9 @@ char leveltext_arr[200][100];
 COORD purelystatic_level_text;
 int leveltext_row = 0;
 int leveltext_col = 0;
-
+//loads the level 
 void loadlevel()
 {
-	tempX = 0;
-	tempY = 0;
 	tempEndX = 0;
 	tempEndY = 0;
 	cno = 0;
@@ -68,10 +64,8 @@ void loadlevel()
 				tempEndX = col;
 				tempEndY = row;
 			}
-			tempX = col;
-			tempY = row;
 			change = Data[x];
-			convert(change);
+			convert(change,col,row);
 			g_map[row][col] = change;
 			++col;
 		}
@@ -79,6 +73,7 @@ void loadlevel()
 	}
 	inData.close();
 }
+//refreshes the updates for main level
 void reloadlevel()
 {
 	LvL.Y = 1;
@@ -95,6 +90,8 @@ void reloadlevel()
 		LvL.Y += 1;
 	}
 }
+
+//reading custom legend
 
 void loadcustomlevel()
 {
@@ -118,14 +115,13 @@ void loadcustomlevel()
 	incusData.close();
 
 }
-
+//print out the whole thing
 void reloadcustomlevel()
 {
 	string cusoutData;
 	CusLvL.Y = 17;
 	CusLvL.X = 0;
 	int i = 1;
-	// Set up sample colours, and output shadings
 	for (; i < cusrow; ++i)
 	{
 		CusLvL.X = 0;
@@ -138,12 +134,14 @@ void reloadcustomlevel()
 	}
 	
 }
+
 //custom level
+//records custom level
 void writelevel(char &a)
 {
 	g_customizemap[charCustomLocation.X][charCustomLocation.Y] = a;
 }
-
+//display what you typed onto the customize level
 void renderwrittenlevel()
 {
 	COORD levellocation;
@@ -161,7 +159,7 @@ void renderwrittenlevel()
 		levellocation.Y += 1;
 	}
 }
-
+//save custom level
 void savecustomlevel()
 {
 	ofstream outData;
@@ -181,10 +179,9 @@ void savecustomlevel()
 	}
 	outData.close();
 }
+//loads custom level
 void loadcustomizedlevel()
 {
-	tempX = 0;
-	tempY = 0;
 	tempEndX = 0;
 	tempEndY = 0;
 	cno = 0;
@@ -206,14 +203,8 @@ void loadcustomizedlevel()
 				tempEndX = col;
 				tempEndY = row;
 			}
-			tempX = col;
-			tempY = row;
 			change = Data[x];
-			/*if (change = '\0')
-			{
-				change = '0';
-			}*/
-			convert(change);
+			convert(change,col,row);
 			g_customizemap[row][col] = change;
 			++col;
 		}
@@ -221,6 +212,7 @@ void loadcustomizedlevel()
 	}
 	inData.close();
 }
+//refreshes custom level
 void reloadcustomizedlevel()
 {
 	LvL.Y = 1;

@@ -6,8 +6,6 @@
 #include "monster.h"
 #include "item.h"
 
-extern int tempX;
-extern int tempY;
 extern int tempEndX;
 extern int tempEndY;
 extern int cno;
@@ -16,7 +14,9 @@ extern int bno;
 int check_no_of_keys = 0;
 int check_no_of_gates = 0;
 char pass;
-void convert(int &a)
+void convert(int &a);
+
+void convert(int &a, int b, int c)
 {
 	
 	if (a == 49) //white walls
@@ -31,6 +31,7 @@ void convert(int &a)
 	{
 		a = 2;
 		characterEnd(tempEndX, tempEndY);
+		//characterEnd(b,c);
 	}
 	if (a == 35) // crate
 	{
@@ -39,47 +40,36 @@ void convert(int &a)
 	if (a == 83)//start point 
 	{
 		a = 0;
-		convertStart(tempY, tempX);
+		characterSpawn(b,c);
 	}
 	if (a == 82 || a == 85 || a == 68 || a == 76) //cannon
 	{
-		pass = a;
-		convert(tempY, tempX,cno,pass);
+		convert(c,b,cno,a);
 		cno++;
 	}
 	if (a == 77) // monster
 	{
-		convert(tempY, tempX, mno);
+		aiMonSpawn(b,c,mno);
 		mno++;
 	}
 	if (a == 66) //box
 	{
-		setBlock(tempY, tempX, bno);
+		setBlock(c,b,bno);
+		//setBlock(tempY, tempX, bno);
 		bno++;
 	}
     if ( a == 'K')
     {
-        keys_locations( tempY, tempX);
         ++check_no_of_keys;
+        keys_locations( c,b);
     }
 	if ( a == 'G')
     {
-        gate_location( tempY, tempX);
+        gate_location( c,b);
         ++check_no_of_gates;
     }
 }
-/*void convertbox(int &tempY, int &tempX, int bno)
-{
-	characterBox(tempX, tempY, bno);
-}*/
-void convertStart(int &y, int &x)
-{
-	characterSpawn(x,y);
-}
-void convert(int &tempY, int &tempX, int mno)
-{
-	aiMonSpawn(tempX,tempY,mno);
-}
+
 void convert(int &y, int &x,int num,char pass) //for cannon
 {
 	switch (pass)
@@ -105,7 +95,7 @@ void convert2(int&b, string &x, int &c)
 		x = "E";
 		c = 0;
 	}
-	if (b == 3) {//crates/box
+	if (b == 3) { //crates/box
 		x = "#";
 		c = 0;
 	}

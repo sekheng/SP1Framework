@@ -69,12 +69,10 @@ int ttlerow = 0;
 int ttlecol = 0;
 string content;
 int color;
-int tempX; //store X coord
-int tempY; //store Y coord
 int tempEndX; // x end point coord
 int tempEndY;// y end point coord
 int cno = 0; //cannon number
-int mno = 0;//monster number
+int mno = 0; //monster number
 int bno = 0; //box number
 COORD pu;
 int pauserows = 0;
@@ -111,9 +109,9 @@ void init()
 	characterInit();
 
 	/////////////////////////////////////////
-	loadlevel(); // loads the level
+	loadlevel(); // loads the main level
 
-	loadcustomlevel();
+	loadcustomlevel(); // reload the main level
 
     // Title
     menuPosition();
@@ -177,16 +175,6 @@ void update(double dt)
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     speedDown(elapsedTime);
 	speed(3, cno, elapsedTime);
-	/*if( velocity > elapsedTime)
-		return;
-	else
-	{
-		cannonballR(3, cno, elapsedTime);
-		cannonballL(6, cno, elapsedTime);
-		cannonballU(3, cno, elapsedTime);
-		cannonballD(3, cno, elapsedTime);
-	}
-	velocity = elapsedTime + 0.000;*/
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
 	updateBlock(3, bno);
 
@@ -300,6 +288,8 @@ void renderCharacter()
             display_gate();
         }
 
+        display_keys();
+        display_gate();
 		console.writeToBuffer(charLocation, (char)2, 0x0C);
         pauseLocation.Y = 15;
     }
