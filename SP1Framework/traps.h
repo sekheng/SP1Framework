@@ -15,10 +15,12 @@ struct Cannon
 	COORD position[MAX_CANNON];
 };
 
-void cannonR(int &i);
-void cannonL(int &i);
-void cannonU(int &i);
-void cannonD(int &i);
+
+
+void cannonR(int i);
+void cannonL(int i);
+void cannonU(int i);
+void cannonD(int i);
 
 void cannonballR(int x,int z);
 void cannonballL(int x,int z);
@@ -29,5 +31,7 @@ void locationR(int x,int y,int z);
 void locationL(int x,int y,int z);
 void locationU(int x,int y,int z);
 void locationD(int x,int y,int z);
+
+void render_cannons(int z);
 
 #endif  // _TRAPS_H

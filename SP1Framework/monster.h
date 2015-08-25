@@ -7,9 +7,9 @@
 #include "Framework\timer.h"
 #include "Framework\console.h"
 
-void aiMonSpawn(int x,int y,int z);
-void aiMonUpdate(int z);
-void aiMon(int &i);
+void crazyMonSpawn(int x,int y,int z);
+void crazyMonUpdate(int z);
+void crazyMon(int i);
 
 
 #endif  // _MONSTER_H

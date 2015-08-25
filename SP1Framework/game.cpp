@@ -54,7 +54,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 1;
+int levelno = 2;
 string level;
 int counter = 0;//counter for custom map
 int change;
@@ -82,10 +82,7 @@ int pausecols = 0;
 extern COORD pauseLocation;
 extern COORD helpreturn;
 extern COORD gameoverptr;
-extern struct Cannon Right;
-extern struct Cannon Left;
-extern struct Cannon Up;
-extern struct Cannon Down;
+
 
 const WORD colors[] =
 {
@@ -172,7 +169,7 @@ void update(double dt)
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     update_charSpeed(elapsedTime);
 	update_ballSpeed(3, cno, elapsedTime);
-	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
+	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
 
     // sound can be played here too.
@@ -272,11 +269,8 @@ void renderCharacter()
     else if (state == Start|| state == LevelCustom) 
 	{
 		// Draw the location of the character
-		cannonL(cno);
-		cannonR(cno);
-		cannonU(cno);
-		cannonD(cno);
-		aiMon(mno);
+		render_cannons(cno);
+		crazyMon(mno);
 		printBlock(bno);
         display_keys();
         display_gate();

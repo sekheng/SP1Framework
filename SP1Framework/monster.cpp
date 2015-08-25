@@ -6,14 +6,14 @@ int r[20];
 
 COORD aiCoordinate[20];
 
-void aiMon(int &i)
+void crazyMon(int i)
 {
 	for(int b = 0; b < i; ++b)
 	{
 		console.writeToBuffer(aiCoordinate[b], (char)153, 0x0C);
 	}
 }
-void aiMonUpdate(int z)
+void crazyMonUpdate(int z)
 {
 	for (int no = 0; no < z;no++)
 	{ 
@@ -40,7 +40,7 @@ void aiMonUpdate(int z)
 		
 	}
 }
-void aiMonSpawn(int x,int y,int z)
+void crazyMonSpawn(int x,int y,int z)
 {
 	aiCoordinate[z].X = x;
 	aiCoordinate[z].Y = y;
