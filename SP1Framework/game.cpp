@@ -102,7 +102,6 @@ void init()
 
 	characterInit();
 
-	/////////////////////////////////////////
 	levelcheck(levelno, level);
 	loadlevel(level); // loads the main level
 
@@ -219,7 +218,7 @@ void renderMap()
         // Display The Title
         displayMenu();   
     }
-    else if ( state == Pause || state == Pause2)
+    else if ( state == Pause)
     {
         // Display in-game Pause
         displayPause();
@@ -275,7 +274,7 @@ void renderCharacter()
 		printBlock(bno);
         display_keys();
         display_gate();
-		console.writeToBuffer(charLocation, (char)2, 0x0C);
+		console.writeToBuffer(charLocation, (char)2, 0x1E);
         pauseLocation.Y = 15;
     }
     else if ( state == Pause)
