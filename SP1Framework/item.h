@@ -17,16 +17,16 @@ using std::ifstream;
 struct Items
 {
     COORD KeysLocation[MAX_ITEMS];
-    int item[MAX_ITEMS];
     bool collected[MAX_ITEMS];
+    bool check_collected_keys[MAX_ITEMS];
 };
 
 void initinventorysystem();
 
-void keys_locations( int keyY, int keyX);
+void keys_locations( int keyY, int keyX, int KeyType);
 void displayinventory( int no_of_items = 0);
 void display_keys();
-void gate_location( int GateY, int GateX);
+void gate_location( int GateY, int GateX, int GateType);
 void display_gate();
 
 #endif // _ITEM_H

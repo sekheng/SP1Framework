@@ -86,8 +86,6 @@ extern struct Cannon Left;
 extern struct Cannon Up;
 extern struct Cannon Down;
 
-extern bool collected_keys;
-
 const WORD colors[] =
 {
 	0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
@@ -309,7 +307,6 @@ void renderCharacter()
     else if ( state == GameOver)
     {
        console.writeToBuffer(gameoverptr, (char)60, 0x0C);
-       collected_keys = false;
     }
 }
 

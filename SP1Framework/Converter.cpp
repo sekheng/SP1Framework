@@ -66,12 +66,18 @@ void convert(int &a, int b, int c)
 	}
     if ( a == 'K')
     {
-        keys_locations( c,b); 
+        switch (a)
+        {
+            case 'K': keys_locations( c, b, 0); break;
+        }
         ++check_no_of_keys;
     }
 	if ( a == 'G')
     {
-        gate_location( c,b);
+        switch (a)
+        {
+            case 'G': gate_location( c,b, 0);
+        }        
         ++check_no_of_gates;
     }
 }
