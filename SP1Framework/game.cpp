@@ -177,7 +177,7 @@ void update(double dt)
     speedDown(elapsedTime);
 	speed(3, cno, elapsedTime);
 	aiMonUpdate(mno);// moves the character, collision detection, physics, etc
-	updateBlock(1, bno);
+	updateBlock(bno);
 
     // sound can be played here too.
 }
@@ -282,6 +282,7 @@ void renderCharacter()
 		cannonD(cno);
 		aiMon(mno);
 		printBlock(bno);
+
         if ( check_no_of_keys == 1) {
             display_keys();
         }

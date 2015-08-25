@@ -242,6 +242,11 @@ void characterMovement(double x)
 			edit = '0';
 			writelevel(edit);
 		}
+		if (keyPressed[K_BACK])
+		{
+			edit = '\0';
+			writelevel(edit);
+		}
 		if (keyPressed[K_ENTER])
 		{
 			savecustomlevel();

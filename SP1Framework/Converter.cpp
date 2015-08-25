@@ -33,10 +33,6 @@ void convert(int &a, int b, int c)
 		characterEnd(tempEndX, tempEndY);
 		//characterEnd(b,c);
 	}
-	//if (a == 35) // crate
-	//{
-	//	a = 3;
-	//}
 	if (a == 83)//start point 
 	{
 		a = 4;
@@ -60,8 +56,8 @@ void convert(int &a, int b, int c)
 	}
 	if (a == 35) //box
 	{
-		a = 3;
-		setBlock(c,b,bno);
+		//a = 3;
+		setBlock(b,c, bno);
 		//setBlock(tempY, tempX, bno);
 		bno++;
 	}
