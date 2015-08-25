@@ -13,6 +13,8 @@ extern int tempEndY;
 extern int cno;
 extern int mno;
 extern int bno;
+int check_no_of_keys = 0;
+int check_no_of_gates = 0;
 char pass;
 void convert(int &a)
 {
@@ -58,10 +60,12 @@ void convert(int &a)
     if ( a == 'K')
     {
         keys_locations( tempY, tempX);
+        ++check_no_of_keys;
     }
 	if ( a == 'G')
     {
         gate_location( tempY, tempX);
+        ++check_no_of_gates;
     }
 }
 /*void convertbox(int &tempY, int &tempX, int bno)

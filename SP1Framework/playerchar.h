@@ -7,6 +7,7 @@
 #include "levels.h"
 #include "Loadlevel.h"
 #include "block.h"
+#include "item.h"
 #include <iomanip>
 #include <fstream>
 #include <string>

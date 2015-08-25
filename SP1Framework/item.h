@@ -4,6 +4,7 @@
 #include "Framework\timer.h"
 #include "game.h"
 #include "Framework\console.h"
+#include "playerchar.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>

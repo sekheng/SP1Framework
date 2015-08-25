@@ -34,6 +34,10 @@ COORD pauseLocation;
 COORD helpreturn;
 COORD gameoverptr;
 
+extern bool collected_keys;
+extern int check_no_of_keys;
+extern int check_no_of_gates;
+
 void characterInit()
 {
 	charLocation.X = 10;
@@ -350,9 +354,12 @@ void characterMovement(double x)
 			//Beep(1440, 30);
 			charLocation.X++;
 		}
+        if ( keyPressed[K_SPACE] )
+        {
+            state = Pause2;
+        }
 
 	}
-
 
     else if ( state == Pause )
     {
@@ -374,6 +381,7 @@ void characterMovement(double x)
         {
             characterSpawn(RestartX,RestartY);
             state = Start;
+            collected_keys = false;
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
         {
@@ -422,6 +430,11 @@ void characterMovement(double x)
         }
 		
     }
+
+    else if ( state == Pause2)
+    {
+
+    }
 }
 
 void getInput()
@@ -460,6 +473,8 @@ void characterEnd(int y, int x)//temp y , temp x
 {
 	if (charLocation.X == x&& charLocation.Y == y)
 	{
+        check_no_of_keys = 0;
+        check_no_of_gates = 0;
 		levelno++;
 		loadlevel();
 	}

@@ -88,6 +88,10 @@ extern struct Cannon Left;
 extern struct Cannon Up;
 extern struct Cannon Down;
 
+extern bool collected_keys;
+extern int check_no_of_keys;
+extern int check_no_of_gates;
+
 const WORD colors[] =
 {
 	0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
@@ -232,7 +236,7 @@ void renderMap()
         // Display The Title
         displayMenu();   
     }
-    else if ( state == Pause )
+    else if ( state == Pause || state == Pause2)
     {
         // Display in-game Pause
         displayPause();
@@ -289,8 +293,12 @@ void renderCharacter()
 		cannonD(cno);
 		aiMon(mno);
 		printBlock(bno);
-        display_keys();
-        display_gate();
+        if ( check_no_of_keys == 1) {
+            display_keys();
+        }
+        if ( check_no_of_gates > 0 ) {
+            display_gate();
+        }
 
 		console.writeToBuffer(charLocation, (char)2, 0x0C);
         pauseLocation.Y = 15;
@@ -319,6 +327,7 @@ void renderCharacter()
     else if ( state == GameOver)
     {
        console.writeToBuffer(gameoverptr, (char)60, 0x0C);
+       collected_keys = false;
     }
 }
 
