@@ -87,8 +87,6 @@ extern struct Cannon Up;
 extern struct Cannon Down;
 
 extern bool collected_keys;
-extern int check_no_of_keys;
-extern int check_no_of_gates;
 
 const WORD colors[] =
 {

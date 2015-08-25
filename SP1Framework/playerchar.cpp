@@ -453,8 +453,6 @@ void characterEnd(int y, int x)//temp y , temp x
 {
 	if (charLocation.X == x && charLocation.Y == y)
 	{
-        check_no_of_keys = 0;
-        check_no_of_gates = 0;
 		levelno++;
 		loadlevel();
 	}

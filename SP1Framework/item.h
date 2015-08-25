@@ -9,14 +9,16 @@
 #include <iomanip>
 #include <fstream>
 
+#define MAX_ITEMS 10
+
 using std::string;
 using std::ifstream;
 
 struct Items
 {
-    COORD KeysLocation;
-    int item[10];
-    bool collected[10];
+    COORD KeysLocation[MAX_ITEMS];
+    int item[MAX_ITEMS];
+    bool collected[MAX_ITEMS];
 };
 
 void initinventorysystem();

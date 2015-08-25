@@ -1,7 +1,5 @@
 #include "item.h"
 
-#define MAX_ITEMS 10
-
 extern Console console;
 extern COORD charLocation;
 extern size_t g_map[140][100];
@@ -38,8 +36,8 @@ void initinventorysystem()
 
 void keys_locations( int keyY, int keyX)
 {
-    Keys[check_no_of_keys].KeysLocation.Y = keyY;
-    Keys[check_no_of_keys].KeysLocation.X = keyX;
+    Keys[check_no_of_keys].KeysLocation[check_no_of_keys].Y = keyY;
+    Keys[check_no_of_keys].KeysLocation[check_no_of_keys].X = keyX;
 }
 
 void displayinventory( int no_of_items)
@@ -61,7 +59,7 @@ void display_keys()
 {   
     for ( int h = 0; h < check_no_of_keys; ++h)
     {
-        if ( (charLocation.X) == (Keys[h].KeysLocation.X) && (charLocation.Y) == (Keys[h].KeysLocation.Y) )
+        if ( (charLocation.X) == (Keys[h].KeysLocation[h].X) && (charLocation.Y) == (Keys[h].KeysLocation[h].Y) )
         {
             Keys[h].collected[h] = true;
         }
@@ -79,27 +77,15 @@ void display_keys()
         }
     }
 
-    //if ( collected_keys == false )
-    //{
-    //    for ( int i = 0; i < check_no_of_keys; ++i) {
-    //        console.writeToBuffer( Keys[i].KeysLocation, "K", 0xF0);
-    //    }
-    //}
-    //else if ( collected_keys == true)
-    //{
-    //    for ( int i = 0; i < check_no_of_keys; ++i) {
-    //        console.writeToBuffer( Keys[i].KeysLocation, " ", 0x1A);
-    //    }
-    //}
     for ( int i = 0; i < check_no_of_keys; ++i)
     {
         if (Keys[i].collected[i] == true)
         {
-            console.writeToBuffer( Keys[i].KeysLocation, " ", 0x1A);
+            console.writeToBuffer( Keys[i].KeysLocation[i], " ", 0x1A);
         }
         else
         {
-            console.writeToBuffer( Keys[i].KeysLocation, "K", 0xF0);
+            console.writeToBuffer( Keys[i].KeysLocation[i], "K", 0xF0);
         }
     }
     
@@ -107,8 +93,8 @@ void display_keys()
 
 void gate_location( int GateY, int GateX)
 {
-    Gates[check_no_of_gates].KeysLocation.Y = GateY;
-    Gates[check_no_of_gates].KeysLocation.X = GateX;
+    Gates[check_no_of_gates].KeysLocation[check_no_of_gates].Y = GateY;
+    Gates[check_no_of_gates].KeysLocation[check_no_of_gates].X = GateX;
 }
 
 void display_gate()
@@ -117,15 +103,15 @@ void display_gate()
     {
         for ( int j = 0; j < check_no_of_gates; ++j)
         {
-            g_map[Gates[j].KeysLocation.Y][Gates[j].KeysLocation.X] = 0;
-            console.writeToBuffer(Gates[j].KeysLocation, " ", 0x1A);
+            g_map[Gates[j].KeysLocation[j].Y][Gates[j].KeysLocation[j].X] = 0;
+            console.writeToBuffer(Gates[j].KeysLocation[j], " ", 0x1A);
         }
     }
     else {
         for ( int i = 0; i < check_no_of_gates; ++i)
         {
-            g_map[Gates[i].KeysLocation.Y][Gates[i].KeysLocation.X] = 1;
-            console.writeToBuffer(Gates[i].KeysLocation , "G", 0x0C);
+            g_map[Gates[i].KeysLocation[i].Y][Gates[i].KeysLocation[i].X] = 1;
+            console.writeToBuffer(Gates[i].KeysLocation[i] , "G", 0x0C);
         }
     }
 }
