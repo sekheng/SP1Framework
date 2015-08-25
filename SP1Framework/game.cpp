@@ -278,7 +278,6 @@ void renderCharacter()
 		cannonD(cno);
 		aiMon(mno);
 		printBlock(bno);
-
         display_keys();
         display_gate();
 		console.writeToBuffer(charLocation, (char)2, 0x0C);
