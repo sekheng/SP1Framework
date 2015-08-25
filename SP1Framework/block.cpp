@@ -24,39 +24,39 @@ void setBlock(int x, int y, int z)
 //to be placed in update
 void updateBlock(int z) // x= no of blocks and z=box number
 {
-	//for (int i = 0; i < z; ++i)
-	//{
+	for (int i = 0; i < z; ++i)
+	{
 	//	/*if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
 	//	{
 	//	state = GameOver;
 	//	}
 	//	}*/ //std::cout << i;
-	//	if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_UP] || charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_W])
-	//	{
-	//		block.directions[i].Y++;
-	//	}
-	//}
-	//for (int i = 0; i < z; ++i)
-	//{
-	//	if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++ && keyPressed[K_DOWN] || keyPressed[K_S])
-	//	{
-	//		block.directions[i].Y--;
-	//	}
-	//}
-	//for (int i = 0; i < z; ++i)
-	//{
-	//	if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT] || keyPressed[K_A])
-	//	{
-	//		block.directions[i].X--;
-	//	}
-	//}
-	//for (int i = 0; i < z; ++i)
-	//{
-	//	if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT] || keyPressed[K_D])
-	//	{
-	//		block.directions[i].X++;
-	//	}
-	//}
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_UP] || charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_W])
+		{
+			block.directions[i].Y++;
+		}
+	}
+	for (int i = 0; i < z; ++i)
+	{
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++ && keyPressed[K_DOWN] || keyPressed[K_S])
+		{
+			block.directions[i].Y--;
+		}
+	}
+	for (int i = 0; i < z; ++i)
+	{
+		if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT] || keyPressed[K_A])
+		{
+			block.directions[i].X--;
+		}
+	}
+	for (int i = 0; i < z; ++i)
+	{
+		if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT] || keyPressed[K_D])
+		{
+			block.directions[i].X++;
+		}
+	}
 }
 
 //to be placed in render
