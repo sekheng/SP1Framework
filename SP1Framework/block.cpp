@@ -42,7 +42,6 @@ void updateBlock(int z) // x= no of blocks and z=box number
 		{
 			block.directions[i].X++;
 		}
-		std::cout << block.directions[i].X << " " << block.directions[i].Y<< std::endl;
 	}
 }
 
