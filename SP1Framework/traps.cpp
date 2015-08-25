@@ -3,7 +3,6 @@
 extern Console console;
 extern double elapsedTime;
 extern double deltaTime;
-double velocity;
 
 Cannon Right;
 Cannon Left;
@@ -89,16 +88,6 @@ void locationD(int x, int y,int z)
 }
 
 //placed in update
-void speed(int x, int y, double w)
-{
-	if(velocity > w)
-		return;
-	velocity = w + 0.250;
-	cannonballR(x, y);
-	cannonballL(x, y);
-	cannonballU(x, y);
-	cannonballD(x, y);
-}
 
 void cannonballR(int x,int z)
 {

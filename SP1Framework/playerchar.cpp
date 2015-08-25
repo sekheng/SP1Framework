@@ -2,7 +2,6 @@
 
 //#include "traps.cpp"
 
-double velocityChar;
 extern COORD startmenuLocation;
 extern COORD charLocation;
 extern COORD charCustomLocation;
@@ -486,22 +485,4 @@ void characterInteraction()
 	
 }
 
-void speedDown(double x)
-{
-	if( state == Start)
-	{
-		if(velocityChar > x)
-		{
-			return;
-		}
-		else
-		{
-			velocityChar = x + 0.091;
-			moveCharacter(x);
-		}
-	}
-	else
-	{
-		moveCharacter(x);
-	}
-}
+
