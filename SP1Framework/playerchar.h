@@ -7,6 +7,7 @@
 #include "levels.h"
 #include "Loadlevel.h"
 #include "block.h"
+#include "item.h"
 #include <iomanip>
 #include <fstream>
 #include <string>
@@ -14,7 +15,9 @@
 #include "Framework\console.h"
 
 void characterInit();
+void menustate();
 void characterMovement(double x);
+void characterCustomEnd(int tempEndY, int tempEndX);
 void getInput();
 void characterInteraction();
 void characterSpawn(int x, int y);

@@ -11,6 +11,10 @@ extern int tempEndY;
 extern int cno;
 extern int mno;
 extern int bno;
+int check_no_of_keys = 0;
+int check_no_of_gates = 0;
+char pass;
+void convert(int &a);
 
 void convert(int &a, int b, int c)
 {
@@ -29,18 +33,20 @@ void convert(int &a, int b, int c)
 		characterEnd(tempEndX, tempEndY);
 		//characterEnd(b,c);
 	}
-	if (a == 35) // crate
-	{
-		a = 3;
-	}
 	if (a == 83)//start point 
 	{
-		a = 0;
+		a = 4;
 		characterSpawn(b,c);
 	}
 	if (a == 82 || a == 85 || a == 68 || a == 76) //cannon
 	{
-		convert(c,b,cno,a);
+		switch (a)
+		{
+			case 'R':locationR(b,c,cno); break;
+			case 'U':locationU(b,c, cno); break;
+			case 'L':locationL(b,c, cno); break;
+			case 'D':locationD(b,c, cno); break;
+		}
 		cno++;
 	}
 	if (a == 77) // monster
@@ -48,31 +54,29 @@ void convert(int &a, int b, int c)
 		aiMonSpawn(b,c,mno);
 		mno++;
 	}
-	if (a == 66) //box
+	if (a == 35) //box
 	{
-		setBlock(c,b,bno);
+		//a = 3;
+		setBlock(b,c, bno);
 		//setBlock(tempY, tempX, bno);
 		bno++;
 	}
     if ( a == 'K')
     {
-        keys_locations( c,b);
+        switch (a)
+        {
+            case 'K': keys_locations( c, b, 0); break;
+        }
+        ++check_no_of_keys;
     }
 	if ( a == 'G')
     {
-        gate_location( c,b);
+        switch (a)
+        {
+            case 'G': gate_location( c,b, 0); break;
+        }        
+        ++check_no_of_gates;
     }
-}
-
-void convert(int &y, int &x,int num,char pass) //for cannon
-{
-	switch (pass)
-	{
-		case 'R':locationR(x, y, num); break;
-		case 'U':locationU(x, y, num); break;
-		case 'L':locationL(x, y, num); break;
-		case 'D':locationD(x, y, num); break;
-	}
 }
 
 void convert2(int&b, string &x, int &c)
@@ -89,11 +93,11 @@ void convert2(int&b, string &x, int &c)
 		x = "E";
 		c = 0;
 	}
-	if (b == 3) { //crates/box
+	if (b == 3) { //crates/box //placeholder
 		x = "#";
 		c = 0;
 	}
-	if (b == 4) {//starting point
+	if (b == 4) { //starting point
 		x = "S";
 		c = 0;
 	}

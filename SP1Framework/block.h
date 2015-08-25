@@ -19,9 +19,9 @@ struct Block
 void setBlock(int x, int y, int z);
 
 //to be placed in update
-void updateBlock(int x, int z);
+void updateBlock( int z);
 
 //to be placed in render
-void printBlock(int &i);
+void printBlock(int i);
 
 #endif // _BLOCK_H

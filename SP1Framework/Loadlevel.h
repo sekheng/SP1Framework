@@ -15,7 +15,7 @@ using std::vector;
 using std::ifstream;
 using std::ofstream;
 
-void loadlevel();
+void loadlevel(string &level);
 void reloadlevel();
 void loadcustomlevel();
 void loadcustomizedlevel();

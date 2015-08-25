@@ -14,4 +14,7 @@ using std::ifstream;
 void pausePosition();
 void displayPause();
 
+//void pause2Position();
+//void displayPause2();
+
 #endif  // _INGAME_UI_H
