@@ -12,7 +12,7 @@ Cannon Down;
 //g_timer.getElapsedTime()
 
 //placed in render
-void cannonR(int &i)
+void cannonR(int i)
 {
 	for (int b = 0; b < i; b++)
 	{
@@ -23,7 +23,7 @@ void cannonR(int &i)
 		}
 	}
 }
-void cannonL(int &i)
+void cannonL(int i)
 {
 	for (int b = 0; b < i; b++)
 	{
@@ -34,7 +34,7 @@ void cannonL(int &i)
 		}
 	}
 }
-void cannonU(int &i)
+void cannonU(int i)
 {
 	for (int b = 0; b < i; b++)
 	{
@@ -45,7 +45,7 @@ void cannonU(int &i)
 		}
 	}
 }
-void cannonD(int &i)
+void cannonD(int i)
 {
 	for (int b = 0; b < i; b++)
 	{
@@ -148,4 +148,12 @@ void cannonballD(int x,int z)
 		}
 	}
 
+}
+
+void render_cannons(int z)
+{
+	cannonL(z);
+	cannonR(z);
+	cannonU(z);
+	cannonD(z);
 }
