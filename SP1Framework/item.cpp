@@ -2,12 +2,12 @@
 
 extern Console console;
 extern COORD charLocation;
+extern size_t g_map[140][100];
 COORD display_inventorysystem;
 COORD multiple_keys_location;
 int display_inventory_row = 0;
 int display_inventory_col = 0;
 char display_inventoryarr[200][200];
-int no_of_keys = 0;
 Items Keys;
 Items Gates[10];
 int no_of_gates = 0;
@@ -56,11 +56,20 @@ void displayinventory( int no_of_items)
 
 void display_keys()
 {   
+    
+    if ( (charLocation.X) == (multiple_keys_location.X) && (charLocation.Y) == (multiple_keys_location.Y) )
+    {
+        collected_keys = true;
+    }
     if ( collected_keys == false )
     {
         console.writeToBuffer( multiple_keys_location, "K", 0xF0);
     }
-    //else if ( 
+    else if ( collected_keys == true)
+    {
+        console.writeToBuffer( multiple_keys_location, " ", 0x1A);
+    }
+    
 }
 
 void gate_location( int &GateY, int &GateX)
@@ -72,8 +81,19 @@ void gate_location( int &GateY, int &GateX)
 
 void display_gate()
 {
-    for ( int i = 0; i < no_of_gates; ++i)
+    if ( collected_keys == true)
     {
-        console.writeToBuffer(Gates[i].KeysLocation , "G", 0x0C);
+        for ( int j = 0; j < no_of_gates; ++j)
+        {
+            g_map[Gates[j].KeysLocation.Y][Gates[j].KeysLocation.X] = 0;
+            console.writeToBuffer(Gates[j].KeysLocation, " ", 0x1A);
+        }
+    }
+    else {
+        for ( int i = 0; i < no_of_gates; ++i)
+        {
+            g_map[Gates[i].KeysLocation.Y][Gates[i].KeysLocation.X] = 1;
+            console.writeToBuffer(Gates[i].KeysLocation , "G", 0x0C);
+        }
     }
 }

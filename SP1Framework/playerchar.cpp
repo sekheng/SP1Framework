@@ -31,6 +31,10 @@ COORD pauseLocation;
 COORD helpreturn;
 COORD gameoverptr;
 
+extern bool collected_keys;
+extern int check_no_of_keys;
+extern int check_no_of_gates;
+
 void characterInit()
 {
 	charLocation.X = 10;
@@ -313,6 +317,65 @@ void characterMovement(double x)
 	//		charLocation.X++;
 	//	}
 	//}
+	else if (state == LevelCustom)
+	{
+		// Updating the location of the character based on the key press
+
+		if (keyPressed[K_UP] & keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y + 2][charLocation.X] != 1)
+		{
+			charLocation.Y++;
+		}
+		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
+		{
+			charLocation.X++;
+		}
+		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y][charLocation.X] != 1)
+		{
+			charLocation.Y--;
+		}
+		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X < 55 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
+		{
+			charLocation.X--;
+		}
+		if (keyPressed[K_UP] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)
+		{
+			charLocation.Y--;
+		}
+		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)
+		{
+			charLocation.X--;
+		}
+		if (keyPressed[K_DOWN] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)
+		{
+			charLocation.Y++;
+		}
+		if (keyPressed[K_RIGHT] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)
+		{
+			charLocation.X++;
+		}
+
+		if (keyPressed[K_W] && charLocation.Y > 1 && g_customizemap[charLocation.Y - 1][charLocation.X] != 1)  //up
+		{
+			charLocation.Y--;
+		}
+		if (keyPressed[K_A] && charLocation.X > 0 && g_customizemap[charLocation.Y][charLocation.X - 1] != 1)  //left
+		{
+			charLocation.X--;
+		}
+		if (keyPressed[K_S] && charLocation.Y < 16 && g_customizemap[charLocation.Y + 1][charLocation.X] != 1)  //down
+		{
+			charLocation.Y++;
+		}
+		if (keyPressed[K_D] && charLocation.X < 55  && g_customizemap[charLocation.Y][charLocation.X + 1] != 1)   //right
+		{
+			charLocation.X++;
+		}
+        if ( keyPressed[K_SPACE] )
+        {
+            state = Pause2;
+        }
+
+	}
 
     else if ( state == Pause )
     {
@@ -333,6 +396,7 @@ void characterMovement(double x)
         {
             characterSpawn(RestartX,RestartY);
             state = Start;
+            collected_keys = false;
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
         {
@@ -347,7 +411,6 @@ void characterMovement(double x)
             state = menu;
         }
     }
-
     else if ( state == GameOver)
     {
 		if (keyPressed[K_UP] && gameoverptr.Y > 8)
@@ -378,6 +441,11 @@ void characterMovement(double x)
            TheEndDoesNotContinue = true;
         }
 		
+    }
+
+    else if ( state == Pause2)
+    {
+
     }
 }
 
@@ -418,6 +486,8 @@ void characterEnd(int y, int x)//temp y , temp x
 	string level;
 	if (charLocation.X == x && charLocation.Y == y)
 	{
+        check_no_of_keys = 0;
+        check_no_of_gates = 0;
 		levelno++;
 		levelcheck(levelno,level);
 		loadlevel(level);

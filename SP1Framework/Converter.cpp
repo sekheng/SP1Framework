@@ -11,6 +11,10 @@ extern int tempEndY;
 extern int cno;
 extern int mno;
 extern int bno;
+int check_no_of_keys = 0;
+int check_no_of_gates = 0;
+char pass;
+void convert(int &a);
 
 void convert(int &a, int b, int c)
 {
@@ -62,11 +66,13 @@ void convert(int &a, int b, int c)
 	}
     if ( a == 'K')
     {
+        ++check_no_of_keys;
         keys_locations( c,b);
     }
 	if ( a == 'G')
     {
         gate_location( c,b);
+        ++check_no_of_gates;
     }
 }
 
