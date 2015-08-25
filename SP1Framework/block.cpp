@@ -26,31 +26,23 @@ void updateBlock(int z) // x= no of blocks and z=box number
 {
 	for (int i = 0; i < z; ++i)
 	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++ && keyPressed[K_UP] || charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y++ && keyPressed[K_W])
+		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y && keyPressed[K_UP] || charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y && keyPressed[K_W])
 		{
 			block.directions[i].Y--;
 		}
-	}
-	for (int i = 0; i < z; ++i)
-	{
-		if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_DOWN] || charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y-- && keyPressed[K_S])
+		else if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y && keyPressed[K_DOWN] || charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y && keyPressed[K_S])//player push downwards
 		{
 			block.directions[i].Y++;
 		}
-	}
-	for (int i = 0; i < z; ++i)
-	{
-		if (charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT] || charLocation.X == block.directions[i].X++ && charLocation.Y == block.directions[i].Y && keyPressed[K_A])
+		else if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT] || charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y && keyPressed[K_A])//player push left
 		{
 			block.directions[i].X--;
 		}
-	}
-	for (int i = 0; i < z; ++i)
-	{
-		if (charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT] || charLocation.X == block.directions[i].X-- && charLocation.Y == block.directions[i].Y && keyPressed[K_D])
+		else if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT] || charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y && keyPressed[K_D])//player push right
 		{
 			block.directions[i].X++;
 		}
+		std::cout << block.directions[i].X << " " << block.directions[i].Y<< std::endl;
 	}
 }
 
