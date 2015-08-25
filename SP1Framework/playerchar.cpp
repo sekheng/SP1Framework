@@ -31,7 +31,6 @@ COORD pauseLocation;
 COORD helpreturn;
 COORD gameoverptr;
 
-extern bool collected_keys;
 extern int check_no_of_keys;
 extern int check_no_of_gates;
 
@@ -401,7 +400,6 @@ void characterMovement(double x)
         {
             characterSpawn(RestartX,RestartY);
             state = Start;
-            collected_keys = false;
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
         {
@@ -491,8 +489,6 @@ void characterEnd(int y, int x)//temp y , temp x
 	string level;
 	if (charLocation.X == x && charLocation.Y == y)
 	{
-        check_no_of_keys = 0;
-        check_no_of_gates = 0;
 		levelno++;
 		levelcheck(levelno,level);
 		loadlevel(level);

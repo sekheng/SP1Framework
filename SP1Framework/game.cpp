@@ -86,10 +86,6 @@ extern struct Cannon Left;
 extern struct Cannon Up;
 extern struct Cannon Down;
 
-extern bool collected_keys;
-extern int check_no_of_keys;
-extern int check_no_of_gates;
-
 const WORD colors[] =
 {
 	0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
@@ -282,6 +278,7 @@ void renderCharacter()
 		cannonD(cno);
 		aiMon(mno);
 		printBlock(bno);
+<<<<<<< HEAD
 
         if ( check_no_of_keys == 1) {
             display_keys();
@@ -290,6 +287,8 @@ void renderCharacter()
             display_gate();
         }
 
+=======
+>>>>>>> 8e50f5c39ec1e2c7b4793b9cb2c3c300e7a7cd53
         display_keys();
         display_gate();
 		console.writeToBuffer(charLocation, (char)2, 0x0C);
@@ -319,7 +318,6 @@ void renderCharacter()
     else if ( state == GameOver)
     {
        console.writeToBuffer(gameoverptr, (char)60, 0x0C);
-       collected_keys = false;
     }
 }
 
