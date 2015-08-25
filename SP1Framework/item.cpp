@@ -123,7 +123,7 @@ void display_gate()
             for ( int j = 0; j < check_no_of_gates; ++j)
             {
                 g_map[Gates[gatetype].KeysLocation[j].Y][Gates[gatetype].KeysLocation[j].X] = 0;
-                console.writeToBuffer(Gates[gatetype].KeysLocation[j], " ", 0x1A);
+                //console.writeToBuffer(Gates[gatetype].KeysLocation[j], " ", 0x1A);
             }
         }
         else {
