@@ -546,8 +546,8 @@ void characterCustomEnd(int tempEndY, int tempEndX)
 	string level;
 	if (charLocation.X == tempEndY && charLocation.Y == tempEndX )
 	{
-		check_no_of_keys = 0;
-		check_no_of_gates = 0;
+		/*check_no_of_keys = 0;
+		check_no_of_gates = 0;*/
 		levelno++;
 		levelcheck(levelno, level);
 		loadlevel(level);
