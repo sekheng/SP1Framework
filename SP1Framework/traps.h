@@ -30,6 +30,4 @@ void locationL(int x,int y,int z);
 void locationU(int x,int y,int z);
 void locationD(int x,int y,int z);
 
-void speed(int x, int y, double w);
-
 #endif  // _TRAPS_H
