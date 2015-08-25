@@ -455,29 +455,6 @@ void characterInteraction()
 	}*/
 }
 
-<<<<<<< HEAD
-
-=======
-void speedDown(double x)
-{
-	if( state == Start)
-	{
-		if(velocityChar > x)
-		{
-			return;
-		}
-		else
-		{
-			velocityChar = x + 0.091;
-			moveCharacter(x);
-		}
-	}
-	else
-	{
-		moveCharacter(x);
-	}
-}
-
 void menustate()
 {
 
@@ -555,4 +532,4 @@ void characterCustomEnd(int tempEndY, int tempEndX)
 		loadlevel(level);
 	}
 }
->>>>>>> c779b9294dbcec12c060574b20344fbf71078563
+
