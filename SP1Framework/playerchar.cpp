@@ -52,7 +52,6 @@ void characterMovement(double x)
 
 	else if (state == Start || state == LevelCustom)   // The Game Begins!
 	{
-		// Updating the location of the character based on the key press
         PlayState();		
 	}
     //Level Editing

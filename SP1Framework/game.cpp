@@ -105,7 +105,6 @@ void init()
 
 	characterInit();
 
-	/////////////////////////////////////////
 	levelcheck(levelno, level);
 	loadlevel(level); // loads the main level
 
