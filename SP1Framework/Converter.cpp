@@ -65,7 +65,7 @@ void convert(int &a, int b, int c)
     {
         switch (a)
         {
-            case 'K': keys_locations( c, b, 0); break;
+            case 'K': keys_locations( c, b, 0 ); break;
         }
         ++check_no_of_keys;
     }
