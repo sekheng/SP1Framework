@@ -14,6 +14,11 @@ extern int check_no_of_keys;
 extern int check_no_of_gates;
 int how_Many_keys_types = 0;
 
+const WORD colorforGateandKeys[] =
+{
+    0x0C, 0xF0
+};
+
 void initinventorysystem()
 {
     display_inventorysystem.X = 60;
@@ -69,7 +74,8 @@ void display_keys()
         {
             if ( Keys[keytypes].collected[i] != true )
             {
-                console.writeToBuffer( Keys[keytypes].KeysLocation[i], "K", 0xF0);
+                WORD colour = colorforGateandKeys[keytypes];
+                console.writeToBuffer( Keys[keytypes].KeysLocation[i], "K", colour);
             }
         }
     }
@@ -79,18 +85,18 @@ void gate_location( int GateY, int GateX, int GateType)
 {
     Gates[GateType].KeysLocation[check_no_of_gates].Y = GateY;
     Gates[GateType].KeysLocation[check_no_of_gates].X = GateX;
+    ++Gates[GateType].num_of_Keys_ineachType;
 }
 
 void display_gate()
 {
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
-        int numKeys = Keys[gatetype].num_of_Keys_ineachType;
-
         if ( Keys[gatetype].check_collected_keys != true) {
             for ( int i = 0; i < check_no_of_gates; ++i)
             {
-                console.writeToBuffer(Gates[gatetype].KeysLocation[i] , "G", 0x0C);
+                WORD colour = colorforGateandKeys[gatetype];
+                console.writeToBuffer(Gates[gatetype].KeysLocation[i] , "G", colour);
             }
         }
     }
@@ -110,6 +116,10 @@ void update_keys()
 
         for ( int k = 0; k < numKeys; ++k)
         {
+            if ( keytypes == 1)
+            {
+                ++k;
+            }
             if (Keys[keytypes].collected[k] == true)
             {
                 Keys[keytypes].check_collected_keys = true;
@@ -126,7 +136,7 @@ void update_gates()
 {
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
-        int numKeys = Keys[gatetype].num_of_Keys_ineachType;
+        int numGates = Gates[gatetype].num_of_Keys_ineachType;
         if ( Keys[gatetype].check_collected_keys == true )
         {
             for ( int j = 0; j < check_no_of_gates; ++j)
