@@ -14,6 +14,11 @@ extern int check_no_of_keys;
 extern int check_no_of_gates;
 int how_Many_keys_types = 0;
 
+const WORD colorforGateandKeys[] =
+{
+    0x0C, 0xF0
+};
+
 void initinventorysystem()
 {
     display_inventorysystem.X = 60;
@@ -69,7 +74,13 @@ void display_keys()
         {
             if ( Keys[keytypes].collected[i] != true )
             {
-                console.writeToBuffer( Keys[keytypes].KeysLocation[i], "K", 0xF0);
+                WORD colour;
+                switch (keytypes)
+                {
+                case 0: colour = colorforGateandKeys[0]; break;
+                case 1: colour = colorforGateandKeys[1]; break;
+                }
+                console.writeToBuffer( Keys[keytypes].KeysLocation[i], "K", colour);
             }
         }
     }
@@ -90,7 +101,13 @@ void display_gate()
         if ( Keys[gatetype].check_collected_keys != true) {
             for ( int i = 0; i < check_no_of_gates; ++i)
             {
-                console.writeToBuffer(Gates[gatetype].KeysLocation[i] , "G", 0x0C);
+                WORD colour;
+                switch (gatetype)
+                {
+                case 0: colour = colorforGateandKeys[0]; break;
+                case 1: colour = colorforGateandKeys[1]; break;
+                }
+                console.writeToBuffer(Gates[gatetype].KeysLocation[i] , "G", colour);
             }
         }
     }
