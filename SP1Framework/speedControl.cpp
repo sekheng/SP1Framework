@@ -27,15 +27,15 @@ void update_charSpeed(double x)
 	}
 }
 
-void update_ballSpeed(int x, int y, int a, int b, int c, double w)
+void update_ballSpeed(int x, int y, int a, int b, int c, int d, double w)
 {
 	if(timeTriggered > w)
 		return;
 	timeTriggered = w + 0.250;
-	cannonballR(x, y);
-	cannonballL(x, a);
-	cannonballU(x, b);
-	cannonballD(x, c);
+	cannonballR(x, y, d);
+	cannonballL(x, a, d);
+	cannonballU(x, b, d);
+	cannonballD(x, c, d);
 }
 
 void update_crazyMonSpeed(int z, double w)

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <iomanip>
 
-void update_ballSpeed(int x, int y, int a, int b, int c, double w);
+void update_ballSpeed(int x, int y, int a, int b, int c, int d, double w);
 void update_charSpeed(double x);
 void update_crazyMonSpeed(int z, double w);
 
