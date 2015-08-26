@@ -350,6 +350,7 @@ void PauseState()
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
         {
+            restart_level_forKeysAndGates();
             characterSpawn(RestartX,RestartY);
 			if (counter == 1)
 			{
@@ -362,6 +363,7 @@ void PauseState()
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 17 )
         {
+            restart_level_forKeysAndGates();
             characterSpawn(RestartX,RestartY);
             state = menu;
         }
@@ -379,6 +381,7 @@ void GameOverState()
 		}
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
         {
+            restart_level_forKeysAndGates();
 			characterSpawn(RestartX, RestartY);
 			if (counter == 1)
 			{
@@ -391,6 +394,7 @@ void GameOverState()
         }
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
         {
+            restart_level_forKeysAndGates();
             characterSpawn(RestartX, RestartY);
             state = menu;
         }

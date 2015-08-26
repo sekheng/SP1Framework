@@ -153,3 +153,16 @@ void restart_keys_and_gates()
     check_no_of_keys = 0;
     check_no_of_gates = 0;
 }
+
+void restart_level_forKeysAndGates()
+{
+    for ( int i = 0; i < how_Many_keys_types; ++i)
+    {
+        int numKeys = Keys[i].num_of_Keys_ineachType;
+        for ( int j = 0; j <= numKeys; ++j)
+        {
+            Keys[i].collected[j] = false;
+        }
+        Keys[i].check_collected_keys = false;
+    }
+}
