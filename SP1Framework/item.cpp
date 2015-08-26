@@ -143,7 +143,7 @@ void update_gates()
 {
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
-        int numKeys = Keys[gatetype].num_of_Keys_ineachType;
+        //int numKeys = Keys[gatetype].num_of_Keys_ineachType;
         if ( Keys[gatetype].check_collected_keys == true )
         {
             for ( int j = 0; j < check_no_of_gates; ++j)
