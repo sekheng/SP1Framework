@@ -20,7 +20,10 @@ extern int color;
 extern int row;
 extern int col;
 extern string content;
-extern int cno;
+extern int cnoR;
+extern int cnoU;
+extern int cnoD;
+extern int cnoL;
 extern int mno;
 extern int bno;
 //extern int check_no_of_keys;
@@ -46,7 +49,10 @@ void loadlevel(string &level)
 {
 	tempEndX = 0;
 	tempEndY = 0;
-	cno = 0;
+	cnoR = 0;
+	cnoL = 0;
+	cnoD = 0;
+	cnoU = 0;
 	mno = 0;
 	bno = 0;
 	//check_no_of_keys = 0;

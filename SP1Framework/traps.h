@@ -32,6 +32,6 @@ void locationL(int x,int y,int z);
 void locationU(int x,int y,int z);
 void locationD(int x,int y,int z);
 
-void render_cannons(int z);
+void render_cannons(int z,int a, int b, int c);
 
 #endif  // _TRAPS_H

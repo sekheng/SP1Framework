@@ -8,7 +8,10 @@
 
 extern int tempEndX;
 extern int tempEndY;
-extern int cno;
+extern int cnoR;
+extern int cnoL;
+extern int cnoU;
+extern int cnoD;
 extern int mno;
 extern int bno;
 int check_no_of_keys = 0;
@@ -42,12 +45,11 @@ void convert(int &a, int b, int c)
 	{
 		switch (a)
 		{
-			case 'R':locationR(b,c,cno); break;
-			case 'U':locationU(b,c, cno); break;
-			case 'L':locationL(b,c, cno); break;
-			case 'D':locationD(b,c, cno); break;
+			case 'R':locationR(b, c, cnoR);  cnoR++; break;
+			case 'U':locationU(b, c, cnoU);  cnoU++; break;
+			case 'L':locationL(b, c, cnoL);  cnoL++; break;
+			case 'D':locationD(b, c, cnoD);  cnoD++; break;
 		}
-		cno++;
 	}
 	if (a == 77) // monster 'M'
 	{

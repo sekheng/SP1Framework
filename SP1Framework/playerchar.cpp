@@ -14,7 +14,10 @@ extern struct Cannon Down;
 extern struct Block block;
 extern COORD aiCoordinate[20];
 extern Console console;
-extern int cno;
+extern int cnoR;
+extern int cnoL;
+extern int cnoU;
+extern int cnoD;
 extern int mno;
 extern int bno;
 extern int counter;
@@ -23,6 +26,7 @@ extern bool keyPressed[K_COUNT];
 extern int levelno;
 extern int tempEndX;
 extern int tempEndY;
+extern int endcounter;
 int RestartX;
 int RestartY;
 bool TheEndDoesNotContinue = false;
@@ -143,28 +147,28 @@ void characterEnd(int y, int x)//temp y , temp x
 void characterInteraction()
 {
 	//For normal levels
-	for (int i = 0; i < cno; ++i)
+	for (int i = 0; i < cnoR; ++i)
 	{
 		if (charLocation.X == Right.directions[i].X && charLocation.Y == Right.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
-	for (int i = 0; i < cno; ++i)
+	for (int i = 0; i < cnoL; ++i)
 	{
 		if (charLocation.X == Left.directions[i].X && charLocation.Y == Left.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
-	for (int i = 0; i < cno; ++i)
+	for (int i = 0; i < cnoU; ++i)
 	{
 		if (charLocation.X == Up.directions[i].X && charLocation.Y == Up.directions[i].Y)
 		{
 			state = GameOver;
 		}
 	}
-	for (int i = 0; i < cno; ++i)
+	for (int i = 0; i < cnoD; ++i)
 	{
 		if (charLocation.X == Down.directions[i].X && charLocation.Y == Down.directions[i].Y)
 		{
@@ -249,6 +253,7 @@ void characterCustomEnd(int tempEndY, int tempEndX)
 {
 	if (charLocation.X == tempEndX && charLocation.Y == tempEndY )
 	{
+		endcounter++;
 		state = End;
 	}
 }
@@ -334,7 +339,14 @@ void PauseState()
 		}
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
         {
-            state = Start;
+			if (counter == 1)
+			{
+				state = LevelCustom;
+			}
+			else
+			{
+				state = Start;
+			}
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
         {

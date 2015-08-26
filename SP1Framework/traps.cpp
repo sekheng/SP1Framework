@@ -173,10 +173,10 @@ void cannonballD(int x,int z)
 
 }
 
-void render_cannons(int z)
+void render_cannons(int z,int a, int b, int c)
 {
-	cannonL(z);
+	cannonL(a);
 	cannonR(z);
-	cannonU(z);
-	cannonD(z);
+	cannonU(b);
+	cannonD(c);
 }
