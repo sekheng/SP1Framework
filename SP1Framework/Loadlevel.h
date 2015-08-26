@@ -6,6 +6,7 @@
 #include <sstream>
 #include <fstream>
 #include <string>
+#include "item.h"
 
 using std::cin;
 using std::cout;

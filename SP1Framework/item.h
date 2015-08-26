@@ -31,5 +31,6 @@ void gate_location( int GateY, int GateX, int GateType);
 void display_gate();
 void update_keys();
 void update_gates();
+void restart_keys_and_gates();
 
 #endif // _ITEM_H

@@ -49,8 +49,9 @@ void loadlevel(string &level)
 	cno = 0;
 	mno = 0;
 	bno = 0;
-	check_no_of_keys = 0;
-	check_no_of_gates = 0;
+	//check_no_of_keys = 0;
+	//check_no_of_gates = 0;
+    restart_keys_and_gates();
 	col = 0;
 	row = 1;
 	ifstream inData;
