@@ -84,7 +84,7 @@ void characterMovement(double x)
         if ( keyPressed[K_SPACE] )
         {
            state = menu;
-           TheEndDoesNotContinue = true;
+         //TheEndDoesNotContinue = true;
         }
 		
     }
