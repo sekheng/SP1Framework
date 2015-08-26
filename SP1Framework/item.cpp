@@ -36,16 +36,18 @@ void initinventorysystem()
 
 void keys_locations( int keyY, int keyX, int KeyType)
 {
-    if ( KeyType == 0)
-    {
+    //if ( KeyType == 0)
+    //{
         Keys[KeyType].KeysLocation[check_no_of_keys].Y = keyY;
         Keys[KeyType].KeysLocation[check_no_of_keys].X = keyX;
-    }
-    else if ( KeyType == 1 )
-    {
-        Keys[KeyType].KeysLocation[check_no_of_keys].Y = keyY;
-        Keys[KeyType].KeysLocation[check_no_of_keys].X = keyX;
-    }
+        ++Keys[KeyType].num_of_Keys_ineachType;
+    //}
+    //else if ( KeyType == 1 )
+    //{
+    //    Keys[KeyType].KeysLocation[check_no_of_keys].Y = keyY;
+    //    Keys[KeyType].KeysLocation[check_no_of_keys].X = keyX;        
+    //    ++Keys[KeyType].num_of_Keys_ineachType;
+    //}
     if ( how_Many_keys_types <= KeyType)
     {
         how_Many_keys_types = KeyType;
@@ -70,7 +72,8 @@ void displayinventory( int no_of_items)
 
 void display_keys()
 {   
-    for ( int keytypes =0; keytypes < how_Many_keys_types; ++keytypes) {
+    for ( int keytypes = 0; keytypes < how_Many_keys_types; ++keytypes) {
+        int numKeys = Keys[keytypes].num_of_Keys_ineachType;
         for ( int h = 0; h < check_no_of_keys; ++h)
         {
             if ( (charLocation.X) == (Keys[keytypes].KeysLocation[h].X) && (charLocation.Y) == (Keys[keytypes].KeysLocation[h].Y) )
@@ -78,15 +81,15 @@ void display_keys()
                 Keys[keytypes].collected[h] = true;
             }
         }
-        for ( int k = 0; k < check_no_of_keys; ++k)
+
+        for ( int k = 0; k < numKeys; ++k)
         {
             if (Keys[keytypes].collected[k] == true)
             {
-                Keys[keytypes].check_collected_keys[k] = true;
-                continue;
+                Keys[keytypes].check_collected_keys = true;
             }
             else {
-                Keys[keytypes].check_collected_keys[k] = false;
+                Keys[keytypes].check_collected_keys = false;
                 break;
             }
         }
@@ -95,7 +98,7 @@ void display_keys()
         {
             if (Keys[keytypes].collected[i] == true)
             {
-                console.writeToBuffer( Keys[keytypes].KeysLocation[i], " ", 0x1A);
+                //console.writeToBuffer( Keys[keytypes].KeysLocation[i], " ", 0x1A);
             }
             else
             {
@@ -123,7 +126,9 @@ void display_gate()
 {
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
-        if ( Keys[gatetype].check_collected_keys[gatetype] == true)
+        int numKeys = Keys[gatetype].num_of_Keys_ineachType;
+
+        if ( Keys[gatetype].check_collected_keys == true )
         {
             for ( int j = 0; j < check_no_of_gates; ++j)
             {

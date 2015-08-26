@@ -16,9 +16,10 @@ using std::ifstream;
 
 struct Items
 {
+    int num_of_Keys_ineachType;
     COORD KeysLocation[MAX_ITEMS];
     bool collected[MAX_ITEMS];
-    bool check_collected_keys[MAX_ITEMS];
+    bool check_collected_keys;
 };
 
 void initinventorysystem();
