@@ -26,7 +26,6 @@ void setBlock(int x, int y, int z)
 		block.directions[iblock].Y = y;
 		iblock++;
 	}
-	
 }
 
 //to be placed in update
@@ -89,34 +88,38 @@ void updateBlock(int z) // x= no of blocks and z=box number
 			{
 				charLocation.X--;
 			}
-			for (int c = 0; c < cnoR; ++c)
-			{
-				if (block.directions[i].X == Right.directions[c].X && block.directions[i].Y == Right.directions[c].Y)
-				{
-					state = GameOver;
-				}
-			}
-			for (int c = 0; c < cnoL; ++c)
-			{
-				if (block.directions[i].X == Left.directions[c].X && block.directions[i].Y == Left.directions[c].Y)
-				{
-					state = GameOver;
-				}
-			}
-			for (int c = 0; c < cnoU; ++c)
-			{
-				if (block.directions[i].X == Up.directions[c].X && block.directions[i].Y == Up.directions[c].Y)
-				{
-					state = GameOver;
-				}
-			}
-			for (int c = 0; c < cnoD; ++c)
-			{
-				if (block.directions[i].X == Down.directions[c].X && block.directions[i].Y == Down.directions[c].Y)
-				{
-					state = GameOver;
-				}
-			}
+		}
+		if (block.directions[i+1].X == block.directions[i].X && 
+			block.directions[i].Y == block.directions[i].Y && keyPressed[K_RIGHT] 
+			|| block.directions[i+1].X == block.directions[i].X && 
+			block.directions[i].Y == block.directions[i].Y && keyPressed[K_D])
+		{
+			block.directions[i].X--;
+			charLocation.X--;
+		}
+		if (block.directions[i - 1].X == block.directions[i].X &&
+			block.directions[i].Y == block.directions[i].Y && keyPressed[K_LEFT]
+			|| block.directions[i - 1].X == block.directions[i].X &&
+			block.directions[i].Y == block.directions[i].Y && keyPressed[K_A])
+		{
+			block.directions[i].X++;
+			charLocation.X++;
+		}
+		if (block.directions[i].X == block.directions[i].X &&
+			block.directions[i+1].Y == block.directions[i].Y && keyPressed[K_UP]
+			|| block.directions[i].X == block.directions[i].X &&
+			block.directions[i+1].Y == block.directions[i].Y && keyPressed[K_W])
+		{
+			block.directions[i].Y++;
+			charLocation.Y++;
+		}
+		if (block.directions[i].X == block.directions[i].X &&
+			block.directions[i-1].Y == block.directions[i].Y && keyPressed[K_DOWN]
+			|| block.directions[i].X == block.directions[i].X &&
+			block.directions[i-1].Y == block.directions[i].Y && keyPressed[K_S])
+		{
+			block.directions[i].Y--;
+			charLocation.Y--;
 		}
 	}
 }
