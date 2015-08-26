@@ -64,10 +64,10 @@ void cannonD(int i)
 void locationR(int x, int y,int z)
 {
 	
-		Right.directions[z].X = x;
-		Right.directions[z].Y = y;
-		Right.position[z].X = x;
-		Right.position[z].Y = y;
+	Right.directions[z].X = x;
+	Right.directions[z].Y = y;
+	Right.position[z].X = x;
+	Right.position[z].Y = y;
 	
 }
 void locationL(int x, int y,int z)
@@ -99,11 +99,11 @@ void cannonballR(int x,int z, int i)
 	for (int no = 0; no < z;no++)
 	{
 		//double velocity = j +0.001;
-		if (Right.directions[no].X != (Right.position[no].X + x) && g_map[Right.directions[no].Y][Right.directions[no].X + 1] != 1)
+		if (Right.directions[no].X != (Right.position[no].X + x) && g_map[Right.directions[no].Y][Right.directions[no].X + 1] == 0)
 		{
 			Right.directions[no].X++;
 		}
-		else if( g_map[Right.directions[no].Y][Right.directions[no].X + 1] == 1 || Right.directions[no].X == (Right.position[no].X + x))
+		else if( g_map[Right.directions[no].Y][Right.directions[no].X + 1] != 0 || Right.directions[no].X == (Right.position[no].X + x))
 		{
 			Right.directions[no].X =Right.position[no].X;
 		}
@@ -144,7 +144,7 @@ void cannonballL(int x,int z, int i)
 }
 void cannonballU(int x,int z, int i)
 {
-	for (int no = 1; no < z;no++)
+	for (int no = 0; no < z;no++)
 	{
 		if (Up.directions[no].Y != (Up.position[no].Y - x) && g_map[Up.directions[no].Y - 1][Up.directions[no].X] != 1)
 		{
