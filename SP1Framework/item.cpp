@@ -36,16 +36,9 @@ void initinventorysystem()
 
 void keys_locations( int keyY, int keyX, int KeyType)
 {
-    if ( KeyType == 0)
-    {
-        Keys[KeyType].KeysLocation[check_no_of_keys].Y = keyY;
-        Keys[KeyType].KeysLocation[check_no_of_keys].X = keyX;
-    }
-    else if ( KeyType == 1 )
-    {
-        Keys[KeyType].KeysLocation[check_no_of_keys].Y = keyY;
-        Keys[KeyType].KeysLocation[check_no_of_keys].X = keyX;
-    }
+    Keys[KeyType].KeysLocation[check_no_of_keys].Y = keyY;
+    Keys[KeyType].KeysLocation[check_no_of_keys].X = keyX;
+    ++Keys[KeyType].num_of_Keys_ineachType;
     if ( how_Many_keys_types <= KeyType)
     {
         how_Many_keys_types = KeyType;
@@ -70,34 +63,11 @@ void displayinventory( int no_of_items)
 
 void display_keys()
 {   
-    for ( int keytypes =0; keytypes < how_Many_keys_types; ++keytypes) {
-        for ( int h = 0; h < check_no_of_keys; ++h)
+    for ( int keytypes = 0; keytypes < how_Many_keys_types; ++keytypes) {
+        int numKeys = Keys[keytypes].num_of_Keys_ineachType;
+        for ( int i = 0; i < check_no_of_keys; ++i)
         {
-            if ( (charLocation.X) == (Keys[keytypes].KeysLocation[h].X) && (charLocation.Y) == (Keys[keytypes].KeysLocation[h].Y) )
-            {
-                Keys[keytypes].collected[h] = true;
-            }
-        }
-        for ( int k = 0; k < check_no_of_keys; ++k)
-        {
-            if (Keys[keytypes].collected[k] == true)
-            {
-                Keys[keytypes].check_collected_keys[k] = true;
-                continue;
-            }
-            else {
-                Keys[keytypes].check_collected_keys[k] = false;
-                break;
-            }
-        }
-
-    for ( int i = 0; i < check_no_of_keys; ++i)
-        {
-            if (Keys[keytypes].collected[i] == true)
-            {
-                console.writeToBuffer( Keys[keytypes].KeysLocation[i], " ", 0x1A);
-            }
-            else
+            if ( Keys[keytypes].collected[i] != true )
             {
                 console.writeToBuffer( Keys[keytypes].KeysLocation[i], "K", 0xF0);
             }
@@ -107,30 +77,62 @@ void display_keys()
 
 void gate_location( int GateY, int GateX, int GateType)
 {
-    if ( GateType == 0)
-    {
-        Gates[GateType].KeysLocation[check_no_of_gates].Y = GateY;
-        Gates[GateType].KeysLocation[check_no_of_gates].X = GateX;
-    }
+    Gates[GateType].KeysLocation[check_no_of_gates].Y = GateY;
+    Gates[GateType].KeysLocation[check_no_of_gates].X = GateX;
 }
 
 void display_gate()
 {
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
-        if ( Keys[gatetype].check_collected_keys[gatetype] == true)
-        {
-            for ( int j = 0; j < check_no_of_gates; ++j)
-            {
-                g_map[Gates[gatetype].KeysLocation[j].Y][Gates[gatetype].KeysLocation[j].X] = 0;
-                console.writeToBuffer(Gates[gatetype].KeysLocation[j], " ", 0x1A);
-            }
-        }
-        else {
+        int numKeys = Keys[gatetype].num_of_Keys_ineachType;
+
+        if ( Keys[gatetype].check_collected_keys != true) {
             for ( int i = 0; i < check_no_of_gates; ++i)
             {
                 g_map[Gates[gatetype].KeysLocation[i].Y][Gates[gatetype].KeysLocation[i].X] = 1;
                 console.writeToBuffer(Gates[gatetype].KeysLocation[i] , "G", 0x0C);
+            }
+        }
+    }
+}
+
+void update_keys()
+{
+    for ( int keytypes = 0; keytypes < how_Many_keys_types; ++keytypes) {
+        int numKeys = Keys[keytypes].num_of_Keys_ineachType;
+        for ( int h = 0; h < check_no_of_keys; ++h)
+        {
+            if ( (charLocation.X) == (Keys[keytypes].KeysLocation[h].X) && (charLocation.Y) == (Keys[keytypes].KeysLocation[h].Y) )
+            {
+                Keys[keytypes].collected[h] = true;
+            }
+        }
+
+        for ( int k = 0; k < numKeys; ++k)
+        {
+            if (Keys[keytypes].collected[k] == true)
+            {
+                Keys[keytypes].check_collected_keys = true;
+            }
+            else {
+                Keys[keytypes].check_collected_keys = false;
+                break;
+            }
+        }
+    }
+}
+
+void update_gates()
+{
+    for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
+    {
+        int numKeys = Keys[gatetype].num_of_Keys_ineachType;
+        if ( Keys[gatetype].check_collected_keys == true )
+        {
+            for ( int j = 0; j < check_no_of_gates; ++j)
+            {
+                g_map[Gates[gatetype].KeysLocation[j].Y][Gates[gatetype].KeysLocation[j].X] = 0;
             }
         }
     }
