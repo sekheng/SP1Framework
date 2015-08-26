@@ -5,6 +5,7 @@ extern double elapsedTime;
 extern double deltaTime;
 extern size_t g_map[140][100];
 extern size_t g_customizemap[140][100];
+extern Block block;
 
 Cannon Right;
 Cannon Left;
@@ -93,37 +94,55 @@ void locationD(int x, int y,int z)
 
 //placed in update
 
-void cannonballR(int x,int z)
+void cannonballR(int x,int z, int i)
 {
 	for (int no = 0; no < z;no++)
 	{
 		//double velocity = j +0.001;
 		if (Right.directions[no].X != (Right.position[no].X + x) && g_map[Right.directions[no].Y][Right.directions[no].X + 1] != 1)
 		{
-			Right.directions[no].X+= 1;
+			Right.directions[no].X++;
 		}
-		else
+		else if( g_map[Right.directions[no].Y][Right.directions[no].X + 1] == 1 || Right.directions[no].X == (Right.position[no].X + x))
 		{
 			Right.directions[no].X =Right.position[no].X;
 		}
+		for(int a  = 0; a < i; a++)
+		{
+			if(block.directions[a].X == Right.directions[no].X
+				&& block.directions[a].Y == Right.directions[no].Y 
+				|| block.directions[a].X == Right.position[no].X)
+			{
+				Right.directions[no].X = Right.position[no].X;
+			}
+		}
 	}
 }
-void cannonballL(int x,int z)
+void cannonballL(int x,int z, int i)
 {
 	for (int no = 0; no < z; no++)
 	{
-		if (Left.directions[no].X != (Left.position[no].X - x) && g_map[Left.directions[no].Y][Left.directions[no].X - 1] != 1)
+		if (Left.directions[no].X != (Left.position[no].X - x) && g_map[Left.directions[no].Y][Left.directions[no].X - 1] != 1 )
 		{
 			Left.directions[no].X--;
 		}
-		else
+		else if ( g_map[Left.directions[no].Y][Left.directions[no].X - 1] == 1 || Left.directions[no].X == (Left.position[no].X - x)) 
 		{
 			Left.directions[no].X = Left.position[no].X;
+		}
+		for(int a  = 0; a < i; a++)
+		{
+			if(block.directions[a].X == Left.directions[no].X
+				&& block.directions[a].Y == Left.directions[no].Y 
+				|| block.directions[a].X == Left.position[no].X)
+			{
+				Left.directions[no].X = Left.position[no].X;
+			}
 		}
 	}
 
 }
-void cannonballU(int x,int z)
+void cannonballU(int x,int z, int i)
 {
 	for (int no = 1; no < z;no++)
 	{
@@ -131,14 +150,23 @@ void cannonballU(int x,int z)
 		{
 			Up.directions[no].Y--;
 		}
-		else
+		else if (Up.directions[no].Y == (Up.position[no].Y - x) || g_map[Up.directions[no].Y - 1][Up.directions[no].X] == 1)
 		{
 			Up.directions[no].Y = Up.position[no].Y;
+		}
+		for(int a  = 0; a < i; a++)
+		{
+			if(block.directions[a].X == Up.directions[no].X
+				&& block.directions[a].Y == Up.directions[no].Y 
+				|| block.directions[a].Y == Up.position[no].Y)
+			{
+				Up.directions[no].Y = Up.position[no].Y;
+			}
 		}
 	}
 
 }
-void cannonballD(int x,int z)
+void cannonballD(int x,int z, int i)
 {
 	for (int no = 0; no < z;no++)
 	{
@@ -146,9 +174,18 @@ void cannonballD(int x,int z)
 		{
 			Down.directions[no].Y++;
 		}
-		else
+		else if(Down.directions[no].Y == (Down.position[no].Y + x) || g_map[Down.directions[no].Y + 1][Down.directions[no].X] == 1)
 		{
 			Down.directions[no].Y = Down.position[no].Y;
+		}
+		for(int a  = 0; a < i; a++)
+		{
+			if(block.directions[a].X == Down.directions[no].X
+				&& block.directions[a].Y == Down.directions[no].Y 
+				|| block.directions[a].Y == Down.position[no].Y)
+			{
+				Down.directions[no].Y = Down.position[no].Y;
+			}
 		}
 	}
 

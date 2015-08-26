@@ -4,6 +4,7 @@
 #include "Framework\timer.h"
 #include "game.h"
 #include "Framework\console.h"
+#include "block.h"
 #include <iostream>
 #include <iomanip>
 
@@ -22,10 +23,10 @@ void cannonL(int i);
 void cannonU(int i);
 void cannonD(int i);
 
-void cannonballR(int x,int z);
-void cannonballL(int x,int z);
-void cannonballU(int x,int z);
-void cannonballD(int x,int z);
+void cannonballR(int x,int z, int i);
+void cannonballL(int x,int z, int i);
+void cannonballU(int x,int z, int i);
+void cannonballD(int x,int z, int i);
 
 void locationR(int x,int y,int z);
 void locationL(int x,int y,int z);
