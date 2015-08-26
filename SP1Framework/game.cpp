@@ -172,7 +172,7 @@ void update(double dt)
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     update_charSpeed(elapsedTime);
-	update_ballSpeed(10, cno, elapsedTime);
+	update_ballSpeed(10, cnoR, cnoL, cnoU, cnoD, elapsedTime);
 	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
     update_keys();
@@ -289,7 +289,7 @@ void renderCharacter()
     else if (state == Start|| state == LevelCustom) 
 	{
 		// Draw the location of the character
-		render_cannons(cno);
+		render_cannons(cnoR, cnoL, cnoU, cnoD);
 		crazyMon(mno);
 		printBlock(bno);
         display_keys();
