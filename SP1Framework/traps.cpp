@@ -3,6 +3,8 @@
 extern Console console;
 extern double elapsedTime;
 extern double deltaTime;
+extern size_t g_map[140][100];
+extern size_t g_customizemap[140][100];
 
 int icoordR = 0;
 int icoordL = 0;
@@ -71,7 +73,7 @@ void locationR(int x, int y,int z)
 		Right.directions[icoordR].Y = y;
 		Right.position[icoordR].X = x;
 		Right.position[icoordR].Y = y;
-		icoordR++;
+		++icoordR;
 	}
 }
 void locationL(int x, int y,int z)
@@ -115,7 +117,7 @@ void cannonballR(int x,int z)
 	for (int no = 0; no < z;no++)
 	{
 		//double velocity = j +0.001;
-		if (Right.directions[no].X != (Right.position[no].X + x))
+		if (Right.directions[no].X != (Right.position[no].X + x) && g_map[Right.directions[no].Y][Right.directions[no].X + 1] != 1)
 		{
 			Right.directions[no].X+= 1;
 		}
@@ -129,7 +131,7 @@ void cannonballL(int x,int z)
 {
 	for (int no = 0; no < z; no++)
 	{
-		if (Left.directions[no].X != (Left.position[no].X - x))
+		if (Left.directions[no].X != (Left.position[no].X - x) && g_map[Left.directions[no].Y][Left.directions[no].X - 1] != 1)
 		{
 			Left.directions[no].X--;
 		}
@@ -144,7 +146,7 @@ void cannonballU(int x,int z)
 {
 	for (int no = 1; no < z;no++)
 	{
-		if (Up.directions[no].Y != (Up.position[no].Y - x))
+		if (Up.directions[no].Y != (Up.position[no].Y - x) && g_map[Up.directions[no].Y - 1][Up.directions[no].X] != 1)
 		{
 			Up.directions[no].Y--;
 		}
@@ -159,7 +161,7 @@ void cannonballD(int x,int z)
 {
 	for (int no = 0; no < z;no++)
 	{
-		if (Down.directions[no].Y != (Down.position[no].Y + x))
+		if (Down.directions[no].Y != (Down.position[no].Y + x) && g_map[Down.directions[no].Y + 1][Down.directions[no].X] != 1)
 		{
 			Down.directions[no].Y++;
 		}

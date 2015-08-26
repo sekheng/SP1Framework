@@ -54,7 +54,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 1;
+int levelno = 5;
 string level;
 int counter = 0;//counter for custom map
 int endcounter = 0;
@@ -169,10 +169,11 @@ void update(double dt)
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     update_charSpeed(elapsedTime);
-	update_ballSpeed(3, cno, elapsedTime);
+	update_ballSpeed(10, cno, elapsedTime);
 	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
-
+    update_keys();
+    update_gates();
     // sound can be played here too.
 }
 
