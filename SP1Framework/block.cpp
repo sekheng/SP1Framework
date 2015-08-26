@@ -6,6 +6,14 @@ extern size_t g_map[140][100];
 extern int bno;
 extern bool keyPressed[K_COUNT];
 extern startscreen state;
+extern struct Cannon Right;
+extern struct Cannon Left;
+extern struct Cannon Up;
+extern struct Cannon Down;
+extern int cnoR;
+extern int cnoL;
+extern int cnoU;
+extern int cnoD;
 
 Block block;
 int iblock = 0;
@@ -80,6 +88,34 @@ void updateBlock(int z) // x= no of blocks and z=box number
 			if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
 			{
 				charLocation.X--;
+			}
+			for (int c = 0; c < cnoR; ++c)
+			{
+				if (block.directions[i].X == Right.directions[c].X && block.directions[i].Y == Right.directions[c].Y)
+				{
+					state = GameOver;
+				}
+			}
+			for (int c = 0; c < cnoL; ++c)
+			{
+				if (block.directions[i].X == Left.directions[c].X && block.directions[i].Y == Left.directions[c].Y)
+				{
+					state = GameOver;
+				}
+			}
+			for (int c = 0; c < cnoU; ++c)
+			{
+				if (block.directions[i].X == Up.directions[c].X && block.directions[i].Y == Up.directions[c].Y)
+				{
+					state = GameOver;
+				}
+			}
+			for (int c = 0; c < cnoD; ++c)
+			{
+				if (block.directions[i].X == Down.directions[c].X && block.directions[i].Y == Down.directions[c].Y)
+				{
+					state = GameOver;
+				}
 			}
 		}
 	}
