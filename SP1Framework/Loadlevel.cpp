@@ -26,8 +26,6 @@ extern int cnoD;
 extern int cnoL;
 extern int mno;
 extern int bno;
-//extern int check_no_of_keys;
-//extern int check_no_of_gates;
 extern int change;
 extern int levelno;
 extern int tempEndX;
@@ -55,8 +53,6 @@ void loadlevel(string &level)
 	cnoU = 0;
 	mno = 0;
 	bno = 0;
-	//check_no_of_keys = 0;
-	//check_no_of_gates = 0;
     restart_level_forKeysAndGates();
     restart_keys_and_gates();
 	col = 0;
@@ -89,10 +85,10 @@ void loadlevel(string &level)
 void reloadlevel()
 {
 	LvL.Y = 1;
-	LvL.X = 0;
+	LvL.X = 20;
 	for (int i = 1; i < row; ++i)
 	{
-		LvL.X = 0;
+		LvL.X = 20;
 		for (int j = 0; j < col; ++j) {
 			int write = g_map[i][j];
 			convert2(write, content, color);
