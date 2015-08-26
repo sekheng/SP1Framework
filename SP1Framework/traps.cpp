@@ -6,11 +6,6 @@ extern double deltaTime;
 extern size_t g_map[140][100];
 extern size_t g_customizemap[140][100];
 
-int icoordR = 0;
-int icoordL = 0;
-int icoordU = 0;
-int icoordD = 0;
-
 Cannon Right;
 Cannon Left;
 Cannon Up;
@@ -67,47 +62,33 @@ void cannonD(int i)
 //placed in init under converter
 void locationR(int x, int y,int z)
 {
-	if (icoordR <= z)
-	{
-		Right.directions[icoordR].X = x;
-		Right.directions[icoordR].Y = y;
-		Right.position[icoordR].X = x;
-		Right.position[icoordR].Y = y;
-		++icoordR;
-	}
+	
+		Right.directions[z].X = x;
+		Right.directions[z].Y = y;
+		Right.position[z].X = x;
+		Right.position[z].Y = y;
+	
 }
 void locationL(int x, int y,int z)
 {
-	if (icoordL <= z)
-	{
-		Left.directions[icoordL].X = x;
-		Left.directions[icoordL].Y = y;
-		Left.position[icoordL].X = x;
-		Left.position[icoordL].Y = y;
-		icoordL++;
-	}
+	Left.directions[z].X = x;
+	Left.directions[z].Y = y;
+	Left.position[z].X = x;
+	Left.position[z].Y = y;
 }
 void locationU(int x, int y,int z)
 {
-	if (icoordU <= z)
-	{
-		Up.directions[icoordU].X = x;
-		Up.directions[icoordU].Y = y;
-		Up.position[icoordU].X = x;
-		Up.position[icoordU].Y = y;
-		icoordU++;
-	}
+	Up.directions[z].X = x;
+	Up.directions[z].Y = y;
+	Up.position[z].X = x;
+	Up.position[z].Y = y;
 }
 void locationD(int x, int y,int z)
 {
-	if (icoordD <= z)
-	{
-		Down.directions[icoordD].X = x;
-		Down.directions[icoordD].Y = y;
-		Down.position[icoordD].X = x;
-		Down.position[icoordD].Y = y;
-		icoordD++;
-	}
+	Down.directions[z].X = x;
+	Down.directions[z].Y = y;
+	Down.position[z].X = x;
+	Down.position[z].Y = y;
 }
 
 //placed in update
@@ -175,8 +156,8 @@ void cannonballD(int x,int z)
 
 void render_cannons(int z,int a, int b, int c)
 {
-	cannonL(a);
 	cannonR(z);
+	cannonL(a);
 	cannonU(b);
 	cannonD(c);
 }
