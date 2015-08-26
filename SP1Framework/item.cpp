@@ -2,7 +2,7 @@
 
 extern Console console;
 extern COORD charLocation;
-extern size_t g_map[140][100];
+extern size_t g_map[200][200];
 COORD display_inventorysystem;
 
 int display_inventory_row = 0;

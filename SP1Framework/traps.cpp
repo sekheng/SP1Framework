@@ -3,7 +3,7 @@
 extern Console console;
 extern double elapsedTime;
 extern double deltaTime;
-extern size_t g_map[140][100];
+extern size_t g_map[200][200];;
 extern size_t g_customizemap[140][100];
 extern Block block;
 

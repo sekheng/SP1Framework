@@ -32,7 +32,7 @@ extern int tempEndX;
 extern int tempEndY;
 extern int cuscol;
 extern int cusrow;
-extern size_t g_map[140][100];
+extern size_t g_map[200][200];
 extern size_t g_custommap[140][100];
 extern size_t g_customizemap[140][100];
 extern int cuschange;
@@ -55,7 +55,7 @@ void loadlevel(string &level)
 	bno = 0;
     restart_level_forKeysAndGates();
     restart_keys_and_gates();
-	col = 0;
+	col = 40;
 	row = 1;
 	ifstream inData;
 	inData.open(level);
@@ -63,7 +63,7 @@ void loadlevel(string &level)
 
 	while (!inData.eof())
 	{
-		col = 0;
+		col = 40;
 		getline(inData, Data);
 		for (unsigned int x = 0; x < Data.length(); x++)
 		{
@@ -85,11 +85,11 @@ void loadlevel(string &level)
 void reloadlevel()
 {
 	LvL.Y = 1;
-	LvL.X = 20;
+	LvL.X = 40;
 	for (int i = 1; i < row; ++i)
 	{
-		LvL.X = 20;
-		for (int j = 0; j < col; ++j) {
+		LvL.X = 40;
+		for (int j = 40; j < col; ++j) {
 			int write = g_map[i][j];
 			convert2(write, content, color);
 			console.writeToBuffer(LvL, content, colors[color]);

@@ -5,7 +5,7 @@
 extern COORD startmenuLocation;
 extern COORD charLocation;
 extern COORD charCustomLocation;
-extern size_t g_map[140][100];
+extern size_t g_map[200][200];
 extern size_t g_customizemap[140][100];
 extern struct Cannon Right;
 extern struct Cannon Left;

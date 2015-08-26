@@ -37,7 +37,7 @@ double deltaTime;
 bool keyPressed[K_COUNT];
 startscreen state = menu;
 int titlearr[40][150];
-size_t g_map[140][100];    //For Collision System
+size_t g_map[200][200];    //For Collision System
 size_t g_custommap[140][100]; //for custom lvl legend
 size_t g_customizemap[140][100]; //for customising lvl
 char pausearr[40][150];
@@ -61,7 +61,7 @@ int endcounter = 0;
 int change;
 int cuschange;
 int row = 1;    // For collision Detection and map coordinates
-int col = 0;    // For collision Detection and map coordinates
+int col = 40;    // For collision Detection and map coordinates
 int cusrow = 1;
 int cuscol = 0;
 COORD LvL;
