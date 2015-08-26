@@ -32,5 +32,6 @@ void display_gate();
 void update_keys();
 void update_gates();
 void restart_keys_and_gates();
+void restart_level_forKeysAndGates();
 
 #endif // _ITEM_H

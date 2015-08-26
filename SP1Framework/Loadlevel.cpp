@@ -57,6 +57,7 @@ void loadlevel(string &level)
 	bno = 0;
 	//check_no_of_keys = 0;
 	//check_no_of_gates = 0;
+    restart_level_forKeysAndGates();
     restart_keys_and_gates();
 	col = 0;
 	row = 1;
