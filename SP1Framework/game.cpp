@@ -73,7 +73,10 @@ string content;
 int color;
 int tempEndX; // x end point coord
 int tempEndY;// y end point coord
-int cno = 0; //cannon number
+int cnoR = 0; //cannon number
+int cnoL = 0; //cannon number
+int cnoU = 0; //cannon number
+int cnoD = 0; //cannon number
 int mno = 0; //monster number
 int bno = 0; //box number
 COORD pu;
