@@ -237,6 +237,7 @@ void renderMap()
 	{
 		if(counter == 1)
 		{
+			levelno = 1;
 			level = "levels1.txt";
 			loadlevel(level);
 			counter--;
@@ -253,6 +254,11 @@ void renderMap()
 	}
 	else if (state == LevelCustom)
 	{
+		if (endcounter == 1)
+		{
+			counter = 0;
+			endcounter--;
+		}
 		for (; counter < 1; counter++)
 		{
 			loadcustomizedlevel();
@@ -261,7 +267,11 @@ void renderMap()
 	}
     else if (state == End)
     {
-		displayTheEnd();		
+		displayTheEnd();
+		if (counter == 0)
+		{
+			counter = 1;
+		}
 	}
 }
 

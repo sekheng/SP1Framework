@@ -23,6 +23,7 @@ extern bool keyPressed[K_COUNT];
 extern int levelno;
 extern int tempEndX;
 extern int tempEndY;
+extern int endcounter;
 int RestartX;
 int RestartY;
 bool TheEndDoesNotContinue = false;
@@ -249,6 +250,7 @@ void characterCustomEnd(int tempEndY, int tempEndX)
 {
 	if (charLocation.X == tempEndX && charLocation.Y == tempEndY )
 	{
+		endcounter++;
 		state = End;
 	}
 }
@@ -334,7 +336,14 @@ void PauseState()
 		}
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 15)
         {
-            state = Start;
+			if (counter == 1)
+			{
+				state = LevelCustom;
+			}
+			else
+			{
+				state = Start;
+			}
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
         {
