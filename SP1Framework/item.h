@@ -29,5 +29,7 @@ void displayinventory( int no_of_items = 0);
 void display_keys();
 void gate_location( int GateY, int GateX, int GateType);
 void display_gate();
+void update_keys();
+void update_gates();
 
 #endif // _ITEM_H
