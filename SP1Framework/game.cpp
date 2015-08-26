@@ -172,7 +172,8 @@ void update(double dt)
 	update_ballSpeed(3, cno, elapsedTime);
 	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
-
+    update_keys();
+    update_gates();
     // sound can be played here too.
 }
 
