@@ -57,6 +57,7 @@ COORD startmenuLocation;
 int levelno = 1;
 string level;
 int counter = 0;//counter for custom map
+int endcounter = 0;
 int change;
 int cuschange;
 int row = 1;    // For collision Detection and map coordinates
@@ -105,7 +106,7 @@ void init()
 	levelcheck(levelno, level);
 	loadlevel(level); // loads the main level
 
-	loadcustomlevel(); // reload the main level
+	loadcustomlevel(); // load custom lvl txt
 
     // Title
     menuPosition();
@@ -233,6 +234,12 @@ void renderMap()
     }
 	else if (state == Start)
 	{
+		if(counter == 1)
+		{
+			level = "levels1.txt";
+			loadlevel(level);
+			counter--;
+		}
 		reloadlevel(); // reloads level
         displayleveltext();
         displayinventory();
@@ -248,14 +255,13 @@ void renderMap()
 		for (; counter < 1; counter++)
 		{
 			loadcustomizedlevel();
-			counter++;
 		}
 		reloadcustomizedlevel();
 	}
     else if (state == End)
     {
-        displayTheEnd();
-    }
+		displayTheEnd();		
+	}
 }
 
 void renderCharacter()
@@ -287,17 +293,8 @@ void renderCharacter()
     }
     else if ( state == LevelCustomized)
     {
-		console.writeToBuffer(charCustomLocation, (char)1, 0x0C);
+		console.writeToBuffer(charCustomLocation, (char)2, 0x1E);
     }
-	/*else if (state == LevelCustom)
-	{
-		console.writeToBuffer(charLocation, (char)1, 0x0C);
-		cannonL(cno);
-		cannonR(cno);
-		cannonU(cno);
-		cannonD(cno);
-		aiMon(mno);
-	}*/
     else if ( state == GameOver)
     {
        console.writeToBuffer(gameoverptr, (char)60, 0x0C);

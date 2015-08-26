@@ -4,6 +4,11 @@ extern Console console;
 extern double elapsedTime;
 extern double deltaTime;
 
+int icoordR = 0;
+int icoordL = 0;
+int icoordU = 0;
+int icoordD = 0;
+
 Cannon Right;
 Cannon Left;
 Cannon Up;
@@ -60,31 +65,47 @@ void cannonD(int i)
 //placed in init under converter
 void locationR(int x, int y,int z)
 {
-	Right.directions[z].X = x;
-	Right.directions[z].Y = y;
-	Right.position[z].X = x;
-	Right.position[z].Y = y;
+	if (icoordR <= z)
+	{
+		Right.directions[icoordR].X = x;
+		Right.directions[icoordR].Y = y;
+		Right.position[icoordR].X = x;
+		Right.position[icoordR].Y = y;
+		icoordR++;
+	}
 }
 void locationL(int x, int y,int z)
 {
-	Left.directions[z].X = x;
-	Left.directions[z].Y = y;
-	Left.position[z].X = x;
-	Left.position[z].Y = y;
+	if (icoordL <= z)
+	{
+		Left.directions[icoordL].X = x;
+		Left.directions[icoordL].Y = y;
+		Left.position[icoordL].X = x;
+		Left.position[icoordL].Y = y;
+		icoordL++;
+	}
 }
 void locationU(int x, int y,int z)
 {
-	Up.directions[z].X = x;
-	Up.directions[z].Y = y;
-	Up.position[z].X = x;
-	Up.position[z].Y = y;
+	if (icoordU <= z)
+	{
+		Up.directions[icoordU].X = x;
+		Up.directions[icoordU].Y = y;
+		Up.position[icoordU].X = x;
+		Up.position[icoordU].Y = y;
+		icoordU++;
+	}
 }
 void locationD(int x, int y,int z)
 {
-	Down.directions[z].X = x;
-	Down.directions[z].Y = y;
-	Down.position[z].X = x;
-	Down.position[z].Y = y;
+	if (icoordD <= z)
+	{
+		Down.directions[icoordD].X = x;
+		Down.directions[icoordD].Y = y;
+		Down.position[icoordD].X = x;
+		Down.position[icoordD].Y = y;
+		icoordD++;
+	}
 }
 
 //placed in update
