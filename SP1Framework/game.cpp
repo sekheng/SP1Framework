@@ -169,7 +169,7 @@ void update(double dt)
 
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     update_charSpeed(elapsedTime);
-	update_ballSpeed(3, cno, elapsedTime);
+	update_ballSpeed(10, cno, elapsedTime);
 	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
 
