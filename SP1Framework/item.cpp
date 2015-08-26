@@ -90,7 +90,6 @@ void display_gate()
         if ( Keys[gatetype].check_collected_keys != true) {
             for ( int i = 0; i < check_no_of_gates; ++i)
             {
-                //g_map[Gates[gatetype].KeysLocation[i].Y][Gates[gatetype].KeysLocation[i].X] = 1;
                 console.writeToBuffer(Gates[gatetype].KeysLocation[i] , "G", 0x0C);
             }
         }
@@ -146,10 +145,10 @@ void update_gates()
 
 void restart_keys_and_gates()
 {
-    //for ( int i = 0; i < MAX_ITEMS; ++i)
-    //{
-    //    Keys[i].check_collected_keys = true;
-    //}
+    for ( int i = 0; i < how_Many_keys_types; ++i)
+    {
+        Keys[i].num_of_Keys_ineachType = 0;
+    }
     how_Many_keys_types = 0;
     check_no_of_keys = 0;
     check_no_of_gates = 0;
