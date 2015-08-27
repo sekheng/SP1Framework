@@ -2,44 +2,51 @@
 #include "Loadlevel.h"
 //#include "traps.cpp"
 
-extern COORD startmenuLocation;
+extern Console console;
+extern startscreen state;
+// CHARACTER INTERACTION EXTERNS REQUIRED//
+
 extern COORD charLocation;
-extern COORD charCustomLocation;
-extern size_t g_map[200][200];
-extern size_t g_customizemap[200][200];
-extern struct Cannon Right;
-extern struct Cannon Left;
-extern struct Cannon Up;
-extern struct Cannon Down;
-extern struct Block block;
+int RestartX;
+int RestartY;
+extern int levelno;
+extern int endcounter;
 extern COORD aiCoordinate[20];
 extern COORD monCoordinate[20];
-extern Console console;
 extern int cnoR;
 extern int cnoL;
 extern int cnoU;
 extern int cnoD;
 extern int mno;
 extern int sno;
-extern int bno;
-extern int hno;
-extern int counter;
-extern startscreen state;
-extern bool keyPressed[K_COUNT];
-extern int levelno;
+extern struct Cannon Right;
+extern struct Cannon Left;
+extern struct Cannon Up;
+extern struct Cannon Down;
+//extern startscreen state;
+
+//// CHARACTER INTERACTION EXTERNS REQUIRED END////
+
+////////////////////STATE EXTERNS REQUIRED/////////////////////////
+
+extern COORD startmenuLocation;
+// extern COORD charLocation;
 extern int tempEndX;
 extern int tempEndY;
-extern int endcounter;
-int RestartX;
-int RestartY;
-bool TheEndDoesNotContinue = false;
-extern COORD CusLvL;
+extern COORD charCustomLocation;
 COORD pauseLocation;
 COORD helpreturn;
 COORD gameoverptr;
+extern int bno;
+extern int hno;
+extern size_t g_map[200][200];
+extern int counter;
+//extern startscreen state;
 
-extern int check_no_of_keys;
-extern int check_no_of_gates;
+///////////////////STATE EXTERNS END///////////////////////////////
+
+//extern struct Block block;
+extern bool keyPressed[K_COUNT];
 
 void characterInit()
 {
@@ -90,11 +97,8 @@ void characterMovement(double x)
     {
         if ( keyPressed[K_SPACE] )
         {
-           state = menu;
-         //TheEndDoesNotContinue = true;
-
+			state = menu;
         }
-		
     }
 }
 
@@ -127,6 +131,8 @@ void getInput()
 	keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
 }
 
+/////////////CHARACTER INTERACTIONS CPP///////////////////
+
 void characterSpawn(int x, int y)
 {
 	charLocation.X = x;
@@ -150,6 +156,15 @@ void characterEnd(int y, int x)//temp y , temp x
 		    loadlevel(level);
             initLevelText();
         }
+	}
+}
+
+void characterCustomEnd(int tempEndY, int tempEndX)
+{
+	if (charLocation.X == tempEndX && charLocation.Y == tempEndY)
+	{
+		endcounter++;
+		state = End;
 	}
 }
 
@@ -199,6 +214,10 @@ void characterInteraction()
 		}
 	}
 }
+ 
+////////////////CHARACTER INTERACTION CPP END///////////
+
+////////////////////STATE CPP/////////////////////////
 
 void menustate()
 {
@@ -213,14 +232,7 @@ void menustate()
 	}
 	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
 	{
-		if (TheEndDoesNotContinue == true)
-		{
-			state = End;
-		}
-		else
-		{
-			state = Start;
-		}
+		state = Start;
 	}
 	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
 	{
@@ -262,15 +274,6 @@ void menustate()
 	else
 	{
 		startmenuLocation.X = 8;
-	}
-}
-
-void characterCustomEnd(int tempEndY, int tempEndX)
-{
-	if (charLocation.X == tempEndX && charLocation.Y == tempEndY )
-	{
-		endcounter++;
-		state = End;
 	}
 }
 
@@ -542,3 +545,5 @@ void LevelEditingState()
 			charCustomLocation.X++;
 		}
 }
+
+/////////STATE CPP END///////////////////////////////

@@ -89,7 +89,9 @@ void loadlevel(string &level)
 	}
 	inData.close();
 }
+
 //refreshes the updates for main level
+
 void reloadlevel()
 {
 	LvL.Y = 1;
@@ -212,11 +214,6 @@ void loadcustomizedlevel()
 }
 
 //refreshes custom level
-
-void reloadcustomizedlevel()
-{
-	reloadlevel();
-}
 
 void initLevelText()
 {
