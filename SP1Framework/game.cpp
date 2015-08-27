@@ -82,6 +82,7 @@ int mno = 0; //monster number
 int bno = 0; //box number
 int sno = 0; //smart monster number
 int pno = 0; // pressure plate number
+int dno = 0;
 COORD pu;
 int pauserows = 0;
 int pausecols = 0;
@@ -179,6 +180,7 @@ void update(double dt)
 	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
 	updatePlate(pno);
+	updateDoor(dno);
 	update_followMonSpeed(sno, elapsedTime);
     update_keys();
     update_gates();
@@ -300,6 +302,7 @@ void renderCharacter()
 		followMon(sno);
 		printBlock(bno);
 		printPlate(pno);
+		printDoor(dno);
         display_keys();
         display_gate();
 		console.writeToBuffer(charLocation, (char)2, 0x1E);

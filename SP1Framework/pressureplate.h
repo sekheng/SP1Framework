@@ -15,6 +15,7 @@
 #include "Framework\console.h"
 #include "Framework\timer.h"
 #include "playerchar.h"
+#include "block.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -25,10 +26,14 @@ using std::ifstream;
 using std::stringstream;
 
 //bool onPlate = false;
-
 struct Plate
 {
 	COORD directions[20];
+};
+
+struct Door
+{
+	COORD position[20];
 };
 
 //to be placed in init
@@ -40,5 +45,10 @@ void updatePlate(int z);
 //to be placed in render
 void printPlate(int i);
 
+void setDoor(int x, int y, int z);
+
+void updateDoor(int z);
+
+void printDoor(int i);
 
 #endif // _PRESSUREPLATE_H

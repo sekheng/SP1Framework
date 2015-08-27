@@ -150,29 +150,22 @@ void update_keys()
 
 void update_gates()
 {
-    for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
-    {
-        if ( Keys[gatetype].check_collected_keys == true )
-        {
-            for ( int j = 0; j < check_no_of_gates; ++j)
-            {
-                g_map[Gates[gatetype].KeysLocation[j].Y][Gates[gatetype].KeysLocation[j].X] = 0;
-            }
-        }
-		else if (onPlate == true)
+	for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
+	{
+		if (Keys[gatetype].check_collected_keys == true)
 		{
 			for (int j = 0; j < check_no_of_gates; ++j)
 			{
 				g_map[Gates[gatetype].KeysLocation[j].Y][Gates[gatetype].KeysLocation[j].X] = 0;
 			}
 		}
-        else
-        {
-            for ( int i = 0; i < check_no_of_gates; ++i) {
-                g_map[Gates[gatetype].KeysLocation[i].Y][Gates[gatetype].KeysLocation[i].X] = 1;
-            }
-        }
-    }
+		else
+		{
+			for (int i = 0; i < check_no_of_gates; ++i) {
+				g_map[Gates[gatetype].KeysLocation[i].Y][Gates[gatetype].KeysLocation[i].X] = 1;
+			}
+		}
+	}
 }
 
 void restart_keys_and_gates()
