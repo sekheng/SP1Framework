@@ -38,8 +38,8 @@ bool keyPressed[K_COUNT];
 startscreen state = menu;
 int titlearr[40][150];
 size_t g_map[200][200];    //For Collision System
-size_t g_custommap[140][100]; //for custom lvl legend
-size_t g_customizemap[140][100]; //for customising lvl
+size_t g_custommap[200][200]; //for custom lvl legend
+size_t g_customizemap[200][200]; //for customising lvl
 char pausearr[40][150];
 
 // For Menu Display's coordinates
@@ -63,7 +63,7 @@ int cuschange;
 int row = 1;    // For collision Detection and map coordinates
 int col = 40;    // For collision Detection and map coordinates
 int cusrow = 1;
-int cuscol = 0;
+int cuscol = 20;
 COORD LvL;
 COORD CusLvL;
 COORD Ttle;
@@ -79,6 +79,7 @@ int cnoU = 0; //cannon number
 int cnoD = 0; //cannon number
 int mno = 0; //monster number
 int bno = 0; //box number
+int sno = 0; //smart monster number
 COORD pu;
 int pauserows = 0;
 int pausecols = 0;
@@ -101,7 +102,7 @@ void init()
 {
     // Set precision for floating point output
 	elapsedTime = 0.0; 
-	charCustomLocation.X = 0;
+	charCustomLocation.X = 40;
 	charCustomLocation.Y = 1;
 
 	characterInit();

@@ -33,9 +33,9 @@ void updateBlock(int z) // x= no of blocks and z=box number
 {
 	for (int i = 0; i < z; ++i)
 	{
-		if (charLocation.X == block.directions[i].X && 
-			charLocation.Y == block.directions[i].Y && keyPressed[K_UP] 
-			|| charLocation.X == block.directions[i].X && 
+		if (charLocation.X == block.directions[i].X &&
+			charLocation.Y == block.directions[i].Y && keyPressed[K_UP]
+			|| charLocation.X == block.directions[i].X &&
 			charLocation.Y == block.directions[i].Y && keyPressed[K_W])//player push upwards
 		{
 			if (g_map[block.directions[i].Y - 1][block.directions[i].X] != 1)
@@ -47,9 +47,9 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.Y++;
 			}
 		}
-		else if (charLocation.X == block.directions[i].X && 
-			charLocation.Y == block.directions[i].Y && keyPressed[K_DOWN] 
-			|| charLocation.X == block.directions[i].X && charLocation.Y == 
+		else if (charLocation.X == block.directions[i].X &&
+			charLocation.Y == block.directions[i].Y && keyPressed[K_DOWN]
+			|| charLocation.X == block.directions[i].X && charLocation.Y ==
 			block.directions[i].Y && keyPressed[K_S])//player push downwards
 		{
 			if (g_map[block.directions[i].Y + 1][block.directions[i].X] != 1)
@@ -61,9 +61,9 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.Y--;
 			}
 		}
-		else if (charLocation.X == block.directions[i].X && 
-			charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT] 
-			|| charLocation.X == block.directions[i].X && charLocation.Y == 
+		else if (charLocation.X == block.directions[i].X &&
+			charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT]
+			|| charLocation.X == block.directions[i].X && charLocation.Y ==
 			block.directions[i].Y && keyPressed[K_A])//player push left
 		{
 			if (g_map[block.directions[i].Y][block.directions[i].X - 1] != 1)
@@ -75,9 +75,9 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.X++;
 			}
 		}
-		else if (charLocation.X == block.directions[i].X && 
-			charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT] 
-			|| charLocation.X == block.directions[i].X && charLocation.Y == 
+		else if (charLocation.X == block.directions[i].X &&
+			charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT]
+			|| charLocation.X == block.directions[i].X && charLocation.Y ==
 			block.directions[i].Y && keyPressed[K_D])//player push right
 		{
 			if (g_map[block.directions[i].Y][block.directions[i].X + 1] != 1)
@@ -89,39 +89,43 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.X--;
 			}
 		}
-		if (block.directions[i+1].X == block.directions[i].X && 
-			block.directions[i].Y == block.directions[i].Y && keyPressed[K_RIGHT] 
-			|| block.directions[i+1].X == block.directions[i].X && 
+		if (block.directions[i + 1].X == block.directions[i].X &&
+			block.directions[i].Y == block.directions[i].Y && keyPressed[K_RIGHT]
+			|| block.directions[i + 1].X == block.directions[i].X &&
 			block.directions[i].Y == block.directions[i].Y && keyPressed[K_D])
 		{
 			block.directions[i].X--;
 			charLocation.X--;
 		}
-		if (block.directions[i - 1].X == block.directions[i].X &&
-			block.directions[i].Y == block.directions[i].Y && keyPressed[K_LEFT]
-			|| block.directions[i - 1].X == block.directions[i].X &&
-			block.directions[i].Y == block.directions[i].Y && keyPressed[K_A])
-		{
-			block.directions[i].X++;
-			charLocation.X++;
-		}
-		if (block.directions[i].X == block.directions[i].X &&
-			block.directions[i+1].Y == block.directions[i].Y && keyPressed[K_UP]
-			|| block.directions[i].X == block.directions[i].X &&
-			block.directions[i+1].Y == block.directions[i].Y && keyPressed[K_W])
-		{
-			block.directions[i].Y++;
-			charLocation.Y++;
-		}
-		if (block.directions[i].X == block.directions[i].X &&
-			block.directions[i-1].Y == block.directions[i].Y && keyPressed[K_DOWN]
-			|| block.directions[i].X == block.directions[i].X &&
-			block.directions[i-1].Y == block.directions[i].Y && keyPressed[K_S])
-		{
-			block.directions[i].Y--;
-			charLocation.Y--;
-		}
-	}
+		else
+			if (block.directions[i - 1].X == block.directions[i].X &&
+				block.directions[i].Y == block.directions[i].Y && keyPressed[K_LEFT]
+				|| block.directions[i - 1].X == block.directions[i].X &&
+				block.directions[i].Y == block.directions[i].Y && keyPressed[K_A])
+			{
+				block.directions[i].X++;
+				charLocation.X++;
+			}
+			else
+				if (block.directions[i].X == block.directions[i].X &&
+					block.directions[i + 1].Y == block.directions[i].Y && keyPressed[K_UP]
+					|| block.directions[i].X == block.directions[i].X &&
+					block.directions[i + 1].Y == block.directions[i].Y && keyPressed[K_W])
+				{
+					block.directions[i].Y++;
+					charLocation.Y++;
+				}
+				else
+					if (block.directions[i].X == block.directions[i].X &&
+						block.directions[i - 1].Y == block.directions[i].Y && keyPressed[K_DOWN]
+						|| block.directions[i].X == block.directions[i].X &&
+						block.directions[i - 1].Y == block.directions[i].Y && keyPressed[K_S])
+					{
+						block.directions[i].Y--;
+						charLocation.Y--;
+					}
+
+	}		
 }
 
 //to be placed in render
