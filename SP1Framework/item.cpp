@@ -19,6 +19,7 @@ int check_numKeys_arr[MAX_ITEMS] = {0};
 
 char *NoItem;
 stringstream sos;
+stringstream sis;
 
 const WORD colorforGateandKeys[] =
 {
@@ -46,8 +47,8 @@ void initinventorysystem()
     Display_Items_You_Need.X = 100;
     Display_Items_You_Need.Y = 10;
     NoItem = "THERE ARE NO GATES TO OPEN";
-    sos.str("");
-    sos << "YOU NEED THESE KEYS TO OPEN G";
+    sis.str("");
+    sis << "YOU ARE CLEAR TO PASS THROUGH G";
 }
 
 void keys_locations( int keyY, int keyX, int KeyType)
@@ -87,9 +88,21 @@ void displayinventory()
     {
         for ( int i = 0; i < how_Many_keys_types; ++i)
         {
-            string itemDisplay = sos.str();
-            WORD FINDCOLOR = colorforGateandKeys[i];
-            console.writeToBuffer( Display_Items_You_Need, itemDisplay , FINDCOLOR);
+            if ( Keys[i].check_collected_keys == true)
+            {
+                string itemDisplay = sis.str();
+                WORD FINDCOLOR = colorforGateandKeys[i];
+                console.writeToBuffer( Display_Items_You_Need, itemDisplay , FINDCOLOR);
+            }
+            else {
+                sos.str("");
+                sos << "YOU NEED ";
+                int number_OF_KEYS = Keys[i].num_of_Keys_ineachType;
+                sos << number_OF_KEYS << " K TO OPEN G";
+                string itemDisplay = sos.str();
+                WORD FINDCOLOR = colorforGateandKeys[i];
+                console.writeToBuffer( Display_Items_You_Need, itemDisplay , FINDCOLOR);
+            }
             Display_Items_You_Need.Y += 2;
         }
     }
@@ -139,6 +152,7 @@ void update_keys()
             if ( (charLocation.X) == (Keys[keytypes].KeysLocation[h].X) && (charLocation.Y) == (Keys[keytypes].KeysLocation[h].Y) )
             {
                 Keys[keytypes].collected[h] = true;
+                --Keys[keytypes].num_of_Keys_ineachType;
             }
         }
 
@@ -204,4 +218,5 @@ void restart_level_forKeysAndGates()
 void populate_keyArr( int KeyType)
 {
     ++check_numKeys_arr[KeyType];
+    Keys[KeyType].num_of_Keys_ineachType = check_numKeys_arr[KeyType];
 }
