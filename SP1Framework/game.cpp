@@ -244,6 +244,7 @@ void renderMap()
 			level = "levels1.txt";
 			loadlevel(level);
 			counter--;
+            initLevelText();
 		}
 		reloadlevel(); // reloads level
         displayleveltext();
