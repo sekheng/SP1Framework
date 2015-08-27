@@ -32,7 +32,7 @@ void update_ballSpeed(int x, int y, int a, int b, int c, int d, double w)
 {
 	if(timeTriggered > w)
 		return;
-	timeTriggered = w + 0.250;
+	timeTriggered = w + 0.150;
 	cannonballR(x, y, d);
 	cannonballL(x, a, d);
 	cannonballU(x, b, d);
@@ -51,6 +51,6 @@ void update_followMonSpeed(int z, double w)
 {
 	if(timeTriggeredFollow > w)
 		return;
-	timeTriggeredFollow = w + 0.075;
+	timeTriggeredFollow = w + 0.175;
 	followMonUpdate(z,timeTriggeredFollow);
 }

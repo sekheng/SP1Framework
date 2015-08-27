@@ -61,29 +61,25 @@ void followMon(int i)
 void followMonUpdate(int z,double w)
 {
 	for (int no = 0; no < z;no++)
+	{
+		r[no] = rand() %2;
+		if(monCoordinate[no].X > charLocation.X && g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] != 1)
 		{
-			r[no] = rand() %6;
-			if(/*(r[no] == 1 || r[no] == 2 || r[no] == 3 || r[no] ==4 || r[no] ==5)  && */monCoordinate[no].X + 1 == charLocation.X && monCoordinate[no].Y == charLocation.Y)
-			{
-				//w -= 0.500;
-				monCoordinate[no].X++;
-			}
-			else if(/*(r[no] == 1 || r[no] == 2 || r[no] == 3 || r[no] ==4 || r[no] ==5) &&*/ monCoordinate[no].X - 1 == charLocation.X && monCoordinate[no].Y == charLocation.Y)
-			{
-				//w -= 0.500;
-				monCoordinate[no].X--;
-			}
-			else if(/*(r[no] == 1 || r[no] == 2 || r[no] == 3 || r[no] ==4 || r[no] ==5) && */monCoordinate[no].Y - 1 == charLocation.Y && monCoordinate[no].X == charLocation.X)
-			{
-				//w -= 0.500;
-				monCoordinate[no].Y--;
-			}
-			else if(/*(r[no] == 1 || r[no] == 2 || r[no] == 3 || r[no] ==4 || r[no] ==5) &&*/ monCoordinate[no].Y + 1 == charLocation.Y && monCoordinate[no].X == charLocation.X)
-			{
-				//w -= 0.500;
-				monCoordinate[no].Y++;
-			}
+			monCoordinate[no].X--;
 		}
+		if(monCoordinate[no].Y > charLocation.Y && g_map[monCoordinate[no].Y - 1][monCoordinate[no].X] != 1)
+		{
+			monCoordinate[no].Y--;
+		}
+		if(monCoordinate[no].Y < charLocation.Y && g_map[monCoordinate[no].Y + 1][monCoordinate[no].X] != 1)
+		{
+			monCoordinate[no].Y++;
+		}
+		if(monCoordinate[no].X < charLocation.X && g_map[monCoordinate[no].Y][monCoordinate[no].X + 1] != 1)
+		{
+			monCoordinate[no].X++;
+		}
+	}
 }
 void followMonSpawn(int x,int y,int z)
 {
@@ -91,7 +87,7 @@ void followMonSpawn(int x,int y,int z)
 	monCoordinate[z].Y = y;
 	follow.resetCoord[z].X = x;
 	follow.resetCoord[z].Y = y;
-	//restartFollowMonLocation(z);
+	//restartFollowMonLoca tion(z);
 }
 
 void restartCrazyMonLocation(int z)
@@ -111,3 +107,5 @@ void restartFollowMonLocation(int z)
 		monCoordinate[i].Y = follow.resetCoord[i].Y;
 	}
 }
+
+
