@@ -20,10 +20,8 @@ int iblock = 0;
 //to be placed in init
 void setBlock(int x, int y, int z)
 {
-
-		block.directions[z].X = x;
-		block.directions[z].Y = y;
-	
+	block.directions[z].X = x;
+	block.directions[z].Y = y;
 }
 
 //to be placed in update
