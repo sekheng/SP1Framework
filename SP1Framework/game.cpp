@@ -15,6 +15,7 @@
 #include "windows.h"    // For Music Feature
 #include "mmsystem.h"   // For Music Feature
 #include "speedControl.h"
+#include "pressureplate.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -80,6 +81,7 @@ int cnoD = 0; //cannon number
 int mno = 0; //monster number
 int bno = 0; //box number
 int sno = 0; //smart monster number
+int pno = 0; //pressure plate number
 COORD pu;
 int pauserows = 0;
 int pausecols = 0;
@@ -176,6 +178,7 @@ void update(double dt)
 	update_ballSpeed(10, cnoR, cnoL, cnoU, cnoD, bno,elapsedTime);
 	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
+	updatePlate(pno);
 	update_followMonSpeed(sno, elapsedTime);
     update_keys();
     update_gates();
@@ -296,6 +299,7 @@ void renderCharacter()
 		crazyMon(mno);
 		followMon(sno);
 		printBlock(bno);
+		printPlate(pno);
         display_keys();
         display_gate();
 		console.writeToBuffer(charLocation, (char)2, 0x1E);
