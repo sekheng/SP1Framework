@@ -6,7 +6,7 @@ extern COORD startmenuLocation;
 extern COORD charLocation;
 extern COORD charCustomLocation;
 extern size_t g_map[200][200];
-extern size_t g_customizemap[140][100];
+extern size_t g_customizemap[200][200];
 extern struct Cannon Right;
 extern struct Cannon Left;
 extern struct Cannon Up;
@@ -457,7 +457,7 @@ void LevelEditingState()
 		}
 		if (keyPressed[K_BOX])
 		{
-			edit = 'B';
+			edit = '#';
 			writelevel(edit);
 		}
 		if (keyPressed[K_1])
@@ -480,11 +480,21 @@ void LevelEditingState()
 			savecustomlevel();
 			state = menu;
 		}
+		/*if (keyPressed[K_K])
+		{
+			savecustomlevel();
+			state = menu;
+		}
+		if (keyPressed[K_G])
+		{
+			savecustomlevel();
+			state = menu;
+		}*/
 		if (keyPressed[K_UP] && charCustomLocation.Y > 1 )
 		{
 			charCustomLocation.Y--;
 		}
-		if (keyPressed[K_LEFT] && charCustomLocation.X >0 )
+		if (keyPressed[K_LEFT] && charCustomLocation.X >40 )
 		{
 			charCustomLocation.X--;
 		}
@@ -492,7 +502,7 @@ void LevelEditingState()
 		{
 			charCustomLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] && charCustomLocation.X < 55)
+		if (keyPressed[K_RIGHT] && charCustomLocation.X < 95)
 		{
 			charCustomLocation.X++;
 		}

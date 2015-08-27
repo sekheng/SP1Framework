@@ -20,10 +20,8 @@ int iblock = 0;
 //to be placed in init
 void setBlock(int x, int y, int z)
 {
-
-		block.directions[z].X = x;
-		block.directions[z].Y = y;
-	
+	block.directions[z].X = x;
+	block.directions[z].Y = y;
 }
 
 //to be placed in update
@@ -87,47 +85,44 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.X--;
 			}
 		}
-	}
-	/*for (int t = z; t <= z; t--)
-	{
-		for (int i = t-1; i < t; i--)
+		if (block.directions[i + 1].X == block.directions[i].X &&
+			block.directions[i].Y == block.directions[i].Y && keyPressed[K_RIGHT]
+			|| block.directions[i + 1].X == block.directions[i].X &&
+			block.directions[i].Y == block.directions[i].Y && keyPressed[K_D])
 		{
-			if (block.directions[t].X == block.directions[i].X &&
-				block.directions[t].Y == block.directions[i].Y && keyPressed[K_RIGHT]
-				|| block.directions[t].X == block.directions[i].X &&
-				block.directions[t].Y == block.directions[i].Y && keyPressed[K_D])
+			block.directions[i].X--;
+			charLocation.X--;
+		}
+		else
+			if (block.directions[i - 1].X == block.directions[i].X &&
+				block.directions[i].Y == block.directions[i].Y && keyPressed[K_LEFT]
+				|| block.directions[i - 1].X == block.directions[i].X &&
+				block.directions[i].Y == block.directions[i].Y && keyPressed[K_A])
 			{
-				block.directions[t].X--;
-				charLocation.X--;
-			}
-			if (block.directions[t].X == block.directions[i].X &&
-				block.directions[t].Y == block.directions[i].Y && keyPressed[K_LEFT]
-				|| block.directions[t].X == block.directions[i].X &&
-				block.directions[t].Y == block.directions[i].Y && keyPressed[K_A])
-			{
-				block.directions[t].X++;
+				block.directions[i].X++;
 				charLocation.X++;
 			}
-			if (block.directions[t].X == block.directions[i].X &&
-				block.directions[t].Y == block.directions[i].Y && keyPressed[K_UP]
-				|| block.directions[t].X == block.directions[i].X &&
-				block.directions[t].Y == block.directions[i].Y && keyPressed[K_W])
-			{
-				block.directions[t].Y++;
-				charLocation.Y++;
-			}
-			if (block.directions[t].X == block.directions[i].X &&
-				block.directions[t].Y == block.directions[i].Y && keyPressed[K_DOWN]
-				|| block.directions[t].X == block.directions[i].X &&
-				block.directions[t].Y == block.directions[i].Y && keyPressed[K_S])
-			{
-				block.directions[t].Y--;
-				charLocation.Y--;
-			}
-		}
-	}*/
-}
+			else
+				if (block.directions[i].X == block.directions[i].X &&
+					block.directions[i + 1].Y == block.directions[i].Y && keyPressed[K_UP]
+					|| block.directions[i].X == block.directions[i].X &&
+					block.directions[i + 1].Y == block.directions[i].Y && keyPressed[K_W])
+				{
+					block.directions[i].Y++;
+					charLocation.Y++;
+				}
+				else
+					if (block.directions[i].X == block.directions[i].X &&
+						block.directions[i - 1].Y == block.directions[i].Y && keyPressed[K_DOWN]
+						|| block.directions[i].X == block.directions[i].X &&
+						block.directions[i - 1].Y == block.directions[i].Y && keyPressed[K_S])
+					{
+						block.directions[i].Y--;
+						charLocation.Y--;
+					}
 
+	}
+}
 //to be placed in render
 void printBlock(int i)// i = bno
 {

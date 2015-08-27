@@ -26,6 +26,7 @@ extern int cnoD;
 extern int cnoL;
 extern int mno;
 extern int bno;
+extern int sno;
 extern int change;
 extern int levelno;
 extern int tempEndX;
@@ -33,8 +34,8 @@ extern int tempEndY;
 extern int cuscol;
 extern int cusrow;
 extern size_t g_map[200][200];
-extern size_t g_custommap[140][100];
-extern size_t g_customizemap[140][100];
+extern size_t g_custommap[200][200];
+extern size_t g_customizemap[200][200];
 extern int cuschange;
 
 COORD display_level_text;
@@ -44,6 +45,7 @@ int leveltext_row = 0;
 int leveltext_col = 0;
 char **dynamic_lvlnum_text;
 //loads the level 
+
 void loadlevel(string &level)
 {
 	tempEndX = 0;
@@ -54,6 +56,7 @@ void loadlevel(string &level)
 	cnoU = 0;
 	mno = 0;
 	bno = 0;
+	sno = 0;
     restart_level_forKeysAndGates();
     restart_keys_and_gates();
 	col = 40;
@@ -104,14 +107,14 @@ void reloadlevel()
 
 void loadcustomlevel()
 {
-	cuscol = 0;
+	cuscol = 20;
 	cusrow = 1;
 	ifstream incusData;
 	incusData.open("CustomLevelLegend.txt");
 	string cusData;
 	while (!incusData.eof())
 	{
-		cuscol = 0;
+		cuscol = 20;
 		getline(incusData, cusData);
 		for (unsigned int x = 0; x < cusData.length(); x++)
 		{
@@ -130,12 +133,12 @@ void loadcustomlevel()
 void reloadcustomlevel()
 {
 	string cusoutData;
-	CusLvL.Y = 17;
-	CusLvL.X = 0;
-	int i = 1;
+	CusLvL.Y = 16;
+	CusLvL.X = 20;
+	int i = 0;
 	for (; i < cusrow; ++i)
 	{
-		CusLvL.X = 0;
+		CusLvL.X = 20;
 		for (int j = 0; j < cuscol; ++j) {
 			char cuswrite = g_custommap[i][j];
 			console.writeToBuffer(CusLvL, cuswrite, 0x0F);
@@ -183,7 +186,7 @@ void savecustomlevel()
 	outData.open("CustomLevel.txt");
 	for (int i = 1; i < 17; i++)
 	{
-		for (int j = 0; j < 56; ++j)
+		for (int j = 40; j < 96; ++j)
 		{
 			char cuswrite = g_customizemap[j][i];
 			outData << cuswrite;
@@ -236,7 +239,7 @@ void initLevelText()
     case 1: level_text = "level1_text.txt"; 
         break;
     case 2: level_text = "level2_text.txt";
-        break;
+        break; 
     case 3: level_text = "level3_text.txt";
         break;
     case 4: level_text = "level4_text.txt";

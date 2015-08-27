@@ -11,5 +11,8 @@ void crazyMonSpawn(int x,int y,int z);
 void crazyMonUpdate(int z);
 void crazyMon(int i);
 
+void followMonSpawn(int x,int y,int z);
+void followMonUpdate(int z);
+void followMon(int i);
 
 #endif  // _MONSTER_H
