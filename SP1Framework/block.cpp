@@ -20,12 +20,8 @@ int iblock = 0;
 //to be placed in init
 void setBlock(int x, int y, int z)
 {
-	if (iblock <= z)
-	{
-		block.directions[iblock].X = x;
-		block.directions[iblock].Y = y;
-		iblock++;
-	}
+	block.directions[z].X = x;
+	block.directions[z].Y = y;
 }
 
 //to be placed in update
@@ -125,9 +121,8 @@ void updateBlock(int z) // x= no of blocks and z=box number
 						charLocation.Y--;
 					}
 
-	}		
+	}
 }
-
 //to be placed in render
 void printBlock(int i)// i = bno
 {
