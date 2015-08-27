@@ -18,6 +18,7 @@ extern int cnoD;
 Block block;
 int iblock = 0;
 Block blockStartingPosition;
+
 //to be placed in init
 void setBlock(int x, int y, int z)
 {
