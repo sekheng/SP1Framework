@@ -85,40 +85,6 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.X--;
 			}
 		}
-
-	/*	if (block.directions[i + 1].X == block.directions[i].X &&
-			block.directions[i].Y == block.directions[i].Y && keyPressed[K_RIGHT]
-			|| block.directions[i + 1].X == block.directions[i].X &&
-			block.directions[i].Y == block.directions[i].Y && keyPressed[K_D])
-		{
-			block.directions[i].X--;
-			charLocation.X--;
-		}
-		else if (block.directions[i - 1].X == block.directions[i].X &&
-				block.directions[i].Y == block.directions[i].Y && keyPressed[K_LEFT]
-				|| block.directions[i - 1].X == block.directions[i].X &&
-				block.directions[i].Y == block.directions[i].Y && keyPressed[K_A])
-			{
-				block.directions[i].X++;
-				charLocation.X++;
-			}
-		else if (block.directions[i].X == block.directions[i].X &&
-				block.directions[i + 1].Y == block.directions[i].Y && keyPressed[K_UP]
-				|| block.directions[i].X == block.directions[i].X &&
-				block.directions[i + 1].Y == block.directions[i].Y && keyPressed[K_W])
-			{
-				block.directions[i].Y++;
-				charLocation.Y++;
-			}
-		else if (block.directions[i].X == block.directions[i].X &&
-				block.directions[i - 1].Y == block.directions[i].Y && keyPressed[K_DOWN]
-				|| block.directions[i].X == block.directions[i].X &&
-				block.directions[i - 1].Y == block.directions[i].Y && keyPressed[K_S])
-			{
-				block.directions[i].Y--;
-				charLocation.Y--;
-			}
-*/
 	}
 	for (int y= z; y>0; y--)
 	{

@@ -80,6 +80,7 @@ int cnoD = 0; //cannon number
 int mno = 0; //monster number
 int bno = 0; //box number
 int sno = 0; //smart monster number
+int pno = 0; // pressure plate number
 COORD pu;
 int pauserows = 0;
 int pausecols = 0;

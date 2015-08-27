@@ -27,6 +27,7 @@ extern int cnoL;
 extern int mno;
 extern int bno;
 extern int sno;
+extern int pno;
 extern int change;
 extern int levelno;
 extern int tempEndX;
@@ -57,6 +58,7 @@ void loadlevel(string &level)
 	mno = 0;
 	bno = 0;
 	sno = 0;
+	pno = 0;
     restart_level_forKeysAndGates();
     restart_keys_and_gates();
 	col = 40;
