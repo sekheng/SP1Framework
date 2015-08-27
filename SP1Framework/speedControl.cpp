@@ -18,7 +18,7 @@ void update_charSpeed(double x)
 		}
 		else
 		{
-			timeTriggeredChar = x + 0.050;
+			timeTriggeredChar = x + 0.075;
 			moveCharacter(x);
 		}
 	}
@@ -51,6 +51,6 @@ void update_followMonSpeed(int z, double w)
 {
 	if(timeTriggeredFollow > w)
 		return;
-	timeTriggeredFollow = w + 0.050;
+	timeTriggeredFollow = w + 0.100;
 	followMonUpdate(z,timeTriggeredFollow);
 }

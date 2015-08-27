@@ -3,10 +3,10 @@ extern Console console;
 extern COORD charLocation;
 extern size_t g_map[200][200];
 extern double timeTriggeredCrazy;
-int r[20];
+int r[MAX_SPACE];
 
-COORD aiCoordinate[20];
-COORD monCoordinate[20];
+COORD aiCoordinate[MAX_SPACE];
+COORD monCoordinate[MAX_SPACE];
 
 void crazyMon(int i)
 {
@@ -56,22 +56,23 @@ void followMonUpdate(int z,double w)
 {
 	for (int no = 0; no < z;no++)
 		{
-			if(monCoordinate[no].X + 1 == charLocation.X && monCoordinate[no].Y == charLocation.Y)
+			r[no] = rand() %6;
+			if(/*(r[no] == 1 || r[no] == 2 || r[no] == 3 || r[no] ==4 || r[no] ==5)  && */monCoordinate[no].X + 1 == charLocation.X && monCoordinate[no].Y == charLocation.Y)
 			{
 				//w -= 0.500;
 				monCoordinate[no].X++;
 			}
-			else if(monCoordinate[no].X - 1 == charLocation.X && monCoordinate[no].Y == charLocation.Y)
+			else if(/*(r[no] == 1 || r[no] == 2 || r[no] == 3 || r[no] ==4 || r[no] ==5) &&*/ monCoordinate[no].X - 1 == charLocation.X && monCoordinate[no].Y == charLocation.Y)
 			{
 				//w -= 0.500;
 				monCoordinate[no].X--;
 			}
-			else if(monCoordinate[no].Y - 1 == charLocation.Y && monCoordinate[no].X == charLocation.X)
+			else if(/*(r[no] == 1 || r[no] == 2 || r[no] == 3 || r[no] ==4 || r[no] ==5) && */monCoordinate[no].Y - 1 == charLocation.Y && monCoordinate[no].X == charLocation.X)
 			{
 				//w -= 0.500;
 				monCoordinate[no].Y--;
 			}
-			else if(monCoordinate[no].Y + 1 == charLocation.Y && monCoordinate[no].X == charLocation.X)
+			else if(/*(r[no] == 1 || r[no] == 2 || r[no] == 3 || r[no] ==4 || r[no] ==5) &&*/ monCoordinate[no].Y + 1 == charLocation.Y && monCoordinate[no].X == charLocation.X)
 			{
 				//w -= 0.500;
 				monCoordinate[no].Y++;
