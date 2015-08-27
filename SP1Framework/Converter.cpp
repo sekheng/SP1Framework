@@ -25,7 +25,6 @@ void convert(int &a);
 
 void convert(int &a, int b, int c)
 {
-	
 	if (a == 49) //white walls '1'
 	{
 		a = 1;
@@ -62,26 +61,30 @@ void convert(int &a, int b, int c)
 	}
 	if (a == 35) //box '#'
 	{
-		setBlock(b,c, bno);
-		//setBlock(tempY, tempX, bno);
+		setBlock(b, c, bno);
 		bno++;
 	}
     if ( a == 'K'|| a == 'Q')
     {
+		int y;
         switch (a)
         {
-            case 'K':  populate_keyArr(0); keys_locations( c, b, 0 ); break;
-            case 'Q':  populate_keyArr(1); keys_locations( c,b,1); break;
+			case 'K':  y = 0; break;
+			case 'Q':  y = 1; break;
         }
+		populate_keyArr(y);
+		keys_locations(c, b, y);
         ++check_no_of_keys;
     }
 	if ( a == 'G'|| a == 'B')
     {
+		int x;
         switch (a)
         {
-            case 'G': gate_location( c,b, 0); break;
-            case 'B': gate_location( c,b,1); break;
+            case 'G': x = 0 ; break;
+            case 'B': x = 1; break;
         }        
+		gate_location(c, b, x);
         ++check_no_of_gates;
     }
 	if (a == 'N')
@@ -113,10 +116,6 @@ void convert2(int&b, string &x, int &c)
 	}
 	if (b == 2) {//end point
 		x = "E";
-		c = 0;
-	}
-	if (b == 3) { //crates/box //placeholder
-		x = "#";
 		c = 0;
 	}
 	if (b == 4) { //starting point

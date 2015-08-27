@@ -74,12 +74,12 @@ string content;
 int color;
 int tempEndX; // x end point coord
 int tempEndY;// y end point coord
-int cnoR = 0; //cannon number
-int cnoL = 0; //cannon number
-int cnoU = 0; //cannon number
-int cnoD = 0; //cannon number
-int mno = 0; //monster number
-int bno = 0; //box number
+int cnoR = 0; // cannon number
+int cnoL = 0; // cannon number
+int cnoU = 0; // cannon number
+int cnoD = 0; // cannon number
+int mno = 0; // monster number
+int bno = 0; // box number
 int sno = 0; //smart monster number
 int pno = 0; // pressure plate number
 int hno = 0;// pressure plate gate number
@@ -173,7 +173,6 @@ void update(double dt)
     // get the delta time
     elapsedTime += dt;
     deltaTime = dt;
-
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     update_charSpeed(elapsedTime);
 	update_ballSpeed(10, cnoR, cnoL, cnoU, cnoD, bno,elapsedTime);
@@ -274,7 +273,7 @@ void renderMap()
 		{
 			loadcustomizedlevel();
 		}
-		reloadcustomizedlevel();
+		reloadlevel();
 	}
     else if (state == End)
     {
