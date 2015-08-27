@@ -23,10 +23,10 @@ void crazyMonUpdate(int z)
 		for (int no = 0; no < z;no++)
 		{ 
 			r[no] = rand() % 4;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
-			if((aiCoordinate[no].X + 1) == charLocation.X 
-				||(aiCoordinate[no].X - 1) == charLocation.X
-				||(aiCoordinate[no].Y + 1) == charLocation.Y
-				||(aiCoordinate[no].Y - 1) == charLocation.Y)
+			if(((aiCoordinate[no].X + 1) == charLocation.X && (aiCoordinate[no].Y) == charLocation.Y)
+				||((aiCoordinate[no].X - 1) == charLocation.X &&(aiCoordinate[no].Y) == charLocation.Y)
+				||((aiCoordinate[no].Y + 1) == charLocation.Y &&(aiCoordinate[no].X) == charLocation.X)
+				||((aiCoordinate[no].Y - 1) == charLocation.Y &&(aiCoordinate[no].X) == charLocation.X))
 			{
 				if(aiCoordinate[no].X > charLocation.X && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] == 0)
 				{
@@ -45,22 +45,22 @@ void crazyMonUpdate(int z)
 					aiCoordinate[no].X++;
 				}
 			}
-			//else if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
-			//{
-			//	aiCoordinate[no].X++;
-			//}
-			//else if( r[no] == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//left
-			//{
-			//	aiCoordinate[no].X--;
-			//}
-			//else if( r[no] == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)//up
-			//{
-			//	aiCoordinate[no].Y--;
-			//}
-			//else if( r[no] == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)//down
-			//{
-			//	aiCoordinate[no].Y++;
-			//}
+			else if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
+			{
+				aiCoordinate[no].X++;
+			}
+			else if( r[no] == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//left
+			{
+				aiCoordinate[no].X--;
+			}
+			else if( r[no] == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)//up
+			{
+				aiCoordinate[no].Y--;
+			}
+			else if( r[no] == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)//down
+			{
+				aiCoordinate[no].Y++;
+			}
 		}
 }
 void crazyMonSpawn(int x,int y,int z)
