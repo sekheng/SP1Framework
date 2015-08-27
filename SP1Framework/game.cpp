@@ -176,6 +176,7 @@ void update(double dt)
 	update_ballSpeed(10, cnoR, cnoL, cnoU, cnoD, bno,elapsedTime);
 	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
+	update_followMonSpeed(sno, elapsedTime);
     update_keys();
     update_gates();
     // sound can be played here too.
@@ -293,6 +294,7 @@ void renderCharacter()
 		// Draw the location of the character
 		render_cannons(cnoR, cnoL, cnoU, cnoD);
 		crazyMon(mno);
+		followMon(sno);
 		printBlock(bno);
         display_keys();
         display_gate();

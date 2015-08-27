@@ -20,22 +20,6 @@ void crazyMonUpdate(int z)
 		for (int no = 0; no < z;no++)
 		{ 
 			r[no] = rand() % 4;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
-			/*if(aiCoordinate[no].X + 1 == charLocation.X)
-			{
-				aiCoordinate[no].X++;
-			}
-			else if(aiCoordinate[no].X - 1 == charLocation.X)
-			{
-				aiCoordinate[no].X--;
-			}
-			else if(aiCoordinate[no].Y - 1 == charLocation.Y)
-			{
-				aiCoordinate[no].Y--;
-			}
-			else if(aiCoordinate[no].Y + 1 == charLocation.Y)
-			{
-				aiCoordinate[no].Y++;
-			}*/
 			if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 			{
 				aiCoordinate[no].X++;
@@ -68,27 +52,31 @@ void followMon(int i)
 		console.writeToBuffer(monCoordinate[b], (char)154, 0x0C);
 	}
 }
-void followMonUpdate(int z)
+void followMonUpdate(int z,double w)
 {
 	for (int no = 0; no < z;no++)
-	{
-		if(aiCoordinate[no].X + 1 == charLocation.X)
 		{
-			monCoordinate[no].X++;
+			if(monCoordinate[no].X + 1 == charLocation.X && monCoordinate[no].Y == charLocation.Y)
+			{
+				//w -= 0.500;
+				monCoordinate[no].X++;
+			}
+			else if(monCoordinate[no].X - 1 == charLocation.X && monCoordinate[no].Y == charLocation.Y)
+			{
+				//w -= 0.500;
+				monCoordinate[no].X--;
+			}
+			else if(monCoordinate[no].Y - 1 == charLocation.Y && monCoordinate[no].X == charLocation.X)
+			{
+				//w -= 0.500;
+				monCoordinate[no].Y--;
+			}
+			else if(monCoordinate[no].Y + 1 == charLocation.Y && monCoordinate[no].X == charLocation.X)
+			{
+				//w -= 0.500;
+				monCoordinate[no].Y++;
+			}
 		}
-		else if(aiCoordinate[no].X - 1 == charLocation.X)
-		{
-			monCoordinate[no].X--;
-		}
-		else if(aiCoordinate[no].Y - 1 == charLocation.Y)
-		{
-			monCoordinate[no].Y--;
-		}
-		else if(aiCoordinate[no].Y + 1 == charLocation.Y)
-		{
-			monCoordinate[no].Y++;
-		}
-	}
 }
 void followMonSpawn(int x,int y,int z)
 {
