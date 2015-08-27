@@ -17,6 +17,7 @@ extern int mno;
 extern int bno;
 extern int sno;
 extern int pno;
+extern int hno;
 int check_no_of_keys = 0;
 int check_no_of_gates = 0;
 char pass;
@@ -92,6 +93,11 @@ void convert(int &a, int b, int c)
 	{
 		setPlate(b, c, pno);
 		pno++;
+	}
+	if (a == 'H')
+	{
+		setHatch(b, c, hno);
+		hno++;
 	}
 }
 

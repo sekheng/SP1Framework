@@ -22,6 +22,7 @@ extern int cnoD;
 extern int mno;
 extern int sno;
 extern int bno;
+extern int hno;
 extern int counter;
 extern startscreen state;
 extern bool keyPressed[K_COUNT];
@@ -118,6 +119,7 @@ void getInput()
 	keyPressed[K_K] = isKeyPressed(0x4B);
 	keyPressed[K_G] = isKeyPressed(0x47);
 	keyPressed[K_P] = isKeyPressed(0x50);
+	keyPressed[K_H] = isKeyPressed(0x48);
 	keyPressed[K_BOX] = isKeyPressed(0x42);
 	keyPressed[K_BACK] = isKeyPressed(VK_BACK);
 	keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
@@ -366,6 +368,8 @@ void PauseState()
         {
             restart_level_forKeysAndGates();
             restartBlockPosition(bno);
+			restartCrazyMonLocation(mno);
+			restartFollowMonLocation(sno);
             characterSpawn(RestartX,RestartY);
 			if (counter == 1)
 			{
@@ -380,6 +384,8 @@ void PauseState()
         {
             restart_level_forKeysAndGates();
             restartBlockPosition(bno);
+			restartCrazyMonLocation(mno);
+			restartFollowMonLocation(sno);
             characterSpawn(RestartX,RestartY);
             state = menu;
         }
@@ -399,6 +405,8 @@ void GameOverState()
         {
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
+			restartCrazyMonLocation(mno);
+			restartFollowMonLocation(sno);
 			characterSpawn(RestartX, RestartY);
 			if (counter == 1)
 			{
@@ -413,6 +421,8 @@ void GameOverState()
         {
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
+			restartCrazyMonLocation(mno);
+			restartFollowMonLocation(sno);
             characterSpawn(RestartX, RestartY);
             state = menu;
         }
@@ -508,6 +518,11 @@ void LevelEditingState()
 		if (keyPressed[K_P])
 		{
 			edit = 'P';
+			writelevel(edit);
+		}
+		if (keyPressed[K_H])
+		{
+			edit = 'H';
 			writelevel(edit);
 		}
 		if (keyPressed[K_UP] && charCustomLocation.Y > 1)

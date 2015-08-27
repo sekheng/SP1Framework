@@ -11,7 +11,6 @@ Cannon Right;
 Cannon Left;
 Cannon Up;
 Cannon Down;
-
 //g_timer.getElapsedTime()
 
 //placed in render
