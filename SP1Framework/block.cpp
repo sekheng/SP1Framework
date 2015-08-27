@@ -22,6 +22,7 @@ void setBlock(int x, int y, int z)
 {
 	block.directions[z].X = x;
 	block.directions[z].Y = y;
+    restartBlockPosition(x,y,z);
 }
 
 //to be placed in update
@@ -167,4 +168,12 @@ void printBlock(int i)// i = bno
 		console.writeToBuffer(block.directions[b], (char)35, 0x0C);
 		
 	}
+}
+
+void restartBlockPosition(int x, int y, int z)
+{
+    for ( int i = 0; i < z; ++i)
+    {
+
+    }
 }

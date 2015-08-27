@@ -25,4 +25,7 @@ void updateBlock( int z);
 //to be placed in render
 void printBlock(int i);
 
+//Restart the position of the Block
+void restartBlockPosition(int x, int y, int z);
+
 #endif // _BLOCK_H

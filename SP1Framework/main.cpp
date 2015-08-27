@@ -16,7 +16,7 @@ void mainLoop();
 
 int main()
 {
-    //PlaySound(TEXT("mlg.wav"), NULL, SND_FILENAME|SND_ASYNC);
+    //PlaySound(TEXT("mlg.wav"), NULL, SND_FILENAME|SND_ASYNC| SND_LOOP);
 	init();      // initialize your variables level
     mainLoop();  // main loop
     shutdown();  // do clean up, if any. free memory.
