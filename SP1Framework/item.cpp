@@ -87,7 +87,9 @@ void displayinventory( int no_of_items)
     {
         for ( int i = 0; i < how_Many_keys_types; ++i)
         {
-            //sos <<;
+            sos << "TO COLLECT THESE K TO OPEN THIS G" ;
+            WORD FINDCOLOR = colorforGateandKeys[i];
+            console.writeToBuffer( Display_Items_You_Need, sos.str() , FINDCOLOR);
             Display_Items_You_Need.Y += 1;
         }
     }
