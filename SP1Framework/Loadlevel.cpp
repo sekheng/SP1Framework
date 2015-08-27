@@ -249,7 +249,7 @@ void initLevelText()
     string display_LevelText;
     while ( !inlevelText.eof() && getline(inlevelText, display_LevelText) )
     {
-        for ( int i = 0; i < display_LevelText.size(); ++i)
+        for ( size_t i = 0; i < display_LevelText.size(); ++i)
         {
 
         }
