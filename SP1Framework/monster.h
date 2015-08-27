@@ -7,6 +7,8 @@
 #include "Framework\timer.h"
 #include "Framework\console.h"
 
+#define MAX_SPACE 20
+
 void crazyMonSpawn(int x,int y,int z);
 void crazyMonUpdate(int z);
 void crazyMon(int i);
