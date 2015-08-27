@@ -18,6 +18,7 @@ int how_Many_keys_types = 0;
 int check_numKeys_arr[MAX_ITEMS] = {0};
 
 char *NoItem;
+stringstream sos;
 
 const WORD colorforGateandKeys[] =
 {
@@ -45,6 +46,8 @@ void initinventorysystem()
     Display_Items_You_Need.X = 100;
     Display_Items_You_Need.Y = 10;
     NoItem = "THERE ARE NO GATES TO OPEN";
+    sos.str("");
+    sos << "YOU NEED ";
 }
 
 void keys_locations( int keyY, int keyX, int KeyType)
@@ -82,7 +85,13 @@ void displayinventory( int no_of_items)
     }
     else
     {
-
+        for ( int i = 0; i < how_Many_keys_types; ++i)
+        {
+            sos << "TO COLLECT THESE K TO OPEN THIS G" ;
+            WORD FINDCOLOR = colorforGateandKeys[i];
+            console.writeToBuffer( Display_Items_You_Need, sos.str() , FINDCOLOR);
+            Display_Items_You_Need.Y += 1;
+        }
     }
 }
 
