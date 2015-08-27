@@ -9,5 +9,5 @@ D - Down Cannon
 G/K - Gate and Key respectively
 S - Character Spawn
 E - End point
-M - Monster Spawn
+M/N - Monster /Smart monster respectively
 B - Box                                                    
