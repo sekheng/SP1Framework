@@ -26,15 +26,13 @@ extern int cnoD;
 extern int cnoL;
 extern int mno;
 extern int bno;
-//extern int check_no_of_keys;
-//extern int check_no_of_gates;
 extern int change;
 extern int levelno;
 extern int tempEndX;
 extern int tempEndY;
 extern int cuscol;
 extern int cusrow;
-extern size_t g_map[140][100];
+extern size_t g_map[200][200];
 extern size_t g_custommap[140][100];
 extern size_t g_customizemap[140][100];
 extern int cuschange;
@@ -44,6 +42,7 @@ char leveltext_arr[200][100];
 COORD purelystatic_level_text;
 int leveltext_row = 0;
 int leveltext_col = 0;
+char **dynamic_lvlnum_text;
 //loads the level 
 void loadlevel(string &level)
 {
@@ -55,11 +54,9 @@ void loadlevel(string &level)
 	cnoU = 0;
 	mno = 0;
 	bno = 0;
-	//check_no_of_keys = 0;
-	//check_no_of_gates = 0;
     restart_level_forKeysAndGates();
     restart_keys_and_gates();
-	col = 0;
+	col = 40;
 	row = 1;
 	ifstream inData;
 	inData.open(level);
@@ -67,7 +64,7 @@ void loadlevel(string &level)
 
 	while (!inData.eof())
 	{
-		col = 0;
+		col = 40;
 		getline(inData, Data);
 		for (unsigned int x = 0; x < Data.length(); x++)
 		{
@@ -89,11 +86,11 @@ void loadlevel(string &level)
 void reloadlevel()
 {
 	LvL.Y = 1;
-	LvL.X = 0;
+	LvL.X = 40;
 	for (int i = 1; i < row; ++i)
 	{
-		LvL.X = 0;
-		for (int j = 0; j < col; ++j) {
+		LvL.X = 40;
+		for (int j = 40; j < col; ++j) {
 			int write = g_map[i][j];
 			convert2(write, content, color);
 			console.writeToBuffer(LvL, content, colors[color]);
@@ -228,28 +225,12 @@ void initLevelText()
         }
         ++leveltext_row;
     }
+
     instatic_level_text.close();
-    purelystatic_level_text.X = 60;
+    purelystatic_level_text.X = 0;
     purelystatic_level_text.Y = 1;
-}
 
-void displayleveltext() 
-{
-    display_level_text.X = 108;
-    display_level_text.Y = 1;
-    purelystatic_level_text.Y = 1;
     string level_text;
-    for ( int i = 0 ; i  < leveltext_row; ++i)
-    {
-        purelystatic_level_text.X = 60;
-        for ( int j = 0; j < leveltext_col; ++j)
-        {
-            console.writeToBuffer( purelystatic_level_text, leveltext_arr[i][j], 0x0F);
-            purelystatic_level_text.X += 1;
-        }
-        purelystatic_level_text.Y += 1;
-    }
-
     switch (levelno)
     {
     case 1: level_text = "level1_text.txt"; 
@@ -268,8 +249,48 @@ void displayleveltext()
     string display_LevelText;
     while ( !inlevelText.eof() && getline(inlevelText, display_LevelText) )
     {
-        console.writeToBuffer(display_level_text, display_LevelText, 0x0F);
-        display_level_text.Y += 1;
+        for ( size_t i = 0; i < display_LevelText.size(); ++i)
+        {
+
+        }
     }
     inlevelText.close();
+}
+
+void displayleveltext() 
+{
+    purelystatic_level_text.Y = 1;
+    for ( int i = 0 ; i  < leveltext_row; ++i)
+    {
+        purelystatic_level_text.X = 0;
+        for ( int j = 0; j < leveltext_col; ++j)
+        {
+            console.writeToBuffer( purelystatic_level_text, leveltext_arr[i][j], 0x0F);
+            purelystatic_level_text.X += 1;
+        }
+        purelystatic_level_text.Y += 1;
+    }
+
+    //switch (levelno)
+    //{
+    //case 1: level_text = "level1_text.txt"; 
+    //    break;
+    //case 2: level_text = "level2_text.txt";
+    //    break;
+    //case 3: level_text = "level3_text.txt";
+    //    break;
+    //case 4: level_text = "level4_text.txt";
+    //    break;
+    //case 5: level_text = "level5_text.txt";
+    //    break;
+    //}
+    //ifstream inlevelText;
+    //inlevelText.open(level_text);
+    //string display_LevelText;
+    //while ( !inlevelText.eof() && getline(inlevelText, display_LevelText) )
+    //{
+    //    console.writeToBuffer(display_level_text, display_LevelText, 0x0F);
+    //    display_level_text.Y += 1;
+    //}
+    //inlevelText.close();
 }

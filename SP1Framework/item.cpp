@@ -2,7 +2,7 @@
 
 extern Console console;
 extern COORD charLocation;
-extern size_t g_map[140][100];
+extern size_t g_map[200][200];
 COORD display_inventorysystem;
 
 int display_inventory_row = 0;
@@ -13,6 +13,7 @@ Items Gates[MAX_ITEMS];
 extern int check_no_of_keys;
 extern int check_no_of_gates;
 int how_Many_keys_types = 0;
+int check_numKeys_arr[MAX_ITEMS] = {0};
 
 const WORD colorforGateandKeys[] =
 {
@@ -41,9 +42,10 @@ void initinventorysystem()
 
 void keys_locations( int keyY, int keyX, int KeyType)
 {
-    Keys[KeyType].KeysLocation[check_no_of_keys].Y = keyY;
-    Keys[KeyType].KeysLocation[check_no_of_keys].X = keyX;
-    ++Keys[KeyType].num_of_Keys_ineachType;
+    int KeyNum = check_numKeys_arr[KeyType];
+    --KeyNum;
+    Keys[KeyType].KeysLocation[KeyNum].Y = keyY;
+    Keys[KeyType].KeysLocation[KeyNum].X = keyX;
     if ( how_Many_keys_types <= KeyType)
     {
         how_Many_keys_types = KeyType;
@@ -69,8 +71,8 @@ void displayinventory( int no_of_items)
 void display_keys()
 {   
     for ( int keytypes = 0; keytypes < how_Many_keys_types; ++keytypes) {
-        int numKeys = Keys[keytypes].num_of_Keys_ineachType;
-        for ( int i = 0; i < check_no_of_keys; ++i)
+        int numKeys = check_numKeys_arr[keytypes];
+        for ( int i = 0; i < numKeys; ++i)
         {
             if ( Keys[keytypes].collected[i] != true )
             {
@@ -85,7 +87,6 @@ void gate_location( int GateY, int GateX, int GateType)
 {
     Gates[GateType].KeysLocation[check_no_of_gates].Y = GateY;
     Gates[GateType].KeysLocation[check_no_of_gates].X = GateX;
-    ++Gates[GateType].num_of_Keys_ineachType;
 }
 
 void display_gate()
@@ -105,8 +106,8 @@ void display_gate()
 void update_keys()
 {
     for ( int keytypes = 0; keytypes < how_Many_keys_types; ++keytypes) {
-        int numKeys = Keys[keytypes].num_of_Keys_ineachType;
-        for ( int h = 0; h < check_no_of_keys; ++h)
+        int numKeys = check_numKeys_arr[keytypes];
+        for ( int h = 0; h < numKeys; ++h)
         {
             if ( (charLocation.X) == (Keys[keytypes].KeysLocation[h].X) && (charLocation.Y) == (Keys[keytypes].KeysLocation[h].Y) )
             {
@@ -116,12 +117,9 @@ void update_keys()
 
         for ( int k = 0; k < numKeys; ++k)
         {
-            if ( keytypes == 1)
-            {
-                ++k;
-            }
             if (Keys[keytypes].collected[k] == true)
             {
+
                 Keys[keytypes].check_collected_keys = true;
             }
             else {
@@ -136,7 +134,6 @@ void update_gates()
 {
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
-        int numGates = Gates[gatetype].num_of_Keys_ineachType;
         if ( Keys[gatetype].check_collected_keys == true )
         {
             for ( int j = 0; j < check_no_of_gates; ++j)
@@ -168,11 +165,16 @@ void restart_level_forKeysAndGates()
 {
     for ( int i = 0; i < how_Many_keys_types; ++i)
     {
-        int numKeys = Keys[i].num_of_Keys_ineachType;
-        for ( int j = 0; j <= numKeys; ++j)
+        int numKeys = check_numKeys_arr[i];
+        for ( int j = 0; j < numKeys; ++j)
         {
             Keys[i].collected[j] = false;
         }
         Keys[i].check_collected_keys = false;
     }
+}
+
+void populate_keyArr( int KeyType)
+{
+    ++check_numKeys_arr[KeyType];
 }

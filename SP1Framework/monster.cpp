@@ -1,7 +1,7 @@
 #include "monster.h"
 extern Console console;
 extern COORD charLocation;
-extern size_t g_map[140][100];
+extern size_t g_map[200][200];;
 int r[20];
 
 COORD aiCoordinate[20];

@@ -13,6 +13,7 @@
 
 using std::string;
 using std::ifstream;
+using std::stringstream;
 
 struct Items
 {
@@ -33,5 +34,6 @@ void update_keys();
 void update_gates();
 void restart_keys_and_gates();
 void restart_level_forKeysAndGates();
+void populate_keyArr( int KeyType);
 
 #endif // _ITEM_H

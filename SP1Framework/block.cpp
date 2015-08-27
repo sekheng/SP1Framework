@@ -2,7 +2,7 @@
 
 extern Console console;
 extern COORD charLocation;
-extern size_t g_map[140][100];
+extern size_t g_map[200][200];
 extern int bno;
 extern bool keyPressed[K_COUNT];
 extern startscreen state;
@@ -20,12 +20,10 @@ int iblock = 0;
 //to be placed in init
 void setBlock(int x, int y, int z)
 {
-	if (iblock <= z)
-	{
-		block.directions[iblock].X = x;
-		block.directions[iblock].Y = y;
-		iblock++;
-	}
+
+		block.directions[z].X = x;
+		block.directions[z].Y = y;
+	
 }
 
 //to be placed in update
