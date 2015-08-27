@@ -51,6 +51,6 @@ void update_followMonSpeed(int z, double w)
 {
 	if(timeTriggeredFollow > w)
 		return;
-	timeTriggeredFollow = w + 0.100;
+	timeTriggeredFollow = w + 0.075;
 	followMonUpdate(z,timeTriggeredFollow);
 }

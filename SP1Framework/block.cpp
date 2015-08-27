@@ -25,7 +25,7 @@ void setBlock(int x, int y, int z)
 	block.directions[z].Y = y;
     blockStartingPosition.directions[z].X = x;
     blockStartingPosition.directions[z].Y = y;
-    restartBlockPosition(z);
+    //restartBlockPosition(z);
 }
 
 //to be placed in update
