@@ -6,7 +6,7 @@ extern COORD startmenuLocation;
 extern COORD charLocation;
 extern COORD charCustomLocation;
 extern size_t g_map[200][200];
-extern size_t g_customizemap[140][100];
+extern size_t g_customizemap[200][200];
 extern struct Cannon Right;
 extern struct Cannon Left;
 extern struct Cannon Up;
@@ -112,6 +112,9 @@ void getInput()
 	keyPressed[K_M] = isKeyPressed(0x4D);
 	keyPressed[K_0] = isKeyPressed(0x30);
 	keyPressed[K_1] = isKeyPressed(0x31);
+	keyPressed[K_N] = isKeyPressed(0x4E);
+	keyPressed[K_K] = isKeyPressed(0x4B);
+	keyPressed[K_G] = isKeyPressed(0x47);
 	keyPressed[K_BOX] = isKeyPressed(0x42);
 	keyPressed[K_BACK] = isKeyPressed(VK_BACK);
 	keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
@@ -433,11 +436,6 @@ void LevelEditingState()
 			edit = 'D';
 			writelevel(edit);
 		}
-		if (keyPressed[K_1])
-		{
-			edit = '1';
-			writelevel(edit);
-		}
 		if (keyPressed[K_S])
 		{
 			edit = 'S';
@@ -455,7 +453,7 @@ void LevelEditingState()
 		}
 		if (keyPressed[K_BOX])
 		{
-			edit = 'B';
+			edit = '#';
 			writelevel(edit);
 		}
 		if (keyPressed[K_1])
@@ -478,11 +476,26 @@ void LevelEditingState()
 			savecustomlevel();
 			state = menu;
 		}
+		if (keyPressed[K_K])
+		{
+			edit = 'K';
+			writelevel(edit);
+		}
+		if (keyPressed[K_G])
+		{
+			edit = 'G';
+			writelevel(edit);
+		}
+		if (keyPressed[K_N])
+		{
+			edit = 'N';
+			writelevel(edit);
+		}
 		if (keyPressed[K_UP] && charCustomLocation.Y > 1 )
 		{
 			charCustomLocation.Y--;
 		}
-		if (keyPressed[K_LEFT] && charCustomLocation.X >0 )
+		if (keyPressed[K_LEFT] && charCustomLocation.X >40 )
 		{
 			charCustomLocation.X--;
 		}
@@ -490,7 +503,7 @@ void LevelEditingState()
 		{
 			charCustomLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] && charCustomLocation.X < 55)
+		if (keyPressed[K_RIGHT] && charCustomLocation.X < 95)
 		{
 			charCustomLocation.X++;
 		}

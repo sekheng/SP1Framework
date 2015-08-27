@@ -14,6 +14,7 @@ extern int cnoU;
 extern int cnoD;
 extern int mno;
 extern int bno;
+extern int sno;
 int check_no_of_keys = 0;
 int check_no_of_gates = 0;
 char pass;
@@ -58,7 +59,6 @@ void convert(int &a, int b, int c)
 	}
 	if (a == 35) //box '#'
 	{
-		//a = 3;
 		setBlock(b,c, bno);
 		//setBlock(tempY, tempX, bno);
 		bno++;
@@ -81,6 +81,11 @@ void convert(int &a, int b, int c)
         }        
         ++check_no_of_gates;
     }
+	if (a == 'N')
+	{
+		followMonSpawn(b, c, sno);
+		sno++;
+	}
 }
 
 void convert2(int&b, string &x, int &c)

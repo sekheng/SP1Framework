@@ -6,8 +6,8 @@ L - Left Cannon
 U - Up Cannon
 D - Down Cannon
 1 - Walls
-0 - Space
+G/K - Gate and Key respectively
 S - Character Spawn
 E - End point
-M - Monster Spawn
-# - Box                                                    
+M/N - Monster /Smart monster respectively
+B - Box                                                    
