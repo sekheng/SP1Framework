@@ -70,7 +70,7 @@ void display_keys()
 {   
     for ( int keytypes = 0; keytypes < how_Many_keys_types; ++keytypes) {
         int numKeys = Keys[keytypes].num_of_Keys_ineachType;
-        for ( int i = 0; i < check_no_of_keys; ++i)
+        for ( int i = 0; i < numKeys; ++i)
         {
             if ( Keys[keytypes].collected[i] != true )
             {
@@ -85,7 +85,6 @@ void gate_location( int GateY, int GateX, int GateType)
 {
     Gates[GateType].KeysLocation[check_no_of_gates].Y = GateY;
     Gates[GateType].KeysLocation[check_no_of_gates].X = GateX;
-    ++Gates[GateType].num_of_Keys_ineachType;
 }
 
 void display_gate()
@@ -106,7 +105,7 @@ void update_keys()
 {
     for ( int keytypes = 0; keytypes < how_Many_keys_types; ++keytypes) {
         int numKeys = Keys[keytypes].num_of_Keys_ineachType;
-        for ( int h = 0; h < check_no_of_keys; ++h)
+        for ( int h = 0; h < numKeys; ++h)
         {
             if ( (charLocation.X) == (Keys[keytypes].KeysLocation[h].X) && (charLocation.Y) == (Keys[keytypes].KeysLocation[h].Y) )
             {
@@ -116,12 +115,9 @@ void update_keys()
 
         for ( int k = 0; k < numKeys; ++k)
         {
-            if ( keytypes == 1)
-            {
-                ++k;
-            }
             if (Keys[keytypes].collected[k] == true)
             {
+
                 Keys[keytypes].check_collected_keys = true;
             }
             else {
@@ -136,7 +132,6 @@ void update_gates()
 {
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
-        int numGates = Gates[gatetype].num_of_Keys_ineachType;
         if ( Keys[gatetype].check_collected_keys == true )
         {
             for ( int j = 0; j < check_no_of_gates; ++j)
@@ -169,7 +164,7 @@ void restart_level_forKeysAndGates()
     for ( int i = 0; i < how_Many_keys_types; ++i)
     {
         int numKeys = Keys[i].num_of_Keys_ineachType;
-        for ( int j = 0; j <= numKeys; ++j)
+        for ( int j = 0; j < numKeys; ++j)
         {
             Keys[i].collected[j] = false;
         }

@@ -246,7 +246,7 @@ void renderMap()
 			counter--;
 		}
 		reloadlevel(); // reloads level
-        //displayleveltext();
+        displayleveltext();
         //displayinventory();
 	}
 	else if (state == LevelCustomized)
