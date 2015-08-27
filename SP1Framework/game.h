@@ -27,6 +27,7 @@ enum Keys
 	K_G,
 	K_N,
 	K_P,
+	K_H,
 	K_BOX,
 	K_BACK,
     K_ESCAPE,
