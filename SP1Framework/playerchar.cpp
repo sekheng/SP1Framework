@@ -117,6 +117,7 @@ void getInput()
 	keyPressed[K_N] = isKeyPressed(0x4E);
 	keyPressed[K_K] = isKeyPressed(0x4B);
 	keyPressed[K_G] = isKeyPressed(0x47);
+	keyPressed[K_P] = isKeyPressed(0x50);
 	keyPressed[K_BOX] = isKeyPressed(0x42);
 	keyPressed[K_BACK] = isKeyPressed(VK_BACK);
 	keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);

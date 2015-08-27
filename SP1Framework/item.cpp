@@ -13,6 +13,7 @@ Items Keys[MAX_ITEMS];
 Items Gates[MAX_ITEMS];
 extern int check_no_of_keys;
 extern int check_no_of_gates;
+extern bool onPlate;
 int how_Many_keys_types = 0;
 int check_numKeys_arr[MAX_ITEMS] = {0};
 
@@ -158,6 +159,13 @@ void update_gates()
                 g_map[Gates[gatetype].KeysLocation[j].Y][Gates[gatetype].KeysLocation[j].X] = 0;
             }
         }
+		else if (onPlate == true)
+		{
+			for (int j = 0; j < check_no_of_gates; ++j)
+			{
+				g_map[Gates[gatetype].KeysLocation[j].Y][Gates[gatetype].KeysLocation[j].X] = 0;
+			}
+		}
         else
         {
             for ( int i = 0; i < check_no_of_gates; ++i) {

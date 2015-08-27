@@ -75,6 +75,9 @@
     <ClCompile Include="speedControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pressureplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\console.h">
@@ -123,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="speedControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pressureplate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
