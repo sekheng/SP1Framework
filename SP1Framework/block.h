@@ -26,6 +26,6 @@ void updateBlock( int z);
 void printBlock(int i);
 
 //Restart the position of the Block
-void restartBlockPosition(int x, int y, int z);
+void restartBlockPosition(int z);
 
 #endif // _BLOCK_H

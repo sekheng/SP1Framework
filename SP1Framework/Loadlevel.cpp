@@ -288,26 +288,4 @@ void displayleveltext()
         console.writeToBuffer(display_level_text, dynamic_lvlnum_text[i], 0x0F);
         display_level_text.Y += 1;
     }
-    //switch (levelno)
-    //{
-    //case 1: level_text = "level1_text.txt"; 
-    //    break;
-    //case 2: level_text = "level2_text.txt";
-    //    break;
-    //case 3: level_text = "level3_text.txt";
-    //    break;
-    //case 4: level_text = "level4_text.txt";
-    //    break;
-    //case 5: level_text = "level5_text.txt";
-    //    break;
-    //}
-    //ifstream inlevelText;
-    //inlevelText.open(level_text);
-    //string display_LevelText;
-    //while ( !inlevelText.eof() && getline(inlevelText, display_LevelText) )
-    //{
-    //    console.writeToBuffer(display_level_text, display_LevelText, 0x0F);
-    //    display_level_text.Y += 1;
-    //}
-    //inlevelText.close();
 }

@@ -17,12 +17,15 @@ extern int cnoD;
 
 Block block;
 int iblock = 0;
+Block blockStartingPosition;
 //to be placed in init
 void setBlock(int x, int y, int z)
 {
 	block.directions[z].X = x;
 	block.directions[z].Y = y;
-    restartBlockPosition(x,y,z);
+    blockStartingPosition.directions[z].X = x;
+    blockStartingPosition.directions[z].Y = y;
+    restartBlockPosition(z);
 }
 
 //to be placed in update
@@ -170,10 +173,11 @@ void printBlock(int i)// i = bno
 	}
 }
 
-void restartBlockPosition(int x, int y, int z)
+void restartBlockPosition(int z)
 {
     for ( int i = 0; i < z; ++i)
     {
-
+        block.directions[i].Y = blockStartingPosition.directions[i].Y;
+        block.directions[i].X = blockStartingPosition.directions[i].X;
     }
 }
