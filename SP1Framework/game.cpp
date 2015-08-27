@@ -54,7 +54,7 @@ COORD et;
 COORD charLocation;
 COORD charCustomLocation;
 COORD startmenuLocation;
-int levelno = 1;
+int levelno = 2;
 string level;
 int counter = 0;//counter for custom map
 int endcounter = 0;
@@ -249,7 +249,7 @@ void renderMap()
 		}
 		reloadlevel(); // reloads level
         displayleveltext();
-        //displayinventory();
+        displayinventory();
 	}
 	else if (state == LevelCustomized)
 	{

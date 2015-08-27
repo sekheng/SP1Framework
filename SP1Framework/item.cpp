@@ -4,6 +4,7 @@ extern Console console;
 extern COORD charLocation;
 extern size_t g_map[200][200];
 COORD display_inventorysystem;
+COORD Display_Items_You_Need;
 
 int display_inventory_row = 0;
 int display_inventory_col = 0;
@@ -15,6 +16,8 @@ extern int check_no_of_gates;
 int how_Many_keys_types = 0;
 int check_numKeys_arr[MAX_ITEMS] = {0};
 
+char *NoItem;
+
 const WORD colorforGateandKeys[] =
 {
     0x0C, 0xF0
@@ -22,8 +25,8 @@ const WORD colorforGateandKeys[] =
 
 void initinventorysystem()
 {
-    display_inventorysystem.X = 60;
-    display_inventorysystem.Y = 11;
+    display_inventorysystem.X = 100;
+    display_inventorysystem.Y = 1;
     ifstream in_Text;
     in_Text.open("displayInventory_text.txt");
     string text;
@@ -38,6 +41,9 @@ void initinventorysystem()
         ++display_inventory_row;
     }
     in_Text.close();
+    Display_Items_You_Need.X = 100;
+    Display_Items_You_Need.Y = 10;
+    NoItem = "THERE ARE NO GATES TO OPEN";
 }
 
 void keys_locations( int keyY, int keyX, int KeyType)
@@ -55,16 +61,27 @@ void keys_locations( int keyY, int keyX, int KeyType)
 
 void displayinventory( int no_of_items)
 {
-    display_inventorysystem.Y = 11;
+    Display_Items_You_Need.X = 100;
+    Display_Items_You_Need.Y = 8;
+
+    display_inventorysystem.Y = 1;
     for ( int i = 0 ; i  < display_inventory_row; ++i)
     {
-        display_inventorysystem.X = 60;
+        display_inventorysystem.X = 98;
         for ( int j = 0; j < display_inventory_col; ++j)
         {
             console.writeToBuffer( display_inventorysystem, display_inventoryarr[i][j], 0x0F);
             display_inventorysystem.X += 1;
         }
         display_inventorysystem.Y += 1;
+    }
+    if ( check_no_of_gates == 0 || check_no_of_keys == 0)
+    {
+        console.writeToBuffer( Display_Items_You_Need, NoItem, 0x0F);
+    }
+    else
+    {
+
     }
 }
 
