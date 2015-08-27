@@ -13,12 +13,14 @@ extern struct Cannon Up;
 extern struct Cannon Down;
 extern struct Block block;
 extern COORD aiCoordinate[20];
+extern COORD monCoordinate[20];
 extern Console console;
 extern int cnoR;
 extern int cnoL;
 extern int cnoU;
 extern int cnoD;
 extern int mno;
+extern int sno;
 extern int bno;
 extern int counter;
 extern startscreen state;
@@ -182,6 +184,13 @@ void characterInteraction()
 	for (int i = 0; i < mno; ++i)
 	{
 		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < sno; ++i)
+	{
+		if (charLocation.X == monCoordinate[i].X && charLocation.Y == monCoordinate[i].Y)
 		{
 			state = GameOver;
 		}
