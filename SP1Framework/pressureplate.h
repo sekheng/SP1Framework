@@ -24,7 +24,7 @@ using std::string;
 using std::ifstream;
 using std::stringstream;
 
-bool onPlate;
+//bool onPlate = false;
 
 struct Plate
 {

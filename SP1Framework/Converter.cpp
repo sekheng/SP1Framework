@@ -5,6 +5,7 @@
 #include "playerchar.h"
 #include "monster.h"
 #include "item.h"
+#include "pressureplate.h"
 
 extern int tempEndX;
 extern int tempEndY;
@@ -15,6 +16,7 @@ extern int cnoD;
 extern int mno;
 extern int bno;
 extern int sno;
+extern int pno;
 int check_no_of_keys = 0;
 int check_no_of_gates = 0;
 char pass;
@@ -85,6 +87,11 @@ void convert(int &a, int b, int c)
 	{
 		followMonSpawn(b, c, sno);
 		sno++;
+	}
+	if (a == 'P')
+	{
+		setPlate(b, c, pno);
+		pno++;
 	}
 }
 

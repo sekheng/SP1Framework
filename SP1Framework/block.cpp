@@ -89,7 +89,6 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.X--;
 			}
 		}
-
 	}
 	for (int y= z; y>0; y--)
 	{

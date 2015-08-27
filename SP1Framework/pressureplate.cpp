@@ -9,7 +9,7 @@ extern startscreen state;
 
 Plate plate;
 int iplate = 0;
-
+bool onPlate;
 //to be placed in init
 void setPlate(int x, int y, int z)
 {

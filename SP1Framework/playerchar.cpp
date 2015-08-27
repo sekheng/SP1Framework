@@ -505,7 +505,12 @@ void LevelEditingState()
 			edit = 'N';
 			writelevel(edit);
 		}
-		if (keyPressed[K_UP] && charCustomLocation.Y > 1 )
+		if (keyPressed[K_P])
+		{
+			edit = 'P';
+			writelevel(edit);
+		}
+		if (keyPressed[K_UP] && charCustomLocation.Y > 1)
 		{
 			charCustomLocation.Y--;
 		}
