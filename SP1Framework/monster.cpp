@@ -8,6 +8,9 @@ int r[MAX_SPACE];
 COORD aiCoordinate[MAX_SPACE];
 COORD monCoordinate[MAX_SPACE];
 
+Monster crazy;
+Monster follow;
+
 void crazyMon(int i)
 {
 	for(int b = 0; b < i; ++b)
@@ -42,6 +45,9 @@ void crazyMonSpawn(int x,int y,int z)
 {
 	aiCoordinate[z].X = x;
 	aiCoordinate[z].Y = y;
+	crazy.resetCoord[z].X = x;
+	crazy.resetCoord[z].Y = y;
+	//restartCrazyMonLocation(z);
 }
 
 
@@ -83,4 +89,25 @@ void followMonSpawn(int x,int y,int z)
 {
 	monCoordinate[z].X = x;
 	monCoordinate[z].Y = y;
+	follow.resetCoord[z].X = x;
+	follow.resetCoord[z].Y = y;
+	//restartFollowMonLocation(z);
+}
+
+void restartCrazyMonLocation(int z)
+{
+	for ( int i = 0; i < z; ++i)
+    {
+		aiCoordinate[i].X = crazy.resetCoord[i].X;
+		aiCoordinate[i].Y = crazy.resetCoord[i].Y;
+	}
+}
+
+void restartFollowMonLocation(int z)
+{
+	for ( int i = 0; i < z; ++i)
+    {
+		monCoordinate[i].X = follow.resetCoord[i].X;
+		monCoordinate[i].Y = follow.resetCoord[i].Y;
+	}
 }

@@ -366,6 +366,8 @@ void PauseState()
         {
             restart_level_forKeysAndGates();
             restartBlockPosition(bno);
+			restartCrazyMonLocation(mno);
+			restartFollowMonLocation(sno);
             characterSpawn(RestartX,RestartY);
 			if (counter == 1)
 			{
@@ -380,6 +382,8 @@ void PauseState()
         {
             restart_level_forKeysAndGates();
             restartBlockPosition(bno);
+			restartCrazyMonLocation(mno);
+			restartFollowMonLocation(sno);
             characterSpawn(RestartX,RestartY);
             state = menu;
         }
@@ -399,6 +403,8 @@ void GameOverState()
         {
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
+			restartCrazyMonLocation(mno);
+			restartFollowMonLocation(sno);
 			characterSpawn(RestartX, RestartY);
 			if (counter == 1)
 			{
@@ -413,6 +419,8 @@ void GameOverState()
         {
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
+			restartCrazyMonLocation(mno);
+			restartFollowMonLocation(sno);
             characterSpawn(RestartX, RestartY);
             state = menu;
         }
