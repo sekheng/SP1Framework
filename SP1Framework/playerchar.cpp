@@ -432,11 +432,6 @@ void LevelEditingState()
 			edit = 'D';
 			writelevel(edit);
 		}
-		if (keyPressed[K_1])
-		{
-			edit = '1';
-			writelevel(edit);
-		}
 		if (keyPressed[K_S])
 		{
 			edit = 'S';
@@ -479,14 +474,20 @@ void LevelEditingState()
 		}
 		/*if (keyPressed[K_K])
 		{
-			savecustomlevel();
-			state = menu;
+			edit = 'K';
+			writelevel(edit);
 		}
 		if (keyPressed[K_G])
 		{
-			savecustomlevel();
-			state = menu;
-		}*/
+			edit = 'G';
+			writelevel(edit);
+		}
+		if (keyPressed[K_N])
+		{
+			edit = 'N';
+			writelevel(edit);
+		}
+		*/
 		if (keyPressed[K_UP] && charCustomLocation.Y > 1 )
 		{
 			charCustomLocation.Y--;
