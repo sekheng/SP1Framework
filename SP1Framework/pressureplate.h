@@ -31,7 +31,7 @@ struct Plate
 	COORD directions[20];
 };
 
-struct Door
+struct Hatch
 {
 	COORD position[20];
 };
@@ -45,10 +45,10 @@ void updatePlate(int z);
 //to be placed in render
 void printPlate(int i);
 
-void setDoor(int x, int y, int z);
+void setHatch(int x, int y, int z);
 
-void updateDoor(int z);
+void updateHatch(int z);
 
-void printDoor(int i);
+void printHatch(int i);
 
 #endif // _PRESSUREPLATE_H
