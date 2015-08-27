@@ -143,6 +143,7 @@ void characterEnd(int y, int x)//temp y , temp x
 		    levelno++;
 		    levelcheck(levelno,level);
 		    loadlevel(level);
+            initLevelText();
         }
 	}
 }

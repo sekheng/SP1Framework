@@ -43,7 +43,7 @@ char leveltext_arr[200][100];
 COORD purelystatic_level_text;
 int leveltext_row = 0;
 int leveltext_col = 0;
-char **dynamic_lvlnum_text;
+char *dynamic_lvlnum_text[7];
 //loads the level 
 
 void loadlevel(string &level)
@@ -219,6 +219,7 @@ void initLevelText()
     ifstream instatic_level_text;
     instatic_level_text.open("Level_Text.txt");
     string purelystatic_Text;
+    leveltext_row = 0;
     while ( getline (instatic_level_text, purelystatic_Text) && !instatic_level_text.eof() )
     {
         leveltext_col = 0;
@@ -250,14 +251,21 @@ void initLevelText()
     ifstream inlevelText;
     inlevelText.open(level_text);
     string display_LevelText;
+    int t = 0;
+    int col_for_lvltext = 13;
     while ( !inlevelText.eof() && getline(inlevelText, display_LevelText) )
     {
+        dynamic_lvlnum_text[t] = new char[col_for_lvltext];
         for ( size_t i = 0; i < display_LevelText.size(); ++i)
         {
-
+            *(dynamic_lvlnum_text[t] +i) = display_LevelText[i];
         }
+        *(dynamic_lvlnum_text[t] + display_LevelText.size() ) = '\0';
+        ++t;
     }
     inlevelText.close();
+    display_level_text.X = 8;
+    display_level_text.Y = 8;
 }
 
 void displayleveltext() 
@@ -274,6 +282,12 @@ void displayleveltext()
         purelystatic_level_text.Y += 1;
     }
 
+    display_level_text.Y = 8;
+    for ( int i = 0; i < 7; ++i)
+    {
+        console.writeToBuffer(display_level_text, dynamic_lvlnum_text[i], 0x0F);
+        display_level_text.Y += 1;
+    }
     //switch (levelno)
     //{
     //case 1: level_text = "level1_text.txt"; 
