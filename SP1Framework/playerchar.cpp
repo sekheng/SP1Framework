@@ -13,12 +13,14 @@ extern struct Cannon Up;
 extern struct Cannon Down;
 extern struct Block block;
 extern COORD aiCoordinate[20];
+extern COORD monCoordinate[20];
 extern Console console;
 extern int cnoR;
 extern int cnoL;
 extern int cnoU;
 extern int cnoD;
 extern int mno;
+extern int sno;
 extern int bno;
 extern int counter;
 extern startscreen state;
@@ -115,6 +117,7 @@ void getInput()
 	keyPressed[K_N] = isKeyPressed(0x4E);
 	keyPressed[K_K] = isKeyPressed(0x4B);
 	keyPressed[K_G] = isKeyPressed(0x47);
+	keyPressed[K_P] = isKeyPressed(0x50);
 	keyPressed[K_BOX] = isKeyPressed(0x42);
 	keyPressed[K_BACK] = isKeyPressed(VK_BACK);
 	keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
@@ -182,6 +185,13 @@ void characterInteraction()
 	for (int i = 0; i < mno; ++i)
 	{
 		if (charLocation.X == aiCoordinate[i].X && charLocation.Y == aiCoordinate[i].Y)
+		{
+			state = GameOver;
+		}
+	}
+	for (int i = 0; i < sno; ++i)
+	{
+		if (charLocation.X == monCoordinate[i].X && charLocation.Y == monCoordinate[i].Y)
 		{
 			state = GameOver;
 		}

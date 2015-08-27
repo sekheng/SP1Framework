@@ -5,6 +5,7 @@
 #include "playerchar.h"
 #include "monster.h"
 #include "item.h"
+#include "pressureplate.h"
 
 extern int tempEndX;
 extern int tempEndY;

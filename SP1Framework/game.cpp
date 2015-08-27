@@ -15,6 +15,7 @@
 #include "windows.h"    // For Music Feature
 #include "mmsystem.h"   // For Music Feature
 #include "speedControl.h"
+#include "pressureplate.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -177,6 +178,8 @@ void update(double dt)
 	update_ballSpeed(10, cnoR, cnoL, cnoU, cnoD, bno,elapsedTime);
 	update_crazyMonSpeed(mno, elapsedTime);// moves the character, collision detection, physics, etc
 	updateBlock(bno);
+	updatePlate(pno);
+	update_followMonSpeed(sno, elapsedTime);
     update_keys();
     update_gates();
     // sound can be played here too.
@@ -250,7 +253,7 @@ void renderMap()
 		}
 		reloadlevel(); // reloads level
         displayleveltext();
-        //displayinventory();
+        displayinventory();
 	}
 	else if (state == LevelCustomized)
 	{
@@ -294,7 +297,9 @@ void renderCharacter()
 		// Draw the location of the character
 		render_cannons(cnoR, cnoL, cnoU, cnoD);
 		crazyMon(mno);
+		followMon(sno);
 		printBlock(bno);
+		printPlate(pno);
         display_keys();
         display_gate();
 		console.writeToBuffer(charLocation, (char)2, 0x1E);

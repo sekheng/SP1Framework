@@ -6,6 +6,7 @@ extern startscreen state;
 double timeTriggered;
 double timeTriggeredChar;
 double timeTriggeredCrazy;
+double timeTriggeredFollow;
 
 void update_charSpeed(double x)
 {
@@ -17,7 +18,7 @@ void update_charSpeed(double x)
 		}
 		else
 		{
-			timeTriggeredChar = x + 0.091;
+			timeTriggeredChar = x + 0.050;
 			moveCharacter(x);
 		}
 	}
@@ -42,6 +43,14 @@ void update_crazyMonSpeed(int z, double w)
 {
 	if(timeTriggeredCrazy > w)
 		return;
-	timeTriggeredCrazy = w + 0.500;
+	timeTriggeredCrazy = w + 0.150;
 	crazyMonUpdate(z);
+}
+
+void update_followMonSpeed(int z, double w)
+{
+	if(timeTriggeredFollow > w)
+		return;
+	timeTriggeredFollow = w + 0.050;
+	followMonUpdate(z,timeTriggeredFollow);
 }
