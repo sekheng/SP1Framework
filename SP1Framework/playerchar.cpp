@@ -35,7 +35,6 @@ extern int tempEndX;
 extern int tempEndY;
 extern COORD charCustomLocation;
 COORD pauseLocation;
-COORD helpreturn;
 COORD gameoverptr;
 extern int bno;
 extern int hno;

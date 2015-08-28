@@ -98,7 +98,7 @@ void displayinventory()
                 sos.str("");
                 sos << "YOU NEED ";
                 int number_OF_KEYS = Keys[i].num_of_Keys_ineachType;
-                sos << number_OF_KEYS << " K TO OPEN G";
+                sos << number_OF_KEYS << " MORE K TO OPEN G";
                 string itemDisplay = sos.str();
                 WORD FINDCOLOR = colorforGateandKeys[i];
                 console.writeToBuffer( Display_Items_You_Need, itemDisplay , FINDCOLOR);
@@ -212,6 +212,7 @@ void restart_level_forKeysAndGates()
             Keys[i].collected[j] = false;
         }
         Keys[i].check_collected_keys = false;
+        Keys[i].num_of_Keys_ineachType = check_numKeys_arr[i];
     }
 }
 

@@ -5,6 +5,7 @@
 #include "game.h"
 #include "Framework\console.h"
 #include "playerchar.h"
+#include "GateandKeyCutscenes.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
