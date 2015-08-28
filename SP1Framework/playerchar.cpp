@@ -9,6 +9,8 @@ extern startscreen state;
 extern COORD charLocation;
 int RestartX;
 int RestartY;
+int gatelimit = 0;
+int keylimit = 0;
 extern int levelno;
 extern int endcounter;
 extern COORD aiCoordinate[20];
@@ -436,14 +438,24 @@ void LevelEditingState()
 		{
 			state = menu;
 		}
-		if (keyPressed[K_L])
+		if (keyPressed[K_1])
 		{
-			edit = 'L';
+			edit = '1';
 			writelevel(edit);
 		}
 		if (keyPressed[K_0])
 		{
 			edit = '0';
+			writelevel(edit);
+		}
+		if (keyPressed[K_BACK])
+		{
+			edit = '\0';
+			writelevel(edit);
+		}
+		if (keyPressed[K_L])
+		{
+			edit = 'L';
 			writelevel(edit);
 		}
 		if (keyPressed[K_R])
@@ -476,44 +488,14 @@ void LevelEditingState()
 			edit = 'M';
 			writelevel(edit);
 		}
-		if (keyPressed[K_BOX])
-		{
-			edit = '#';
-			writelevel(edit);
-		}
-		if (keyPressed[K_1])
-		{
-			edit = '1';
-			writelevel(edit);
-		}
-		if (keyPressed[K_0])
-		{
-			edit = '0';
-			writelevel(edit);
-		}
-		if (keyPressed[K_BACK])
-		{
-			edit = '\0';
-			writelevel(edit);
-		}
-		if (keyPressed[K_ENTER])
-		{
-			savecustomlevel();
-			state = menu;
-		}
-		if (keyPressed[K_K])
-		{
-			edit = 'K';
-			writelevel(edit);
-		}
-		if (keyPressed[K_G])
-		{
-			edit = 'G';
-			writelevel(edit);
-		}
 		if (keyPressed[K_N])
 		{
 			edit = 'N';
+			writelevel(edit);
+		}
+		if (keyPressed[K_BOX])
+		{
+			edit = '#';
 			writelevel(edit);
 		}
 		if (keyPressed[K_P])
@@ -525,6 +507,29 @@ void LevelEditingState()
 		{
 			edit = 'H';
 			writelevel(edit);
+		}
+		if (keyPressed[K_K])
+		{
+			if (keylimit < 10)
+			{
+				edit = 'K';
+				writelevel(edit);
+				keylimit++;
+			}
+		}
+		if (keyPressed[K_G])
+		{
+			if (gatelimit < 10)
+			{
+				edit = 'G';
+				writelevel(edit);
+				gatelimit++;
+			}
+		}
+		if (keyPressed[K_ENTER])
+		{
+			savecustomlevel();
+			state = menu;
 		}
 		if (keyPressed[K_UP] && charCustomLocation.Y > 1)
 		{
