@@ -8,7 +8,7 @@
 #include <iostream>
 #include <iomanip>
 
-#define MAX_CANNON 20
+#define MAX_CANNON 100
 
 struct Cannon
 {

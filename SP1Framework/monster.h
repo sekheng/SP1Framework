@@ -8,7 +8,7 @@
 #include "Framework\timer.h"
 #include "Framework\console.h"
 
-#define MAX_SPACE 20
+#define MAX_SPACE 100
  struct Monster
  {
 	 COORD resetCoord[MAX_SPACE];
