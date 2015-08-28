@@ -10,7 +10,7 @@ double timeTriggeredFollow;
 
 void update_charSpeed(double x)
 {
-	if( state == Start)
+	if( state == Start || state == LevelCustom)
 	{
 		if(timeTriggeredChar > x)
 		{

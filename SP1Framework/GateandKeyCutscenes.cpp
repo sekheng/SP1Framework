@@ -1,11 +1,20 @@
 #include "GateandKeyCutscenes.h"
 
 extern Console console;
+extern startscreen state;
 
 char *gatescenes[30];
 char *openGateScenes[30];
 int gaterow = 0;
 int opengaterow = 0;
+
+COORD ClosedGateLocation;
+
+double Animate = 0;
+double timeforAnimation = 8;
+WORD ColorForTheGate;
+
+char *YouShallPass;
 
 void initGateCutscenes()
 {
@@ -38,35 +47,58 @@ void initGateCutscenes()
         *( openGateScenes[opengaterow] + openstr.size() ) = '\0';
         ++opengaterow;
     }
-    openCutscenes.close();
+    openCutscenes.close();   
+    ClosedGateLocation.X = 0;
+    ClosedGateLocation.Y = 1;
+    YouShallPass = "YOU SHALL PASS";
 }
 
-void displayGateCutscenes()
-{
-    COORD ClosedGateLocation;
-    ClosedGateLocation.X = 0;
+void displayGateCutscenes(WORD ColorForGate)
+{    
     ClosedGateLocation.Y = 1;
     for ( int i = 0; i < gaterow; ++i)
     {
-        console.writeToBuffer(ClosedGateLocation, gatescenes[i], 0x0F);
+        console.writeToBuffer(ClosedGateLocation, gatescenes[i], ColorForGate);
         ClosedGateLocation.Y +=1;
     }
 }
 
-void displayOpenCutscenes()
+void displayOpenCutscenes(WORD ColorForGate)
 {
     COORD OpenGateLocation;
     OpenGateLocation.X = 0;
     OpenGateLocation.Y = 1;
     for ( int i = 0; i < opengaterow; ++i)
     {
-        console.writeToBuffer( OpenGateLocation,openGateScenes[i], 0x0F);
+        console.writeToBuffer( OpenGateLocation,openGateScenes[i], ColorForGate);
         OpenGateLocation.Y += 1;
     }
+    OpenGateLocation.Y = 10;
+    OpenGateLocation.X = 33;
+    console.writeToBuffer( OpenGateLocation, YouShallPass, ColorForGate);
 }
 
 void displayAnimationofOpenAndClose()
 {
-    displayGateCutscenes();
-    displayOpenCutscenes();
+   //WORD getcolorFromGate(WORD GateColor);
+   if ( Animate > timeforAnimation) {
+       state = Start;
+       Animate = 0;
+   }
+   else if ( (Animate + 5) <= timeforAnimation)
+   {
+       Animate += 0.75;
+       displayGateCutscenes(ColorForTheGate);
+   }
+   else
+   {
+       Animate += 0.5;
+       displayOpenCutscenes(ColorForTheGate);
+   }
+   
+}
+
+void getcolorFromGate(WORD GateColor)
+{
+    ColorForTheGate = GateColor;
 }

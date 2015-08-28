@@ -5,6 +5,7 @@ extern COORD charLocation;
 extern size_t g_map[200][200];
 COORD display_inventorysystem;
 COORD Display_Items_You_Need;
+extern startscreen state;
 
 int display_inventory_row = 0;
 int display_inventory_col = 0;
@@ -62,6 +63,7 @@ void keys_locations( int keyY, int keyX, int KeyType)
         how_Many_keys_types = KeyType;
         ++how_Many_keys_types;
     }
+    Keys[KeyType].MakeSureItRunOnce = 0;
 }
 
 void displayinventory()
@@ -114,9 +116,9 @@ void display_keys()
         int numKeys = check_numKeys_arr[keytypes];
         for ( int i = 0; i < numKeys; ++i)
         {
+            WORD colour = colorforGateandKeys[keytypes];
             if ( Keys[keytypes].collected[i] != true )
             {
-                WORD colour = colorforGateandKeys[keytypes];
                 console.writeToBuffer( Keys[keytypes].KeysLocation[i], "K", colour);
             }
         }
@@ -151,8 +153,10 @@ void update_keys()
         {
             if ( (charLocation.X) == (Keys[keytypes].KeysLocation[h].X) && (charLocation.Y) == (Keys[keytypes].KeysLocation[h].Y) )
             {
+                if ( Keys[keytypes].collected[h] != true) {
+                    --Keys[keytypes].num_of_Keys_ineachType;
+                }
                 Keys[keytypes].collected[h] = true;
-                --Keys[keytypes].num_of_Keys_ineachType;
             }
         }
 
@@ -167,6 +171,13 @@ void update_keys()
                 Keys[keytypes].check_collected_keys = false;
                 break;
             }
+        }
+        if ( Keys[keytypes].check_collected_keys == true && Keys[keytypes].MakeSureItRunOnce == false)
+        {
+            Keys[keytypes].MakeSureItRunOnce = true;
+            state = GateAnimation;
+            getcolorFromGate(colorforGateandKeys[keytypes]);
+            displayAnimationofOpenAndClose();
         }
     }
 }
@@ -213,6 +224,7 @@ void restart_level_forKeysAndGates()
         }
         Keys[i].check_collected_keys = false;
         Keys[i].num_of_Keys_ineachType = check_numKeys_arr[i];
+        Keys[i].MakeSureItRunOnce = false;
     }
 }
 

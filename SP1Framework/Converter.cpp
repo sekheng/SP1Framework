@@ -63,6 +63,7 @@ void convert(int &a, int b, int c)
 	{
 		setBlock(b, c, bno);
 		bno++;
+		a = 0;
 	}
     if ( a == 'K'|| a == 'Q')
     {
@@ -75,6 +76,7 @@ void convert(int &a, int b, int c)
 		populate_keyArr(y);
 		keys_locations(c, b, y);
         ++check_no_of_keys;
+		a = 0;
     }
 	if ( a == 'G'|| a == 'B')
     {
