@@ -23,7 +23,27 @@ void crazyMonUpdate(int z)
 		for (int no = 0; no < z;no++)
 		{ 
 			r[no] = rand() % 4;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
-			if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
+			if(((((aiCoordinate[no].X + 3) >= charLocation.X) &&(aiCoordinate[no].X - 3) <= charLocation.X) 
+				&& ((aiCoordinate[no].Y +3) >= charLocation.Y) && (aiCoordinate[no].Y - 3) <= charLocation.Y))
+			{
+				if(aiCoordinate[no].X > charLocation.X && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] == 0)
+				{
+					aiCoordinate[no].X--;
+				}
+				else if(aiCoordinate[no].Y > charLocation.Y && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] == 0)
+				{
+					aiCoordinate[no].Y--;
+				}
+				else if(aiCoordinate[no].Y < charLocation.Y && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] == 0)
+				{
+					aiCoordinate[no].Y++;
+				}
+				else if(aiCoordinate[no].X < charLocation.X && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] == 0)
+				{
+					aiCoordinate[no].X++;
+				}
+			}
+			else if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 			{
 				aiCoordinate[no].X++;
 			}
@@ -62,20 +82,21 @@ void followMonUpdate(int z,double w)
 {
 	for (int no = 0; no < z;no++)
 	{
-		r[no] = rand() %2;
-		if(monCoordinate[no].X > charLocation.X && g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] != 1)
+		r[no] = rand() %10;
+		
+		if(monCoordinate[no].X > charLocation.X && g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] == 0)
 		{
 			monCoordinate[no].X--;
 		}
-		if(monCoordinate[no].Y > charLocation.Y && g_map[monCoordinate[no].Y - 1][monCoordinate[no].X] != 1)
+		else if(monCoordinate[no].Y > charLocation.Y && g_map[monCoordinate[no].Y - 1][monCoordinate[no].X] == 0)
 		{
 			monCoordinate[no].Y--;
 		}
-		if(monCoordinate[no].Y < charLocation.Y && g_map[monCoordinate[no].Y + 1][monCoordinate[no].X] != 1)
+		else if(monCoordinate[no].Y < charLocation.Y && g_map[monCoordinate[no].Y + 1][monCoordinate[no].X] == 0)
 		{
 			monCoordinate[no].Y++;
 		}
-		if(monCoordinate[no].X < charLocation.X && g_map[monCoordinate[no].Y][monCoordinate[no].X + 1] != 1)
+		else if(monCoordinate[no].X < charLocation.X && g_map[monCoordinate[no].Y][monCoordinate[no].X + 1] == 0)
 		{
 			monCoordinate[no].X++;
 		}
