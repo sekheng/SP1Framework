@@ -10,8 +10,11 @@ int opengaterow = 0;
 
 COORD ClosedGateLocation;
 
-double Animate = 30;
-double secondAnimation;
+double Animate = 0;
+double timeforAnimation = 8;
+WORD ColorForTheGate;
+
+char *YouShallPass;
 
 void initGateCutscenes()
 {
@@ -47,41 +50,55 @@ void initGateCutscenes()
     openCutscenes.close();   
     ClosedGateLocation.X = 0;
     ClosedGateLocation.Y = 1;
+    YouShallPass = "YOU SHALL PASS";
 }
 
-void displayGateCutscenes()
+void displayGateCutscenes(WORD ColorForGate)
 {    
     ClosedGateLocation.Y = 1;
     for ( int i = 0; i < gaterow; ++i)
     {
-        console.writeToBuffer(ClosedGateLocation, gatescenes[i], 0x0F);
+        console.writeToBuffer(ClosedGateLocation, gatescenes[i], ColorForGate);
         ClosedGateLocation.Y +=1;
     }
 }
 
-void displayOpenCutscenes()
+void displayOpenCutscenes(WORD ColorForGate)
 {
     COORD OpenGateLocation;
     OpenGateLocation.X = 0;
     OpenGateLocation.Y = 1;
     for ( int i = 0; i < opengaterow; ++i)
     {
-        console.writeToBuffer( OpenGateLocation,openGateScenes[i], 0x0F);
+        console.writeToBuffer( OpenGateLocation,openGateScenes[i], ColorForGate);
         OpenGateLocation.Y += 1;
     }
+    OpenGateLocation.Y = 10;
+    OpenGateLocation.X = 33;
+    console.writeToBuffer( OpenGateLocation, YouShallPass, ColorForGate);
 }
 
-void displayAnimationofOpenAndClose(double Timer)
+void displayAnimationofOpenAndClose()
 {
-   if ( timer(Animate) < Timer) {
-      state = Start;
+   //WORD getcolorFromGate(WORD GateColor);
+   if ( Animate > timeforAnimation) {
+       state = Start;
+       Animate = 0;
    }
-   else if ( (timer(Animate) - 15) < Timer)
+   else if ( (Animate + 5) <= timeforAnimation)
    {
-       displayOpenCutscenes();
+       Animate += 0.75;
+       displayGateCutscenes(ColorForTheGate);
    }
-   else 
+   else
    {
-       displayGateCutscenes();
+       Animate += 0.5;
+       displayOpenCutscenes(ColorForTheGate);
    }
+   
+}
+
+void getcolorFromGate(WORD GateColor)
+{
+    ColorForTheGate = GateColor;
 }
