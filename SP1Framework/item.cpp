@@ -155,8 +155,10 @@ void update_keys()
         {
             if ( (charLocation.X) == (Keys[keytypes].KeysLocation[h].X) && (charLocation.Y) == (Keys[keytypes].KeysLocation[h].Y) )
             {
+                if ( Keys[keytypes].collected[h] != true) {
+                    --Keys[keytypes].num_of_Keys_ineachType;
+                }
                 Keys[keytypes].collected[h] = true;
-                --Keys[keytypes].num_of_Keys_ineachType;
             }
         }
 
@@ -172,12 +174,12 @@ void update_keys()
                 break;
             }
         }
-        if ( Keys[keytypes].check_collected_keys == true && Keys[keytypes].MakeSureItRunOnce == 0)
-        {
-            Animate = 30;
-            ++Keys[keytypes].MakeSureItRunOnce;
-            state = GateAnimation;
-        }
+        //if ( Keys[keytypes].check_collected_keys == true && Keys[keytypes].MakeSureItRunOnce == 0)
+        //{
+        //    Animate = 30;
+        //    ++Keys[keytypes].MakeSureItRunOnce;
+        //    state = GateAnimation;
+        //}
     }
 }
 
