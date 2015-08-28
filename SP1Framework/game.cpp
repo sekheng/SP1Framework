@@ -38,25 +38,16 @@ double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
 startscreen state = menu;
-int titlearr[40][150];
 size_t g_map[200][200];    //For Collision System
 size_t g_custommap[200][200]; //for custom lvl legend
 size_t g_customizemap[200][200]; //for customising lvl
 char pausearr[40][150];
 
-// For Menu Display's coordinates
-COORD st;
-COORD lvled;
-COORD custom;
-COORD hp;
-COORD opt;
-COORD et;
-
 // Game specific variables here
 COORD charLocation;
 COORD charCustomLocation;
-COORD startmenuLocation;
-int levelno = 1;
+extern COORD startmenuLocation;
+int levelno = 5;
 string level;
 int counter = 0;//counter for custom map
 int endcounter = 0;
@@ -68,9 +59,6 @@ int cusrow = 1;
 int cuscol = 20;
 COORD LvL;
 COORD CusLvL;
-COORD Ttle;
-int ttlerow = 0;
-int ttlecol = 0;
 string content;
 int color;
 int tempEndX; // x end point coord
@@ -84,9 +72,6 @@ int bno = 0; // box number
 int sno = 0; //smart monster number
 int pno = 0; // pressure plate number
 int hno = 0;// pressure plate gate number
-COORD pu;
-int pauserows = 0;
-int pausecols = 0;
 
 extern COORD pauseLocation;
 extern COORD gameoverptr;

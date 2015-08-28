@@ -1,9 +1,9 @@
 #include "ingame_UI.h"
 
 extern char pausearr[40][150];
-extern COORD pu; 
-extern int pauserows;
-extern int pausecols;
+COORD pu;
+int pauserows = 0;
+int pausecols = 0;
 extern Console console;
 extern COORD pauseLocation;
 

@@ -1,23 +1,24 @@
 #include "title.h"
 
-extern int titlearr[40][150];
-extern COORD Ttle;
-extern int ttlerow;
-extern int ttlecol;
+int titlearr[40][150];
+COORD Ttle;
+int ttlerow = 0;
+int ttlecol = 0;
 char *strt = "(1) START";
 char *lvlcustomized = "(2) LEVEL CUSTOMIZATION";
 char *playcustom = "(3) PLAY CUSTOM LEVEL";
 char *hlp = "(4) HELP";
 char *option = "(5) OPTIONS";
 char *ext = "(6) EXIT";
-extern COORD st;
-extern COORD lvled;
-extern COORD custom;
-extern COORD hp;
-extern COORD opt;
-extern COORD et;
+// For Menu Display's coordinates
+COORD st;
+COORD lvled;
+COORD custom;
+COORD hp;
+COORD opt;
+COORD et;
 extern Console console;
-extern COORD startmenuLocation;
+COORD startmenuLocation;
 
 void titleconvert(int &g) 
 {
