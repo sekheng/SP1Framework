@@ -44,7 +44,6 @@ extern int counter;
 
 ///////////////////STATE EXTERNS END///////////////////////////////
 
-//extern struct Block block;
 extern bool keyPressed[K_COUNT];
 
 void characterInit()
