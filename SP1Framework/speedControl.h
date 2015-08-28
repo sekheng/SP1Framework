@@ -9,7 +9,7 @@
 
 void update_ballSpeed(int x, int y, int a, int b, int c, int d, double w);
 void update_charSpeed(double x);
-void update_crazyMonSpeed(int z, double w);
-void update_followMonSpeed(int z, double w);
+void update_crazyMonSpeed(int z,int y, double w);
+void update_followMonSpeed(int z,int y, double w);
 
 #endif

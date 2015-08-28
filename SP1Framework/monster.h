@@ -15,11 +15,11 @@
  };
 
 void crazyMonSpawn(int x,int y,int z);
-void crazyMonUpdate(int z);
+void crazyMonUpdate(int z,int y);
 void crazyMon(int i);
 
 void followMonSpawn(int x,int y,int z);
-void followMonUpdate(int z, double w);
+void followMonUpdate(int z,int y, double w);
 void followMon(int i);
 
 void restartCrazyMonLocation(int z);

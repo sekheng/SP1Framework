@@ -39,18 +39,18 @@ void update_ballSpeed(int x, int y, int a, int b, int c, int d, double w)
 	cannonballD(x, c, d);
 }
 
-void update_crazyMonSpeed(int z, double w)
+void update_crazyMonSpeed(int z,int y, double w)
 {
 	if(timeTriggeredCrazy > w)
 		return;
 	timeTriggeredCrazy = w + 0.150;
-	crazyMonUpdate(z);
+	crazyMonUpdate(z,y);
 }
 
-void update_followMonSpeed(int z, double w)
+void update_followMonSpeed(int z,int y, double w)
 {
 	if(timeTriggeredFollow > w)
 		return;
 	timeTriggeredFollow = w + 0.175;
-	followMonUpdate(z,timeTriggeredFollow);
+	followMonUpdate(z,y,timeTriggeredFollow);
 }

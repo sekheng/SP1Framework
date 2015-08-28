@@ -21,7 +21,7 @@ void cannonR(int i)
 		if(Right.position[b].X != 0 && Right.position[b].Y != 0)
 		{
 			console.writeToBuffer(Right.position[b], (char)67, 0x1C);
-			console.writeToBuffer(Right.directions[b], (char)79, 0x10);
+			console.writeToBuffer(Right.directions[b], (char)79, 0x18);
 		}
 	}
 }
@@ -32,7 +32,7 @@ void cannonL(int i)
 		if(Left.position[b].X != 0 && Left.position[b].Y != 0)
 		{
 			console.writeToBuffer(Left.position[b], (char)67, 0x1C);
-			console.writeToBuffer(Left.directions[b], (char)79, 0x10);
+			console.writeToBuffer(Left.directions[b], (char)79, 0x18);
 		}
 	}
 }
@@ -43,7 +43,7 @@ void cannonU(int i)
 		if(Up.position[b].X != 0 && Up.position[b].Y != 0)
 		{
 			console.writeToBuffer(Up.position[b], (char)67, 0x1C);
-			console.writeToBuffer(Up.directions[b], (char)79, 0x10);
+			console.writeToBuffer(Up.directions[b], (char)79, 0x18);
 		}
 	}
 }
@@ -54,7 +54,7 @@ void cannonD(int i)
 		if(Down.position[b].X != 0 && Down.position[b].Y != 0)
 		{
 			console.writeToBuffer(Down.position[b], (char)67, 0x1C);
-			console.writeToBuffer(Down.directions[b], (char)79, 0x10);
+			console.writeToBuffer(Down.directions[b], (char)79, 0x18);
 		}
 	}
 }
