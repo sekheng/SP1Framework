@@ -23,10 +23,8 @@ void crazyMonUpdate(int z)
 		for (int no = 0; no < z;no++)
 		{ 
 			r[no] = rand() % 4;//0 for moving right, 1 for moving left, 2 for moving up, 3 for moving down.
-			if(((aiCoordinate[no].X + 1) == charLocation.X && (aiCoordinate[no].Y) == charLocation.Y)
-				||((aiCoordinate[no].X - 1) == charLocation.X &&(aiCoordinate[no].Y) == charLocation.Y)
-				||((aiCoordinate[no].Y + 1) == charLocation.Y &&(aiCoordinate[no].X) == charLocation.X)
-				||((aiCoordinate[no].Y - 1) == charLocation.Y &&(aiCoordinate[no].X) == charLocation.X))
+			if(((((aiCoordinate[no].X + 3) >= charLocation.X) &&(aiCoordinate[no].X - 3) <= charLocation.X) 
+				&& ((aiCoordinate[no].Y +3) >= charLocation.Y) && (aiCoordinate[no].Y - 3) <= charLocation.Y))
 			{
 				if(aiCoordinate[no].X > charLocation.X && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] == 0)
 				{
