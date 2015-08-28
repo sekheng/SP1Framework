@@ -212,6 +212,7 @@ void restart_level_forKeysAndGates()
             Keys[i].collected[j] = false;
         }
         Keys[i].check_collected_keys = false;
+        Keys[i].num_of_Keys_ineachType = check_numKeys_arr[i];
     }
 }
 

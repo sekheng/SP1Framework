@@ -2,8 +2,8 @@
 
 extern Console console;
 
-char *gatescenes[32];
-char *openGateScenes[32];
+char *gatescenes[30];
+char *openGateScenes[30];
 int gaterow = 0;
 int opengaterow = 0;
 
@@ -12,7 +12,7 @@ void initGateCutscenes()
     ifstream cutscenes;
     cutscenes.open("Display_ClosedGate2.txt");
     string scenesStr;
-    int cS = 50;
+    int cS = 80;
     while ( !cutscenes.eof() && getline(cutscenes, scenesStr) )
     {
         gatescenes[gaterow] = new char[cS];
@@ -63,4 +63,10 @@ void displayOpenCutscenes()
         console.writeToBuffer( OpenGateLocation,openGateScenes[i], 0x0F);
         OpenGateLocation.Y += 1;
     }
+}
+
+void displayAnimationofOpenAndClose()
+{
+    displayGateCutscenes();
+    displayOpenCutscenes();
 }

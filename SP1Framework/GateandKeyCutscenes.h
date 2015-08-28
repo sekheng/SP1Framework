@@ -17,4 +17,6 @@ void displayGateCutscenes();
 
 void displayOpenCutscenes();
 
+void displayAnimationofOpenAndClose();
+
 #endif // _GATEANDKEYCUTSCENES_H
