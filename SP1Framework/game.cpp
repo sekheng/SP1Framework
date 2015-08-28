@@ -97,6 +97,8 @@ const WORD colors[] =
 	0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 };
 
+char *PDname;
+
 // Initialize variables, allocate memory, load data from file, etc. 
 // This is called once before entering into your main loop
 
@@ -137,6 +139,8 @@ void init()
 
     //Displaying a Gate Cutscene
     initGateCutscenes();
+
+    PDname = "A PRODUCT BY PD ENTERTAINMENT";
 }
 
 // Do your clean up of memory here
@@ -350,6 +354,11 @@ void renderFramerate()
     c.X = 0;
     c.Y = 0;
     console.writeToBuffer(c, ss.str(), 0x59);
+
+    //displays the PD name
+    c.Y = console.getConsoleSize().Y - 1;
+    c.X = console.getConsoleSize().X - 30;
+    console.writeToBuffer(c, PDname, 0x0F);
 }
 
 void renderToScreen()
