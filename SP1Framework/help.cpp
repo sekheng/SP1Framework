@@ -34,7 +34,7 @@ void displayHelp()
     for ( int i = 0; i < helprows; ++i) {
         helpLocation.X = 20;
         for ( int j = 0; j < helpcols; ++j) {
-            if ( i == 10 && j == 0)
+            if ( i == 9 && j == 0)
             {
                 console.writeToBuffer( helpLocation, ' ' , 0x6A );
                 helpLocation.X += 1;
