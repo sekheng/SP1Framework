@@ -13,10 +13,10 @@ using std::ifstream;
 
 void initGateCutscenes();
 
-void displayGateCutscenes();
+void displayGateCutscenes(double animation);
 
 void displayOpenCutscenes();
 
-void displayAnimationofOpenAndClose();
+void displayAnimationofOpenAndClose(double Timer);
 
 #endif // _GATEANDKEYCUTSCENES_H

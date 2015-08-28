@@ -23,6 +23,7 @@ struct Items
     COORD KeysLocation[MAX_ITEMS];
     bool collected[MAX_ITEMS];
     bool check_collected_keys;
+    int MakeSureItRunOnce;
 };
 
 void initinventorysystem();

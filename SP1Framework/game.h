@@ -48,8 +48,11 @@ enum startscreen
     Pause,
     GameOver,
     End,
+    GateAnimation,
     MAX_STATE
 };
+
+double timer( double& seconds);
 
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player

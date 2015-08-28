@@ -285,6 +285,16 @@ void renderMap()
 			counter = 1;
 		}
 	}
+    else if (state == GateAnimation)
+    {
+        displayAnimationofOpenAndClose(elapsedTime);
+    }
+}
+
+double timer( double &seconds)
+{
+    seconds -= deltaTime;
+    return seconds;
 }
 
 void renderCharacter()

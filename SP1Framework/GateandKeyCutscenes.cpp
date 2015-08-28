@@ -1,11 +1,17 @@
 #include "GateandKeyCutscenes.h"
 
 extern Console console;
+extern startscreen state;
 
 char *gatescenes[30];
 char *openGateScenes[30];
 int gaterow = 0;
 int opengaterow = 0;
+
+COORD ClosedGateLocation;
+
+double Animate = 15;
+double secondAnimation;
 
 void initGateCutscenes()
 {
@@ -38,13 +44,15 @@ void initGateCutscenes()
         *( openGateScenes[opengaterow] + openstr.size() ) = '\0';
         ++opengaterow;
     }
-    openCutscenes.close();
+    openCutscenes.close();   
+    ClosedGateLocation.X = 0;
+    ClosedGateLocation.Y = 1;
 }
 
-void displayGateCutscenes()
-{
-    COORD ClosedGateLocation;
-    ClosedGateLocation.X = 0;
+void displayGateCutscenes(double animation)
+{    
+    //if ( animation > Animate)
+    //    return;
     ClosedGateLocation.Y = 1;
     for ( int i = 0; i < gaterow; ++i)
     {
@@ -65,8 +73,13 @@ void displayOpenCutscenes()
     }
 }
 
-void displayAnimationofOpenAndClose()
+void displayAnimationofOpenAndClose(double Timer)
 {
-    displayGateCutscenes();
-    displayOpenCutscenes();
+   if ( timer(Animate) < Timer) {
+      state = Start;
+   }
+   else 
+   {
+       displayGateCutscenes(Timer);
+   }
 }
