@@ -81,6 +81,7 @@
     <ClCompile Include="Framework\timer.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="Gameover.cpp" />
+    <ClCompile Include="GateandKeyCutscenes.cpp" />
     <ClCompile Include="help.cpp" />
     <ClCompile Include="ingame_UI.cpp" />
     <ClCompile Include="item.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="Framework\timer.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="Gameover.h" />
+    <ClInclude Include="GateandKeyCutscenes.h" />
     <ClInclude Include="help.h" />
     <ClInclude Include="ingame_UI.h" />
     <ClInclude Include="item.h" />
@@ -121,6 +123,9 @@
     <None Include="displayInventory_text.txt" />
     <None Include="displayPause.txt" />
     <None Include="displayTheEnd.txt" />
+    <None Include="Display_ClosedGate.txt" />
+    <None Include="Display_ClosedGate2.txt" />
+    <None Include="Display_OpenGate.txt" />
     <None Include="level1_text.txt" />
     <None Include="level2_text.txt" />
     <None Include="level3_text.txt" />

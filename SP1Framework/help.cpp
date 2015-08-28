@@ -5,7 +5,8 @@ COORD helpLocation;
 char helparr[50][1000];
 int helprows = 0;
 int helpcols = 0;
-extern COORD helpreturn;
+
+char *helpPlayerReturn;
 
 void helpPosition()
 {
@@ -24,8 +25,7 @@ void helpPosition()
     inHelp.close();
     helpLocation.X = 20;
     helpLocation.Y = 1;
-    helpreturn.X = 0;
-    helpreturn.Y = 0;
+    helpPlayerReturn = "PRESS SPACE TO RETURN";
 }
 
 void displayHelp()
@@ -45,4 +45,7 @@ void displayHelp()
         }
         helpLocation.Y += 1;
     }
+    helpLocation.Y -= 1;
+    helpLocation.X = 100;
+    console.writeToBuffer( helpLocation, helpPlayerReturn, 0x0F);
 }

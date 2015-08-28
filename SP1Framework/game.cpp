@@ -16,6 +16,7 @@
 #include "mmsystem.h"   // For Music Feature
 #include "speedControl.h"
 #include "pressureplate.h"
+#include "GateandKeyCutscenes.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -88,9 +89,7 @@ int pauserows = 0;
 int pausecols = 0;
 
 extern COORD pauseLocation;
-extern COORD helpreturn;
 extern COORD gameoverptr;
-
 
 const WORD colors[] =
 {
@@ -135,6 +134,9 @@ void init()
 
     // Display Inventory UI
     initinventorysystem();
+
+    //Displaying a Gate Cutscene
+    initGateCutscenes();
 }
 
 // Do your clean up of memory here
@@ -310,10 +312,6 @@ void renderCharacter()
     else if ( state == Pause)
     {
         console.writeToBuffer(pauseLocation, (char)60, 0x0C);
-    }
-    else if ( state == Help )
-    {
-        console.writeToBuffer(helpreturn, (char)60, 0x0C);
     }
     else if ( state == LevelCustomized)
     {

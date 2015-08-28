@@ -78,6 +78,9 @@
     <ClCompile Include="pressureplate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GateandKeyCutscenes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\console.h">
@@ -131,6 +134,9 @@
     <ClInclude Include="pressureplate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GateandKeyCutscenes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="displayPause.txt">
@@ -140,9 +146,6 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="displayHelp.txt">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="displayGameover.txt">
       <Filter>Source Files</Filter>
     </None>
     <None Include="displayTheEnd.txt">
@@ -167,6 +170,18 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="displayInventory_text.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="displayGameover.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Display_ClosedGate2.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Display_ClosedGate.txt">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Display_OpenGate.txt">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
