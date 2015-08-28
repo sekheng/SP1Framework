@@ -22,6 +22,8 @@ char *NoItem;
 stringstream sos;
 stringstream sis;
 
+extern double Animate;
+
 const WORD colorforGateandKeys[] =
 {
     0x0E, 0xF0
@@ -172,6 +174,7 @@ void update_keys()
         }
         if ( Keys[keytypes].check_collected_keys == true && Keys[keytypes].MakeSureItRunOnce == 0)
         {
+            Animate = 30;
             ++Keys[keytypes].MakeSureItRunOnce;
             state = GateAnimation;
         }

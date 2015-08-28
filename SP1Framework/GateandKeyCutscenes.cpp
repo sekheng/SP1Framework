@@ -10,7 +10,7 @@ int opengaterow = 0;
 
 COORD ClosedGateLocation;
 
-double Animate = 15;
+double Animate = 30;
 double secondAnimation;
 
 void initGateCutscenes()
@@ -49,10 +49,8 @@ void initGateCutscenes()
     ClosedGateLocation.Y = 1;
 }
 
-void displayGateCutscenes(double animation)
+void displayGateCutscenes()
 {    
-    //if ( animation > Animate)
-    //    return;
     ClosedGateLocation.Y = 1;
     for ( int i = 0; i < gaterow; ++i)
     {
@@ -78,8 +76,12 @@ void displayAnimationofOpenAndClose(double Timer)
    if ( timer(Animate) < Timer) {
       state = Start;
    }
+   else if ( (timer(Animate) - 15) < Timer)
+   {
+       displayOpenCutscenes();
+   }
    else 
    {
-       displayGateCutscenes(Timer);
+       displayGateCutscenes();
    }
 }

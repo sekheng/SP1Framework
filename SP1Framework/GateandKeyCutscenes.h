@@ -13,7 +13,7 @@ using std::ifstream;
 
 void initGateCutscenes();
 
-void displayGateCutscenes(double animation);
+void displayGateCutscenes();
 
 void displayOpenCutscenes();
 
