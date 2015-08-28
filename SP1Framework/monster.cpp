@@ -3,6 +3,7 @@ extern Console console;
 extern COORD charLocation;
 extern size_t g_map[200][200];
 extern double timeTriggeredCrazy;
+extern Block block;
 int r[MAX_SPACE];
 
 COORD aiCoordinate[MAX_SPACE];
@@ -15,7 +16,7 @@ void crazyMon(int i)
 {
 	for(int b = 0; b < i; ++b)
 	{
-		console.writeToBuffer(aiCoordinate[b], (char)153, 0x0C);
+		console.writeToBuffer(aiCoordinate[b], (char)153, 0x1D);
 	}
 }
 void crazyMonUpdate(int z)
@@ -26,38 +27,53 @@ void crazyMonUpdate(int z)
 			if(((((aiCoordinate[no].X + 3) >= charLocation.X) &&(aiCoordinate[no].X - 3) <= charLocation.X) 
 				&& ((aiCoordinate[no].Y +3) >= charLocation.Y) && (aiCoordinate[no].Y - 3) <= charLocation.Y))
 			{
-				if(aiCoordinate[no].X > charLocation.X && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] == 0)
+				if(aiCoordinate[no].X > charLocation.X 
+					&& g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1 
+					&& aiCoordinate[no].X - 1 != block.directions[no].X)
 				{
 					aiCoordinate[no].X--;
 				}
-				else if(aiCoordinate[no].Y > charLocation.Y && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] == 0)
+				else if(aiCoordinate[no].Y > charLocation.Y 
+					&& g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1 
+					&& aiCoordinate[no].Y - 1 != block.directions[no].Y)
 				{
 					aiCoordinate[no].Y--;
 				}
-				else if(aiCoordinate[no].Y < charLocation.Y && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] == 0)
+				else if(aiCoordinate[no].Y < charLocation.Y 
+					&& g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1 
+					&& aiCoordinate[no].Y + 1 != block.directions[no].Y)
 				{
 					aiCoordinate[no].Y++;
 				}
-				else if(aiCoordinate[no].X < charLocation.X && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] == 0)
+				else if(aiCoordinate[no].X < charLocation.X 
+					&& g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1 
+					&& aiCoordinate[no].X + 1 != block.directions[no].X)
 				{
 					aiCoordinate[no].X++;
 				}
 			}
-			else if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
+			else
 			{
-				aiCoordinate[no].X++;
-			}
-			else if( r[no] == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//left
-			{
-				aiCoordinate[no].X--;
-			}
-			else if( r[no] == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)//up
-			{
-				aiCoordinate[no].Y--;
-			}
-			else if( r[no] == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)//down
-			{
-				aiCoordinate[no].Y++;
+				if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1 
+					&& aiCoordinate[no].X + 1 != block.directions[no].X)//right
+				{
+					aiCoordinate[no].X++;
+				}
+				else if( r[no] == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1 
+					&& aiCoordinate[no].X - 1 != block.directions[no].X)//left
+				{
+					aiCoordinate[no].X--;
+				}
+				else if( r[no] == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1 
+					&& aiCoordinate[no].Y - 1 != block.directions[no].Y)//up
+				{
+					aiCoordinate[no].Y--;
+				}
+				else if( r[no] == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1 
+					&& aiCoordinate[no].Y + 1 != block.directions[no].Y)//down
+				{
+					aiCoordinate[no].Y++;
+				}
 			}
 		}
 }
@@ -75,28 +91,36 @@ void followMon(int i)
 {
 	for(int b = 0; b < i; ++b)
 	{
-		console.writeToBuffer(monCoordinate[b], (char)154, 0x0C);
+		console.writeToBuffer(monCoordinate[b], (char)154, 0x1B);
 	}
 }
-void followMonUpdate(int z,double w)
+void followMonUpdate(int z, double w)
 {
 	for (int no = 0; no < z;no++)
 	{
-		r[no] = rand() %10;
 		
-		if(monCoordinate[no].X > charLocation.X && g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] == 0)
+		
+		if(monCoordinate[no].X > charLocation.X 
+			&& g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] != 1 
+			&& monCoordinate[no].X - 1 != block.directions[no].X)
 		{
 			monCoordinate[no].X--;
 		}
-		else if(monCoordinate[no].Y > charLocation.Y && g_map[monCoordinate[no].Y - 1][monCoordinate[no].X] == 0)
+		else if(monCoordinate[no].Y > charLocation.Y 
+			&& g_map[monCoordinate[no].Y - 1][monCoordinate[no].X] != 1 
+			&& monCoordinate[no].Y - 1 != block.directions[no].Y)
 		{
 			monCoordinate[no].Y--;
 		}
-		else if(monCoordinate[no].Y < charLocation.Y && g_map[monCoordinate[no].Y + 1][monCoordinate[no].X] == 0)
+		else if(monCoordinate[no].Y < charLocation.Y 
+			&& g_map[monCoordinate[no].Y + 1][monCoordinate[no].X] != 1 
+			&& monCoordinate[no].Y + 1 != block.directions[no].Y)
 		{
 			monCoordinate[no].Y++;
 		}
-		else if(monCoordinate[no].X < charLocation.X && g_map[monCoordinate[no].Y][monCoordinate[no].X + 1] == 0)
+		else if(monCoordinate[no].X < charLocation.X 
+			&& g_map[monCoordinate[no].Y][monCoordinate[no].X + 1] != 1 
+			&& monCoordinate[no].X + 1 != block.directions[no].X)
 		{
 			monCoordinate[no].X++;
 		}
