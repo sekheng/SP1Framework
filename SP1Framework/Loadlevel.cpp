@@ -262,6 +262,7 @@ void initLevelText()
             *(dynamic_lvlnum_text[t] +i) = display_LevelText[i];
         }
         *(dynamic_lvlnum_text[t] + display_LevelText.size() ) = '\0';
+        //delete dynamic_lvlnum_text[t];
         ++t;
     }
     inlevelText.close();
