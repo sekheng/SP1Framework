@@ -14,6 +14,7 @@ extern int cnoR;
 extern int cnoL;
 extern int cnoU;
 extern int cnoD;
+extern struct Hatch hatch;
 
 Block block;
 int iblock = 0;
@@ -90,7 +91,7 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.X--;
 			}
 		}
-	}
+	} //|| block.directions[a].X == plate.directions[i].X && block.directions[a].Y == plate.directions[i].Y
 	for (int y= z; y>0; y--)
 	{
 		for (int x = 0; x < y;x++)

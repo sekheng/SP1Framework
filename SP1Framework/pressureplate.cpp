@@ -27,19 +27,19 @@ void updatePlate(int z)
 	{
 		for (int a = 0; a < bno; a++)
 		{
+			if (block.directions[a].X == plate.directions[i].X && block.directions[a].Y == plate.directions[i].Y)
+			{
+				onPlate = true;
+			}
+
 			if (charLocation.X == plate.directions[i].X && charLocation.Y == plate.directions[i].Y)
 			{
 				onPlate = true;
 			}
-			else if (block.directions[a].X == plate.directions[i].X && block.directions[a].Y == plate.directions[i].Y)
-			{
-				onPlate = true;
-			}
-			else
+			else if (charLocation.X != plate.directions[i].X && charLocation.Y != plate.directions[i].Y)
 			{
 				onPlate = false;
 			}
-
 		}
 	}
 }
@@ -62,39 +62,63 @@ void updateHatch(int z)
 {
 	for (int i = 0; i < z; i++)
 	{
-		if (charLocation.X == hatch.position[i].X &&
-			charLocation.Y == hatch.position[i].Y && keyPressed[K_UP]
-			|| charLocation.X == hatch.position[i].X &&
-			charLocation.Y == hatch.position[i].Y && keyPressed[K_W])//player push upwards
+		for (int a = 0; a < bno; a++)
 		{
-			if (charLocation.X == hatch.position[i].X && charLocation.Y == hatch.position[i].Y)
+			if (block.directions[a].X == hatch.position[i].X && block.directions[a].Y == hatch.position[i].Y && keyPressed[K_RIGHT])
+			{
+				block.directions[a].X--;
+				charLocation.X--;
+			}
+			if (block.directions[a].X == hatch.position[i].X && block.directions[a].Y == hatch.position[i].Y && keyPressed[K_LEFT])
+			{
+				block.directions[a].X++;
+				charLocation.X++;
+			}
+			if (block.directions[a].X == hatch.position[i].X && block.directions[a].Y == hatch.position[i].Y && keyPressed[K_UP])
+			{
+				block.directions[a].Y++;
+				charLocation.Y++;
+			}
+			if (block.directions[a].X == hatch.position[i].X && block.directions[a].Y == hatch.position[i].Y && keyPressed[K_DOWN])
+			{
+				block.directions[a].Y--;
+				charLocation.Y--;
+			}
+			if (charLocation.X == hatch.position[i].X &&
+				charLocation.Y == hatch.position[i].Y && keyPressed[K_UP]
+				|| charLocation.X == hatch.position[i].X &&
+				charLocation.Y == hatch.position[i].Y && keyPressed[K_W])//player push upwards
 			{
 				charLocation.Y++;
 			}
-		}
-		else if (charLocation.X == hatch.position[i].X &&
-			charLocation.Y == hatch.position[i].Y && keyPressed[K_DOWN]
-			|| charLocation.X == hatch.position[i].X && charLocation.Y ==
-			hatch.position[i].Y && keyPressed[K_S])//player push downwards
-		{
-			if (charLocation.X == hatch.position[i].X && charLocation.Y == hatch.position[i].Y)
+			else if (charLocation.X == hatch.position[i].X &&
+				charLocation.Y == hatch.position[i].Y && keyPressed[K_DOWN]
+				|| charLocation.X == hatch.position[i].X && charLocation.Y ==
+				hatch.position[i].Y && keyPressed[K_S])//player push downwards
 			{
 				charLocation.Y--;
 			}
-		}
-		else if (charLocation.X == hatch.position[i].X &&
-			charLocation.Y == hatch.position[i].Y && keyPressed[K_LEFT]
-			|| charLocation.X == hatch.position[i].X && charLocation.Y ==
-			hatch.position[i].Y && keyPressed[K_A])//player push left
-		{
-			if (charLocation.X == hatch.position[i].X && charLocation.Y == hatch.position[i].Y)
+			else if (charLocation.X == hatch.position[i].X &&
+				charLocation.Y == hatch.position[i].Y && keyPressed[K_LEFT]
+				|| charLocation.X == hatch.position[i].X && charLocation.Y ==
+				hatch.position[i].Y && keyPressed[K_A])//player push left
 			{
 				charLocation.X++;
 			}
-		}
-		if (onPlate = true)
-		{
-			g_map[hatch.position[i].X][hatch.position[i].Y] = 0;
+			else if (charLocation.X == hatch.position[i].X &&
+				charLocation.Y == hatch.position[i].Y && keyPressed[K_RIGHT]
+				|| charLocation.X == hatch.position[i].X && charLocation.Y ==
+				hatch.position[i].Y && keyPressed[K_D])//player push right
+			{
+				charLocation.X--;
+			}
+			if (onPlate == true)
+			{
+				//state = GameOver;
+				g_map[hatch.position[i].X][hatch.position[i].Y] = 0;
+				//hatch.position[i].X = 1000;
+				//hatch.position[i].Y = 1000;
+			}
 		}
 	}
 }
