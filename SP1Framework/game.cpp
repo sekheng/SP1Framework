@@ -287,7 +287,7 @@ void renderMap()
 	}
     else if (state == GateAnimation)
     {
-        displayAnimationofOpenAndClose(elapsedTime);
+        displayAnimationofOpenAndClose();
     }
 }
 

@@ -22,8 +22,6 @@ char *NoItem;
 stringstream sos;
 stringstream sis;
 
-extern double Animate;
-
 const WORD colorforGateandKeys[] =
 {
     0x0E, 0xF0
@@ -174,12 +172,13 @@ void update_keys()
                 break;
             }
         }
-        //if ( Keys[keytypes].check_collected_keys == true && Keys[keytypes].MakeSureItRunOnce == 0)
-        //{
-        //    Animate = 30;
-        //    ++Keys[keytypes].MakeSureItRunOnce;
-        //    state = GateAnimation;
-        //}
+        if ( Keys[keytypes].check_collected_keys == true && Keys[keytypes].MakeSureItRunOnce == false)
+        {
+            Keys[keytypes].MakeSureItRunOnce = true;
+            state = GateAnimation;
+            getcolorFromGate(colorforGateandKeys[keytypes]);
+            displayAnimationofOpenAndClose();
+        }
     }
 }
 
@@ -225,7 +224,7 @@ void restart_level_forKeysAndGates()
         }
         Keys[i].check_collected_keys = false;
         Keys[i].num_of_Keys_ineachType = check_numKeys_arr[i];
-        Keys[i].MakeSureItRunOnce = 0;
+        Keys[i].MakeSureItRunOnce = false;
     }
 }
 
