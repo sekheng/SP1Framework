@@ -50,11 +50,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\irrKlang\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\irrKlang\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -106,11 +108,13 @@
     <ClInclude Include="GateandKeyCutscenes.h" />
     <ClInclude Include="help.h" />
     <ClInclude Include="ingame_UI.h" />
+    <ClInclude Include="irrKlang-1.5.0\include\irrKlang.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="playerchar.h" />
     <ClInclude Include="pressureplate.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="speedControl.h" />
     <ClInclude Include="The_End.h" />
     <ClInclude Include="title.h" />
@@ -132,6 +136,9 @@
     <None Include="level4_text.txt" />
     <None Include="level5_text.txt" />
     <None Include="Level_Text.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SP1Framework.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
