@@ -51,4 +51,6 @@ void updateHatch(int z);
 
 void printHatch(int i);
 
+void resetHatch(int z);
+
 #endif // _PRESSUREPLATE_H

@@ -20,8 +20,8 @@ void cannonR(int i)
 	{
 		if(Right.position[b].X != 0 && Right.position[b].Y != 0)
 		{
-			console.writeToBuffer(Right.position[b], (char)67, 0x0C);
-			console.writeToBuffer(Right.directions[b], (char)79, 0x0C);
+			console.writeToBuffer(Right.position[b], (char)67, 0x1C);
+			console.writeToBuffer(Right.directions[b], (char)79, 0x18);
 		}
 	}
 }
@@ -31,8 +31,8 @@ void cannonL(int i)
 	{
 		if(Left.position[b].X != 0 && Left.position[b].Y != 0)
 		{
-			console.writeToBuffer(Left.position[b], (char)67, 0x0C);
-			console.writeToBuffer(Left.directions[b], (char)79, 0x0C);
+			console.writeToBuffer(Left.position[b], (char)67, 0x1C);
+			console.writeToBuffer(Left.directions[b], (char)79, 0x18);
 		}
 	}
 }
@@ -42,8 +42,8 @@ void cannonU(int i)
 	{
 		if(Up.position[b].X != 0 && Up.position[b].Y != 0)
 		{
-			console.writeToBuffer(Up.position[b], (char)67, 0x0C);
-			console.writeToBuffer(Up.directions[b], (char)79, 0x0C);
+			console.writeToBuffer(Up.position[b], (char)67, 0x1C);
+			console.writeToBuffer(Up.directions[b], (char)79, 0x18);
 		}
 	}
 }
@@ -53,8 +53,8 @@ void cannonD(int i)
 	{
 		if(Down.position[b].X != 0 && Down.position[b].Y != 0)
 		{
-			console.writeToBuffer(Down.position[b], (char)67, 0x0C);
-			console.writeToBuffer(Down.directions[b], (char)79, 0x0C);
+			console.writeToBuffer(Down.position[b], (char)67, 0x1C);
+			console.writeToBuffer(Down.directions[b], (char)79, 0x18);
 		}
 	}
 }
@@ -97,7 +97,6 @@ void cannonballR(int x,int z, int i)
 {
 	for (int no = 0; no < z;no++)
 	{
-		//double velocity = j +0.001;
 		if (Right.directions[no].X != (Right.position[no].X + x) && g_map[Right.directions[no].Y][Right.directions[no].X + 1] == 0)
 		{
 			Right.directions[no].X++;
@@ -108,9 +107,10 @@ void cannonballR(int x,int z, int i)
 		}
 		for(int a  = 0; a < i; a++)
 		{
-			if(block.directions[a].X == Right.directions[no].X
+			if(block.directions[a].X == Right.directions[no].X 
 				&& block.directions[a].Y == Right.directions[no].Y 
-				|| block.directions[a].X == Right.position[no].X)
+				|| (block.directions[a].X +1 == Right.directions[no].X 
+				&& block.directions[a].Y == Right.directions[no].Y))
 			{
 				Right.directions[no].X = Right.position[no].X;
 			}
@@ -131,9 +131,10 @@ void cannonballL(int x,int z, int i)
 		}
 		for(int a  = 0; a < i; a++)
 		{
-			if(block.directions[a].X == Left.directions[no].X
+			if(block.directions[a].X == Left.directions[no].X 
 				&& block.directions[a].Y == Left.directions[no].Y 
-				|| block.directions[a].X == Left.position[no].X)
+				|| (block.directions[a].X -1 == Left.directions[no].X 
+				&& block.directions[a].Y == Left.directions[no].Y))
 			{
 				Left.directions[no].X = Left.position[no].X;
 			}
@@ -155,9 +156,10 @@ void cannonballU(int x,int z, int i)
 		}
 		for(int a  = 0; a < i; a++)
 		{
-			if(block.directions[a].X == Up.directions[no].X
+			if(block.directions[a].X == Up.directions[no].X 
 				&& block.directions[a].Y == Up.directions[no].Y 
-				|| block.directions[a].Y == Up.position[no].Y)
+				|| (block.directions[a].X == Up.directions[no].X 
+				&& block.directions[a].Y - 1 == Up.directions[no].Y))
 			{
 				Up.directions[no].Y = Up.position[no].Y;
 			}
@@ -179,9 +181,10 @@ void cannonballD(int x,int z, int i)
 		}
 		for(int a  = 0; a < i; a++)
 		{
-			if(block.directions[a].X == Down.directions[no].X
+			if(block.directions[a].X == Down.directions[no].X 
 				&& block.directions[a].Y == Down.directions[no].Y 
-				|| block.directions[a].Y == Down.position[no].Y)
+				|| (block.directions[a].X == Down.directions[no].X 
+				&& block.directions[a].Y + 1 == Down.directions[no].Y))
 			{
 				Down.directions[no].Y = Down.position[no].Y;
 			}
