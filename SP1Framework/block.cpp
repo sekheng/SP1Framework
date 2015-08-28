@@ -136,7 +136,7 @@ void printBlock(int i)// i = bno
 {
 	for (int b = 0; b < i; b++)
 	{
-		console.writeToBuffer(block.directions[b], (char)35, 0x0C);
+		console.writeToBuffer(block.directions[b], (char)35, 0x1C);
 		
 	}
 }

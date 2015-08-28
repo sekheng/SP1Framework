@@ -6,6 +6,5 @@ U - Up Cannon     D - Down Cannon
 1 - Walls    0 - space
 G - Gate     K - key
 S - Character Spawn  E - End point
-E - End point
 M - Monster  N - Smart monsters
-B - Box    P - pressure plate                                                
+B - Box    P - pressure plate     H - Hatch(for plate)    

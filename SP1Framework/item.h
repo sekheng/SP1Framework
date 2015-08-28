@@ -5,6 +5,7 @@
 #include "game.h"
 #include "Framework\console.h"
 #include "playerchar.h"
+#include "GateandKeyCutscenes.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -27,7 +28,7 @@ struct Items
 void initinventorysystem();
 
 void keys_locations( int keyY, int keyX, int KeyType);
-void displayinventory( int no_of_items = 0);
+void displayinventory();
 void display_keys();
 void gate_location( int GateY, int GateX, int GateType);
 void display_gate();

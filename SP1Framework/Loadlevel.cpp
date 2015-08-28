@@ -89,7 +89,9 @@ void loadlevel(string &level)
 	}
 	inData.close();
 }
+
 //refreshes the updates for main level
+
 void reloadlevel()
 {
 	LvL.Y = 1;
@@ -213,11 +215,6 @@ void loadcustomizedlevel()
 
 //refreshes custom level
 
-void reloadcustomizedlevel()
-{
-	reloadlevel();
-}
-
 void initLevelText()
 {
     ifstream instatic_level_text;
@@ -265,6 +262,7 @@ void initLevelText()
             *(dynamic_lvlnum_text[t] +i) = display_LevelText[i];
         }
         *(dynamic_lvlnum_text[t] + display_LevelText.size() ) = '\0';
+        //delete dynamic_lvlnum_text[t];
         ++t;
     }
     inlevelText.close();

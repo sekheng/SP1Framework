@@ -48,7 +48,7 @@ void printPlate(int i)
 {
 	for (int p = 0; p < i; p++) //i = pno
 	{
-		console.writeToBuffer(plate.directions[p], (char)80, 0x0C);
+		console.writeToBuffer(plate.directions[p], (char)80, 0x1C);
 	}
 }
 
@@ -127,6 +127,6 @@ void printHatch(int i)
 {
 	for (int h = 0; h < i; h++)
 	{
-		console.writeToBuffer(hatch.position[h], (char)72, 0x0F);
+		console.writeToBuffer(hatch.position[h], (char)72, 0x1F);
 	}
 }
