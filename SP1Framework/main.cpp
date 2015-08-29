@@ -4,9 +4,6 @@
 #include "game.h"
 #include"Framework/console.h"
 #include "title.h"
-//#include <irrklang.h>
-//using namespace irrklang;
-//#pragma comment(lib, "irrklang.lib") // link with irrklang.dll
 
 StopWatch g_timer;            // Timer function to keep track of time and the frame rate
 bool g_quitGame = false;      // Set to true if you want to quit the game
@@ -19,11 +16,12 @@ void mainLoop();
 
 int main()
 {
-    //PlaySound(TEXT("mlg.wav"), NULL, SND_FILENAME|SND_ASYNC| SND_LOOP);
+    ISoundEngine* engine = createIrrKlangDevice();
 	init();      // initialize your variables level
+    engine->play2D("../irrKlang-1.5.0/media/bell.wav");
     mainLoop();  // main loop
     shutdown();  // do clean up, if any. free memory.
-	
+	engine->drop(); 
 	return 0;
 }
 

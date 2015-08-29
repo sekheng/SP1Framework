@@ -2,9 +2,9 @@
 #define _GAME_H
 
 #include "Framework\timer.h"
-//#include <irrklang.h>
-//using namespace irrklang;
-//#pragma comment(lib, "irrklang.lib") // link with irrklang.dll
+#include "../irrKlang-1.5.0/include/irrKlang.h"
+using namespace irrklang;
+#pragma comment(lib, "../irrKlang-1.5.0/lib/Win32-visualStudio/irrKlang.lib") // link with irrklang.dll
 
 extern StopWatch g_timer;
 extern bool g_quitGame;
