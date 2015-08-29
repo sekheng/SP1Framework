@@ -7,6 +7,9 @@ int helprows = 0;
 int helpcols = 0;
 
 char *helpPlayerReturn;
+char *Displayhelp2[10];
+int Displayhelp2row;
+COORD help2Location;
 
 void helpPosition()
 {
@@ -26,6 +29,30 @@ void helpPosition()
     helpLocation.X = 20;
     helpLocation.Y = 1;
     helpPlayerReturn = "PRESS SPACE TO RETURN";
+
+    ifstream inHelp2;
+    inHelp2.open("displayHelp2.txt");
+    string help2Data;
+    while ( !inHelp2.eof() && getline(inHelp2, help2Data) )
+    {
+        Displayhelp2[Displayhelp2row] = new char[50];
+        for ( size_t u = 0; u < help2Data.size(); ++u)
+        {
+            char letter = help2Data[u];
+            if ( letter == '#' )
+            {
+                letter = (char)153;
+            }
+            if ( letter == '@')
+            {
+                letter = (char)154;
+            }
+            *(Displayhelp2[Displayhelp2row] + u) = letter;
+        }
+        *(Displayhelp2[Displayhelp2row] + help2Data.size() ) = '\0';
+        ++Displayhelp2row;
+    }
+    inHelp2.close();
 }
 
 void displayHelp()
@@ -48,4 +75,12 @@ void displayHelp()
     helpLocation.Y -= 1;
     helpLocation.X = 100;
     console.writeToBuffer( helpLocation, helpPlayerReturn, 0x0F);
+
+    help2Location.Y = 1;
+    help2Location.X = 80;
+    for ( int numofrows = 0; numofrows < Displayhelp2row; ++numofrows)
+    {
+        console.writeToBuffer(help2Location, Displayhelp2[numofrows], 0x0F);
+        help2Location.Y += 1;
+    }
 }

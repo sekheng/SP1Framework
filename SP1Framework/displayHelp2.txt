@@ -1,1 +1,10 @@
-************************************************
+************************************************ 
+BEWARE OF MONSTER! ONCE THEY SAW YOU, THEY WILL  
+BE CHASING YOU RELENTLESSLY!                     
+# -> the monster which patrols around and chase  
+     you in radius of 3 pixels                   
+@ -> The monster that hunts you down to the      
+     depths of the Earth. BEWARE OF IT!          
+************************************************ 
+THAT'S IT! THIS IS ALL YOU NEED TO LEARN TO PLAY 
+THIS GAME. MAY THE ODDS NOT BE EVER IN OUR FAVOUR

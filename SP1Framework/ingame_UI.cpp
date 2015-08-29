@@ -14,8 +14,6 @@ COORD cont;
 COORD rstrt;
 COORD qit;
 
-//char pause2arr[40][150];
-
 void pausePosition()
 {
     ifstream inPause;
@@ -65,13 +63,3 @@ void displayPause()
     console.writeToBuffer( rstrt, restart, 0x0F );
     console.writeToBuffer( qit, quit, 0x0F );
 }
-
-//void pause2Position()
-//{
-//
-//}
-//
-//void displayPause2()
-//{
-//
-//}
