@@ -33,7 +33,6 @@ using std::string;
 // Console object
 Console console(140, 30, "SP1 Framework");
 
-//int i = 0;
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
