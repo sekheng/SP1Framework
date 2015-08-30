@@ -10,5 +10,8 @@ void initBGMsounds();
 void playSoundEvent();
 void changesSoundEvent();
 bool changesGameState(bool check_Game_State);
+void removingEngine();
+void PlayingThemeSong();
+void PlayingBeingChased();
 
 #endif // _BGMSOUNDS_H

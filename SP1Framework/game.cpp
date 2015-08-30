@@ -47,7 +47,7 @@ char pausearr[40][150];
 COORD charLocation;
 COORD charCustomLocation;
 extern COORD startmenuLocation;
-int levelno = 5;
+int levelno = 1;
 string level;
 int counter = 0;//counter for custom map
 int endcounter = 0;
@@ -140,6 +140,7 @@ void shutdown()
 	colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 
     console.clearBuffer();
+    removingEngine();
 }
 
 /*
@@ -179,6 +180,8 @@ void update(double dt)
     update_gates();
     // sound can be played here too.
     playSoundEvent();
+    //PlayingThemeSong();
+    //PlayingBeingChased();
 }
 
 /*

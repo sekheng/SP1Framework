@@ -221,7 +221,6 @@ void characterInteraction()
 
 void menustate()
 {
-
 	if (keyPressed[K_UP] && startmenuLocation.Y > 21)
 	{
 		startmenuLocation.Y--;
