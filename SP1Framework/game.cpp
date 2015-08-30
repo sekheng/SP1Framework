@@ -179,9 +179,7 @@ void update(double dt)
     update_keys();
     update_gates();
     // sound can be played here too.
-    playSoundEvent();
-    //PlayingThemeSong();
-    //PlayingBeingChased();
+    //playSoundEvent();
 }
 
 /*
