@@ -17,6 +17,7 @@
 #include "speedControl.h"
 #include "pressureplate.h"
 #include "GateandKeyCutscenes.h"
+#include "BGMsounds.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -125,6 +126,9 @@ void init()
     initGateCutscenes();
 
     PDname = "A PRODUCT BY PD ENTERTAINMENT";
+
+    //Adding Music
+    initBGMsounds();
 }
 
 // Do your clean up of memory here
@@ -174,6 +178,7 @@ void update(double dt)
     update_keys();
     update_gates();
     // sound can be played here too.
+    playSoundEvent();
 }
 
 /*
@@ -217,7 +222,8 @@ void renderMap()
     if ( state ==  menu) 
 	{
         // Display The Title
-        displayMenu();   
+        //changesSoundEvent();
+        displayMenu(); 
     }
     else if ( state == Pause)
     {

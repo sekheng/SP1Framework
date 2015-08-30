@@ -16,12 +16,9 @@ void mainLoop();
 
 int main()
 {
-    ISoundEngine* engine = createIrrKlangDevice();
 	init();      // initialize your variables level
-    engine->play2D("../irrKlang-1.5.0/media/Dear,_Human.mp3", true);
     mainLoop();  // main loop
     shutdown();  // do clean up, if any. free memory.
-	engine->drop(); 
 	return 0;
 }
 

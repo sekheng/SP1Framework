@@ -1,6 +1,6 @@
 #include "playerchar.h"
 #include "Loadlevel.h"
-//#include "traps.cpp"
+#include "BGMsounds.h"
 
 extern Console console;
 extern startscreen state;
@@ -67,7 +67,7 @@ void characterMovement(double x)
 
 	else if (state == Start || state == LevelCustom)   // The Game Begins!
 	{
-        PlayState();		
+        PlayState();
 	}
     //Level Editing
 	else if (state == LevelCustomized)
@@ -232,6 +232,7 @@ void menustate()
 	}
 	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
 	{
+        changesSoundEvent();
 		state = Start;
 	}
 	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
