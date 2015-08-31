@@ -91,7 +91,7 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.X--;
 			}
 		}
-	} //|| block.directions[a].X == plate.directions[i].X && block.directions[a].Y == plate.directions[i].Y
+	}
 	for (int y= z; y>0; y--)
 	{
 		for (int x = 0; x < y;x++)
