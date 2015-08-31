@@ -175,6 +175,7 @@ void update_keys()
         if ( Keys[keytypes].check_collected_keys == true && Keys[keytypes].MakeSureItRunOnce == false)
         {
             Keys[keytypes].MakeSureItRunOnce = true;
+            getting_the_state(state);
             state = GateAnimation;
             getcolorFromGate(colorforGateandKeys[keytypes]);
             displayAnimationofOpenAndClose();

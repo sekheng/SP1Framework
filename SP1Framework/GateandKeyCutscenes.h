@@ -21,4 +21,6 @@ void displayAnimationofOpenAndClose();
 
 void getcolorFromGate(WORD GateColor);
 
+void getting_the_state(int Get_State);
+
 #endif // _GATEANDKEYCUTSCENES_H

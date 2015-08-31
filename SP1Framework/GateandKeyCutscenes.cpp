@@ -2,6 +2,7 @@
 
 extern Console console;
 extern startscreen state;
+int getting_state_num;
 
 char *gatescenes[30];
 char *openGateScenes[30];
@@ -80,9 +81,8 @@ void displayOpenCutscenes(WORD ColorForGate)
 
 void displayAnimationofOpenAndClose()
 {
-   //WORD getcolorFromGate(WORD GateColor);
    if ( Animate > timeforAnimation) {
-       state = Start;
+       state = static_cast<startscreen>(getting_state_num);
        Animate = 0;
    }
    else if ( (Animate + 5) <= timeforAnimation)
@@ -101,4 +101,9 @@ void displayAnimationofOpenAndClose()
 void getcolorFromGate(WORD GateColor)
 {
     ColorForTheGate = GateColor;
+}
+
+void getting_the_state(int Get_State)
+{
+    getting_state_num = Get_State;
 }
