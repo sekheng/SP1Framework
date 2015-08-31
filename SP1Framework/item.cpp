@@ -17,6 +17,7 @@ extern int check_no_of_gates;
 extern bool onPlate;
 int how_Many_keys_types = 0;
 int check_numKeys_arr[MAX_ITEMS] = {0};
+int check_numGates_arr[MAX_ITEMS] = {0};
 
 char *NoItem;
 stringstream sos;
@@ -127,8 +128,10 @@ void display_keys()
 
 void gate_location( int GateY, int GateX, int GateType)
 {
-    Gates[GateType].KeysLocation[check_no_of_gates].Y = GateY;
-    Gates[GateType].KeysLocation[check_no_of_gates].X = GateX;
+    int numGates = check_numGates_arr[GateType];
+    --numGates;
+    Gates[GateType].KeysLocation[numGates].Y = GateY;
+    Gates[GateType].KeysLocation[numGates].X = GateX;
 }
 
 void display_gate()
@@ -136,7 +139,7 @@ void display_gate()
     for (int gatetype = 0; gatetype < how_Many_keys_types; ++gatetype)
     {
         if ( Keys[gatetype].check_collected_keys != true) {
-            for ( int i = 0; i < check_no_of_gates; ++i)
+            for ( int i = 0; i < Gates[gatetype].num_of_Keys_ineachType ; ++i)
             {
                 WORD colour = colorforGateandKeys[gatetype];
                 console.writeToBuffer(Gates[gatetype].KeysLocation[i] , "G", colour);
@@ -189,14 +192,14 @@ void update_gates()
 	{
 		if (Keys[gatetype].check_collected_keys == true)
 		{
-			for (int j = 0; j < check_no_of_gates; ++j)
+			for (int j = 0; j < Gates[gatetype].num_of_Keys_ineachType; ++j)
 			{
 				g_map[Gates[gatetype].KeysLocation[j].Y][Gates[gatetype].KeysLocation[j].X] = 0;
 			}
 		}
 		else
 		{
-			for (int i = 0; i < check_no_of_gates; ++i) {
+			for (int i = 0; i < Gates[gatetype].num_of_Keys_ineachType ; ++i) {
 				g_map[Gates[gatetype].KeysLocation[i].Y][Gates[gatetype].KeysLocation[i].X] = 1;
 			}
 		}
@@ -208,6 +211,7 @@ void restart_keys_and_gates()
     for ( int i = 0; i < how_Many_keys_types; ++i)
     {
         check_numKeys_arr[i] = 0;
+        check_numGates_arr[i] = 0;
     }
     how_Many_keys_types = 0;
     check_no_of_keys = 0;
@@ -233,4 +237,10 @@ void populate_keyArr( int KeyType)
 {
     ++check_numKeys_arr[KeyType];
     Keys[KeyType].num_of_Keys_ineachType = check_numKeys_arr[KeyType];
+}
+
+void populate_gateArr( int GateType)
+{
+    ++check_numGates_arr[GateType];
+    Gates[GateType].num_of_Keys_ineachType = check_numGates_arr[GateType];
 }
