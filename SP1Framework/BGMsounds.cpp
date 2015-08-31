@@ -68,7 +68,7 @@ void removingEngine()   //This is to remove the unncessary memory after exiting 
 
 void PlayingBeingChased()
 {
-    if ( beingChasedSnd)
+    if ( engine->isCurrentlyPlaying(beingChased) == 0 )
     {
         beingChasedSnd = 
             engine->play2D(beingChased, false, false, true);
@@ -91,4 +91,6 @@ void setAllSoundToPause()
 void pauseTheChasingSound()
 {
     beingChasedSnd->stop();
+    //beingChasedSnd->drop();
+    //beingChasedSnd->isSetPaused();
 }
