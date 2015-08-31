@@ -2,6 +2,7 @@
 #define _BGMSOUNDS_H
 
 #include "game.h"
+#include "monster.h"
 #include <string>
 
 using std::string;
@@ -11,8 +12,9 @@ void playSoundEvent();
 void changesSoundEvent();
 bool changesGameState(bool check_Game_State);
 void removingEngine();
-void PlayingThemeSong();
 void PlayingBeingChased();
 void ShotByCannon();
+void setAllSoundToPause();
+void pauseTheChasingSound();
 
 #endif // _BGMSOUNDS_H

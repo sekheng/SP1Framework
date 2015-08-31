@@ -1,4 +1,5 @@
 #include "monster.h"
+#include "BGMsounds.h"
 extern Console console;
 extern COORD charLocation;
 extern size_t g_map[200][200];
@@ -59,27 +60,30 @@ void crazyMonUpdate(int z, int y)
 						&& g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)
 					{
 						aiCoordinate[no].X--;
+                        PlayingBeingChased();
 					}
 					if(aiCoordinate[no].Y > charLocation.Y 
 						&& g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)
 					{
 						aiCoordinate[no].Y--;
+                        PlayingBeingChased();
 					}
 					if(aiCoordinate[no].Y < charLocation.Y 
 						&& g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)
 					{
 						aiCoordinate[no].Y++;
+                        PlayingBeingChased();
 					}
 					if(aiCoordinate[no].X < charLocation.X 
 						&& g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)
 					{
 						aiCoordinate[no].X++;
+                        PlayingBeingChased();
 					}
-				
 				}
 				else
 				{
-				
+				    pauseTheChasingSound();
 					if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 					{
 						aiCoordinate[no].X++;

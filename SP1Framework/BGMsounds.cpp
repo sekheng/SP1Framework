@@ -7,6 +7,13 @@ ISoundSource* gotExploded;
 extern startscreen state;
 bool playitOnce = true; //This is to ensure that the music will be played once.
                         //Try removing this condition and it will be laggy.
+ISound *beingChasedSnd;
+ISound *gotShot;
+ISound *alwaysPlaying;
+
+extern COORD aiCoordinate[MAX_SPACE];
+extern COORD monCoordinate[MAX_SPACE];
+
 const string SoundName[] =
 {
     "../irrKlang-1.5.0/media/Dear,_Human.mp3",
@@ -23,23 +30,24 @@ void initBGMsounds()
         engine->addSoundSourceFromFile( SoundName[1].c_str() );
     gotExploded =
         engine->addSoundSourceFromFile( SoundName[2].c_str() );
+    alwaysPlaying = 
+        engine->play2D(PlayThemeSong, true, false, true);
+    alwaysPlaying->setVolume(0.7f);
+    beingChasedSnd = 
+        engine->play2D( beingChased, false, true, true);
+    gotShot = 
+        engine->play2D( gotExploded, false, true, true);
 }
 
 void playSoundEvent()
 {
-    if ( state == menu && playitOnce == true)   // When player is at the main menu
+    if ( state != menu )   // When player is at the main menu
     {                                           // Theme song will be played.
-        playitOnce = false;
-        engine->play2D(PlayThemeSong, false, false);
+        alwaysPlaying->setVolume(0.1f);
     }
-    //else 
-    //{
-    //    engine->setAllSoundsPaused(true);
-    //}
-    if ( state == Start && playitOnce == true) // Another song will be played when the player start game
+    else
     {
-        playitOnce = false;
-        engine->play2D(beingChased, false, false);
+        alwaysPlaying->setVolume(0.7f);
     }
 }
 
@@ -58,33 +66,29 @@ void removingEngine()   //This is to remove the unncessary memory after exiting 
     engine->drop();
 }
 
-void PlayingThemeSong()
-{
-    if ( state == menu && playitOnce == true )
-    {
-        playitOnce = false;
-        engine->play2D(PlayThemeSong, true);
-    }
-    else
-    {
-        engine->play2D(PlayThemeSong, false, true);
-    }
-}
-
 void PlayingBeingChased()
 {
-    if ( (state == Start || state == LevelCustom) && playitOnce == true )
+    if ( beingChasedSnd)
     {
-        playitOnce = false;
-        engine->play2D(beingChased, true);
-    }
-    else
-    {
-         engine->play2D(beingChased, false, true);
+        beingChasedSnd = 
+            engine->play2D(beingChased, false, false, true);
+        beingChasedSnd->setVolume(1);
     }
 }
 
 void ShotByCannon()
 {
-    engine->play2D( gotExploded);
+    gotShot = 
+        engine->play2D(gotExploded, false, false, true);
+    gotShot->setVolume(1);
+}
+
+void setAllSoundToPause()
+{
+    engine->setAllSoundsPaused();
+}
+
+void pauseTheChasingSound()
+{
+    beingChasedSnd->stop();
 }
