@@ -86,6 +86,7 @@ void convert(int &a, int b, int c)
             case 'G': x = 0 ; break;
             case 'B': x = 1; break;
         }        
+        populate_gateArr(x);
 		gate_location(c, b, x);
         ++check_no_of_gates;
     }
