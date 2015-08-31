@@ -3,15 +3,15 @@
 ISoundEngine* engine;
 ISoundSource* PlayThemeSong;
 ISoundSource* beingChased;
+ISoundSource* gotExploded;
 extern startscreen state;
 bool playitOnce = true; //This is to ensure that the music will be played once.
                         //Try removing this condition and it will be laggy.
-//ISound *snd;
-//ISound *snd2;
 const string SoundName[] =
 {
     "../irrKlang-1.5.0/media/Dear,_Human.mp3",
-    "../irrKlang-1.5.0/media/BeingChased.mp3"
+    "../irrKlang-1.5.0/media/BeingChased.mp3",
+    "../irrKlang-1.5.0/media/explosion.wav"
 };  
 
 void initBGMsounds()
@@ -21,35 +21,25 @@ void initBGMsounds()
         engine->addSoundSourceFromFile( SoundName[0].c_str() );
     beingChased =
         engine->addSoundSourceFromFile( SoundName[1].c_str() );
-    //snd = engine->play2D(PlayThemeSong, false, true);
-    //snd2 = engine->play2D(beingChased, false, true);
+    gotExploded =
+        engine->addSoundSourceFromFile( SoundName[2].c_str() );
 }
 
 void playSoundEvent()
 {
     if ( state == menu && playitOnce == true)   // When player is at the main menu
     {                                           // Theme song will be played.
-        /*if ( engine->isCurrentlyPlaying( SoundName[1].c_str() ) )
-        {
-            engine->play2D(beingChased,false,true);
-        }*/
         playitOnce = false;
-        /*snd =*/ engine->play2D(PlayThemeSong, false, false);
-        //snd2 = engine->play2D(beingChased, false, true);
+        engine->play2D(PlayThemeSong, false, false);
     }
-    else 
-    {
-
-    }
+    //else 
+    //{
+    //    engine->setAllSoundsPaused(true);
+    //}
     if ( state == Start && playitOnce == true) // Another song will be played when the player start game
     {
-        //if ( engine->isCurrentlyPlaying( SoundName[0].c_str() ) )
-        //{
-        //    engine->play2D( PlayThemeSong,false,true );
-        //}
         playitOnce = false;
-        /*snd2 = */engine->play2D(beingChased, false, false);
-        //snd = engine->play2D(PlayThemeSong, false, true);
+        engine->play2D(beingChased, false, false);
     }
 }
 
@@ -83,7 +73,7 @@ void PlayingThemeSong()
 
 void PlayingBeingChased()
 {
-    if ( (state == Start ||state == LevelCustom) && playitOnce == true )
+    if ( (state == Start || state == LevelCustom) && playitOnce == true )
     {
         playitOnce = false;
         engine->play2D(beingChased, true);
@@ -92,4 +82,9 @@ void PlayingBeingChased()
     {
          engine->play2D(beingChased, false, true);
     }
+}
+
+void ShotByCannon()
+{
+    engine->play2D( gotExploded);
 }

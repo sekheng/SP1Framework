@@ -13,5 +13,6 @@ bool changesGameState(bool check_Game_State);
 void removingEngine();
 void PlayingThemeSong();
 void PlayingBeingChased();
+void ShotByCannon();
 
 #endif // _BGMSOUNDS_H
