@@ -37,7 +37,11 @@ void playSoundEvent()
         /*snd =*/ engine->play2D(PlayThemeSong, false, false);
         //snd2 = engine->play2D(beingChased, false, true);
     }
-    else if ( state == Start && playitOnce == true) // Another song will be played when the player start game
+    else 
+    {
+
+    }
+    if ( state == Start && playitOnce == true) // Another song will be played when the player start game
     {
         //if ( engine->isCurrentlyPlaying( SoundName[0].c_str() ) )
         //{

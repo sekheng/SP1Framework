@@ -38,5 +38,6 @@ void update_gates();
 void restart_keys_and_gates();
 void restart_level_forKeysAndGates();
 void populate_keyArr( int KeyType);
+void populate_gateArr( int GateType);
 
 #endif // _ITEM_H
