@@ -101,6 +101,7 @@ void convert(int &a, int b, int c)
 	}
 	if (a == 'H')
 	{
+		a = 0;
 		setHatch(b, c, hno);
 		hno++;
 	}
