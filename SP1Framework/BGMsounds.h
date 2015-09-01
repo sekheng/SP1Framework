@@ -17,6 +17,7 @@ void ShotByCannon();
 void setAllSoundToPause();
 void pauseTheChasingSound();
 void pauseCannonSnd();
+void pauseHatchSnd();
 void playHatchSound();
 void playGateSound();
 

@@ -153,6 +153,10 @@ void followMonUpdate(int z,int y, double w)
 			{
 				PlayingBeingChased();
 			}
+            //else
+            //{
+            //    pauseTheChasingSound();
+            //}
 			if(monCoordinate[no].X > charLocation.X 
 				&& g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] != 1)
 			{

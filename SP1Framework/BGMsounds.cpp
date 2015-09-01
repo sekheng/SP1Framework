@@ -7,10 +7,15 @@ ISoundSource* gotExploded;
 ISoundSource* gateOpening;
 ISoundSource* hatchOpening;
 extern startscreen state;
-bool playitOnce = true; //This is to ensure that the music will be played once.
-                        //Try removing this condition and it will be laggy.
+// This is to ensure the opening of the hatch sound
+// Only played once
+bool playitOnce = true; 
+// This is to ensure that thr is at least one monster chasing.
+bool monster_is_already_chasing = true;
+
 ISound *beingChasedSnd;
 ISound *gotShotsnd;
+ISound *hatchSnd;
 ISound *alwaysPlaying;
 
 extern COORD aiCoordinate[MAX_SPACE];
@@ -44,6 +49,7 @@ void initBGMsounds()
     alwaysPlaying->setVolume(0.7f);
     beingChasedSnd = 0;
     gotShotsnd = 0;
+    hatchSnd = 0;
 }
 
 void playSoundEvent()
@@ -75,7 +81,7 @@ void removingEngine()   //This is to remove the unncessary memory after exiting 
 
 void PlayingBeingChased()
 {
-    if ( engine->isCurrentlyPlaying(beingChased))
+    if ( engine->isCurrentlyPlaying(beingChased) || monster_is_already_chasing == false)
         return;
 
         beingChasedSnd = 
@@ -95,7 +101,9 @@ void ShotByCannon()
 
 void setAllSoundToPause()
 {
-    engine->setAllSoundsPaused();
+    pauseTheChasingSound();
+    pauseCannonSnd();
+    pauseHatchSnd();
 }
 
 void pauseTheChasingSound()
@@ -112,17 +120,26 @@ void pauseCannonSnd()
 
 void playHatchSound()
 {
-    if ( (engine->isCurrentlyPlaying(hatchOpening) ) || playitOnce == false)
+    if ( ( engine->isCurrentlyPlaying(hatchOpening) ) || playitOnce == false )
         return;
 
     playitOnce = false;
-    engine->play2D(hatchOpening);
+    hatchSnd = 
+        engine->play2D(hatchOpening, false, false, true);
 }
 
 void playGateSound()
 {
-    if ( engine->isCurrentlyPlaying(gateOpening) )
+    if ( engine->isCurrentlyPlaying(gateOpening))
         return;
 
     engine->play2D( gateOpening);
+}
+
+void pauseHatchSnd()
+{
+    if ( hatchSnd )
+    {
+        hatchSnd->stop();
+    }
 }
