@@ -195,7 +195,7 @@ void render()
     renderMap();        // renders the map to the buffer first
     renderCharacter();  // renders the character into the buffer
     renderFramerate();  // renders debug information, frame rate, elapsed time, etc
-    renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
+    renderToScreen();   // dump the contents of the buffer to the screen, oneBS frame worth of game
 }
 
 void moveCharacter(double x)
