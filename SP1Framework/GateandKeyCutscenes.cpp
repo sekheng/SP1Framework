@@ -22,7 +22,7 @@ void initGateCutscenes()
     ifstream cutscenes;
     cutscenes.open("Display_ClosedGate2.txt");
     string scenesStr;
-    int cS = 80;
+    int cS = 81;
     while ( !cutscenes.eof() && getline(cutscenes, scenesStr) )
     {
         gatescenes[gaterow] = new char[cS];
