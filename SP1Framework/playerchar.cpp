@@ -282,15 +282,15 @@ void PlayState()
 		{
 			charLocation.Y++;
 		}
-		if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
+		else if (keyPressed[K_LEFT] & keyPressed[K_A] && charLocation.X && g_map[charLocation.Y][charLocation.X + 1] != 1)
 		{
 			charLocation.X++;
 		}
-		if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
+		else if (keyPressed[K_DOWN] & keyPressed[K_S] && charLocation.Y - 1 && g_map[charLocation.Y][charLocation.X] != 1)
 		{
 			charLocation.Y--;
 		}
-		if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
+		else if (keyPressed[K_RIGHT] & keyPressed[K_D] && charLocation.X - 1 && g_map[charLocation.Y][charLocation.X - 1] != 1)
 		{
 			charLocation.X--;
 		}
@@ -299,15 +299,15 @@ void PlayState()
 		{
 			charLocation.Y--;
 		}
-		if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1) //left
+		else if (keyPressed[K_LEFT] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1) //left
 		{
 			charLocation.X--;
 		}
-		if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1) //down
+		else if (keyPressed[K_DOWN] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1) //down
 		{
 			charLocation.Y++;
 		}
-		if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1) //right
+		else if (keyPressed[K_RIGHT] && g_map[charLocation.Y][charLocation.X + 1] != 1) //right
 		{
 			charLocation.X++;
 		}
@@ -316,15 +316,15 @@ void PlayState()
 		{
 			charLocation.Y--;
 		}
-		if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
+		else if (keyPressed[K_A] && charLocation.X > 0 && g_map[charLocation.Y][charLocation.X - 1] != 1)  //left
 		{
 			charLocation.X--;
 		}
-		if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
+		else if (keyPressed[K_S] && charLocation.Y < console.getConsoleSize().Y - 1 && g_map[charLocation.Y + 1][charLocation.X] != 1)  //down
 		{
 			charLocation.Y++;
 		}
-		if (keyPressed[K_D] && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
+		else if (keyPressed[K_D] && g_map[charLocation.Y][charLocation.X + 1] != 1)   //right
 		{
 			charLocation.X++;
 		}
