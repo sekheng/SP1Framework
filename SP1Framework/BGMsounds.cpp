@@ -11,7 +11,7 @@ extern startscreen state;
 // Only played once
 bool playitOnce = true; 
 // This is to ensure that thr is at least one monster chasing.
-bool monster_is_already_chasing = true;
+bool monster_is_already_chasing = false;
 
 ISound *beingChasedSnd;
 ISound *gotShotsnd;
@@ -20,6 +20,8 @@ ISound *alwaysPlaying;
 
 extern COORD aiCoordinate[MAX_SPACE];
 extern COORD monCoordinate[MAX_SPACE];
+extern int smo;
+extern int mno;
 
 const string SoundName[] =
 {
@@ -81,9 +83,10 @@ void removingEngine()   //This is to remove the unncessary memory after exiting 
 
 void PlayingBeingChased()
 {
-    if ( engine->isCurrentlyPlaying(beingChased) || monster_is_already_chasing == false)
+    if ( engine->isCurrentlyPlaying(beingChased) /*|| monster_is_already_chasing == true*/)
         return;
 
+        //monster_is_already_chasing = true;
         beingChasedSnd = 
             engine->play2D(beingChased, false, false, true);
         beingChasedSnd->setVolume(1);
@@ -142,4 +145,9 @@ void pauseHatchSnd()
     {
         hatchSnd->stop();
     }
+}
+
+bool check_is_there_monster_chasing()
+{
+    return monster_is_already_chasing;
 }

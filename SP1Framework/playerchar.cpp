@@ -146,6 +146,7 @@ void characterEnd(int y, int x)//temp y , temp x
 	string level;
 	if (charLocation.X == x && charLocation.Y == y)
 	{
+        setAllSoundToPause();
         if ( levelno == 5)
         {
             state = End;
@@ -163,6 +164,7 @@ void characterCustomEnd(int tempEndY, int tempEndX)
 {
 	if (charLocation.X == tempEndX && charLocation.Y == tempEndY)
 	{
+        setAllSoundToPause();
 		endcounter++;
 		state = End;
 	}
@@ -225,6 +227,7 @@ void characterInteraction()
 
 void menustate()
 {
+    setAllSoundToPause();
 	if (keyPressed[K_UP] && startmenuLocation.Y > 21)
 	{
 		startmenuLocation.Y--;
@@ -368,6 +371,7 @@ void PauseState()
         }
         else if ( keyPressed[K_ENTER] && pauseLocation.Y == 16 )
         {
+            setAllSoundToPause();
             restart_level_forKeysAndGates();
             restartBlockPosition(bno);
 			restartCrazyMonLocation(mno);

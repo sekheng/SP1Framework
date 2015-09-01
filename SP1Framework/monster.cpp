@@ -76,9 +76,15 @@ void crazyMonUpdate(int z, int y)
 					{
 						aiCoordinate[no].X++;
 					}
+                    
 				}
 				else
 				{
+                    pauseTheChasingSound();
+                    //if ( check_is_there_monster_chasing() == true)
+                    //{
+
+                    //}
 					if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 					{
 						aiCoordinate[no].X++;
@@ -153,10 +159,6 @@ void followMonUpdate(int z,int y, double w)
 			{
 				PlayingBeingChased();
 			}
-            //else
-            //{
-            //    pauseTheChasingSound();
-            //}
 			if(monCoordinate[no].X > charLocation.X 
 				&& g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] != 1)
 			{
