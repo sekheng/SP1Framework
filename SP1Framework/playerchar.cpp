@@ -175,6 +175,7 @@ void characterInteraction()
 	{
 		if (charLocation.X == Right.directions[i].X && charLocation.Y == Right.directions[i].Y)
 		{
+            ShotByCannon();
 			state = GameOver;
 		}
 	}
@@ -182,6 +183,7 @@ void characterInteraction()
 	{
 		if (charLocation.X == Left.directions[i].X && charLocation.Y == Left.directions[i].Y)
 		{
+            ShotByCannon();
 			state = GameOver;
 		}
 	}
@@ -189,6 +191,7 @@ void characterInteraction()
 	{
 		if (charLocation.X == Up.directions[i].X && charLocation.Y == Up.directions[i].Y)
 		{
+            ShotByCannon();
 			state = GameOver;
 		}
 	}
@@ -196,6 +199,7 @@ void characterInteraction()
 	{
 		if (charLocation.X == Down.directions[i].X && charLocation.Y == Down.directions[i].Y)
 		{
+            ShotByCannon();
 			state = GameOver;
 		}
 	}
@@ -231,7 +235,6 @@ void menustate()
 	}
 	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 21)
 	{
-        changesSoundEvent();
 		state = Start;
 	}
 	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 22)
@@ -396,6 +399,7 @@ void PauseState()
 
 void GameOverState()
 {
+    pauseTheChasingSound();
 		if (keyPressed[K_UP] && gameoverptr.Y > 8)
 		{
 			gameoverptr.Y--;
@@ -406,6 +410,7 @@ void GameOverState()
 		}
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
         {
+            pauseCannonSnd();
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
 			restartCrazyMonLocation(mno);
@@ -422,6 +427,7 @@ void GameOverState()
         }
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
         {
+            pauseCannonSnd();
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
 			restartCrazyMonLocation(mno);

@@ -3,15 +3,22 @@
 ISoundEngine* engine;
 ISoundSource* PlayThemeSong;
 ISoundSource* beingChased;
+ISoundSource* gotExploded;
 extern startscreen state;
 bool playitOnce = true; //This is to ensure that the music will be played once.
                         //Try removing this condition and it will be laggy.
-//ISound *snd;
-//ISound *snd2;
+ISound *beingChasedSnd;
+ISound *gotShotsnd;
+ISound *alwaysPlaying;
+
+extern COORD aiCoordinate[MAX_SPACE];
+extern COORD monCoordinate[MAX_SPACE];
+
 const string SoundName[] =
 {
     "../irrKlang-1.5.0/media/Dear,_Human.mp3",
-    "../irrKlang-1.5.0/media/BeingChased.mp3"
+    "../irrKlang-1.5.0/media/BeingChased.ogg",
+    "../irrKlang-1.5.0/media/explosion.wav"
 };  
 
 void initBGMsounds()
@@ -21,35 +28,25 @@ void initBGMsounds()
         engine->addSoundSourceFromFile( SoundName[0].c_str() );
     beingChased =
         engine->addSoundSourceFromFile( SoundName[1].c_str() );
-    //snd = engine->play2D(PlayThemeSong, false, true);
-    //snd2 = engine->play2D(beingChased, false, true);
+    gotExploded =
+        engine->addSoundSourceFromFile( SoundName[2].c_str() );
+    // The following statements is to ensure that ISound pointer can be used
+    alwaysPlaying = 
+        engine->play2D(PlayThemeSong, true, false, true);
+    alwaysPlaying->setVolume(0.7f);
+    beingChasedSnd = 0;
+    gotShotsnd = 0;
 }
 
 void playSoundEvent()
 {
-    if ( state == menu && playitOnce == true)   // When player is at the main menu
+    if ( state != menu )   // When player is at the main menu
     {                                           // Theme song will be played.
-        /*if ( engine->isCurrentlyPlaying( SoundName[1].c_str() ) )
-        {
-            engine->play2D(beingChased,false,true);
-        }*/
-        playitOnce = false;
-        /*snd =*/ engine->play2D(PlayThemeSong, false, false);
-        //snd2 = engine->play2D(beingChased, false, true);
+        alwaysPlaying->setVolume(0.1f);
     }
-    else 
+    else
     {
-
-    }
-    if ( state == Start && playitOnce == true) // Another song will be played when the player start game
-    {
-        //if ( engine->isCurrentlyPlaying( SoundName[0].c_str() ) )
-        //{
-        //    engine->play2D( PlayThemeSong,false,true );
-        //}
-        playitOnce = false;
-        /*snd2 = */engine->play2D(beingChased, false, false);
-        //snd = engine->play2D(PlayThemeSong, false, true);
+        alwaysPlaying->setVolume(0.7f);
     }
 }
 
@@ -68,28 +65,39 @@ void removingEngine()   //This is to remove the unncessary memory after exiting 
     engine->drop();
 }
 
-void PlayingThemeSong()
-{
-    if ( state == menu && playitOnce == true )
-    {
-        playitOnce = false;
-        engine->play2D(PlayThemeSong, true);
-    }
-    else
-    {
-        engine->play2D(PlayThemeSong, false, true);
-    }
-}
-
 void PlayingBeingChased()
 {
-    if ( (state == Start ||state == LevelCustom) && playitOnce == true )
-    {
-        playitOnce = false;
-        engine->play2D(beingChased, true);
-    }
-    else
-    {
-         engine->play2D(beingChased, false, true);
-    }
+    if ( engine->isCurrentlyPlaying(beingChased))
+        return;
+
+        beingChasedSnd = 
+            engine->play2D(beingChased, false, false, true);
+        beingChasedSnd->setVolume(1);
+}
+
+void ShotByCannon()
+{
+    if ( engine->isCurrentlyPlaying(gotExploded) )
+        return;
+
+    gotShotsnd = 
+        engine->play2D(gotExploded, false, false, true);
+    gotShotsnd->setVolume(1);
+}
+
+void setAllSoundToPause()
+{
+    engine->setAllSoundsPaused();
+}
+
+void pauseTheChasingSound()
+{
+    if ( beingChasedSnd )
+        beingChasedSnd->stop();
+}
+
+void pauseCannonSnd()
+{
+    if ( gotShotsnd )
+        gotShotsnd->stop();
 }
