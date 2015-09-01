@@ -4,6 +4,8 @@ ISoundEngine* engine;
 ISoundSource* PlayThemeSong;
 ISoundSource* beingChased;
 ISoundSource* gotExploded;
+ISoundSource* gateOpening;
+ISoundSource* hatchOpening;
 extern startscreen state;
 bool playitOnce = true; //This is to ensure that the music will be played once.
                         //Try removing this condition and it will be laggy.
@@ -18,7 +20,9 @@ const string SoundName[] =
 {
     "../irrKlang-1.5.0/media/Dear,_Human.mp3",
     "../irrKlang-1.5.0/media/BeingChased.ogg",
-    "../irrKlang-1.5.0/media/explosion.wav"
+    "../irrKlang-1.5.0/media/explosion.wav",
+    "../irrKlang-1.5.0/media/gate_opened.wav",
+    "../irrKlang-1.5.0/media/hatch_opened.wav"
 };  
 
 void initBGMsounds()
@@ -30,6 +34,10 @@ void initBGMsounds()
         engine->addSoundSourceFromFile( SoundName[1].c_str() );
     gotExploded =
         engine->addSoundSourceFromFile( SoundName[2].c_str() );
+    gateOpening =
+        engine->addSoundSourceFromFile( SoundName[3].c_str() );
+    hatchOpening =
+        engine->addSoundSourceFromFile( SoundName[4].c_str() );
     // The following statements is to ensure that ISound pointer can be used
     alwaysPlaying = 
         engine->play2D(PlayThemeSong, true, false, true);
@@ -100,4 +108,14 @@ void pauseCannonSnd()
 {
     if ( gotShotsnd )
         gotShotsnd->stop();
+}
+
+void playHatchSound()
+{
+
+}
+
+void playGateSound()
+{
+
 }
