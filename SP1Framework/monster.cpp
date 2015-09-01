@@ -148,7 +148,11 @@ void followMonUpdate(int z,int y, double w)
 				monCoordinate[no].X--;
 			}
 		}
-		
+			if(((((monCoordinate[no].X + 5) >= charLocation.X) &&(monCoordinate[no].X - 5) <= charLocation.X) 
+					&& ((monCoordinate[no].Y + 5) >= charLocation.Y) && (monCoordinate[no].Y - 5) <= charLocation.Y))
+			{
+				PlayingBeingChased();
+			}
 			if(monCoordinate[no].X > charLocation.X 
 				&& g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] != 1)
 			{
