@@ -406,7 +406,7 @@ void GameOverState()
 		}
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
         {
-            pauseCannonSnd();
+            setAllSoundToPause();
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
 			restartCrazyMonLocation(mno);
@@ -423,7 +423,7 @@ void GameOverState()
         }
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
         {
-            pauseCannonSnd();
+            setAllSoundToPause();
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
 			restartCrazyMonLocation(mno);
