@@ -243,7 +243,6 @@ void menustate()
 	}
 	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 23)
 	{
-        setAllSoundToPause();
 		state = LevelCustom;
 	}
 	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 24)
@@ -400,6 +399,7 @@ void PauseState()
 
 void GameOverState()
 {
+    pauseTheChasingSound();
 		if (keyPressed[K_UP] && gameoverptr.Y > 8)
 		{
 			gameoverptr.Y--;
@@ -410,6 +410,7 @@ void GameOverState()
 		}
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 8)
         {
+            pauseCannonSnd();
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
 			restartCrazyMonLocation(mno);
@@ -426,6 +427,7 @@ void GameOverState()
         }
         else if ( keyPressed[K_ENTER] && gameoverptr.Y == 9 )
         {
+            pauseCannonSnd();
             restartBlockPosition(bno);
             restart_level_forKeysAndGates();
 			restartCrazyMonLocation(mno);

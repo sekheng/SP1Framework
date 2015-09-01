@@ -16,5 +16,6 @@ void PlayingBeingChased();
 void ShotByCannon();
 void setAllSoundToPause();
 void pauseTheChasingSound();
+void pauseCannonSnd();
 
 #endif // _BGMSOUNDS_H
