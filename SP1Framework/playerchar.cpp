@@ -229,7 +229,7 @@ void menustate()
 	{
 		startmenuLocation.Y--;
 	}
-	else if (keyPressed[K_DOWN] && startmenuLocation.Y < 26)
+	else if (keyPressed[K_DOWN] && startmenuLocation.Y < 25)
 	{
 		startmenuLocation.Y++;
 	}
@@ -249,7 +249,7 @@ void menustate()
 	{
 		state = Help;
 	}
-	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 26)
+	else if (keyPressed[K_ENTER] && startmenuLocation.Y == 25)
 	{
 		state = Exit;
 	}
@@ -269,10 +269,6 @@ void menustate()
 	else if (startmenuLocation.Y == 24)
 	{
 		startmenuLocation.X = 8;
-	}
-	else if (startmenuLocation.Y == 25)
-	{
-		startmenuLocation.X = 11;
 	}
 	else
 	{

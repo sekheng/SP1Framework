@@ -63,7 +63,7 @@ bool changesGameState(bool check_Game_State)
     return playitOnce = true;
 }
 
-void changesSoundEvent()    // Whenever the player changes state, this function will be called
+void replayHatchSound()    // Whenever the player changes state, this function will be called
 {                           // currently only works when state == Start
     changesGameState(playitOnce);
 }
@@ -112,10 +112,17 @@ void pauseCannonSnd()
 
 void playHatchSound()
 {
+    if ( (engine->isCurrentlyPlaying(hatchOpening) ) || playitOnce == false)
+        return;
 
+    playitOnce = false;
+    engine->play2D(hatchOpening);
 }
 
 void playGateSound()
 {
+    if ( engine->isCurrentlyPlaying(gateOpening) )
+        return;
 
+    engine->play2D( gateOpening);
 }

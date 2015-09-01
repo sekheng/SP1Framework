@@ -1,4 +1,5 @@
 #include "item.h"
+#include "BGMsounds.h"
 
 extern Console console;
 extern COORD charLocation;
@@ -177,6 +178,7 @@ void update_keys()
         }
         if ( Keys[keytypes].check_collected_keys == true && Keys[keytypes].MakeSureItRunOnce == false)
         {
+            playGateSound();
             Keys[keytypes].MakeSureItRunOnce = true;
             getting_the_state(state);
             state = GateAnimation;

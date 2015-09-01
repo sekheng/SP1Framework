@@ -9,7 +9,7 @@ using std::string;
 
 void initBGMsounds();
 void playSoundEvent();
-void changesSoundEvent();
+void replayHatchSound();
 bool changesGameState(bool check_Game_State);
 void removingEngine();
 void PlayingBeingChased();

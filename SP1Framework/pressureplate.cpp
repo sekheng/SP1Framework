@@ -1,4 +1,5 @@
 #include "pressureplate.h"
+#include "BGMsounds.h"
 
 extern Console console;
 extern COORD charLocation;
@@ -37,7 +38,7 @@ void updatePlate(int z)
 				onPlate = true;
 				break;
 			}
-			if (charLocation.X == plate.directions[i].X && charLocation.Y == plate.directions[i].Y)
+			else if (charLocation.X == plate.directions[i].X && charLocation.Y == plate.directions[i].Y)
 			{
 				onPlate = true;
 				break;
@@ -120,11 +121,13 @@ void updateHatch(int z)
 			{
 				if (onPlate == true || block.directions[a].X == plate.directions[p].X && block.directions[a].Y == plate.directions[p].Y)
 				{
+                    playHatchSound();
 					hatch.position[i].X = 1000;
 					hatch.position[i].Y = 1000;
 				}
 				else
 				{
+                    replayHatchSound();
 					resetHatch(hno);
 				}
 			}

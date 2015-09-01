@@ -8,14 +8,12 @@ char *strt = "(1) START";
 char *lvlcustomized = "(2) LEVEL CUSTOMIZATION";
 char *playcustom = "(3) PLAY CUSTOM LEVEL";
 char *hlp = "(4) HELP";
-char *option = "(5) OPTIONS";
-char *ext = "(6) EXIT";
+char *ext = "(5) EXIT";
 // For Menu Display's coordinates
 COORD st;
 COORD lvled;
 COORD custom;
 COORD hp;
-COORD opt;
 COORD et;
 extern Console console;
 COORD startmenuLocation;
@@ -108,10 +106,8 @@ void menuPosition()
     custom.Y = 23;
     hp.X = 0;
     hp.Y = 24;
-    opt.X = 0;
-    opt.Y = 25;
     et.X = 0;
-    et.Y = 26;
+    et.Y = 25;
     startmenuLocation.X = 23;
     startmenuLocation.Y = 21;
 }
@@ -136,6 +132,5 @@ void displayMenu() {
     console.writeToBuffer(lvled, lvlcustomized, 0x0F);
     console.writeToBuffer(custom, playcustom, 0x0F);
     console.writeToBuffer(hp, hlp, 0x0F);
-    console.writeToBuffer(opt, option, 0x0F);
     console.writeToBuffer(et, ext, 0x0F);
 }
