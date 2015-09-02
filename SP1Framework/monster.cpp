@@ -13,6 +13,10 @@ COORD monCoordinate[MAX_SPACE];
 Monster crazy;
 Monster follow;
 
+bool monster_is_chasing_player = false;
+extern int mno;
+extern int sno;
+
 void crazyMon(int i)
 {
 	for(int b = 0; b < i; ++b)
@@ -22,6 +26,7 @@ void crazyMon(int i)
 }
 void crazyMonUpdate(int z, int y)
 {
+    monster_is_chasing_player = false;
 		for (int no = 0; no < z;no++)
 		{ 
 			for(int a = 0; a < y; a++)
@@ -55,6 +60,7 @@ void crazyMonUpdate(int z, int y)
 				if(((((aiCoordinate[no].X + 3) >= charLocation.X) &&(aiCoordinate[no].X - 3) <= charLocation.X) 
 					&& ((aiCoordinate[no].Y +3) >= charLocation.Y) && (aiCoordinate[no].Y - 3) <= charLocation.Y))
 				{
+                    monster_is_chasing_player = true;
                     PlayingBeingChased();
 					if(aiCoordinate[no].X > charLocation.X 
 						&& g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)
@@ -80,11 +86,10 @@ void crazyMonUpdate(int z, int y)
 				}
 				else
 				{
-                    pauseTheChasingSound();
-                    //if ( check_is_there_monster_chasing() == true)
-                    //{
-
-                    //}
+                    if ( no == (mno - 1) && monster_is_chasing_player == false && (sno == 0) )
+                    {
+                        pauseTheChasingSound();
+                    }
 					if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 					{
 						aiCoordinate[no].X++;
@@ -157,8 +162,13 @@ void followMonUpdate(int z,int y, double w)
 			if(((((monCoordinate[no].X + 5) >= charLocation.X) &&(monCoordinate[no].X - 5) <= charLocation.X) 
 					&& ((monCoordinate[no].Y + 5) >= charLocation.Y) && (monCoordinate[no].Y - 5) <= charLocation.Y))
 			{
+                monster_is_chasing_player = true;
 				PlayingBeingChased();
 			}
+            else if ( no == (sno - 1) && monster_is_chasing_player == false)
+            {
+                pauseTheChasingSound();
+            }
 			if(monCoordinate[no].X > charLocation.X 
 				&& g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] != 1)
 			{

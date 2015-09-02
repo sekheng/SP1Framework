@@ -18,11 +18,6 @@ ISound *gotShotsnd;
 ISound *hatchSnd;
 ISound *alwaysPlaying;
 
-extern COORD aiCoordinate[MAX_SPACE];
-extern COORD monCoordinate[MAX_SPACE];
-extern int smo;
-extern int mno;
-
 const string SoundName[] =
 {
     "../irrKlang-1.5.0/media/Dear,_Human.mp3",
@@ -83,10 +78,9 @@ void removingEngine()   //This is to remove the unncessary memory after exiting 
 
 void PlayingBeingChased()
 {
-    if ( engine->isCurrentlyPlaying(beingChased) /*|| monster_is_already_chasing == true*/)
+    if ( engine->isCurrentlyPlaying(beingChased))
         return;
 
-        //monster_is_already_chasing = true;
         beingChasedSnd = 
             engine->play2D(beingChased, false, false, true);
         beingChasedSnd->setVolume(1);
