@@ -58,6 +58,7 @@ void convert(int &a, int b, int c)
 	{
 		crazyMonSpawn(b,c,mno);
 		mno++;
+		a = 0;
 	}
 	if (a == 35) //box '#'
 	{
@@ -94,6 +95,7 @@ void convert(int &a, int b, int c)
 	{
 		followMonSpawn(b, c, sno);
 		sno++;
+		a = 0;
 	}
 	if (a == 'P')
 	{
