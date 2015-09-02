@@ -90,7 +90,7 @@ void crazyMonUpdate(int z, int y)
                     {
                         pauseTheChasingSound();
                     }
-					else if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
+					if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 					{
 						aiCoordinate[no].X++;
 					}
