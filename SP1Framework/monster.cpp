@@ -37,19 +37,19 @@ void crazyMonUpdate(int z, int y)
 				{
 					aiCoordinate[no].X++;
 				}
-				if((aiCoordinate[no].Y - 1 == block.directions[a].Y 
+				else if((aiCoordinate[no].Y - 1 == block.directions[a].Y 
 						&& aiCoordinate[no].X == block.directions[a].X)
 						&& g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)
 				{
 					aiCoordinate[no].Y++;
 				}
-				if((aiCoordinate[no].Y + 1 == block.directions[a].Y 
+				else if((aiCoordinate[no].Y + 1 == block.directions[a].Y 
 						&& aiCoordinate[no].X == block.directions[a].X)
 						&& g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)
 				{
 					aiCoordinate[no].Y--;
 				}
-				if((aiCoordinate[no].X + 1 == block.directions[a].X 
+				else if((aiCoordinate[no].X + 1 == block.directions[a].X 
 						&& aiCoordinate[no].Y == block.directions[a].Y)
 						&& g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)
 				{
@@ -67,17 +67,17 @@ void crazyMonUpdate(int z, int y)
 					{
 						aiCoordinate[no].X--;
 					}
-					if(aiCoordinate[no].Y > charLocation.Y 
+					else if(aiCoordinate[no].Y > charLocation.Y 
 						&& g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)
 					{
 						aiCoordinate[no].Y--;
 					}
-					if(aiCoordinate[no].Y < charLocation.Y 
+					else if(aiCoordinate[no].Y < charLocation.Y 
 						&& g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)
 					{
 						aiCoordinate[no].Y++;
 					}
-					if(aiCoordinate[no].X < charLocation.X 
+					else if(aiCoordinate[no].X < charLocation.X 
 						&& g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)
 					{
 						aiCoordinate[no].X++;
@@ -90,19 +90,19 @@ void crazyMonUpdate(int z, int y)
                     {
                         pauseTheChasingSound();
                     }
-					if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
+					else if( r[no] == 0 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X + 1] != 1)//right
 					{
 						aiCoordinate[no].X++;
 					}
-					if( r[no] == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//left
+					else if( r[no] == 1 && g_map[aiCoordinate[no].Y][aiCoordinate[no].X - 1] != 1)//left
 					{
 						aiCoordinate[no].X--;
 					}
-					if( r[no] == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)//up
+					else if( r[no] == 2 && g_map[aiCoordinate[no].Y - 1][aiCoordinate[no].X] != 1)//up
 					{
 						aiCoordinate[no].Y--;
 					}
-					if( r[no] == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)//down
+					else if( r[no] == 3 && g_map[aiCoordinate[no].Y + 1][aiCoordinate[no].X] != 1)//down
 					{
 						aiCoordinate[no].Y++;
 					}
@@ -140,19 +140,19 @@ void followMonUpdate(int z,int y, double w)
 			{
 				monCoordinate[no].X++;
 			}
-			if((monCoordinate[no].Y - 1 == block.directions[a].Y 
+			else if((monCoordinate[no].Y - 1 == block.directions[a].Y 
 					&& monCoordinate[no].X == block.directions[a].X)
 					&& g_map[monCoordinate[no].Y + 1][monCoordinate[no].X] != 1)
 			{
 				monCoordinate[no].Y++;
 			}
-			if((monCoordinate[no].Y + 1 == block.directions[a].Y 
+			else if((monCoordinate[no].Y + 1 == block.directions[a].Y 
 					&& monCoordinate[no].X == block.directions[a].X)
 					&& g_map[monCoordinate[no].Y - 1][monCoordinate[no].X] != 1)
 			{
 				monCoordinate[no].Y--;
 			}
-			if((monCoordinate[no].X + 1 == block.directions[a].X 
+			else if((monCoordinate[no].X + 1 == block.directions[a].X 
 					&& monCoordinate[no].Y == block.directions[a].Y)
 					&& g_map[monCoordinate[no].Y][monCoordinate[no].X - 1] != 1)
 			{
@@ -174,17 +174,17 @@ void followMonUpdate(int z,int y, double w)
 			{
 				monCoordinate[no].X--;
 			}
-			if(monCoordinate[no].Y > charLocation.Y 
+			else if(monCoordinate[no].Y > charLocation.Y 
 				&& g_map[monCoordinate[no].Y - 1][monCoordinate[no].X] != 1)
 			{
 				monCoordinate[no].Y--;
 			}
-			if(monCoordinate[no].Y < charLocation.Y 
+			else if(monCoordinate[no].Y < charLocation.Y 
 				&& g_map[monCoordinate[no].Y + 1][monCoordinate[no].X] != 1)
 			{
 				monCoordinate[no].Y++;
 			}
-			if(monCoordinate[no].X < charLocation.X 
+			else if(monCoordinate[no].X < charLocation.X 
 				&& g_map[monCoordinate[no].Y][monCoordinate[no].X + 1] != 1)
 			{
 				monCoordinate[no].X++;
