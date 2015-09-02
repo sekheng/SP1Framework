@@ -7,7 +7,7 @@ int helprows = 0;
 int helpcols = 0;
 
 char *helpPlayerReturn;
-char *Displayhelp2[10];
+char *Displayhelp2[15];
 int Displayhelp2row;
 COORD help2Location;
 
