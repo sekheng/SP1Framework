@@ -1,0 +1,31 @@
+Group Leader:
+Lee Sek Heng
+Features Done:
+Collision Detection system between the player and walls.
+Gate and Key interaction.
+An animation between the keys and gate.
+Designed the UI so that it holds everything together.
+Implementing music features and sound effect thorugh the use of IrrKlang
+
+Group Member 1:
+Li Zhaoyuan
+Features Done:
+
+
+Group Member 2:
+Chua Teck Lee
+Features Done:
+Level converter
+Level Editor
+Player interaction with End point
+Separating main game and custom game
+
+Group Member 3:
+Teh Kai Hong Bryan
+Features Done:
+Player movement
+Player collision detection/reaction
+Player Trap/Monster interaction
+Block pushing
+Block collision detection/reaction
+Plate and Hatch interaction

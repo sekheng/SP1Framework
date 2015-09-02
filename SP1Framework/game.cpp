@@ -47,7 +47,7 @@ char pausearr[40][150];
 COORD charLocation;
 COORD charCustomLocation;
 extern COORD startmenuLocation;
-int levelno = 4;
+int levelno = 1;
 string level;
 int counter = 0;//counter for custom map
 int endcounter = 0;

@@ -10,7 +10,6 @@ extern startscreen state;
 // This is to ensure the opening of the hatch sound
 // Only played once
 bool playitOnce = true; 
-// This is to ensure that thr is at least one monster chasing.
 
 ISound *beingChasedSnd;
 ISound *gotShotsnd;
@@ -52,7 +51,7 @@ void playSoundEvent()
 {
     if ( state != menu )   // When player is at the main menu
     {                                           // Theme song will be played.
-        alwaysPlaying->setVolume(0.1f);
+        alwaysPlaying->setVolume(0.1f); // This volume is being set so that the player can focus on the game
     }
     else
     {
@@ -77,9 +76,9 @@ void removingEngine()   //This is to remove the unncessary memory after exiting 
 
 void PlayingBeingChased()
 {
-    if ( engine->isCurrentlyPlaying(beingChased))
+    if ( engine->isCurrentlyPlaying(beingChased))   
         return;
-
+    // When the monster is in certain distance from the player, this eerie music will be played.
         beingChasedSnd = 
             engine->play2D(beingChased, false, false, true);
         beingChasedSnd->setVolume(1);
