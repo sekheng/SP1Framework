@@ -10,7 +10,9 @@ Implementing music features and sound effect thorugh the use of IrrKlang
 Group Member 1:
 Li Zhaoyuan
 Features Done:
-
+Cannon + Cannonball
+2 types of monsters, 1 that will follow the player from the start and 1 that will follow the player that is within 3 units range or will move randomly.
+a speed limiting system for cannonball, monsters and the player character.
 
 Group Member 2:
 Chua Teck Lee
