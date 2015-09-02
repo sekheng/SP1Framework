@@ -20,6 +20,5 @@ void pauseCannonSnd();
 void pauseHatchSnd();
 void playHatchSound();
 void playGateSound();
-bool check_is_there_monster_chasing();
 
 #endif // _BGMSOUNDS_H

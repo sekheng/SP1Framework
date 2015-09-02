@@ -11,7 +11,6 @@ extern startscreen state;
 // Only played once
 bool playitOnce = true; 
 // This is to ensure that thr is at least one monster chasing.
-bool monster_is_already_chasing = false;
 
 ISound *beingChasedSnd;
 ISound *gotShotsnd;
@@ -139,9 +138,4 @@ void pauseHatchSnd()
     {
         hatchSnd->stop();
     }
-}
-
-bool check_is_there_monster_chasing()
-{
-    return monster_is_already_chasing;
 }
