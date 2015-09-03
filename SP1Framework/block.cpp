@@ -35,10 +35,10 @@ void updateBlock(int z) // x= no of blocks and z=box number
 {
 	for (int i = 0; i < z; ++i)
 	{
-		if (charLocation.X == block.directions[i].X &&
-			charLocation.Y == block.directions[i].Y && keyPressed[K_UP]
-			|| charLocation.X == block.directions[i].X &&
-			charLocation.Y == block.directions[i].Y && keyPressed[K_W])//player push upwards
+		if ( (charLocation.X == block.directions[i].X &&
+			charLocation.Y == block.directions[i].Y && keyPressed[K_UP])
+			|| (charLocation.X == block.directions[i].X &&
+			charLocation.Y == block.directions[i].Y && keyPressed[K_W]) )//player push upwards
 		{
 			if (g_map[block.directions[i].Y - 1][block.directions[i].X] != 1)
 			{
@@ -49,10 +49,10 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.Y++;
 			}
 		}
-		else if (charLocation.X == block.directions[i].X &&
-			charLocation.Y == block.directions[i].Y && keyPressed[K_DOWN]
-			|| charLocation.X == block.directions[i].X && charLocation.Y ==
-			block.directions[i].Y && keyPressed[K_S])//player push downwards
+		else if ( (charLocation.X == block.directions[i].X &&
+			charLocation.Y == block.directions[i].Y && keyPressed[K_DOWN])
+			|| (charLocation.X == block.directions[i].X && charLocation.Y ==
+			block.directions[i].Y && keyPressed[K_S]) )//player push downwards
 		{
 			if (g_map[block.directions[i].Y + 1][block.directions[i].X] != 1)
 			{
@@ -60,13 +60,13 @@ void updateBlock(int z) // x= no of blocks and z=box number
 			}
 			if (charLocation.X == block.directions[i].X && charLocation.Y == block.directions[i].Y)
 			{
-				charLocation.Y--;
+				charLocation.Y--;   
 			}
 		}
-		else if (charLocation.X == block.directions[i].X &&
+		else if ( (charLocation.X == block.directions[i].X &&
 			charLocation.Y == block.directions[i].Y && keyPressed[K_LEFT]
 			|| charLocation.X == block.directions[i].X && charLocation.Y ==
-			block.directions[i].Y && keyPressed[K_A])//player push left
+			block.directions[i].Y && keyPressed[K_A]) )//player push left
 		{
 			if (g_map[block.directions[i].Y][block.directions[i].X - 1] != 1)
 			{
@@ -77,10 +77,10 @@ void updateBlock(int z) // x= no of blocks and z=box number
 				charLocation.X++;
 			}
 		}
-		else if (charLocation.X == block.directions[i].X &&
-			charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT]
-			|| charLocation.X == block.directions[i].X && charLocation.Y ==
-			block.directions[i].Y && keyPressed[K_D])//player push right
+		else if ( (charLocation.X == block.directions[i].X &&
+			charLocation.Y == block.directions[i].Y && keyPressed[K_RIGHT])
+			|| (charLocation.X == block.directions[i].X && charLocation.Y ==
+			block.directions[i].Y && keyPressed[K_D]) )//player push right
 		{
 			if (g_map[block.directions[i].Y][block.directions[i].X + 1] != 1)
 			{
@@ -96,34 +96,34 @@ void updateBlock(int z) // x= no of blocks and z=box number
 	{
 		for (int x = 0; x < y;x++)
 		{
-			if (block.directions[x].X == block.directions[y].X &&
-				block.directions[x].Y == block.directions[y].Y && keyPressed[K_RIGHT]
-				|| block.directions[x].X == block.directions[y].X &&
-				block.directions[x].Y == block.directions[y].Y && keyPressed[K_D])
+			if ( (block.directions[x].X == block.directions[y].X &&
+				block.directions[x].Y == block.directions[y].Y && keyPressed[K_RIGHT])
+				|| (block.directions[x].X == block.directions[y].X &&
+				block.directions[x].Y == block.directions[y].Y && keyPressed[K_D]) )
 			{
 				block.directions[y].X--;
 				charLocation.X--;
 			}
-			else if (block.directions[x].X == block.directions[y].X &&
-				block.directions[x].Y == block.directions[y].Y && keyPressed[K_LEFT]
-				|| block.directions[x].X == block.directions[y].X &&
-				block.directions[x].Y == block.directions[y].Y && keyPressed[K_A])
+			else if ( (block.directions[x].X == block.directions[y].X &&
+				block.directions[x].Y == block.directions[y].Y && keyPressed[K_LEFT])
+				|| (block.directions[x].X == block.directions[y].X &&
+				block.directions[x].Y == block.directions[y].Y && keyPressed[K_A]) )
 			{
 				block.directions[y].X++;
 				charLocation.X++;
 			}
-			else if (block.directions[x].X == block.directions[y].X &&
-				block.directions[x].Y == block.directions[y].Y && keyPressed[K_UP]
-				|| block.directions[x].X == block.directions[y].X &&
-				block.directions[x].Y == block.directions[y].Y && keyPressed[K_W])
+			else if ( (block.directions[x].X == block.directions[y].X &&
+				block.directions[x].Y == block.directions[y].Y && keyPressed[K_UP])
+				|| (block.directions[x].X == block.directions[y].X &&
+				block.directions[x].Y == block.directions[y].Y && keyPressed[K_W]) )
 			{
 				block.directions[y].Y++;
 				charLocation.Y++;
 			}
-			else if (block.directions[x].X == block.directions[y].X &&
-				block.directions[x].Y == block.directions[y].Y && keyPressed[K_DOWN]
-				|| block.directions[x].X == block.directions[y].X &&
-				block.directions[x].Y == block.directions[y].Y && keyPressed[K_S])
+			else if ( (block.directions[x].X == block.directions[y].X &&
+				block.directions[x].Y == block.directions[y].Y && keyPressed[K_DOWN])
+				|| (block.directions[x].X == block.directions[y].X &&
+				block.directions[x].Y == block.directions[y].Y && keyPressed[K_S]) )
 			{
 				block.directions[y].Y--;
 				charLocation.Y--;
