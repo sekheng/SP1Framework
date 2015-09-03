@@ -1,0 +1,20 @@
+Oo      oO                                          Oo             o         o                                  o                             
+O O    o o o              o                           O           O         O                  o               O                              
+o  o  O  O                                             Oo         o         O                              O   o                              
+O   Oo   O                                               O        O         o                             oOo  O                              
+O        o O  .oOo  .oOo  O  .oOo. 'OoOo. ooooooooo       O       o  .oOoO' OoOo. O   o `OoOo. O  'OoOo.   o   OoOo.                          
+o        O o  `Ooo. `Ooo. o  O   o  o   O                O        O  O   o  O   o o   O  o     o   o   O   O   o   o                          
+o        O O      O     O O  o   O  O   o              oO         o  o   O  o   O O   o  O     O   O   o   o   o   O                          
+O        o o' `OoO' `OoO' o' `OoO'  o   O             O           Oo `OoO'o `OoO' `OoOO  o     o'  o   O   `oO O   o                          
+                                                    oO                                o                                                       
+                                                                                   OoO'                                                       
+      ooOoOOo                                      o     o             Oo      oO                         oOOo       ooOOo.        ooOo       
+         O                                     o  O     O              O O    o o                         O               `O          O       
+         o                                        O     o              o  o  O  O                         o                O          o       
+         O                                        o     O              O   Oo   O                         O               .o          O       
+         o    `oOOoOO. .oOo. .oOo. .oOo  .oOo  O  OoOo. o  .oOo.       O        o .oOoO' ooOO .oOo. .oOo  o           ooOO'           o       
+         O     O  o  o O   o O   o `Ooo. `Ooo. o  O   o O  OooO'       o        O O   o    o  OooO' `Ooo. O           Oo              O       
+         O     o  O  O o   O o   O     O     O O  o   O o  O           o        O o   O   O   O         O o           oO              o       
+      ooOOoOo  O  o  o oOoO' `OoO' `OoO' `OoO' o' `OoO' Oo `OoO'       O        o `OoO'o OooO `OoO' `OoO' O                           O       
+                       O                                                                                  OoOo        oO           ooOO       
+                                                                                                                                               

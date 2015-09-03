@@ -1,0 +1,10 @@
+-----------------press space to go back-----------------
+-----------------Press Enter to save map----------------
+Type in different characters and create your own map!
+R - Right Cannon  L - Left Cannon
+U - Up Cannon     D - Down Cannon
+1 - Walls    0 - space
+G - Gate     K - key
+S - Character Spawn  E - End point
+M - Monster  N - Smart monsters
+B - Box    P - pressure plate     H - Hatch(for plate)    
